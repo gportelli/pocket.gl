@@ -5,7 +5,7 @@ define({
 	],
 
 	uniforms: {
-		bFlat:   { type: "b", value: true, displayName: "Flat enabled" },
+		bFlat:   { type: "boolean", value: true, displayName: "Flat enabled" },
 	},
 
 	//editorTheme: "bright",
@@ -32,7 +32,7 @@ define({
 		"varying vec3 vertPos;",
 		"varying vec3 normalInterp;",
 		"",
-		"uniform int bFlat;",
+		"uniform float bFlat;",
 		"",
 		"const vec3 lightPos 	= vec3(200,60,100);",
 		"const vec3 ambientColor = vec3(0.2, 0.0, 0.0);",
@@ -40,8 +40,7 @@ define({
 		"const vec3 specColor 	= vec3(1.0, 1.0, 1.0);",
 		"",
 		"void main() {",
-		"	float fFlat = float(bFlat);",
-		"	vec3 normal = mix(normalize(normalInterp), normalize(cross(dFdx(vertPos), dFdy(vertPos))), fFlat);",
+		"	vec3 normal = mix(normalize(normalInterp), normalize(cross(dFdx(vertPos), dFdy(vertPos))), bFlat);",
 		"	vec3 lightDir = normalize(lightPos - vertPos);",
 		"",
 		"	float lambertian = max(dot(lightDir,normal), 0.0);",

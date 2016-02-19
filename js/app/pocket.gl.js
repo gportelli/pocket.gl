@@ -202,11 +202,11 @@ define([
 			for(uniformid in this.params.uniforms) {
 				var u = this.params.uniforms[uniformid];
 
-				if(u.type == "f")
+				if(u.type == "float")
 					this.uniforms[uniformid].value = this.GUIParams[u.displayName];
-				else if(u.type == "c")
+				else if(u.type == "color")
 					this.uniforms[uniformid].value = new THREE.Color(this.GUIParams[u.displayName]);
-				else if(u.type == "b")
+				else if(u.type == "boolean")
 					this.uniforms[uniformid].value = this.GUIParams[u.displayName] ? 1 : 0;
 			}
 		}
@@ -429,8 +429,8 @@ define([
 				var vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log;
 				
 				// Subtracting from errors line numbers the lines of code included by three.js into the shader programs
-				vertexLog   = this.adjustLineNumbers(vertexLog, 46);
-				fragmentLog = this.adjustLineNumbers(fragmentLog, 14);
+				vertexLog   = this.adjustLineNumbers(vertexLog, 41);
+				fragmentLog = this.adjustLineNumbers(fragmentLog, 9);
 
 				errorMessage = programLog + "<br/><br/>";
 
@@ -469,19 +469,19 @@ define([
 				for(i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.type == "b")
+					if(u.type == "boolean")
 						this.uniforms[i] = {
-							type: "i",
-							value: u.type ? 1 : 0 
+							type: "f",
+							value: u.type ? 1.0 : 0.0 
 						};
-					else if(u.type == "f")
+					else if(u.type == "float")
 						this.uniforms[i] = {
-							type: u.type,
+							type: "f",
 							value: u.value
 						};
-					else if(u.type == "c")
+					else if(u.type == "color")
 						this.uniforms[i] = {
-							type: u.type,
+							type: "c",
 							value: new THREE.Color(u.value)
 						};
 				}
@@ -555,10 +555,10 @@ define([
 				for(i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.type == "f" || u.type == "b") {
+					if(u.type == "float" || u.type == "boolean") {
 						this.GUIParams[u.displayName] = u.value;
 					}
-					else if(u.type == "c") {
+					else if(u.type == "color") {
 						function toHex(v) { hex = v.toString(16); if(hex.length == 1) hex = "0" + hex; return hex;}
 						this.GUIParams[u.displayName] = "#" + toHex(u.value[0]) + toHex(u.value[1]) + toHex(u.value[2]);
 					}
@@ -582,15 +582,15 @@ define([
 			for(i in this.params.uniforms) {
 				var u = this.params.uniforms[i];
 
-				if(u.type == "f") 
+				if(u.type == "float") 
 					gui.add(this.GUIParams, u.displayName, u.min, u.max).onChange(function() {
 						that.render();
 					});
-				else if(u.type == "c")
+				else if(u.type == "color")
 					gui.addColor(this.GUIParams, "Color").onChange(function() {
 						that.render();
 					});
-				else if(u.type == "b")
+				else if(u.type == "boolean")
 					gui.add(this.GUIParams, u.displayName).onChange(function() {
 						that.render();
 					});

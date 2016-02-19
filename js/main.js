@@ -40,7 +40,7 @@ require(
 	    //new widget("container1", params1, "examples/derivatives"); 
 	    //new widget("container2", params2, "examples/mesh-viewer");
 	    new widget("container2", params1);
-	    //new widget("container2", params2, "examples/flat-bump");
+	    //new widget("container2", params1, "examples/flat-bump");
 	    //new widget("container2", params2, "examples/empty");
 	}
 );

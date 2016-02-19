@@ -839,7 +839,7 @@ define('text',['module'], function (module) {
 });
 
 
-define('text!css/tabs.css',[],function () { return '.wglsw.errorConsole { box-sizing: border-box; position: relative; background: #333; color: white; padding: 5px; overflow: auto; font: 14px Arial; }\r\n.wglsw-tabs { height: 44px; font: 14px Verdana; position: relative;}\r\n.wglsw-tabs ul {padding: 0px; margin: 0px; list-style: none; }\r\n.wglsw-tabs ul li { float: left; }\r\n.wglsw-tabs ul li.active { }\r\n.wglsw-tabs ul li.active { }\r\n.wglsw-tabs ul li a { display: block; padding: 0px 10px; line-height: 40px; height: 40px; text-decoration: none; color: #333;}\r\n.wglsw-tabs .hl.animated { height: 6px; position: absolute; bottom: 0px; transition: all 0.15s;}\r\n';});
+define('text!css/tabs.css',[],function () { return '.wglsw.errorConsole { box-sizing: border-box; position: relative; background: #333; color: white; padding: 5px; overflow: auto; font: 14px Arial; }\r\n.wglsw-tabs { height: 44px; font: 14px Verdana; position: relative;}\r\n.wglsw-tabs ul {padding: 0px; margin: 0px; list-style: none; }\r\n.wglsw-tabs ul li { float: left; margin: 0;}\r\n.wglsw-tabs ul li.active { }\r\n.wglsw-tabs ul li.active { }\r\n.wglsw-tabs ul li a { display: block; padding: 0px 10px; line-height: 40px; height: 40px; text-decoration: none; color: #333; outline: 0;}\r\n.wglsw-tabs .hl.animated { height: 6px; position: absolute; bottom: 0px; transition: all 0.15s;}\r\n';});
 
 
 define('text!default_shaders/vertex.glsl',[],function () { return 'varying vec3 normalInterp;\r\nvarying vec3 vertPos;\r\n\r\nvoid main(){\r\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\r\n    vec4 vertPos4 = modelViewMatrix * vec4(position, 1.0);\r\n\r\n    vertPos = vec3(vertPos4) / vertPos4.w;\r\n    normalInterp = normalMatrix * normal;\r\n}';});
@@ -13214,8 +13214,8 @@ define('app/pocket.gl',[
 				return;
 			}
 
-			this.baseURL = baseURL;
-			if(this.baseURL[this.baseURL.length-1] != "/") this.baseURL += "/";
+			this.baseURL = baseURL == undefined ? "" : baseURL;
+			if(this.baseURL != "" && this.baseURL[this.baseURL.length-1] != "/") this.baseURL += "/";
 
 			if( ! this.readParams(params)) return;
 
@@ -13248,9 +13248,6 @@ define('app/pocket.gl',[
 			
 			if(params.height == undefined) params.height = 400;			
 			this.canvasHeight = params.height;
-
-			if(params.baseURL == undefined) params.baseURL = "";
-			
 
 			if(params == undefined) params = {};
 			if(params.background == undefined) params.background = 0xdddddd;
@@ -13386,11 +13383,11 @@ define('app/pocket.gl',[
 			for(uniformid in this.params.uniforms) {
 				var u = this.params.uniforms[uniformid];
 
-				if(u.type == "f")
+				if(u.type == "float")
 					this.uniforms[uniformid].value = this.GUIParams[u.displayName];
-				else if(u.type == "c")
+				else if(u.type == "color")
 					this.uniforms[uniformid].value = new THREE.Color(this.GUIParams[u.displayName]);
-				else if(u.type == "b")
+				else if(u.type == "boolean")
 					this.uniforms[uniformid].value = this.GUIParams[u.displayName] ? 1 : 0;
 			}
 		}
@@ -13613,8 +13610,8 @@ define('app/pocket.gl',[
 				var vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log;
 				
 				// Subtracting from errors line numbers the lines of code included by three.js into the shader programs
-				vertexLog   = this.adjustLineNumbers(vertexLog, 46);
-				fragmentLog = this.adjustLineNumbers(fragmentLog, 14);
+				vertexLog   = this.adjustLineNumbers(vertexLog, 41);
+				fragmentLog = this.adjustLineNumbers(fragmentLog, 9);
 
 				errorMessage = programLog + "<br/><br/>";
 
@@ -13653,19 +13650,19 @@ define('app/pocket.gl',[
 				for(i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.type == "b")
+					if(u.type == "boolean")
 						this.uniforms[i] = {
-							type: "i",
-							value: u.type ? 1 : 0 
+							type: "f",
+							value: u.type ? 1.0 : 0.0 
 						};
-					else if(u.type == "f")
+					else if(u.type == "float")
 						this.uniforms[i] = {
-							type: u.type,
+							type: "f",
 							value: u.value
 						};
-					else if(u.type == "c")
+					else if(u.type == "color")
 						this.uniforms[i] = {
-							type: u.type,
+							type: "c",
 							value: new THREE.Color(u.value)
 						};
 				}
@@ -13739,10 +13736,10 @@ define('app/pocket.gl',[
 				for(i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.type == "f" || u.type == "b") {
+					if(u.type == "float" || u.type == "boolean") {
 						this.GUIParams[u.displayName] = u.value;
 					}
-					else if(u.type == "c") {
+					else if(u.type == "color") {
 						function toHex(v) { hex = v.toString(16); if(hex.length == 1) hex = "0" + hex; return hex;}
 						this.GUIParams[u.displayName] = "#" + toHex(u.value[0]) + toHex(u.value[1]) + toHex(u.value[2]);
 					}
@@ -13766,15 +13763,15 @@ define('app/pocket.gl',[
 			for(i in this.params.uniforms) {
 				var u = this.params.uniforms[i];
 
-				if(u.type == "f") 
+				if(u.type == "float") 
 					gui.add(this.GUIParams, u.displayName, u.min, u.max).onChange(function() {
 						that.render();
 					});
-				else if(u.type == "c")
+				else if(u.type == "color")
 					gui.addColor(this.GUIParams, "Color").onChange(function() {
 						that.render();
 					});
-				else if(u.type == "b")
+				else if(u.type == "boolean")
 					gui.add(this.GUIParams, u.displayName).onChange(function() {
 						that.render();
 					});

@@ -30,16 +30,18 @@ require(
 	//"examples/animation/params",
 	//"examples/mesh-viewer/params",
 	//"examples/derivatives/params"
-	"examples/flat-shader/params"
+	//"examples/flat-shader/params"
 	//"examples/flat-bump/params"
 	//"examples/empty/params"
+	//"examples/random-colors/params"
+	"examples/redout-shader/params"
 	],
 
 	function(widget, params1, params2) {
 	    //new widget("container1", params1, "examples/animation"); 
 	    //new widget("container1", params1, "examples/derivatives"); 
 	    //new widget("container2", params2, "examples/mesh-viewer");
-	    new widget("container2", params1);
+	    new widget("container2", params1, "examples/redout-shader");
 	    //new widget("container2", params1, "examples/flat-bump");
 	    //new widget("container2", params2, "examples/empty");
 	}

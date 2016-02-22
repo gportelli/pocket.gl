@@ -13679,6 +13679,7 @@ define('app/pocket.gl',[
 						(function(texparams) {
 							return function ( texture ) {
 								texture.wrapS = texture.wrapT = texparams.wrap == "clamp" ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;
+								if(texparams.filter == "nearest") texture.minFilter = texture.magFilter =THREE.NearestFilter;
 								that.uniforms[texparams.uniformName].value = texture;
 								that.render();
 							}

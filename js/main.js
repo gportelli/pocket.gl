@@ -21,7 +21,7 @@ require.config({
 		"three-libs/MTLLoader": ['three.min'],
 		"three-libs/ColladaLoader": ['three.min'],
 		"three-libs/FBXLoader": ['three.min'],
-		"three-libs/TeapotBufferGeometry": ['three.min']
+		"three-libs/TeapotBufferGeometry": ['three.min'],
     }
 });
 
@@ -34,14 +34,16 @@ require(
 	//"examples/flat-bump/params"
 	//"examples/empty/params"
 	//"examples/random-colors/params"
-	"examples/redout-shader/params"
+	"examples/redout-shader/params",
+	"examples/redout-shader-new/params",
 	],
 
 	function(widget, params1, params2) {
 	    //new widget("container1", params1, "examples/animation"); 
 	    //new widget("container1", params1, "examples/derivatives"); 
 	    //new widget("container2", params2, "examples/mesh-viewer");
-	    new widget("container2", params1, "examples/redout-shader");
+	    new widget("container1", params1, "examples/redout-shader");
+	    new widget("container2", params2, "examples/redout-shader-new");
 	    //new widget("container2", params1, "examples/flat-bump");
 	    //new widget("container2", params2, "examples/empty");
 	}

@@ -11,8 +11,7 @@ define([
 	"three-libs/DDSLoader",
 	"three-libs/OBJLoader",
 	"three-libs/MTLLoader",
-	"three-libs/ColladaLoader",
-	"three-libs/FBXLoader",
+	"three-libs/ColladaLoader2",
 	"three-libs/TeapotBufferGeometry",
 
 	"dat.gui.min",
@@ -230,6 +229,27 @@ define([
 			//console.log("render " + this.frameCount);
 		}
 
+		WebGLShaderWidget.prototype.setObjectTransform = function(obj, params) {
+			if(params.scale == undefined) params.scale = 1;
+			if(params.x == undefined) params.x = 0;
+			if(params.y == undefined) params.y = 0;
+			if(params.z == undefined) params.z = 0;
+			if(params.rx == undefined) params.rx = 0;
+			if(params.ry == undefined) params.ry = 0;
+			if(params.rz == undefined) params.rz = 0;
+
+			obj.scale.x = obj.scale.y = obj.scale.z = params.scale;
+			obj.updateMatrix();
+
+			obj.position.x = params.x;
+			obj.position.y = params.y;
+			obj.position.z = params.z;
+
+			obj.rotation.x = params.rx * 3.1415926 / 180;
+			obj.rotation.y = params.ry * 3.1415926 / 180;
+			obj.rotation.z = params.rz * 3.1415926 / 180;
+		}
+
 		WebGLShaderWidget.prototype.loadMesh = function(mesh, material) {
 			var _this = this;
 
@@ -270,9 +290,7 @@ define([
 			}
 
 			var meshurl = this.baseURL + mesh.url;
-			if(mesh.scale == undefined) mesh.scale = 1;
-			if(mesh.y == undefined) mesh.y = 0;
-
+			
 			if(endsWith(meshurl.toLowerCase(), ".dae")) {
 				var loader = new THREE.ColladaLoader( manager );
 				loader.options.convertUpAxis = true;
@@ -285,9 +303,7 @@ define([
 						}
 					} );
 
-					dae.scale.x = dae.scale.y = dae.scale.z = mesh.scale;
-					dae.updateMatrix();
-					dae.position.y = mesh.y;
+					_this.setObjectTransform(dae, mesh);
 
 					_this.scene.add( dae );
 					_this.currentmesh = dae;
@@ -309,8 +325,7 @@ define([
 					objLoader.setMaterials( materials );
 					objLoader.load( meshurl, function ( object ) {
 
-						object.position.y = mesh.y;
-						object.scale.x = object.scale.y = object.scale.z = mesh.scale;
+						_this.setObjectTransform(object, mesh);
 
 						_this.scene.add( object );
 						_this.currentmesh = object;
@@ -318,7 +333,7 @@ define([
 					}, onProgress, onError );
 				}, onProgress, onError );
 			}
-			else if(endsWith(meshurl.toLowerCase(), ".fbx") || endsWith(meshurl.toLowerCase(), ".obj")) {
+			else if(endsWith(meshurl.toLowerCase(), ".obj")) {
 				var loader = 
 					endsWith(meshurl.toLowerCase(), ".fbx")
 					? new THREE.FBXLoader( manager )
@@ -332,9 +347,7 @@ define([
 						}
 					} );
 
-					object.scale.x = object.scale.y = object.scale.z = mesh.scale;
-					object.updateMatrix();
-					object.position.y = mesh.y;
+					_this.setObjectTransform(object, mesh);
 
 					_this.scene.add(object);
 					_this.currentmesh = object;
@@ -527,6 +540,7 @@ define([
 			this.renderer.setPixelRatio( window.devicePixelRatio );
 			this.renderer.setSize(this.canvasWidth, this.canvasHeight);
 			this.renderer.setClearColor( this.params.background );
+			//this.renderer.sortObjects = false;
 
 			if(! this.shaderEditorEnabled) {
 				// Lights

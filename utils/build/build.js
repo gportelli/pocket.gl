@@ -14,8 +14,7 @@
         "three-libs/DDSLoader": ['three.min'],
         "three-libs/OBJLoader": ['three.min'],
         "three-libs/MTLLoader": ['three.min'],
-        "three-libs/ColladaLoader": ['three.min'],
-        "three-libs/FBXLoader": ['three.min'],
+        "three-libs/ColladaLoader2": ['three.min'],
         "three-libs/TeapotBufferGeometry": ['three.min']
     },
 

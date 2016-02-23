@@ -19,32 +19,28 @@ require.config({
 		"three-libs/DDSLoader": ['three.min'],
 		"three-libs/OBJLoader": ['three.min'],
 		"three-libs/MTLLoader": ['three.min'],
-		"three-libs/ColladaLoader": ['three.min'],
-		"three-libs/FBXLoader": ['three.min'],
+		"three-libs/ColladaLoader2": ['three.min'],
 		"three-libs/TeapotBufferGeometry": ['three.min'],
     }
 });
 
+var url =
+	//"examples/animation/";
+	//"examples/mesh-viewer/";
+	"examples/derivatives/";
+	//"examples/flat-shader/";
+	//"examples/flat-bump/";
+	//"examples/empty/";
+	//"examples/random-colors/";
+	//"examples/redout-shader/";
+	//"examples/redout-shader-new/";
+
 require(
 	["app/pocket.gl",
-	//"examples/animation/params",
-	//"examples/mesh-viewer/params",
-	//"examples/derivatives/params"
-	//"examples/flat-shader/params"
-	//"examples/flat-bump/params"
-	//"examples/empty/params"
-	//"examples/random-colors/params"
-	"examples/redout-shader/params",
-	"examples/redout-shader-new/params",
+	url+"params"
 	],
 
-	function(widget, params1, params2) {
-	    //new widget("container1", params1, "examples/animation"); 
-	    //new widget("container1", params1, "examples/derivatives"); 
-	    //new widget("container2", params2, "examples/mesh-viewer");
-	    new widget("container1", params1, "examples/redout-shader");
-	    new widget("container2", params2, "examples/redout-shader-new");
-	    //new widget("container2", params1, "examples/flat-bump");
-	    //new widget("container2", params2, "examples/empty");
+	function(widget, params1) {
+	    new widget("container1", params1, url); 
 	}
 );

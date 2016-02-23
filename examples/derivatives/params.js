@@ -1,6 +1,6 @@
 define({
 	meshes: [
-		{ url: "derivatives.obj", name: "Derivatives", y: 0, scale: 0.7},
+		{ url: "derivatives.obj", name: "Derivatives", x:-13, y: 0, z:0, rx:0, ry:-30, rz:0, scale: 0.65},
 	],
 
 	textures: [
@@ -11,9 +11,10 @@ define({
 		}
 	],
 
-	doubleSided: true,
-	background: 0xfafafa,
+	doubleSided: false,
+	background: 0xf8f8f8,
 	showTabs: false,
+	transparent: true,
 	
 	vertexShader: [
 		"varying vec3 normalInterp;",
@@ -49,7 +50,7 @@ define({
 		"",
 		"	float lambertian = max(dot(lightDir,normal), 0.0);",
 		"	vec4 albedo = texture2D(texture, texcoord);",
-		"   if (albedo.a < 0.4) discard; ",
+		"   //if (albedo.a < 0.4) discard; ",
 		"	gl_FragColor = vec4(albedo.rgb * 0.7 + lambertian * albedo.rgb * 0.3, albedo.a);",
 		"}"
 	].join("\n")

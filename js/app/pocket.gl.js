@@ -11,7 +11,7 @@ define([
 	"three-libs/DDSLoader",
 	"three-libs/OBJLoader",
 	"three-libs/MTLLoader",
-	"three-libs/ColladaLoader2",
+	"three-libs/ColladaLoader",
 	"three-libs/TeapotBufferGeometry",
 
 	"dat.gui.min",

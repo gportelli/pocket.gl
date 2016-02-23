@@ -19,7 +19,7 @@ require.config({
 		"three-libs/DDSLoader": ['three.min'],
 		"three-libs/OBJLoader": ['three.min'],
 		"three-libs/MTLLoader": ['three.min'],
-		"three-libs/ColladaLoader2": ['three.min'],
+		"three-libs/ColladaLoader": ['three.min'],
 		"three-libs/TeapotBufferGeometry": ['three.min'],
     }
 });
@@ -27,13 +27,12 @@ require.config({
 var url =
 	//"examples/animation/";
 	//"examples/mesh-viewer/";
-	"examples/derivatives/";
+	//"examples/derivatives/";
 	//"examples/flat-shader/";
 	//"examples/flat-bump/";
 	//"examples/empty/";
 	//"examples/random-colors/";
-	//"examples/redout-shader/";
-	//"examples/redout-shader-new/";
+	"examples/redout-shader/";
 
 require(
 	["app/pocket.gl",

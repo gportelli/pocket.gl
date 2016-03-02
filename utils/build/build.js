@@ -1,15 +1,14 @@
 ({
- 	baseUrl: '../../bower_components/',
+ 	baseUrl: '../..',
 
     paths: {
-        app:                '../js/app',
-        default_shaders:    '../default_shaders',
-        css:                '../css',
-        examples:           '../examples',
-        three_examples:     'three.js/examples/js',
-        three_builds:       'three.js/build',
-        text:               'text/text',
-        ace_builds:         'ace-builds/src-noconflict'
+        app:                'js/app',
+        three_examples:     'bower_components/three.js/examples/js',
+        three_builds:       'bower_components/three.js/build',
+        text:               'bower_components/text/text',
+        ace_builds:         'bower_components/ace-builds/src-noconflict',
+        dat_gui:            'bower_components/dat-gui/build',
+        almond:             'bower_components/almond'
     },
 
     shim: {
@@ -19,7 +18,7 @@
         "three_examples/loaders/OBJLoader":                 ['three_builds/three'],
         "three_examples/loaders/MTLLoader":                 ['three_builds/three'],
         "three_examples/loaders/ColladaLoader":             ['three_builds/three'],
-        "three_examples/geometries/TeapotBufferGeometry":   ['three_builds/three']
+        "three_examples/geometries/TeapotBufferGeometry":   ['three_builds/three'],
     },
 
     name: 'almond/almond',

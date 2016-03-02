@@ -1,41 +1,42 @@
 ({
- 	baseUrl: '../../js/libs/',
+ 	baseUrl: '../../bower_components/',
 
     paths: {
-        app: '../app',
-        default_shaders: '../../default_shaders',
-        css: '../../css',
-        examples: '../../examples'
+        app:                '../js/app',
+        default_shaders:    '../default_shaders',
+        css:                '../css',
+        examples:           '../examples',
+        three_examples:     'three.js/examples/js',
+        three_builds:       'three.js/build',
+        text:               'text/text',
+        ace_builds:         'ace-builds/src-noconflict'
     },
 
     shim: {
-        "three-libs/Detector": ['three.min'],
-        "three-libs/OrbitControls": ['three.min'],
-        "three-libs/DDSLoader": ['three.min'],
-        "three-libs/OBJLoader": ['three.min'],
-        "three-libs/MTLLoader": ['three.min'],
-        "three-libs/ColladaLoader": ['three.min'],
-        "three-libs/TeapotBufferGeometry": ['three.min']
+        "three_examples/Detector":                          ['three_builds/three'],
+        "three_examples/controls/OrbitControls":            ['three_builds/three'],
+        "three_examples/loaders/DDSLoader":                 ['three_builds/three'],
+        "three_examples/loaders/OBJLoader":                 ['three_builds/three'],
+        "three_examples/loaders/MTLLoader":                 ['three_builds/three'],
+        "three_examples/loaders/ColladaLoader":             ['three_builds/three'],
+        "three_examples/geometries/TeapotBufferGeometry":   ['three_builds/three']
     },
 
-	out: "../../build/pocket.gl.min.js",
-
-	optimize: "uglify2",
-    //optimize: "none",
-
-    name: 'almond',
+    name: 'almond/almond',
     
     include: [
         'app/pocket.gl',
-        'ace/mode-glsl',
+
+        // Ace glsl language
+        'ace_builds/mode-glsl',
 
         // Ace Themes
-        'ace/theme-vibrant_ink.js', // dark
-        'ace/theme-crimson_editor.js', // bright
+        'ace_builds/theme-vibrant_ink',    // dark
+        'ace_builds/theme-crimson_editor', // bright
     ],
 
     wrap: {
     	startFile: "start.frag.js",
-    	endFile: "end.frag.js"
+    	endFile:   "end.frag.js"
     }
 })

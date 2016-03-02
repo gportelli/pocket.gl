@@ -1,8 +1,0 @@
-.wglsw.errorConsole { box-sizing: border-box; position: relative; background: #333; color: white; padding: 5px; overflow: auto; font: 14px Arial; }
-.wglsw-tabs { height: 44px; font: 14px Verdana; position: relative;}
-.wglsw-tabs ul {padding: 0px; margin: 0px; list-style: none; }
-.wglsw-tabs ul li { float: left; margin: 0;}
-.wglsw-tabs ul li.active { }
-.wglsw-tabs ul li.active { }
-.wglsw-tabs ul li a { display: block; padding: 0px 10px; line-height: 40px; height: 40px; text-decoration: none; color: #333; outline: 0;}
-.wglsw-tabs .hl.animated { height: 6px; position: absolute; bottom: 0px; transition: all 0.15s;}

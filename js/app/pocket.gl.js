@@ -1,31 +1,54 @@
+/**
+ * pocket.gl http://pocketgl.aclockworkberry.com
+ *
+ * Copyright 2016 Giuseppe Portelli <info@aclockworkberry.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
 define([
-	"text!css/tabs.css",
+	"text!css/style.css",
 	
 	"text!default_shaders/vertex.glsl",
 	"text!default_shaders/fragment.glsl",
 
-	"three.min",
+	"app/tabs",
+	"app/data",
 
-	"three-libs/Detector",
-	"three-libs/OrbitControls",	
-	"three-libs/DDSLoader",
-	"three-libs/OBJLoader",
-	"three-libs/MTLLoader",
-	"three-libs/ColladaLoader",
-	"three-libs/TeapotBufferGeometry",
+	"three_builds/three",
 
-	"dat.gui.min",
+	"three_examples/Detector",
+	"three_examples/controls/OrbitControls",
+	"three_examples/loaders/DDSLoader",
+	"three_examples/loaders/OBJLoader",
+	"three_examples/loaders/MTLLoader",
+	"three_examples/loaders/ColladaLoader",
+	"three_examples/geometries/TeapotBufferGeometry",
 
-	"ace/ace"],
+	"dat_gui/dat.gui",
 
-	function(stylesheet, defaultVertex, defaultFragment) {
+	"ace_builds/ace"],
+
+	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs, appData) {
+		console.log("pocket.gl " + appData.version);
+
 		// Inject css
 		var sheet = document.createElement("style");
 		sheet.setAttribute("media", "screen")	
 		sheet.appendChild(document.createTextNode(stylesheet));
 	    document.head.appendChild(sheet);
 
-		function WebGLShaderWidget(containerID, params, baseURL)
+		function PocketGL(containerID, params, baseURL)
 		{
 			if ( ! Detector.webgl ) {
 				Detector.addGetWebGLMessage();
@@ -59,7 +82,7 @@ define([
 				this.render();
 		}
 
-		WebGLShaderWidget.prototype.readParams = function(params)
+		PocketGL.prototype.readParams = function(params)
 		{
 			if(params.width == undefined) params.width = 620;
 			this.canvasWidth = params.width;
@@ -68,14 +91,14 @@ define([
 			this.canvasHeight = params.height;
 
 			if(params == undefined) params = {};
-			if(params.background == undefined) params.background = 0xdddddd;
+			if(params.background == undefined) params.background = appData.backgroundColor;
 			if(params.meshes == undefined) params.meshes = [];
-			if(params.tabColor == undefined) params.tabColor = "#1c90f3";
-			if(params.doubleSided == undefined) params.doubleSided = false;
-			if(params.animated == undefined) params.animated = false;
-			if(params.transparent == undefined) params.transparent= false;
-			if(params.editorTheme == undefined) params.editorTheme = "bright";
-			if(params.showTabs == undefined) params.showTabs = true;
+			if(params.tabColor == undefined) params.tabColor = appData.tabColor;
+			if(params.doubleSided == undefined) params.doubleSided = appData.doubleSided;
+			if(params.animated == undefined) params.animated = appData.animated;
+			if(params.transparent == undefined) params.transparent= appData.transparent;
+			if(params.editorTheme == undefined) params.editorTheme = appData.editorTheme;
+			if(params.showTabs == undefined) params.showTabs = appData.showTabs;
 
 			var urlMeshesCount = 0;
 			for(i in params.meshes) if(params.meshes[i].url !== undefined) urlMeshesCount++;
@@ -98,12 +121,12 @@ define([
 			return true;
 		}
 
-		WebGLShaderWidget.prototype.createDomElements = function()
+		PocketGL.prototype.createDomElements = function()
 		{
 			// Tabs
 			if(this.shaderEditorEnabled && this.params.showTabs) {
 				var div = document.createElement("div");
-				div.className = "wglsw-tabs";
+				div.className = "pocketgl-tabs";
 				var ul = document.createElement("ul");
 
 				var tabNames = ["Render", "Vertex Shader", "Fragment Shader"];
@@ -128,7 +151,7 @@ define([
 
 				this.domContainer.appendChild(div);
 
-				new WglswTabs(this, tabs, divHl);
+				new PocketGLTabs(this, tabs, divHl);
 			}
 
 			this.containers = [];
@@ -144,10 +167,22 @@ define([
 				this.domContainer.appendChild(this.containers[i]);
 			}
 
-			this.containers[3].className = "wglsw errorConsole";
+			this.containers[3].className = "pocketgl errorConsole";
 		}
 
-		WebGLShaderWidget.prototype.switchTab = function(tabIndex)
+		PocketGL.prototype.getLogoDomEl = function()
+		{
+			var logo = document.createElement("a");
+			logo.className = "pocketgl-logo";
+			logo.href  = appData.website;
+			logo.target = "_blank";
+			logo.title = "pocket.gl";
+			logo.innerHTML = "<div class='pocketgl-logo-pocket'></div>";
+
+			return logo;
+		}
+
+		PocketGL.prototype.switchTab = function(tabIndex)
 		{
 			if(tabIndex < 0 || tabIndex > 3) return;
 			if(tabIndex == this.currentTab) return;
@@ -181,7 +216,7 @@ define([
 			}
 		}
 
-		WebGLShaderWidget.prototype.createEditor = function(container, text)
+		PocketGL.prototype.createEditor = function(container, text)
 		{
 			var editor = ace.edit(container);
 
@@ -195,7 +230,7 @@ define([
 			return editor;
 		}
 
-		WebGLShaderWidget.prototype.updateUniforms = function() {
+		PocketGL.prototype.updateUniforms = function() {
 			if(this.uniforms.time != undefined) this.uniforms.time.value += this.clock.getDelta();
 
 			for(uniformid in this.params.uniforms) {
@@ -210,7 +245,7 @@ define([
 			}
 		}
 
-		WebGLShaderWidget.prototype.animate = function() {
+		PocketGL.prototype.animate = function() {
 			var _this = this;
 			requestAnimationFrame(function () { _this.animate() });
 
@@ -218,7 +253,7 @@ define([
 				this.render();
 		}
 
-		WebGLShaderWidget.prototype.render = function() {
+		PocketGL.prototype.render = function() {
 			this.updateUniforms();
 
 			this.renderer.render( this.scene, this.camera );
@@ -229,7 +264,7 @@ define([
 			//console.log("render " + this.frameCount);
 		}
 
-		WebGLShaderWidget.prototype.setObjectTransform = function(obj, params) {
+		PocketGL.prototype.setObjectTransform = function(obj, params) {
 			if(params.scale == undefined) params.scale = 1;
 			if(params.x == undefined) params.x = 0;
 			if(params.y == undefined) params.y = 0;
@@ -250,7 +285,7 @@ define([
 			obj.rotation.z = params.rz * 3.1415926 / 180;
 		}
 
-		WebGLShaderWidget.prototype.loadMesh = function(mesh, material) {
+		PocketGL.prototype.loadMesh = function(mesh, material) {
 			var _this = this;
 
 			if (typeof this.currentmesh != "undefined") {
@@ -358,7 +393,7 @@ define([
 			this.currentMaterial = material;
 		}
 
-		WebGLShaderWidget.prototype.createProceduralMesh = function(mesh, material) {
+		PocketGL.prototype.createProceduralMesh = function(mesh, material) {
 			var geometry = null;
 
 			switch(mesh.type) {
@@ -401,7 +436,7 @@ define([
 			return new THREE.Mesh(geometry, material);
 		}
 
-		WebGLShaderWidget.prototype.updateShadersFromEditor = function() {
+		PocketGL.prototype.updateShadersFromEditor = function() {
 			if(this.editorVertex != undefined)
 				this.currentMaterial.setValues( {
 					vertexShader: this.editorVertex.getValue()});
@@ -415,7 +450,7 @@ define([
 			this.render();
 		}
 
-		WebGLShaderWidget.prototype.adjustLineNumbers = function(txt, offset) {
+		PocketGL.prototype.adjustLineNumbers = function(txt, offset) {
 			var result = [];
 
 			var rows = txt.split("\n");
@@ -431,7 +466,7 @@ define([
 			return result.join("<br/>");
 		}
 
-		WebGLShaderWidget.prototype.logErrors = function() {
+		PocketGL.prototype.logErrors = function() {
 			if(! this.shaderEditorEnabled) return;
 
 			var errorMessage = "";
@@ -461,7 +496,7 @@ define([
 			this.containers[3].innerHTML = errorMessage;
 		}
 
-		WebGLShaderWidget.prototype.init = function() {
+		PocketGL.prototype.init = function() {
 			var that = this;
 
 			// Camera
@@ -562,6 +597,7 @@ define([
 
 			// Add webgl canvas renderer to DOM container	
 			this.containers[0].appendChild( this.renderer.domElement );
+			this.containers[0].appendChild(this.getLogoDomEl());
 
 			// GUI	
 			this.GUIParams = { Mesh: 0 };
@@ -591,8 +627,10 @@ define([
 				gui.add(this.GUIParams, 'Mesh', meshes).onChange(function() {
 					that.loadMesh(that.params.meshes[that.GUIParams['Mesh']], material);
 				});
-			else if(this.params.meshes.length == 0)
+			else if(this.params.meshes.length == 0) {
+				material.side = THREE.DoubleSide;
 				this.scene.add(this.createProceduralMesh({id:"teapot"}, material));
+			}
 
 			for(i in this.params.uniforms) {
 				var u = this.params.uniforms[i];
@@ -629,64 +667,6 @@ define([
 			}
 		}
 
-		////////
-		// Tabs
-		//////////////
-		function WglswTabs(container, tabs, hl) {
-			this.widget = container;
-			this.tabs = tabs;
-			this.hl = hl;
-
-			this.setupEvents();
-
-			this.repositionHighlight(tabs[0]);
-		}
-
-		WglswTabs.prototype.setupEvents = function() {
-			var _this = this;
-			var i=0;
-
-			while(i < this.tabs.length) {
-				this.tabs[i].addEventListener("click", (function (action, index) {
-						return function(event) {
-							_this.switchTab(event, action, index);
-						}
-					})(this.tabs[i], i) 
-				);
-
-				i++;
-			}
-		};
-
-		WglswTabs.prototype.switchTab = function(event, action, index) {
-			event.preventDefault();
-			event.stopPropagation();
-			this.repositionHighlight(action);
-
-			this.widget.switchTab(index);
-		};
-
-		WglswTabs.prototype.repositionHighlight = function(action) {
-			var position;
-			position = action.getBoundingClientRect();
-			container = this.tabs[0].getBoundingClientRect();
-			return this.setStyles(this.hl, {
-				left: (position.left - container.left) + "px",
-				width: position.width + "px"
-			});
-		};
-
-		WglswTabs.prototype.setStyles = function(element, styles) {
-			var key, results;
-			results = [];
-			
-			for (key in styles) {
-				results.push(element.style[key] = styles[key]);
-			}
-
-			return results;
-		};
-
-		return WebGLShaderWidget;
+		return PocketGL;
 	}
 );

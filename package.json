@@ -1,0 +1,22 @@
+{
+  "name": "pocket.gl",
+  "version": "1.0.0",
+  "description": "Easily embed webgl shaders inside your pages",
+  "main": "js/app/pocket.gl.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@pizzagit.drowne.com:gportelli/pocket.gl.git"
+  },
+  "keywords": [
+    "pocket.gl",
+    "pocketgl"
+  ],
+  "author": "Giuseppe Portelli",
+  "license": "MIT"
+}

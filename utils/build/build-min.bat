@@ -1,1 +1,1 @@
-node r.js -o build.js
+node r.js -o build.js optimize=uglify2 out=../../build/pocket.gl.min.js

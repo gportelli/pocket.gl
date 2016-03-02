@@ -1,0 +1,32 @@
+{
+  "name": "PocketGL",
+  "authors": [
+    "Giuseppe Portelli <info@aclockworkberry.com>"
+  ],
+  "description": "Easily embed webgl shaders inside your pages",
+  "main": "js/app/pocket.gl.js",
+  "moduleType": [],
+  "keywords": [
+    "pocket.gl",
+    "pocketgl"
+  ],
+  "license": "MIT",
+  "homepage": "pocketgl.aclockworkberry.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "css",
+    "default_shaders",
+    "js",
+    "utils",
+  ],
+  "dependencies": {
+    "dat-gui": "0.5.1",
+    "ace-builds": "1.2.3",
+    "requirejs": "^2.1.22",
+    "almond": "^0.3.1",
+    "text": "requirejs-text#^2.0.14",
+    "three.js": "threejs#r74"
+  }
+}

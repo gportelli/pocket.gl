@@ -1,4 +1,4 @@
-define(["three.min"], 
+define( 
 	function () { return {
 	/*
 	meshes: [
@@ -26,7 +26,7 @@ define(["three.min"],
 
 	//editorTheme: "bright",
 	editorTheme: "dark",
-	background: 0xaaaaaa,
+	backgroundColor: 0xaaaaaa,
 	doubleSided: true,
 	animated: true,
 

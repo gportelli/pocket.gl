@@ -23,7 +23,7 @@ define([
 	"text!default_shaders/fragment.glsl",
 
 	"app/tabs",
-	"app/data",
+	"app/config",
 
 	"three_builds/three",
 
@@ -39,8 +39,8 @@ define([
 
 	"ace_builds/ace"],
 
-	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs, appData) {
-		console.log("pocket.gl " + appData.version);
+	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs, config) {
+		console.log("pocket.gl " + config.version);
 
 		// Inject css
 		var sheet = document.createElement("style");
@@ -91,14 +91,14 @@ define([
 			this.canvasHeight = params.height;
 
 			if(params == undefined) params = {};
-			if(params.background == undefined) params.background = appData.backgroundColor;
+			if(params.backgroundColor == undefined) params.backgroundColor = config.backgroundColor;
 			if(params.meshes == undefined) params.meshes = [];
-			if(params.tabColor == undefined) params.tabColor = appData.tabColor;
-			if(params.doubleSided == undefined) params.doubleSided = appData.doubleSided;
-			if(params.animated == undefined) params.animated = appData.animated;
-			if(params.transparent == undefined) params.transparent= appData.transparent;
-			if(params.editorTheme == undefined) params.editorTheme = appData.editorTheme;
-			if(params.showTabs == undefined) params.showTabs = appData.showTabs;
+			if(params.tabColor == undefined) params.tabColor = config.tabColor;
+			if(params.doubleSided == undefined) params.doubleSided = config.doubleSided;
+			if(params.animated == undefined) params.animated = config.animated;
+			if(params.transparent == undefined) params.transparent= config.transparent;
+			if(params.editorTheme == undefined) params.editorTheme = config.editorTheme;
+			if(params.showTabs == undefined) params.showTabs = config.showTabs;
 
 			var urlMeshesCount = 0;
 			for(i in params.meshes) if(params.meshes[i].url !== undefined) urlMeshesCount++;
@@ -174,7 +174,7 @@ define([
 		{
 			var logo = document.createElement("a");
 			logo.className = "pocketgl-logo";
-			logo.href  = appData.website;
+			logo.href  = config.website;
 			logo.target = "_blank";
 			logo.title = "pocket.gl";
 			logo.innerHTML = "<div class='pocketgl-logo-pocket'></div>";
@@ -298,8 +298,8 @@ define([
 				if(mesh.y === undefined) mesh.y = 0;
 				if(mesh.scale === undefined) mesh.scale = 1;
 
-				this.currentmesh.position.y = mesh.y;
-				this.currentmesh.scale = mesh.scale;
+				this.setObjectTransform(this.currentmesh, mesh);
+
 				this.scene.add(this.currentmesh);
 				this.render();
 				return;
@@ -477,8 +477,8 @@ define([
 				var vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log;
 				
 				// Subtracting from errors line numbers the lines of code included by three.js into the shader programs
-				vertexLog   = this.adjustLineNumbers(vertexLog, 41);
-				fragmentLog = this.adjustLineNumbers(fragmentLog, 9);
+				vertexLog   = this.adjustLineNumbers(vertexLog, config.vertexShaderPreambleLineCount);
+				fragmentLog = this.adjustLineNumbers(fragmentLog, config.fragmentShaderPreambleLineCount);
 
 				errorMessage = programLog + "<br/><br/>";
 
@@ -574,19 +574,26 @@ define([
 			this.renderer = new THREE.WebGLRenderer({ antialias: true });				
 			this.renderer.setPixelRatio( window.devicePixelRatio );
 			this.renderer.setSize(this.canvasWidth, this.canvasHeight);
-			this.renderer.setClearColor( this.params.background );
+			this.renderer.setClearColor( this.params.backgroundColor );
 			//this.renderer.sortObjects = false;
 
 			if(! this.shaderEditorEnabled) {
 				// Lights
 				scene.add( new THREE.AmbientLight( 0xcccccc ) );
 
-				var directionalLight = new THREE.DirectionalLight(/*Math.random() * 0xffffff*/0xeeeeee );
-				directionalLight.position.x = Math.random() - 0.5;
-				directionalLight.position.y = Math.random() - 0.5;
-				directionalLight.position.z = Math.random() - 0.5;
+				var directionalLight = new THREE.DirectionalLight(0xffffff );
+				directionalLight.position.x = 100;
+				directionalLight.position.y = 60;
+				directionalLight.position.z = 100;
 				directionalLight.position.normalize();
 				scene.add( directionalLight );
+
+				var directionalLight1 = new THREE.DirectionalLight(0xaaaaaa );
+				directionalLight1.position.x = -100;
+				directionalLight1.position.y = 60;
+				directionalLight1.position.z = -100;
+				directionalLight1.position.normalize();
+				scene.add( directionalLight1 );
 			}
 
 			// Orbit

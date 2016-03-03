@@ -44,22 +44,44 @@ require.config({
     }
 });
 
-var url =
-	//"examples/animation/";
-	//"examples/mesh-viewer/";
-	//"examples/derivatives/";
-	//"examples/flat-shader/";
-	//"examples/flat-bump/";
-	//"examples/empty/";
-	//"examples/random-colors/";
-	"examples/redout-shader/";
+var examples = [
+	"empty",
+	"gui-meshes",
+	"earth",
 
-require(
-	["app/pocket.gl",
-	"test/" + url + "params"
+	"animation",
+	"mesh-viewer",
+	"derivatives",
+	"flat-shader",
+	"flat-bump",
+	"procedural-meshes",
+	"random-colors",
+	"redout-shader"
+];
+
+var index = parseInt(window.location.hash.substring(1));
+
+require([
+	"app/pocket.gl",
+	"examples/data/" + examples[index] + "/params"
 	],
 
 	function(widget, params) {
-	    new widget("container", params, url); 
+		var menu = document.createElement("div");
+		for(i=0; i<examples.length; i++) {
+			var a = document.createElement("a");
+			a.innerHTML = (i+1) + ". " + examples[i];
+			a.href = "#" + i;
+			a.style = "padding-right: 10px";
+			a.onclick = function() { 
+				window.location = "#" + i; 
+				window.location.reload(); 
+			}
+			menu.appendChild(a);			
+		}
+		document.getElementById("container").appendChild(menu);
+
+
+	    new widget("container", params, "data/" + examples[index]); 
 	}
 );

@@ -12,7 +12,7 @@ define({
 	],
 
 	doubleSided: false,
-	background: 0xf8f8f8,
+	backgroundColor: 0xf8f8f8,
 	showTabs: false,
 	transparent: true,
 	

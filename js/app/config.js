@@ -19,6 +19,11 @@
 define({
 	version: "1.0.0",
 	website: "http://pocketgl.aclockworkberry.com",
+
+	fragmentShaderPreambleLineCount: 8,
+	vertexShaderPreambleLineCount: 41,
+
+	// default values
 	width: 620,
 	height: 400,
 	backgroundColor: 0xdddddd,
@@ -26,6 +31,6 @@ define({
 	doubleSided: false,
 	animated: false,
 	transparent: false,
-	editorTheme: "bright",
+	editorTheme: "dark",
 	showTabs: true
 });

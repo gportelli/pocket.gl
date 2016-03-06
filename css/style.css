@@ -17,6 +17,28 @@
  */
  
 .pocketgl.errorConsole { box-sizing: border-box; position: relative; background: #333; color: white; padding: 5px; overflow: auto; font: 14px Arial; }
+
+.pocketgl.loadingProgress { box-sizing: border-box; position: relative; background: #eee; color: white; padding: 5px; overflow: auto; font: 14px Arial; }
+.pocketglProgress { 
+	box-sizing: content-box;
+
+    width: 60%;
+    height: 14px;
+    padding: 1px;
+    border: 1px solid #666;
+    background-color: #aaa;
+
+    position: absolute;
+	top: 50%;
+	left: 20%;
+	margin-top: -7px;
+}
+.pocketglProgressBar {
+    width: 0%;
+    height: 14px;
+    background-color: #fff;
+}
+
 .pocketgl-tabs { height: 44px; font: 14px Verdana; position: relative;}
 .pocketgl-tabs ul {padding: 0px; margin: 0px; list-style: none; }
 .pocketgl-tabs ul li { float: left; margin: 0;}
@@ -51,3 +73,11 @@
 .pocketgl-logo:hover {
 	background-position: 1px 0px; 
 }
+
+/* dat js */
+.dg.main li { margin: 0px; }
+.dg .c input[type=text] {
+  font: 13.3333px Arial;
+  line-height: normal;
+}
+.dg .c select { padding: 0; border-radius: 0;}

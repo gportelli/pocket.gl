@@ -24,14 +24,13 @@ define([
 
 	"app/tabs",
 	"app/config",
+	"app/loadingManager",
 
 	"three_builds/three",
 
 	"three_examples/Detector",
 	"three_examples/controls/OrbitControls",
-	"three_examples/loaders/DDSLoader",
 	"three_examples/loaders/OBJLoader",
-	"three_examples/loaders/MTLLoader",
 	"three_examples/loaders/ColladaLoader",
 	"three_examples/geometries/TeapotBufferGeometry",
 
@@ -39,7 +38,7 @@ define([
 
 	"ace_builds/ace"],
 
-	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs, config) {
+	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs, config, LoadingManager) {
 		console.log("pocket.gl " + config.version);
 
 		// Inject css
@@ -48,8 +47,37 @@ define([
 		sheet.appendChild(document.createTextNode(stylesheet));
 	    document.head.appendChild(sheet);
 
-		function PocketGL(containerID, params, baseURL)
+		function PocketGL(containerIDorDomEl, params, baseURL)
 		{
+			var scope = this;
+
+			if(typeof params === 'string' || params instanceof String)
+			{
+				if(baseURL == undefined) {
+					var lastSlash = params.lastIndexOf("/");
+					if(lastSlash == -1) lastSlash = params.lastIndexOf("\\");
+					baseURL = lastSlash == -1
+						? "/"
+						: params.substring(0, lastSlash);
+				}
+				var loaderV = new THREE.XHRLoader();
+				loaderV.load( 
+					params, 
+					function(text) { 
+						eval("params = " + text);
+			            scope.initObject(containerIDorDomEl, params, baseURL);  
+			        }
+				);
+			}
+			else {
+				this.initObject(containerIDorDomEl, params, baseURL);
+			}
+		}
+
+		PocketGL.prototype.initObject = function(containerIDorDomEl, params, baseURL)
+		{
+			var scope = this;
+
 			if ( ! Detector.webgl ) {
 				Detector.addGetWebGLMessage();
 				return;
@@ -60,26 +88,62 @@ define([
 
 			if( ! this.readParams(params)) return;
 
-			this.domContainer = document.getElementById(containerID);
+			this.domContainer = 
+				(typeof containerIDorDomEl === 'string' || containerIDorDomEl instanceof String) 
+				? document.getElementById(containerID) 
+				: containerIDorDomEl;
 
 			this.currentTab = 0;
 
 			this.createDomElements();
 
-			this.brightAceTheme = "crimson_editor";
-			this.darkAceTheme = "vibrant_ink";
-
 			this.clock = new THREE.Clock();
-
-			this.init();
 
 			this.frameCount = 0;
 
 			this.animationPaused = false;
-			if(this.params.animated)
-				this.animate();
-			else
-				this.render();
+
+			if(params.vertexShaderFile != undefined || params.fragmentShaderFile != undefined) {
+				this.showLoading();
+				this.loadingShaders = true;
+
+				if(params.vertexShaderFile != undefined) {
+					var loaderV = new THREE.XHRLoader();
+					this.LoadingManager.addObject(loaderV);
+					loaderV.load( 
+						this.baseURL + params.vertexShaderFile, 
+						function(text) { params.vertexShader = text;  },
+						function ( xhr ) {
+							if ( xhr.lengthComputable ) {
+								var percentComplete = xhr.loaded / xhr.total;
+								scope.LoadingManager.onProgress(loaderV, percentComplete);
+							}
+						},
+						function(xhr) { scope.LoadingManager.onError(xhr); }
+					);
+				}
+
+				if(params.fragmentShaderFile != undefined) {
+					var loader = new THREE.XHRLoader();
+					this.LoadingManager.addObject(loader);
+					loader.load( 
+						this.baseURL + params.fragmentShaderFile, 
+						function(text) { params.fragmentShader = text; scope.LoadingManager.onProgress(loader, 1); },
+						function ( xhr ) {
+							if ( xhr.lengthComputable ) {
+								var percentComplete = xhr.loaded / xhr.total;
+								scope.LoadingManager.onProgress(loader, percentComplete);
+							}
+						},
+						function(xhr) { scope.LoadingManager.onError(xhr); }
+					);
+				}
+			}
+			else {
+				this.loadingShaders = false;
+
+				this.init();
+			}		
 		}
 
 		PocketGL.prototype.readParams = function(params)
@@ -101,9 +165,16 @@ define([
 			if(params.showTabs == undefined) params.showTabs = config.showTabs;
 
 			var urlMeshesCount = 0;
-			for(i in params.meshes) if(params.meshes[i].url !== undefined) urlMeshesCount++;
+			for(var i in params.meshes) if(params.meshes[i].url !== undefined) urlMeshesCount++;
 
 			this.shaderEditorEnabled = true;
+
+			if(params.vertexShaderFile != undefined)
+				params.vertexShader = "loading...";
+
+			if(params.fragmentShaderFile != undefined)
+				params.fragmentShader = "loading...";
+
 			if(params.vertexShader == undefined && params.fragmentShader == undefined && urlMeshesCount > 0) {
 				if(params.addDefaultShaders !== undefined && params.addDefaultShaders == true) {
 					params.vertexShader = defaultVertex;
@@ -123,6 +194,8 @@ define([
 
 		PocketGL.prototype.createDomElements = function()
 		{
+			var scope = this;
+
 			// Tabs
 			if(this.shaderEditorEnabled && this.params.showTabs) {
 				var div = document.createElement("div");
@@ -131,7 +204,7 @@ define([
 
 				var tabNames = ["Render", "Vertex Shader", "Fragment Shader"];
 				var tabs = [];
-				for(i=0; i<3; i++) {
+				for(var i=0; i<3; i++) {
 					var li = document.createElement("li");
 					var a = document.createElement("a");
 					a.href = "#";
@@ -150,12 +223,11 @@ define([
 				div.appendChild(divHl);	
 
 				this.domContainer.appendChild(div);
-
-				new PocketGLTabs(this, tabs, divHl);
+				this.tabs = new PocketGLTabs(function (tabIndex) { scope.switchTab(tabIndex); }, tabs, divHl);
 			}
 
 			this.containers = [];
-			for(i=0; i<4; i++) {
+			for(var i=0; i<5; i++) {
 				this.containers[i] = document.createElement("div");
 				
 				if(i > 0) this.containers[i].style.display = "none";
@@ -168,6 +240,116 @@ define([
 			}
 
 			this.containers[3].className = "pocketgl errorConsole";
+
+			// Loading Manager progress bar
+			this.containers[4].className = "pocketgl loadingProgress";
+
+			this.containers[4].innerHTML = 
+				"<div class='pocketglProgress'><div class='pocketglProgressBar'></div></div>";
+
+			var progressBar = this.containers[4].getElementsByTagName("div")[1];
+			this.LoadingManager = new LoadingManager(
+				progressBar,
+				function() { scope.onLoadingComplete(); }
+			);
+		}
+
+		PocketGL.prototype.onLoadingComplete = function()
+		{
+			//console.log("loading complete");
+
+			if(this.loadingShaders) {
+				this.loadingShaders = false;
+				this.init();
+			}
+			else
+				this.switchTab(0);
+		}
+
+		PocketGL.prototype.addSkybox = function() 
+		{
+			var scope = this;
+
+			var urls = [];
+
+			for(var i in this.params.skybox)
+				urls[i] = this.baseURL + this.params.skybox[i];
+
+			var textureCube;
+
+			if(urls.length == 1) {
+				this.showLoading();
+
+				var loader = new THREE.TextureLoader();
+				this.LoadingManager.addObject(loader);
+				
+				var equirectangularTexture = loader.load( 
+					urls[0], 
+					function() { scope.LoadingManager.onProgress(loader, 1); },
+					function ( xhr ) {
+						if ( xhr.lengthComputable ) {
+							var percentComplete = xhr.loaded / xhr.total;
+							scope.LoadingManager.onProgress(loader, percentComplete);
+						}
+					},
+					function(xhr) { scope.LoadingManager.onError(xhr); }
+				);
+
+				equirectangularTexture.wrapS = THREE.ClampToEdgeWrapping;
+				equirectangularTexture.wrapT = THREE.ClampToEdgeWrapping;
+				equirectangularTexture.minFilter = equirectangularTexture.magFilter =THREE.LinearFilter;
+
+				var geometry = new THREE.SphereGeometry( 500, 60, 40 );
+				geometry.scale( - 1, 1, 1 );
+
+				var material = new THREE.MeshBasicMaterial( {
+					map: equirectangularTexture
+				} );
+
+				mesh = new THREE.Mesh( geometry, material );
+
+				this.skybox = mesh;
+				this.scene.add( mesh );
+
+				this.uniforms["tCube"] = { type:"t", value: equirectangularTexture };
+			}
+			else {
+				var loader = new THREE.CubeTextureLoader();
+				this.LoadingManager.addObject(loader);
+
+				var textureCube = loader.load( 
+					urls,
+
+					function() { scope.LoadingManager.onProgress(loader, 1); },
+					function ( xhr ) {
+						if ( xhr.lengthComputable ) {
+							var percentComplete = xhr.loaded / xhr.total;
+							scope.LoadingManager.onProgress(loader, percentComplete);
+						}
+					},
+					function(xhr) { scope.LoadingManager.onError(xhr); }
+				);
+
+				textureCube.mapping = THREE.CubeReflectionMapping;
+
+				var shader = THREE.ShaderLib[ "cube" ];
+				shader.uniforms[ "tCube" ].value = textureCube;
+
+				var material = new THREE.ShaderMaterial( {
+
+					fragmentShader: shader.fragmentShader,
+					vertexShader: shader.vertexShader,
+					uniforms: shader.uniforms,
+					side: THREE.BackSide
+
+				} ),
+
+				mesh = new THREE.Mesh( new THREE.BoxGeometry( 1000, 1000, 1000 ), material );
+				this.skybox = mesh;
+				this.scene.add( mesh );
+
+				this.uniforms["tCube"] = { type:"t", value: textureCube };
+			}
 		}
 
 		PocketGL.prototype.getLogoDomEl = function()
@@ -184,34 +366,36 @@ define([
 
 		PocketGL.prototype.switchTab = function(tabIndex)
 		{
-			if(tabIndex < 0 || tabIndex > 3) return;
+			if(tabIndex < 0 || tabIndex > 4) return;
 			if(tabIndex == this.currentTab) return;
 			
 			this.containers[this.currentTab].style.display = "none";
 			this.containers[tabIndex].style.display   = "block";
 
 			this.currentTab = tabIndex;
+			this.animationPaused = tabIndex != 0;
+			if(this.tabs != undefined) this.tabs.enable();
 
 			switch(tabIndex) {
 				case 0:
-					this.animationPaused = false;			
-					this.updateShadersFromEditor();
+					if(this.shaderEditorEnabled) this.updateShadersFromEditor();
 					break;
 
 				case 1:
-					this.animationPaused = true;
 					if(this.editorVertex == undefined)
 						this.editorVertex = this.createEditor(this.containers[1], this.params.vertexShader);						
 					break;
 
 				case 2:
-					this.animationPaused = true;
 					if(this.editorFragment == undefined)
 						this.editorFragment = this.createEditor(this.containers[2], this.params.fragmentShader);
 					break;
 
+				case 4:
+					if(this.tabs != undefined) this.tabs.disable();
+					break;
+
 				deafult:
-					this.animationPaused = true;
 					break;
 			}
 		}
@@ -221,7 +405,7 @@ define([
 			var editor = ace.edit(container);
 
 			editor.$blockScrolling = Infinity;
-			editor.setTheme("ace/theme/" + (this.params.editorTheme == "dark" ? this.darkAceTheme : this.brightAceTheme));
+			editor.setTheme("ace/theme/" + (this.params.editorTheme == "dark" ? config.darkAceTheme : config.brightAceTheme));
 			editor.session.setMode("ace/mode/glsl");
 			editor.setShowPrintMargin(false);
 			editor.setValue(text, -1);
@@ -255,6 +439,9 @@ define([
 
 		PocketGL.prototype.render = function() {
 			this.updateUniforms();
+
+			if(this.skybox != undefined)
+				this.skybox.position.copy(this.camera.position);
 
 			this.renderer.render( this.scene, this.camera );
 
@@ -304,90 +491,73 @@ define([
 				this.render();
 				return;
 			}
-			
-			var manager = new THREE.LoadingManager();
-			manager.onProgress = function ( item, loaded, total ) {
-				console.log( item, loaded, total );
-			};
-
-			var onProgress = function ( xhr ) {
-				if ( xhr.lengthComputable ) {
-					var percentComplete = xhr.loaded / xhr.total * 100;
-					console.log( Math.round(percentComplete, 2) + '% downloaded' );
-				}
-			};
-
-			var onError = function ( xhr ) {
-			};
 
 			function endsWith(str, suffix) {
 			    return str.indexOf(suffix, str.length - suffix.length) !== -1;
 			}
 
 			var meshurl = this.baseURL + mesh.url;
-			
+
 			if(endsWith(meshurl.toLowerCase(), ".dae")) {
-				var loader = new THREE.ColladaLoader( manager );
+				this.showLoading();
+
+				var loader = new THREE.ColladaLoader();
+				this.LoadingManager.addObject(loader);
 				loader.options.convertUpAxis = true;
-				loader.load(meshurl, function ( collada ) {
-					dae = collada.scene;
+				loader.load(
+					meshurl, 
+					function ( collada ) {
+						_this.LoadingManager.onProgress(loader, 1);
 
-					dae.traverse( function ( child ) {
-						if ( child instanceof THREE.Mesh ) {
-							if(_this.shaderEditorEnabled) child.material = material;
+						dae = collada.scene;
+
+						dae.traverse( function ( child ) {
+							if ( child instanceof THREE.Mesh ) {
+								if(_this.shaderEditorEnabled) child.material = material;
+							}
+						} );
+
+						_this.setObjectTransform(dae, mesh);
+
+						_this.scene.add( dae );
+						_this.currentmesh = dae;
+					}, 
+					function ( xhr ) {
+						if ( xhr.lengthComputable ) {
+							var percentComplete = xhr.loaded / xhr.total;
+							_this.LoadingManager.onProgress(loader, percentComplete);
 						}
-					} );
-
-					_this.setObjectTransform(dae, mesh);
-
-					_this.scene.add( dae );
-					_this.currentmesh = dae;
-					_this.render();
-				}, 
-				onProgress, onError );
+					} 
+				);
 			}
-			else if(endsWith(meshurl.toLowerCase(), ".obj") && mesh.mtl !== undefined && !_this.shaderEditorEnabled) {
-				var mtlLoader = new THREE.MTLLoader();
-				mtlLoader.setBaseUrl(_this.baseURL );
-				mtlLoader.load( _this.baseURL + mesh.mtl, function( materials ) {
+			else if(endsWith(meshurl.toLowerCase(), ".obj")) {
+				this.showLoading();
 
-					materials.preload();
-					
-					for(i in materials.materials)
-						_this.currentMaterial = materials.materials[i];
+				var loader = new THREE.OBJLoader();
+				this.LoadingManager.addObject(loader);
+				loader.load(
+					meshurl, 
+					function( object ) {
+						_this.LoadingManager.onProgress(loader, 1);
 
-					var objLoader = new THREE.OBJLoader();
-					objLoader.setMaterials( materials );
-					objLoader.load( meshurl, function ( object ) {
+						object.traverse( function( child ) {
+							if ( child instanceof THREE.Mesh ) {
+								if(_this.shaderEditorEnabled) child.material = material;
+							}
+						} );
 
 						_this.setObjectTransform(object, mesh);
 
-						_this.scene.add( object );
+						_this.scene.add(object);
 						_this.currentmesh = object;
-						_this.render();
-					}, onProgress, onError );
-				}, onProgress, onError );
-			}
-			else if(endsWith(meshurl.toLowerCase(), ".obj")) {
-				var loader = 
-					endsWith(meshurl.toLowerCase(), ".fbx")
-					? new THREE.FBXLoader( manager )
-					: new THREE.OBJLoader( manager );
-
-				loader.load(meshurl, function( object ) {
-
-					object.traverse( function( child ) {
-						if ( child instanceof THREE.Mesh ) {
-							if(_this.shaderEditorEnabled) child.material = material;
+					},
+					function ( xhr ) {
+						if ( xhr.lengthComputable ) {
+							var percentComplete = xhr.loaded / xhr.total;
+							_this.LoadingManager.onProgress(loader, percentComplete);
 						}
-					} );
-
-					_this.setObjectTransform(object, mesh);
-
-					_this.scene.add(object);
-					_this.currentmesh = object;
-					_this.render();
-				}, onProgress, onError );
+					} 
+				);
 			}
 
 			this.currentMaterial = material;
@@ -466,6 +636,10 @@ define([
 			return result.join("<br/>");
 		}
 
+		PocketGL.prototype.showLoading = function() {
+			this.switchTab(4);
+		}
+
 		PocketGL.prototype.logErrors = function() {
 			if(! this.shaderEditorEnabled) return;
 
@@ -497,7 +671,7 @@ define([
 		}
 
 		PocketGL.prototype.init = function() {
-			var that = this;
+			var scope = this;
 
 			// Camera
 			this.camera = new THREE.PerspectiveCamera( 45, this.canvasWidth/this.canvasHeight, 0.1, 1000 );
@@ -514,7 +688,7 @@ define([
 				this.uniforms.time = {type: "f", value: 0};
 
 			if(this.params.uniforms != undefined) {
-				for(i in this.params.uniforms) {
+				for(var i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
 					if(u.type == "boolean")
@@ -537,23 +711,43 @@ define([
 
 			// Textures
 			if(this.params.textures != undefined) {
-				for(i in this.params.textures) {
-					this.uniforms[this.params.textures[i].uniformName] = { type: "t", value: null };
+				for(var i in this.params.textures) {
+					var texparams = this.params.textures[i];
+					this.uniforms[texparams.uniformName] = { type: "t", value: null };
+
+					this.showLoading();
 
 					var loader = new THREE.TextureLoader();
-					loader.load(
+					this.LoadingManager.addObject(loader);
+
+					var texture = loader.load(
 						this.baseURL + this.params.textures[i].url,
-						(function(texparams) {
-							return function ( texture ) {
-								texture.wrapS = texture.wrapT = texparams.wrap == "clamp" ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;
-								if(texparams.filter == "nearest") texture.minFilter = texture.magFilter =THREE.NearestFilter;
-								that.uniforms[texparams.uniformName].value = texture;
-								that.render();
+
+						function(loader) {
+							return function (texture) {
+								scope.LoadingManager.onProgress(loader, 1);
 							}
-						})(that.params.textures[i])
-					);			
+						}(loader),
+						
+						function(loader) {
+							return function ( xhr ) {
+								if ( xhr.lengthComputable ) {
+									var percentComplete = xhr.loaded / xhr.total;
+									console.log( Math.round(percentComplete * 100, 2) + '% downloaded' );
+									scope.LoadingManager.onProgress(loader, percentComplete);
+								}
+							}
+						}(loader)
+					);
+
+					texture.wrapS = texture.wrapT = texparams.wrap == "clamp" ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;
+					if(texparams.filter == "nearest") texture.minFilter = texture.magFilter =THREE.NearestFilter;
+					this.uniforms[texparams.uniformName].value = texture;
 				}
 			}
+
+			if(this.params.skybox != undefined)
+				this.addSkybox();
 
 			// Material
 			if(this.shaderEditorEnabled) {
@@ -600,7 +794,7 @@ define([
 			var cameraControls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
 			cameraControls.enablePan = false;
 			cameraControls.target.set( 0, 0, 0 );
-			cameraControls.addEventListener( 'change', function() { that.render() } );
+			cameraControls.addEventListener( 'change', function() { scope.render() } );
 
 			// Add webgl canvas renderer to DOM container	
 			this.containers[0].appendChild( this.renderer.domElement );
@@ -610,7 +804,7 @@ define([
 			this.GUIParams = { Mesh: 0 };
 
 			if(this.params.uniforms != undefined)
-				for(i in this.params.uniforms) {
+				for(var i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
 					if(u.type == "float" || u.type == "boolean") {
@@ -623,7 +817,7 @@ define([
 				}
 
 			var meshes = {};
-			for(i in this.params.meshes)
+			for(var i in this.params.meshes)
 				meshes[this.params.meshes[i].name] = i;
 
 			var gui = false;
@@ -632,27 +826,28 @@ define([
 
 			if(this.params.meshes.length > 1)
 				gui.add(this.GUIParams, 'Mesh', meshes).onChange(function() {
-					that.loadMesh(that.params.meshes[that.GUIParams['Mesh']], material);
+					scope.loadMesh(scope.params.meshes[scope.GUIParams['Mesh']], material);
+					scope.LoadingManager.setReady();
 				});
 			else if(this.params.meshes.length == 0) {
 				material.side = THREE.DoubleSide;
 				this.scene.add(this.createProceduralMesh({id:"teapot"}, material));
 			}
 
-			for(i in this.params.uniforms) {
+			for(var i in this.params.uniforms) {
 				var u = this.params.uniforms[i];
 
 				if(u.type == "float") 
 					gui.add(this.GUIParams, u.displayName, u.min, u.max).onChange(function() {
-						that.render();
+						scope.render();
 					});
 				else if(u.type == "color")
 					gui.addColor(this.GUIParams, "Color").onChange(function() {
-						that.render();
+						scope.render();
 					});
 				else if(u.type == "boolean")
 					gui.add(this.GUIParams, u.displayName).onChange(function() {
-						that.render();
+						scope.render();
 					});
 			}
 
@@ -666,12 +861,18 @@ define([
 			}
 
 			// Load mesh
-			if(this.params.meshes.length != 0) {
-				// setup dds format texture loader
-				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-
+			if(this.params.meshes.length != 0)
 				this.loadMesh(this.params.meshes[0], material);
-			}
+
+			if(this.params.animated)
+				this.animate();
+			else
+				this.render();
+
+			if(this.LoadingManager.objects.length == 0)
+				this.switchTab(0);
+			else
+				this.LoadingManager.setReady();
 		}
 
 		return PocketGL;

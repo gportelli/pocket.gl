@@ -36,52 +36,43 @@ require.config({
     shim: {
     	"three_examples/Detector": 							['three_builds/three'],
 		"three_examples/controls/OrbitControls": 			['three_builds/three'],
-		"three_examples/loaders/DDSLoader": 				['three_builds/three'],
 		"three_examples/loaders/OBJLoader": 				['three_builds/three'],
-		"three_examples/loaders/MTLLoader": 				['three_builds/three'],
 		"three_examples/loaders/ColladaLoader": 			['three_builds/three'],
 		"three_examples/geometries/TeapotBufferGeometry": 	['three_builds/three'],
     }
 });
 
-var examples = [
-	"empty",
-	"gui-meshes",
-	"earth",
-
-	"animation",
-	"mesh-viewer",
-	"derivatives",
-	"flat-shader",
-	"flat-bump",
-	"procedural-meshes",
-	"random-colors",
-	"redout-shader"
-];
-
 var index = parseInt(window.location.hash.substring(1));
+if(isNaN(index)) index = 0;
 
-require([
-	"app/pocket.gl",
-	"examples/data/" + examples[index] + "/params"
-	],
+require(["examples/examples"], function(examples) {
+	require([
+		"app/pocket.gl"
+		],
 
-	function(widget, params) {
-		var menu = document.createElement("div");
-		for(i=0; i<examples.length; i++) {
-			var a = document.createElement("a");
-			a.innerHTML = (i+1) + ". " + examples[i];
-			a.href = "#" + i;
-			a.style = "padding-right: 10px";
-			a.onclick = function() { 
-				window.location = "#" + i; 
-				window.location.reload(); 
+		function(widget, params) {
+			var menu = document.createElement("ol");
+			menu.style.float = "left";
+			for(i=0; i<examples.examples.length; i++) {
+				var li = document.createElement("li"); 
+				var a = document.createElement("a");
+				a.innerHTML = examples.examples[i];
+				a.href = "#" + i;
+				a.style = "padding-right: 10px";
+				a.onclick = function() { 
+					window.location = "#" + i; 
+					window.location.reload(); 
+				}
+				li.appendChild(a)
+				menu.appendChild(li);			
 			}
-			menu.appendChild(a);			
+			document.getElementById("container").appendChild(menu);
+
+			var widgetContainer = document.createElement("div");
+			widgetContainer.style.marginLeft = "200px";
+			document.getElementById("container").appendChild(widgetContainer);
+
+		    new widget(widgetContainer, "data/" + examples.examples[index] + "/params.js"); 
 		}
-		document.getElementById("container").appendChild(menu);
-
-
-	    new widget("container", params, "data/" + examples[index]); 
-	}
-);
+	);
+});

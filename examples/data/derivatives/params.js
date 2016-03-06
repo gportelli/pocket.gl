@@ -1,4 +1,4 @@
-define({
+{
 	meshes: [
 		{ url: "derivatives.obj", name: "Derivatives", x:-13, y: 0, z:0, rx:0, ry:-30, rz:0, scale: 0.65},
 	],
@@ -54,4 +54,4 @@ define({
 		"	gl_FragColor = vec4(albedo.rgb * 0.7 + lambertian * albedo.rgb * 0.3, albedo.a);",
 		"}"
 	].join("\n")
-});
+}

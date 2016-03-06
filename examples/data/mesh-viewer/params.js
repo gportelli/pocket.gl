@@ -1,4 +1,4 @@
-define({
+{
 	meshes: [
 		{ url: "dice.obj", mtl: "dice.mtl", name: "Dice", y: -20, scale: 1},
 		{ url: "cube-normal.obj", mtl: "cube-normal.mtl", name: "Cube Normal Obj", y: -10, scale: 0.3},
@@ -14,4 +14,4 @@ define({
 	],
 
 	backgroundColor: 0x000000
-});
+}

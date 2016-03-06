@@ -1,4 +1,4 @@
-define({
+{
 	meshes: [
 		{ type: "teapot", subdivision: 20, name: "Teapot procedural"},
 		{ type: "cube", subdivision: 20, name: "Cube procedural"},
@@ -8,4 +8,4 @@ define({
 	],
 	
 	//addDefaultShaders: true
-});
+}

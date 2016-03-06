@@ -21,7 +21,10 @@ define({
 	website: "http://pocketgl.aclockworkberry.com",
 
 	fragmentShaderPreambleLineCount: 8,
-	vertexShaderPreambleLineCount: 41,
+	vertexShaderPreambleLineCount: 40,
+
+	brightAceTheme: "crimson_editor",
+	darkAceTheme: "vibrant_ink",
 
 	// default values
 	width: 620,

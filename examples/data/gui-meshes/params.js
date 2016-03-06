@@ -1,4 +1,4 @@
-define({
+{
 	meshes: [
 		{ type: "teapot", name: "Teapot", y: 0},
 		{ type: "sphere",  name: "Sphere",  y: 0},
@@ -58,4 +58,4 @@ define({
 		"	gl_FragColor = vec4(ambientColor + lambertian * diffuseColor + specular * specColor, 1.0);",
 		"}"
 	].join("\n"),
-});
+}

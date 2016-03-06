@@ -1,5 +1,4 @@
-define( 
-	function () { return {
+{
 	/*
 	meshes: [
 		{ url: "meshes/teapot.DAE", name: "Teapot collada", y: -23},
@@ -86,4 +85,4 @@ define(
 		"	gl_FragColor = vec4(albedo * 0.2 + lambertian * albedo + specular * specColor, 1.0);",
 		"}"
 	].join("\n")
-}});
+}

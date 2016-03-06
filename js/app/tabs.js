@@ -18,8 +18,8 @@
  
 define(function() {
 
-	function PocketGLTabs(container, tabs, hl) {
-		this.widget = container;
+	function PocketGLTabs(callback, tabs, hl) {
+		this.callback = callback;
 		this.tabs = tabs;
 		this.hl = hl;
 
@@ -49,7 +49,7 @@ define(function() {
 		event.stopPropagation();
 		this.repositionHighlight(action);
 
-		this.widget.switchTab(index);
+		this.callback(index);
 	};
 
 	PocketGLTabs.prototype.repositionHighlight = function(action) {
@@ -71,6 +71,20 @@ define(function() {
 		}
 
 		return results;
+	};
+
+	PocketGLTabs.prototype.disable = function() {
+		for(var i in this.tabs)
+			this.tabs[i].style.visibility = "hidden";
+
+		this.hl.style.visibility = "hidden";
+	};
+
+	PocketGLTabs.prototype.enable = function() {
+		for(var i in this.tabs)
+			this.tabs[i].style.visibility = "visible";
+
+		this.hl.style.visibility = "visible";
 	};
 
 	return PocketGLTabs;

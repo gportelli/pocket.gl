@@ -924,6 +924,42 @@ define('app/tabs',[],function() {
 
 	return PocketGLTabs;
 });
+/**
+ * pocket.gl http://pocketgl.aclockworkberry.com
+ *
+ * Copyright 2016 Giuseppe Portelli <info@aclockworkberry.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+define('app/config',{
+	version: "1.0.0",
+	website: "http://pocketgl.aclockworkberry.com",
+
+	fragmentShaderPreambleLineCount: 8,
+	vertexShaderPreambleLineCount: 40,
+
+	// default values
+	width: 620,
+	height: 400,
+	backgroundColor: 0xdddddd,
+	tabColor: "#1c90f3",
+	doubleSided: false,
+	animated: false,
+	transparent: false,
+	editorTheme: "dark",
+	showTabs: true
+});
 // File:src/Three.js
 
 /**
@@ -43678,9 +43714,9 @@ THREE.MTLLoader.MaterialCreator.prototype = {
 
 					if ( params[ 'bumpMap' ] ) break; // Avoid loading twice.
 
-					params[ 'bumpMap' ] = this.loadTexture( this.baseUrl + value );
-					params[ 'bumpMap' ].wrapS = this.wrap;
-					params[ 'bumpMap' ].wrapT = this.wrap;
+					params[ 'normalMap' ] = this.loadTexture( this.baseUrl + value );
+					params[ 'normalMap' ].wrapS = this.wrap;
+					params[ 'normalMap' ].wrapT = this.wrap;
 
 					break;
 
@@ -53653,7 +53689,7 @@ dat.dom.CenteredDiv = (function (dom, common) {
 dat.utils.common),
 dat.dom.dom,
 dat.utils.common);
-define("dat-gui/build/dat.gui", function(){});
+define("dat_gui/dat.gui", function(){});
 
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
@@ -72355,6 +72391,7 @@ define('app/pocket.gl',[
 	"text!default_shaders/fragment.glsl",
 
 	"app/tabs",
+	"app/config",
 
 	"three_builds/three",
 
@@ -72366,11 +72403,13 @@ define('app/pocket.gl',[
 	"three_examples/loaders/ColladaLoader",
 	"three_examples/geometries/TeapotBufferGeometry",
 
-	"dat-gui/build/dat.gui",
+	"dat_gui/dat.gui",
 
 	"ace_builds/ace"],
 
-	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs) {
+	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs, config) {
+		console.log("pocket.gl " + config.version);
+
 		// Inject css
 		var sheet = document.createElement("style");
 		sheet.setAttribute("media", "screen")	
@@ -72420,14 +72459,14 @@ define('app/pocket.gl',[
 			this.canvasHeight = params.height;
 
 			if(params == undefined) params = {};
-			if(params.background == undefined) params.background = 0xdddddd;
+			if(params.backgroundColor == undefined) params.backgroundColor = config.backgroundColor;
 			if(params.meshes == undefined) params.meshes = [];
-			if(params.tabColor == undefined) params.tabColor = "#1c90f3";
-			if(params.doubleSided == undefined) params.doubleSided = false;
-			if(params.animated == undefined) params.animated = false;
-			if(params.transparent == undefined) params.transparent= false;
-			if(params.editorTheme == undefined) params.editorTheme = "bright";
-			if(params.showTabs == undefined) params.showTabs = true;
+			if(params.tabColor == undefined) params.tabColor = config.tabColor;
+			if(params.doubleSided == undefined) params.doubleSided = config.doubleSided;
+			if(params.animated == undefined) params.animated = config.animated;
+			if(params.transparent == undefined) params.transparent= config.transparent;
+			if(params.editorTheme == undefined) params.editorTheme = config.editorTheme;
+			if(params.showTabs == undefined) params.showTabs = config.showTabs;
 
 			var urlMeshesCount = 0;
 			for(i in params.meshes) if(params.meshes[i].url !== undefined) urlMeshesCount++;
@@ -72499,11 +72538,65 @@ define('app/pocket.gl',[
 			this.containers[3].className = "pocketgl errorConsole";
 		}
 
+		PocketGL.prototype.addSkybox = function() 
+		{
+			var urls = [];
+
+			for(i in this.params.skybox)
+				urls[i] = this.baseURL + this.params.skybox[i];
+
+			var textureCube;
+
+			if(urls.length == 1) {
+				equirectangularTexture = new THREE.TextureLoader().load( urls[0] );
+				equirectangularTexture.wrapS = THREE.ClampToEdgeWrapping;
+				equirectangularTexture.wrapT = THREE.ClampToEdgeWrapping;
+				equirectangularTexture.minFilter = equirectangularTexture.magFilter =THREE.LinearFilter;
+
+				var geometry = new THREE.SphereGeometry( 500, 60, 40 );
+				geometry.scale( - 1, 1, 1 );
+
+				var material = new THREE.MeshBasicMaterial( {
+					map: equirectangularTexture
+				} );
+
+				mesh = new THREE.Mesh( geometry, material );
+
+				this.skybox = mesh;
+				this.scene.add( mesh );
+
+				this.uniforms["tCube"] = { type:"t", value: equirectangularTexture };
+			}
+			else {
+				textureCube = new THREE.CubeTextureLoader().load( urls );
+				textureCube.mapping = THREE.CubeReflectionMapping;
+
+				var shader = THREE.ShaderLib[ "cube" ];
+				shader.uniforms[ "tCube" ].value = textureCube;
+
+				var material = new THREE.ShaderMaterial( {
+
+					fragmentShader: shader.fragmentShader,
+					vertexShader: shader.vertexShader,
+					uniforms: shader.uniforms,
+					side: THREE.BackSide
+
+				} ),
+
+				mesh = new THREE.Mesh( new THREE.BoxGeometry( 1000, 1000, 1000 ), material );
+				this.skybox = mesh;
+				this.scene.add( mesh );
+
+				this.uniforms["tCube"] = { type:"t", value: textureCube };
+			}
+		}
+
 		PocketGL.prototype.getLogoDomEl = function()
 		{
 			var logo = document.createElement("a");
 			logo.className = "pocketgl-logo";
-			logo.href  = "http://www.google.com";
+			logo.href  = config.website;
+			logo.target = "_blank";
 			logo.title = "pocket.gl";
 			logo.innerHTML = "<div class='pocketgl-logo-pocket'></div>";
 
@@ -72584,6 +72677,9 @@ define('app/pocket.gl',[
 		PocketGL.prototype.render = function() {
 			this.updateUniforms();
 
+			if(this.skybox != undefined)
+				this.skybox.position.copy(this.camera.position);
+
 			this.renderer.render( this.scene, this.camera );
 
 			this.logErrors();
@@ -72626,8 +72722,8 @@ define('app/pocket.gl',[
 				if(mesh.y === undefined) mesh.y = 0;
 				if(mesh.scale === undefined) mesh.scale = 1;
 
-				this.currentmesh.position.y = mesh.y;
-				this.currentmesh.scale = mesh.scale;
+				this.setObjectTransform(this.currentmesh, mesh);
+
 				this.scene.add(this.currentmesh);
 				this.render();
 				return;
@@ -72805,8 +72901,8 @@ define('app/pocket.gl',[
 				var vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log;
 				
 				// Subtracting from errors line numbers the lines of code included by three.js into the shader programs
-				vertexLog   = this.adjustLineNumbers(vertexLog, 41);
-				fragmentLog = this.adjustLineNumbers(fragmentLog, 9);
+				vertexLog   = this.adjustLineNumbers(vertexLog, config.vertexShaderPreambleLineCount);
+				fragmentLog = this.adjustLineNumbers(fragmentLog, config.fragmentShaderPreambleLineCount);
 
 				errorMessage = programLog + "<br/><br/>";
 
@@ -72883,6 +72979,9 @@ define('app/pocket.gl',[
 				}
 			}
 
+			if(this.params.skybox != undefined)
+				this.addSkybox();
+
 			// Material
 			if(this.shaderEditorEnabled) {
 				var material = new THREE.ShaderMaterial( {
@@ -72902,19 +73001,26 @@ define('app/pocket.gl',[
 			this.renderer = new THREE.WebGLRenderer({ antialias: true });				
 			this.renderer.setPixelRatio( window.devicePixelRatio );
 			this.renderer.setSize(this.canvasWidth, this.canvasHeight);
-			this.renderer.setClearColor( this.params.background );
+			this.renderer.setClearColor( this.params.backgroundColor );
 			//this.renderer.sortObjects = false;
 
 			if(! this.shaderEditorEnabled) {
 				// Lights
 				scene.add( new THREE.AmbientLight( 0xcccccc ) );
 
-				var directionalLight = new THREE.DirectionalLight(/*Math.random() * 0xffffff*/0xeeeeee );
-				directionalLight.position.x = Math.random() - 0.5;
-				directionalLight.position.y = Math.random() - 0.5;
-				directionalLight.position.z = Math.random() - 0.5;
+				var directionalLight = new THREE.DirectionalLight(0xffffff );
+				directionalLight.position.x = 100;
+				directionalLight.position.y = 60;
+				directionalLight.position.z = 100;
 				directionalLight.position.normalize();
 				scene.add( directionalLight );
+
+				var directionalLight1 = new THREE.DirectionalLight(0xaaaaaa );
+				directionalLight1.position.x = -100;
+				directionalLight1.position.y = 60;
+				directionalLight1.position.z = -100;
+				directionalLight1.position.normalize();
+				scene.add( directionalLight1 );
 			}
 
 			// Orbit
@@ -72955,8 +73061,10 @@ define('app/pocket.gl',[
 				gui.add(this.GUIParams, 'Mesh', meshes).onChange(function() {
 					that.loadMesh(that.params.meshes[that.GUIParams['Mesh']], material);
 				});
-			else if(this.params.meshes.length == 0)
+			else if(this.params.meshes.length == 0) {
+				material.side = THREE.DoubleSide;
 				this.scene.add(this.createProceduralMesh({id:"teapot"}, material));
+			}
 
 			for(i in this.params.uniforms) {
 				var u = this.params.uniforms[i];

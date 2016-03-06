@@ -4,15 +4,54 @@
 		<title>webgl shader widget</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<script src="../build/pocket.gl.min.js"></script>
 		<style type="text/css" media="screen">
 			html, body { margin: 10px; }
 		</style>
 	</head>
 	<body>
+		<h1>pocket.gl examples</h1>
 		
 		<div id="container" style="position: relative;"></div>
 
-		<script data-main="main.js" src="../bower_components/requirejs/require.js"></script>
+		<script>
+			var index = parseInt(window.location.hash.substring(1));
+			if(isNaN(index)) index = 0;
+
+			var xobj = new XMLHttpRequest();
+		    xobj.open('GET', "examples.js", true);
+		    xobj.onreadystatechange = function () {
+		          if (xobj.readyState == 4 && xobj.status == "200") {
+		          	function define(obj) { return obj; }
+		            eval("var examples = " + xobj.responseText + ".examples;");
+
+		            var menu = document.createElement("ol");
+					menu.style.float = "left";
+					for(i=0; i<examples.length; i++) {
+						var li = document.createElement("li"); 
+						var a = document.createElement("a");
+						a.innerHTML = examples[i];
+						a.href = "#" + i;
+						a.style = "padding-right: 10px";
+						a.onclick = function() { 
+							window.location = "#" + i; 
+							window.location.reload(); 
+						}
+						li.appendChild(a)
+						menu.appendChild(li);			
+					}
+					document.getElementById("container").appendChild(menu);
+
+					var widgetContainer = document.createElement("div");
+					widgetContainer.style.marginLeft = "200px";
+					document.getElementById("container").appendChild(widgetContainer);
+
+				    new PocketGL(widgetContainer, "data/" + examples[index] + "/params.js", "data/" + examples[index]); 
+		          }
+		    };
+		    xobj.onerror = function() { document.write("<h2 style='color: red'>You must load this page from a local webserver or you won't see anything.</h2>"); };
+		    xobj.send(null);
+		</script>
 		
 	</body>
 </html>

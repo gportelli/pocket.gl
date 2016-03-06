@@ -1,4 +1,4 @@
-define({
+{
 	meshes: [
 		{ url: "meshes/teapot.FBX", name: "Teapot", y: -23},
 		{ url: "meshes/torus.DAE",  name: "Torus",  y: 0}
@@ -93,4 +93,4 @@ define({
 		//"	gl_FragColor = vec4(ambientColor + lambertian * diffuseColor + specular * specColor, 1.0);",
 		"}"
 	].join("\n")
-});
+}

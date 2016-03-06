@@ -19,7 +19,7 @@
     "css",
     "default_shaders",
     "js",
-    "utils",
+    "utils"
   ],
   "dependencies": {
     "dat-gui": "0.5.1",

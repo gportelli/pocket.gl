@@ -496,7 +496,7 @@ define([
 			for(var i in rows) {		
 				var lineNumber = /:([0-9]+):/i.exec(rows[i]);
 				if(lineNumber != null) {
-					var modifiedRow = rows[i].replace(/:([0-9]+):/i, ":" + (lineNumber[1] - offset) + ":");
+					var modifiedRow = rows[i].replace(/:([0-9]+):/i, " line: " + (lineNumber[1] - offset + 1)+ " ");
 					result.push(modifiedRow);
 				}
 				else result.push(rows[i]);
@@ -519,9 +519,11 @@ define([
 				var fragmentLog = this.currentMaterial.program.diagnostics.fragmentShader.log;
 				var vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log;
 				
+				var countLines = function(text) { return text.split("\n").length }
+
 				// Subtracting from errors line numbers the lines of code included by three.js into the shader programs
-				vertexLog   = this.adjustLineNumbers(vertexLog, config.vertexShaderPreambleLineCount);
-				fragmentLog = this.adjustLineNumbers(fragmentLog, config.fragmentShaderPreambleLineCount);
+				vertexLog   = this.adjustLineNumbers(vertexLog, countLines(this.currentMaterial.program.diagnostics.vertexShader.prefix));
+				fragmentLog = this.adjustLineNumbers(fragmentLog, countLines(this.currentMaterial.program.diagnostics.fragmentShader.prefix));
 
 				errorMessage = programLog + "<br/><br/>";
 

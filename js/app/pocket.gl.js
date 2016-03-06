@@ -76,20 +76,21 @@ define([
 		{
 			var scope = this;
 
-			if ( ! Detector.webgl ) {
-				Detector.addGetWebGLMessage();
-				return;
-			}
+			this.domContainer = 
+				(typeof containerIDorDomEl === 'string' || containerIDorDomEl instanceof String) 
+				? document.getElementById(containerIDorDomEl) 
+				: containerIDorDomEl;
 
 			this.baseURL = baseURL == undefined ? "" : baseURL;
 			if(this.baseURL != "" && this.baseURL[this.baseURL.length-1] != "/") this.baseURL += "/";
 
 			if( ! this.readParams(params)) return;
 
-			this.domContainer = 
-				(typeof containerIDorDomEl === 'string' || containerIDorDomEl instanceof String) 
-				? document.getElementById(containerID) 
-				: containerIDorDomEl;
+			if ( ! Detector.webgl ) {
+				this.domContainer.style.border = "1px solid #aaa";
+				this.domContainer.appendChild(Detector.getWebGLErrorMessage());
+				return;
+			}
 
 			this.currentTab = 0;
 
@@ -136,6 +137,8 @@ define([
 						function(xhr) { scope.LoadingManager.onError(xhr); }
 					);
 				}
+
+				this.LoadingManager.setReady();
 			}
 			else {
 				this.loadingShaders = false;
@@ -697,7 +700,7 @@ define([
 				});
 			else if(this.params.meshes.length == 0) {
 				material.side = THREE.DoubleSide;
-				this.scene.add(this.createProceduralMesh({id:"teapot"}, material));
+				this.loadMesh({type:"teapot"}, material);
 			}
 
 			for(var i in this.params.uniforms) {

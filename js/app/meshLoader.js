@@ -46,10 +46,16 @@ define(
 					// set materials
 					console.log("Mesh loading complete!");
 
-					if(_this.materials.length == 1) {
+					if(_this.materials.length <= 1) {
+						var m = undefined;
+						if(_this.materials.length == 0) 
+							m = _this.material; 
+						else 
+							m = _this.createMaterial(_this.materials[0]);
+
 						_this.loadedMesh.traverse( function ( child ) {
 							if ( child instanceof THREE.Mesh )
-								child.material = _this.createMaterial(_this.materials[0]);								
+								child.material = m;						
 						} );
 					}
 					else {

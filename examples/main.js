@@ -59,10 +59,10 @@ require(["examples/examples"], function(examples) {
 				a.innerHTML = i == index ? "[ " + examples.examples[i] + " ]" : examples.examples[i];
 				a.href = "#" + i;
 				a.style = "padding-right: 10px";
-				a.onclick = function() { 
-					window.location = "#" + i; 
+				a.onclick = function(index) { return function() { 
+					window.location = "#" + index; 
 					window.location.reload(); 
-				}
+				}}(i);
 				li.appendChild(a)
 				menu.appendChild(li);			
 			}

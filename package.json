@@ -1,6 +1,6 @@
 {
   "name": "pocket.gl",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "description": "Easily embed webgl shaders inside your pages",
   "main": "js/app/pocket.gl.js",
   "directories": {

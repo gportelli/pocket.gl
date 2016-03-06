@@ -58,11 +58,20 @@ define(function() {
 			this.setProgress(progress);
 
 			if(progress == 1 && this.ready) {
-				setTimeout(function() { scope.onComplete(); }, 100);
+				setTimeout(function() { 					
+					if(scope.extraOnComplete) {
+						scope.extraOnComplete();
+						scope.extraOnComplete = undefined;
+					}
+
+					scope.onComplete(); 
+				}, 100);
+
 				this.reset();
 			}
 		},
 
+		// to avoid calling onComplete before adding all the objects to the manager
 		setReady: function() {
 			this.ready = true;
 			this.update();
@@ -73,6 +82,10 @@ define(function() {
 			this.ready = false;
 			this.error = false;
 			this.setProgress(0);
+		},
+
+		setExtraCompleteCallback: function(callback) {
+			this.extraOnComplete= callback; // will be reset after call
 		}
 	}
 

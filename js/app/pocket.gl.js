@@ -25,20 +25,18 @@ define([
 	"app/tabs",
 	"app/config",
 	"app/loadingManager",
+	"app/meshLoader",
 
 	"three_builds/three",
 
 	"three_examples/Detector",
-	"three_examples/controls/OrbitControls",
-	"three_examples/loaders/OBJLoader",
-	"three_examples/loaders/ColladaLoader",
-	"three_examples/geometries/TeapotBufferGeometry",
+	"three_examples/controls/OrbitControls",	
 
 	"dat_gui/dat.gui",
 
 	"ace_builds/ace"],
 
-	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs, config, LoadingManager) {
+	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs, config, LoadingManager, MeshLoader) {
 		console.log("pocket.gl " + config.version);
 
 		// Inject css
@@ -451,159 +449,27 @@ define([
 			//console.log("render " + this.frameCount);
 		}
 
-		PocketGL.prototype.setObjectTransform = function(obj, params) {
-			if(params.scale == undefined) params.scale = 1;
-			if(params.x == undefined) params.x = 0;
-			if(params.y == undefined) params.y = 0;
-			if(params.z == undefined) params.z = 0;
-			if(params.rx == undefined) params.rx = 0;
-			if(params.ry == undefined) params.ry = 0;
-			if(params.rz == undefined) params.rz = 0;
-
-			obj.scale.x = obj.scale.y = obj.scale.z = params.scale;
-			obj.updateMatrix();
-
-			obj.position.x = params.x;
-			obj.position.y = params.y;
-			obj.position.z = params.z;
-
-			obj.rotation.x = params.rx * 3.1415926 / 180;
-			obj.rotation.y = params.ry * 3.1415926 / 180;
-			obj.rotation.z = params.rz * 3.1415926 / 180;
-		}
-
 		PocketGL.prototype.loadMesh = function(mesh, material) {
-			var _this = this;
+			var scope = this;
 
-			if (typeof this.currentmesh != "undefined") {
-			   this.scene.remove(this.currentmesh);
-			}
-
-			if(mesh.type !== undefined) {
-				this.currentmesh = this.createProceduralMesh(mesh, this.shaderEditorEnabled ? this.currentMaterial : new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0x220000, shininess: 40, shading: THREE.FlatShading } ));
-
-				if(mesh.y === undefined) mesh.y = 0;
-				if(mesh.scale === undefined) mesh.scale = 1;
-
-				this.setObjectTransform(this.currentmesh, mesh);
-
-				this.scene.add(this.currentmesh);
-				this.render();
-				return;
-			}
-
-			function endsWith(str, suffix) {
-			    return str.indexOf(suffix, str.length - suffix.length) !== -1;
-			}
-
-			var meshurl = this.baseURL + mesh.url;
-
-			if(endsWith(meshurl.toLowerCase(), ".dae")) {
+			if(mesh.type == undefined) {
 				this.showLoading();
-
-				var loader = new THREE.ColladaLoader();
-				this.LoadingManager.addObject(loader);
-				loader.options.convertUpAxis = true;
-				loader.load(
-					meshurl, 
-					function ( collada ) {
-						_this.LoadingManager.onProgress(loader, 1);
-
-						dae = collada.scene;
-
-						dae.traverse( function ( child ) {
-							if ( child instanceof THREE.Mesh ) {
-								if(_this.shaderEditorEnabled) child.material = material;
-							}
-						} );
-
-						_this.setObjectTransform(dae, mesh);
-
-						_this.scene.add( dae );
-						_this.currentmesh = dae;
-					}, 
-					function ( xhr ) {
-						if ( xhr.lengthComputable ) {
-							var percentComplete = xhr.loaded / xhr.total;
-							_this.LoadingManager.onProgress(loader, percentComplete);
-						}
-					} 
-				);
-			}
-			else if(endsWith(meshurl.toLowerCase(), ".obj")) {
-				this.showLoading();
-
-				var loader = new THREE.OBJLoader();
-				this.LoadingManager.addObject(loader);
-				loader.load(
-					meshurl, 
-					function( object ) {
-						_this.LoadingManager.onProgress(loader, 1);
-
-						object.traverse( function( child ) {
-							if ( child instanceof THREE.Mesh ) {
-								if(_this.shaderEditorEnabled) child.material = material;
-							}
-						} );
-
-						_this.setObjectTransform(object, mesh);
-
-						_this.scene.add(object);
-						_this.currentmesh = object;
-					},
-					function ( xhr ) {
-						if ( xhr.lengthComputable ) {
-							var percentComplete = xhr.loaded / xhr.total;
-							_this.LoadingManager.onProgress(loader, percentComplete);
-						}
-					} 
-				);
 			}
 
-			this.currentMaterial = material;
-		}
+			var loader = new MeshLoader(mesh, material, this.baseURL, this.LoadingManager, 
+				function(loadedMesh) {
+					if (typeof scope.currentmesh != "undefined") {
+					   scope.scene.remove(scope.currentmesh);
+					}
 
-		PocketGL.prototype.createProceduralMesh = function(mesh, material) {
-			var geometry = null;
+					scope.currentmesh = loadedMesh;
+					scope.scene.add(loadedMesh);
 
-			switch(mesh.type) {
-				case "sphere":
-					if(mesh.subdivision === undefined) mesh.subdivision = 32;
-					if(mesh.subdivision < 10) mesh.subdivision = 10;
-					if(mesh.subdivision > 64) mesh.subdivision = 64;
-					geometry = new THREE.SphereGeometry(30, mesh.subdivision, mesh.subdivision);
-					break;
+					scope.currentMaterial = material;
 
-				case "torus":
-					if(mesh.subdivision === undefined) mesh.subdivision = 32;
-					if(mesh.subdivision < 10) mesh.subdivision = 10;
-					if(mesh.subdivision > 64) mesh.subdivision = 64;
-					geometry = new THREE.TorusGeometry(30, 10, mesh.subdivision, mesh.subdivision * 4);
-					break;
-
-				case "cylinder":
-					if(mesh.subdivision === undefined) mesh.subdivision = 32;
-					if(mesh.subdivision < 10) mesh.subdivision = 10;
-					if(mesh.subdivision > 64) mesh.subdivision = 64;
-					geometry = new THREE.CylinderGeometry( 25, 25, 60, mesh.subdivision, 1);
-					break;
-
-				case "cube":
-					geometry = new THREE.BoxGeometry(40, 40, 40);
-					break;
-
-				case "teapot":
-				default:
-					if(mesh.subdivision === undefined || mesh.subdivision <= 1) mesh.subdivision = 6;
-					if(mesh.subdivision > 10) mesh.subdivision = 10;
-					geometry = new THREE.TeapotBufferGeometry( 
-						25,
-						mesh.subdivision,
-						true, true, true, false, true);
-					break;
-			}
-
-			return new THREE.Mesh(geometry, material);
+					scope.render();
+				}
+			);
 		}
 
 		PocketGL.prototype.updateShadersFromEditor = function() {

@@ -56,7 +56,7 @@ require(["examples/examples"], function(examples) {
 			for(i=0; i<examples.examples.length; i++) {
 				var li = document.createElement("li"); 
 				var a = document.createElement("a");
-				a.innerHTML = examples.examples[i];
+				a.innerHTML = i == index ? "[ " + examples.examples[i] + " ]" : examples.examples[i];
 				a.href = "#" + i;
 				a.style = "padding-right: 10px";
 				a.onclick = function() { 

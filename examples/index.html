@@ -30,7 +30,7 @@
 					for(i=0; i<examples.length; i++) {
 						var li = document.createElement("li"); 
 						var a = document.createElement("a");
-						a.innerHTML = examples[i];
+						a.innerHTML = i == index ? "[ " + examples[i] + " ]" : examples[i];;
 						a.href = "#" + i;
 						a.style = "padding-right: 10px";
 						a.onclick = function() { 

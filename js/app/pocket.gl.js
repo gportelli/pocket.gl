@@ -22,6 +22,7 @@ define([
 	"text!default_shaders/vertex.glsl",
 	"text!default_shaders/fragment.glsl",
 
+	"app/utils",
 	"app/tabs",
 	"app/config",
 	"app/loadingManager",
@@ -36,7 +37,7 @@ define([
 
 	"ace_builds/ace"],
 
-	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs, config, LoadingManager, MeshLoader) {
+	function(stylesheet, defaultVertex, defaultFragment, Utils, PocketGLTabs, config, LoadingManager, MeshLoader) {
 		console.log("pocket.gl " + config.version);
 
 		// Inject css
@@ -220,7 +221,10 @@ define([
 
 				var divHl = document.createElement("div");
 				divHl.className = "hl animated";
-				divHl.style = "width: 70px; left: 0px; background-color: " + this.params.tabColor + ";";
+				divHl.style.width = "70px";
+				divHl.style.left = "0px";
+				divHl.style.backgroundColor = this.params.tabColor;
+				
 				div.appendChild(divHl);	
 
 				this.domContainer.appendChild(div);
@@ -233,7 +237,14 @@ define([
 				
 				if(i > 0) this.containers[i].style.display = "none";
 				
-				this.containers[i].style.width  = this.canvasWidth + "px";
+
+				if(this.canvasWidth != "")  this.containers[i].style.width  = this.canvasWidth + "px";
+				else { 
+					// Fluid layout
+					this.canvasWidth = Utils.getElementSize(this.domContainer).width;
+					window.addEventListener( 'resize', function() { scope.onWindowResize(); }, false );
+				}
+
 				this.containers[i].style.height = this.canvasHeight + "px";
 				this.containers[i].style.position = "relative";
 
@@ -253,6 +264,17 @@ define([
 				progressBar,
 				function() { scope.onLoadingComplete(); }
 			);
+		}
+
+		PocketGL.prototype.onWindowResize = function() {
+			var containerWidth = Utils.getElementSize(this.domContainer).width;
+
+			this.camera.aspect = containerWidth / this.canvasHeight;
+			this.camera.updateProjectionMatrix();
+
+			this.renderer.setSize( containerWidth, this.canvasHeight );
+
+			this.render();
 		}
 
 		PocketGL.prototype.onLoadingComplete = function()
@@ -519,11 +541,9 @@ define([
 				var fragmentLog = this.currentMaterial.program.diagnostics.fragmentShader.log;
 				var vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log;
 				
-				var countLines = function(text) { return text.split("\n").length }
-
 				// Subtracting from errors line numbers the lines of code included by three.js into the shader programs
-				vertexLog   = this.adjustLineNumbers(vertexLog, countLines(this.currentMaterial.program.diagnostics.vertexShader.prefix));
-				fragmentLog = this.adjustLineNumbers(fragmentLog, countLines(this.currentMaterial.program.diagnostics.fragmentShader.prefix));
+				vertexLog   = this.adjustLineNumbers(vertexLog, Utils.countLines(this.currentMaterial.program.diagnostics.vertexShader.prefix));
+				fragmentLog = this.adjustLineNumbers(fragmentLog, Utils.countLines(this.currentMaterial.program.diagnostics.fragmentShader.prefix));
 
 				errorMessage = programLog + "<br/><br/>";
 
@@ -682,8 +702,7 @@ define([
 						this.GUIParams[u.displayName] = u.value;
 					}
 					else if(u.type == "color") {
-						function toHex(v) { hex = v.toString(16); if(hex.length == 1) hex = "0" + hex; return hex;}
-						this.GUIParams[u.displayName] = "#" + toHex(u.value[0]) + toHex(u.value[1]) + toHex(u.value[2]);
+						this.GUIParams[u.displayName] = "#" + Utils.toHex(u.value[0]) + Utils.toHex(u.value[1]) + Utils.toHex(u.value[2]);
 					}
 				}
 

@@ -16,7 +16,11 @@
  * limitations under the License.
  */
  
-define(function() {
+define([
+		"app/utils"
+	],
+
+	function(Utils) {
 
 	function PocketGLTabs(callback, tabs, hl) {
 		this.callback = callback;
@@ -54,8 +58,8 @@ define(function() {
 
 	PocketGLTabs.prototype.repositionHighlight = function(action) {
 		var position;
-		position = action.getBoundingClientRect();
-		container = this.tabs[0].getBoundingClientRect();
+		position = Utils.getElementSize(action);
+		container = Utils.getElementSize(this.tabs[0]);
 		return this.setStyles(this.hl, {
 			left: (position.left - container.left) + "px",
 			width: position.width + "px"

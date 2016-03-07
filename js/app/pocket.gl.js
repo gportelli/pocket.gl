@@ -224,7 +224,7 @@ define([
 				divHl.style.width = "70px";
 				divHl.style.left = "0px";
 				divHl.style.backgroundColor = this.params.tabColor;
-				
+
 				div.appendChild(divHl);	
 
 				this.domContainer.appendChild(div);
@@ -406,12 +406,16 @@ define([
 
 				case 1:
 					if(this.editorVertex == undefined)
-						this.editorVertex = this.createEditor(this.containers[1], this.params.vertexShader);						
+						this.editorVertex = this.createEditor(this.containers[1], this.params.vertexShader);
+
+					this.editorVertex.focus();					
 					break;
 
 				case 2:
 					if(this.editorFragment == undefined)
 						this.editorFragment = this.createEditor(this.containers[2], this.params.fragmentShader);
+
+					this.editorFragment.focus();
 					break;
 
 				case 4:

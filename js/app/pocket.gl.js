@@ -276,7 +276,7 @@ define([
 
 		PocketGL.prototype.onWindowResize = function() {
 			if(Utils.isFullscreen()) return;
-			
+
 			var containerSize = Utils.getElementSize(this.domContainer);
 
 			if(!this.fragmentOnly) {
@@ -405,6 +405,9 @@ define([
 				// save windowed size
 				scope.windowedSize = Utils.getElementSize(scope.renderer.domElement);
 
+				// pause the animation while going fullscreen on iexplorer
+				if(document.msFullscreenEnabled) scope.animationPaused = true; 
+
 				Utils.goFullscreen(scope.renderer.domElement);
 				
 				return false; 
@@ -454,6 +457,14 @@ define([
 			this.renderer.setSize( size.width, size.height );
 
 			this.render();
+
+			var scope = this;
+			if(this.params.animated)
+				window.setTimeout( 
+					function() { 
+						scope.animationPaused = false; 
+						scope.animate();
+					}, 500);
 		}
 
 		PocketGL.prototype.switchTab = function(tabIndex)
@@ -640,8 +651,8 @@ define([
 				var vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log;
 				
 				// Subtracting from errors line numbers the lines of code included by three.js into the shader programs
-				vertexLog   = this.adjustLineNumbers(vertexLog, Utils.countLines(this.currentMaterial.program.diagnostics.vertexShader.prefix));
-				fragmentLog = this.adjustLineNumbers(fragmentLog, Utils.countLines(this.currentMaterial.program.diagnostics.fragmentShader.prefix));
+				//vertexLog   = this.adjustLineNumbers(vertexLog, Utils.countLines(this.currentMaterial.program.diagnostics.vertexShader.prefix));
+				//fragmentLog = this.adjustLineNumbers(fragmentLog, Utils.countLines(this.currentMaterial.program.diagnostics.fragmentShader.prefix));
 
 				errorMessage = programLog + "<br/><br/>";
 

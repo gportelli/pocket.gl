@@ -1,6 +1,6 @@
 {
 	meshes: [
-		{ type: "sphere", name: "Sphere", scale: 1.2}
+		{ type: "sphere", name: "Sphere", scale: 1.2, subdivision: 64}
 	],
 	
 	uniforms: {
@@ -29,6 +29,12 @@
 			url: "textures/clouds-specular.png", 
 			wrap: "repeat", // repeat (default), clamp
 			uniformName: "texCloudsSpecular"
+		},
+
+		{ 
+			url: "textures/normal.jpg", 
+			wrap: "repeat", // repeat (default), clamp
+			uniformName: "texNormal"
 		}
 	],
 

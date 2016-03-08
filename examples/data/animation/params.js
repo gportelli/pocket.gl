@@ -27,7 +27,6 @@
 
 	//editorTheme: "bright",
 	editorTheme: "dark",
-	backgroundColor: 0xff0000,
 	doubleSided: true,
 	animated: true,
 

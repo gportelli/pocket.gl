@@ -10,10 +10,9 @@ define({
 		"mesh-viewer",
 		"derivatives",
 		"flat-shader",
-		"flat-bump",
 		"procedural-meshes",
 		"random-colors",
-		"redout-shader"
+		"lowpoly-shader"
 	]
 }
 // do not put a semicolon after the parenthesis or the index.html concat eval code will break

@@ -5,8 +5,7 @@ define({
 		"empty",
 		"gui-meshes",
 		"earth",
-		"shadertoy",
-
+		"fragment",
 		"animation",
 		"mesh-viewer",
 		"derivatives",

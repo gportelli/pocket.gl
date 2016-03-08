@@ -176,16 +176,25 @@ define([
 			if(params.fragmentShaderFile != undefined)
 				params.fragmentShader = "loading...";
 
-			if(params.vertexShader == undefined && params.fragmentShader == undefined && urlMeshesCount > 0) {
-				if(params.addDefaultShaders !== undefined && params.addDefaultShaders == true) {
-					params.vertexShader = defaultVertex;
-					params.fragmentShader = defaultFragment;
-				}
-				else this.shaderEditorEnabled = false;
+			if(params.vertexShader == undefined && params.fragmentShader == undefined && params.meshes.length > 0) {
+				// mesh viewer
+				this.shaderEditorEnabled = false;
 			}
 			else {
-				if(params.vertexShader == undefined) params.vertexShader = defaultVertex;
-				if(params.fragmentShader == undefined) params.fragmentShader = defaultFragment;
+				// fragment only
+				if(params.vertexShader == undefined && params.fragmentShader != undefined)
+				{
+					this.fragmentOnly = true;
+					params.vertexShader = "void main(){ gl_Position = vec4( position, 1.0 ); }";
+					params.meshes = [];
+					this.shaderEditorEnabled = true;
+				}
+				else {
+					this.fragmentOnly = false;
+
+					if(params.vertexShader   == undefined) params.vertexShader   = defaultVertex;
+					if(params.fragmentShader == undefined) params.fragmentShader = defaultFragment;
+				}
 			}
 
 			this.params = params;
@@ -266,12 +275,22 @@ define([
 		}
 
 		PocketGL.prototype.onWindowResize = function() {
-			var containerWidth = Utils.getElementSize(this.domContainer).width;
+			if(Utils.isFullscreen()) return;
+			
+			var containerSize = Utils.getElementSize(this.domContainer);
 
-			this.camera.aspect = containerWidth / this.params.height;
-			this.camera.updateProjectionMatrix();
+			if(!this.fragmentOnly) {
+				var containerWidth = containerSize.width;
 
-			this.renderer.setSize( containerWidth, this.params.height );
+				this.camera.aspect = containerWidth / this.params.height;
+				this.camera.updateProjectionMatrix();
+			}
+			else {
+				this.uniforms.resolution.value.x = containerSize.width;
+				this.uniforms.resolution.value.y = containerSize.height;
+			}
+
+			this.renderer.setSize( containerSize.width, this.params.height );
 
 			this.render();
 		}
@@ -417,15 +436,21 @@ define([
 			var size;
 			if(Utils.isFullscreen()) {
 				size = Utils.getWindowSize();
-				console.log(size);
 			}
 			else {
 				size = this.windowedSize;
 			}
 
-			this.camera.aspect = size.width / size.height;
-			this.camera.updateProjectionMatrix();
+			if(this.fragmentOnly) {
+				this.uniforms.resolution.value.x = size.width;
+				this.uniforms.resolution.value.y = size.height;
+			}
+			else {
+				this.camera.aspect = size.width / size.height;
+				this.camera.updateProjectionMatrix();
+			}
 
+			//this.renderer.setPixelRatio( window.devicePixelRatio );
 			this.renderer.setSize( size.width, size.height );
 
 			this.render();
@@ -490,7 +515,8 @@ define([
 		}
 
 		PocketGL.prototype.updateUniforms = function() {
-			if(this.uniforms.time != undefined) this.uniforms.time.value += this.clock.getDelta();
+			if(this.uniforms.time != undefined && this.params.animated) 
+				this.uniforms.time.value += this.clock.getDelta();
 
 			for(uniformid in this.params.uniforms) {
 				var u = this.params.uniforms[uniformid];
@@ -637,9 +663,15 @@ define([
 			var scope = this;
 
 			// Camera
-			this.camera = new THREE.PerspectiveCamera( 45, this.params.width/this.params.height, 0.1, 1000 );
-			this.camera.position.z = 100;
-			this.camera.position.y = 50;
+			if(!this.fragmentOnly) {
+				this.camera = new THREE.PerspectiveCamera( 45, this.params.width/this.params.height, 0.1, 1000 );
+				this.camera.position.z = 100;
+				this.camera.position.y = 50;
+			}
+			else {
+				this.camera = new THREE.Camera();
+				this.camera.position.z = 1;
+			}
 
 			// Scene
 			var scene = new THREE.Scene();
@@ -649,6 +681,9 @@ define([
 			this.uniforms = {};
 			if(this.params.animated)
 				this.uniforms.time = {type: "f", value: 0};
+
+			if(this.fragmentOnly)
+				this.uniforms.resolution = {type: "v2", value: new THREE.Vector2(this.params.width, this.params.height)};
 
 			function addUniform(u, index) {
 				if(u.type == "boolean")
@@ -761,10 +796,12 @@ define([
 			}
 
 			// Orbit
-			var cameraControls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
-			cameraControls.enablePan = false;
-			cameraControls.target.set( 0, 0, 0 );
-			cameraControls.addEventListener( 'change', function() { scope.render() } );
+			if(!this.fragmentOnly) {
+				var cameraControls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
+				cameraControls.enablePan = false;
+				cameraControls.target.set( 0, 0, 0 );
+				cameraControls.addEventListener( 'change', function() { scope.render() } );
+			}
 
 			// Add webgl canvas renderer to DOM container	
 			this.containers[0].appendChild( this.renderer.domElement );
@@ -809,8 +846,15 @@ define([
 					scope.LoadingManager.setReady();
 				});
 			else if(this.params.meshes.length == 0) {
-				material.side = THREE.DoubleSide;
-				this.loadMesh({type:"teapot"}, material);
+				if(this.fragmentOnly) {
+					var geometry = new THREE.PlaneBufferGeometry(2, 2);
+					var mesh = new THREE.Mesh( geometry, material );
+					scene.add( mesh );
+				}
+				else {
+					material.side = THREE.DoubleSide;
+					this.loadMesh({type:"teapot"}, material);
+				}
 			}
 
 			function addGuiData(u, gui) {

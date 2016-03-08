@@ -24,6 +24,7 @@ define({
 	darkAceTheme: "vibrant_ink",
 
 	// default values
+	fluidWidth: false,
 	width: 620,
 	height: 400,
 	backgroundColor: 0xdddddd,
@@ -32,5 +33,6 @@ define({
 	animated: false,
 	transparent: false,
 	editorTheme: "dark",
+	editorWrap: true,
 	showTabs: true
 });

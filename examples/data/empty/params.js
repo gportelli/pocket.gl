@@ -1,1 +1,3 @@
-{}
+{
+	fluidWidth: false, editorWrap: false
+}

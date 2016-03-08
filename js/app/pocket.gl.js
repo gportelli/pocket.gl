@@ -150,13 +150,11 @@ define([
 
 		PocketGL.prototype.readParams = function(params)
 		{
-			if(params.width == undefined) params.width = 620;
-			this.canvasWidth = params.width;
-			
-			if(params.height == undefined) params.height = 400;			
-			this.canvasHeight = params.height;
-
 			if(params == undefined) params = {};
+
+			if(params.fluidWidth == undefined) params.fluidWidth = config.fluidWidth;
+			if(params.width == undefined) params.width = 620;
+			if(params.height == undefined) params.height = 400;
 			if(params.backgroundColor == undefined) params.backgroundColor = config.backgroundColor;
 			if(params.meshes == undefined) params.meshes = [];
 			if(params.tabColor == undefined) params.tabColor = config.tabColor;
@@ -164,6 +162,7 @@ define([
 			if(params.animated == undefined) params.animated = config.animated;
 			if(params.transparent == undefined) params.transparent= config.transparent;
 			if(params.editorTheme == undefined) params.editorTheme = config.editorTheme;
+			if(params.editorWrap == undefined) params.editorWrap = config.editorWrap;
 			if(params.showTabs == undefined) params.showTabs = config.showTabs;
 
 			var urlMeshesCount = 0;
@@ -238,14 +237,14 @@ define([
 				if(i > 0) this.containers[i].style.display = "none";
 				
 
-				if(this.canvasWidth != "")  this.containers[i].style.width  = this.canvasWidth + "px";
+				if(!this.params.fluidWidth)  this.containers[i].style.width  = this.params.width + "px";
 				else { 
 					// Fluid layout
-					this.canvasWidth = Utils.getElementSize(this.domContainer).width;
+					this.params.width = Utils.getElementSize(this.domContainer).width;
 					window.addEventListener( 'resize', function() { scope.onWindowResize(); }, false );
 				}
 
-				this.containers[i].style.height = this.canvasHeight + "px";
+				this.containers[i].style.height = this.params.height + "px";
 				this.containers[i].style.position = "relative";
 
 				this.domContainer.appendChild(this.containers[i]);
@@ -269,10 +268,10 @@ define([
 		PocketGL.prototype.onWindowResize = function() {
 			var containerWidth = Utils.getElementSize(this.domContainer).width;
 
-			this.camera.aspect = containerWidth / this.canvasHeight;
+			this.camera.aspect = containerWidth / this.params.height;
 			this.camera.updateProjectionMatrix();
 
-			this.renderer.setSize( containerWidth, this.canvasHeight );
+			this.renderer.setSize( containerWidth, this.params.height );
 
 			this.render();
 		}
@@ -375,6 +374,32 @@ define([
 			}
 		}
 
+		PocketGL.prototype.addFullscreenButton = function(domElement)
+		{
+			var fullscreenButton = document.createElement("a");
+			fullscreenButton.href = "#";
+			fullscreenButton.innerHTML = " ";
+			fullscreenButton.title = "fullscreen";
+			fullscreenButton.className = "pocketgl-fullscreenbutton";
+
+			fullscreenButton.onclick = function() { 
+				// save windowed size
+				scope.windowedSize = Utils.getElementSize(scope.renderer.domElement);
+
+				Utils.goFullscreen(scope.renderer.domElement);
+				
+				return false; 
+			}
+
+			var scope = this;
+			document.addEventListener('mozfullscreenchange', function() { scope.onFullscreenChange(); } );
+			document.addEventListener('webkitfullscreenchange', function() { scope.onFullscreenChange(); } );
+			document.addEventListener('MSFullscreenChange', function() { scope.onFullscreenChange(); } );
+			document.addEventListener('fullscreenChange', function() { scope.onFullscreenChange(); } );
+
+			domElement.appendChild(fullscreenButton);
+		}
+
 		PocketGL.prototype.getLogoDomEl = function()
 		{
 			var logo = document.createElement("a");
@@ -385,6 +410,25 @@ define([
 			logo.innerHTML = "<div class='pocketgl-logo-pocket'></div>";
 
 			return logo;
+		}
+
+		PocketGL.prototype.onFullscreenChange = function()
+		{
+			var size;
+			if(Utils.isFullscreen()) {
+				size = Utils.getWindowSize();
+				console.log(size);
+			}
+			else {
+				size = this.windowedSize;
+			}
+
+			this.camera.aspect = size.width / size.height;
+			this.camera.updateProjectionMatrix();
+
+			this.renderer.setSize( size.width, size.height );
+
+			this.render();
 		}
 
 		PocketGL.prototype.switchTab = function(tabIndex)
@@ -405,15 +449,19 @@ define([
 					break;
 
 				case 1:
-					if(this.editorVertex == undefined)
+					if(this.editorVertex == undefined) {
 						this.editorVertex = this.createEditor(this.containers[1], this.params.vertexShader);
+						if(this.params.fluidWidth) this.containers[tabIndex].style.width = "";
+					}
 
 					this.editorVertex.focus();					
 					break;
 
 				case 2:
-					if(this.editorFragment == undefined)
+					if(this.editorFragment == undefined) {
 						this.editorFragment = this.createEditor(this.containers[2], this.params.fragmentShader);
+						if(this.params.fluidWidth) this.containers[tabIndex].style.width = "";
+					}
 
 					this.editorFragment.focus();
 					break;
@@ -436,7 +484,7 @@ define([
 			editor.session.setMode("ace/mode/glsl");
 			editor.setShowPrintMargin(false);
 			editor.setValue(text, -1);
-			editor.setOption("wrap", 80);
+			editor.getSession().setUseWrapMode(this.params.editorWrap);
 
 			return editor;
 		}
@@ -481,6 +529,20 @@ define([
 		PocketGL.prototype.loadMesh = function(mesh, material) {
 			var scope = this;
 
+			// retrieve cached mesh
+			if(mesh.quaternion) {
+				if (typeof this.currentmesh != "undefined")
+				   this.scene.remove(scope.currentmesh);
+
+				this.currentmesh = mesh;
+				this.scene.add(mesh);
+
+				this.currentMaterial = material;
+
+				this.render();
+				return;
+			}
+
 			if(mesh.type == undefined) {
 				this.showLoading();
 			}
@@ -489,6 +551,12 @@ define([
 				function(loadedMesh) {
 					if (typeof scope.currentmesh != "undefined") {
 					   scope.scene.remove(scope.currentmesh);
+					}
+
+					// cache the mesh
+					for(i in scope.params.meshes) {
+						if(scope.params.meshes[i] == mesh)
+							scope.params.meshes[i] = loadedMesh;
 					}
 
 					scope.currentmesh = loadedMesh;
@@ -569,7 +637,7 @@ define([
 			var scope = this;
 
 			// Camera
-			this.camera = new THREE.PerspectiveCamera( 45, this.canvasWidth/this.canvasHeight, 0.1, 1000 );
+			this.camera = new THREE.PerspectiveCamera( 45, this.params.width/this.params.height, 0.1, 1000 );
 			this.camera.position.z = 100;
 			this.camera.position.y = 50;
 
@@ -582,25 +650,32 @@ define([
 			if(this.params.animated)
 				this.uniforms.time = {type: "f", value: 0};
 
+			function addUniform(u, index) {
+				if(u.type == "boolean")
+					scope.uniforms[index] = {
+						type: "f",
+						value: u.type ? 1.0 : 0.0 
+					};
+				else if(u.type == "float")
+					scope.uniforms[index] = {
+						type: "f",
+						value: u.value
+					};
+				else if(u.type == "color")
+					scope.uniforms[index] = {
+						type: "c",
+						value: new THREE.Color(u.value)
+					};
+			}
+
 			if(this.params.uniforms != undefined) {
 				for(var i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.type == "boolean")
-						this.uniforms[i] = {
-							type: "f",
-							value: u.type ? 1.0 : 0.0 
-						};
-					else if(u.type == "float")
-						this.uniforms[i] = {
-							type: "f",
-							value: u.value
-						};
-					else if(u.type == "color")
-						this.uniforms[i] = {
-							type: "c",
-							value: new THREE.Color(u.value)
-						};
+					if(u.length === 1) // folder
+						for(var j in u[0]) addUniform(u[0][j], j);
+					else
+						addUniform(u, i);
 				}
 			}
 
@@ -662,7 +737,7 @@ define([
 			// Renderer
 			this.renderer = new THREE.WebGLRenderer({ antialias: true });				
 			this.renderer.setPixelRatio( window.devicePixelRatio );
-			this.renderer.setSize(this.canvasWidth, this.canvasHeight);
+			this.renderer.setSize(this.params.width, this.params.height);
 			this.renderer.setClearColor( this.params.backgroundColor );
 			//this.renderer.sortObjects = false;
 
@@ -694,19 +769,29 @@ define([
 			// Add webgl canvas renderer to DOM container	
 			this.containers[0].appendChild( this.renderer.domElement );
 			this.containers[0].appendChild(this.getLogoDomEl());
+			if(Utils.hasFullscreen()) this.addFullscreenButton(this.containers[0]);
 
 			// GUI	
 			this.GUIParams = { Mesh: 0 };
+
+			function addGuiParams(u) {
+				if(u.type == "float" || u.type == "boolean") {
+					scope.GUIParams[u.displayName] = u.value;
+				}
+				else if(u.type == "color") {
+					scope.GUIParams[u.displayName] = "#" + Utils.toHex(u.value[0]) + Utils.toHex(u.value[1]) + Utils.toHex(u.value[2]);
+				}
+			}
 
 			if(this.params.uniforms != undefined)
 				for(var i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.type == "float" || u.type == "boolean") {
-						this.GUIParams[u.displayName] = u.value;
+					if(u.length != 1) {
+						addGuiParams(u);
 					}
-					else if(u.type == "color") {
-						this.GUIParams[u.displayName] = "#" + Utils.toHex(u.value[0]) + Utils.toHex(u.value[1]) + Utils.toHex(u.value[2]);
+					else {
+						for(var j in u[0]) addGuiParams(u[0][j]);
 					}
 				}
 
@@ -728,21 +813,29 @@ define([
 				this.loadMesh({type:"teapot"}, material);
 			}
 
-			for(var i in this.params.uniforms) {
-				var u = this.params.uniforms[i];
-
+			function addGuiData(u, gui) {
 				if(u.type == "float") 
-					gui.add(this.GUIParams, u.displayName, u.min, u.max).onChange(function() {
+					gui.add(scope.GUIParams, u.displayName, u.min, u.max).onChange(function() {
 						scope.render();
 					});
 				else if(u.type == "color")
-					gui.addColor(this.GUIParams, "Color").onChange(function() {
+					gui.addColor(scope.GUIParams, "Color").onChange(function() {
 						scope.render();
 					});
 				else if(u.type == "boolean")
-					gui.add(this.GUIParams, u.displayName).onChange(function() {
+					gui.add(scope.GUIParams, u.displayName).onChange(function() {
 						scope.render();
 					});
+			}
+
+			for(var i in this.params.uniforms) {
+				var u = this.params.uniforms[i];
+
+				if(u.length == 1) {
+					var folder = gui.addFolder(i);
+					for(var j in u[0]) addGuiData(u[0][j], folder);					
+				}
+				else addGuiData(u, gui);
 			}
 
 			if(gui) {

@@ -1,3 +1,21 @@
+/**
+ * pocket.gl http://pocketgl.aclockworkberry.com
+ *
+ * Copyright 2016 Giuseppe Portelli <info@aclockworkberry.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
 define(
 	[
 		"three_builds/three",
@@ -61,12 +79,8 @@ define(
 					else {
 						var multiMaterials = [];
 
-						for(i in _this.materials) {
-							var m = _this.materials[i];
-
-							//_this.loadedMesh[i].material = _this.createMaterial(m);
-							multiMaterials.push(_this.createMaterial(m));
-						}
+						for(i in _this.materials) 
+							multiMaterials.push(_this.createMaterial(_this.materials[i]));
 
 						for(var i in _this.loadedMesh.children) {
 							var m = i < multiMaterials.length ? multiMaterials[i] : multiMaterials[multiMaterials.length-1];
@@ -163,11 +177,14 @@ define(
 			var specular = params.specular != undefined ? params.specular 	: 0x222222;
 			var shininess= params.shininess != undefined ? params.shininess 	: 100;
 
-			return new THREE.MeshPhongMaterial( { 
+			var mdata = { 
 				color: color, specular: specular, shininess: shininess,
-				map: params.diffuseMap,
-				normalMap: params.normalMap
-			} );
+			};
+
+			if(params.diffuseMap) mdata.map = params.diffuseMap;
+			if(params.normalMap)  mdata.normalMap = params.normalMap;
+
+			return new THREE.MeshPhongMaterial(mdata);
 		}
 
 		MeshLoader.prototype.loadTexture = function(url) {

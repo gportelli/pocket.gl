@@ -1,3 +1,4 @@
 !*.obj
 bower_components
 examples/sources
+assets

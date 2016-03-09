@@ -13,6 +13,8 @@ uniform sampler2D texNormal;
 uniform float time;
 uniform float cloudsSpeed;
 uniform float cloudsOn;
+uniform float specularOn;
+uniform float normalOn;
 
 // Normal Mapping Without Precomputed Tangents
 // http://www.thetenthplanet.de/archives/1180
@@ -39,7 +41,9 @@ vec3 perturbNormal( vec3 p, vec3 N, vec2 uv, vec3 mapN )
 
 void main() {
 	vec3 mapN = texture2D( texNormal, texcoord ).xyz * 2.0 - 1.0;
-	vec3 normal = perturbNormal(vertPos, normalize(normalInterp), texcoord, mapN);
+	vec3 normal = normalize(normalInterp);
+	normal = mix(normal, perturbNormal(vertPos, normal, texcoord, mapN), normalOn);
+
 	vec3 lightDir = normalize(lightPosInterp);
 
 	float lambertian = max(dot(lightDir,normal), 0.0);
@@ -52,11 +56,17 @@ void main() {
 		specular = pow(specAngle, 20.0) * 0.5;
 	}
 
-	float clouds = min(texture2D(texCloudsSpecular, vec2(texcoord.x + time * cloudsSpeed * 0.05, texcoord.y)).g, cloudsOn);
-	vec3 cloudsColor = vec3(clouds, clouds, clouds) * lambertian;
-	vec3 nightColor = mix(texture2D(texNight, texcoord).rgb * 0.3, cloudsColor, clouds);
-   specular *= (1.0 - texture2D(texCloudsSpecular, texcoord).r);
-	vec3 dayColor = mix(texture2D(texDay, texcoord).rgb * lambertian + specular * specColor, cloudsColor, clouds);
+	float cloudsMask   = texture2D(texCloudsSpecular, vec2(texcoord.x + time * cloudsSpeed * 0.05, texcoord.y)).g;
+	cloudsMask = min(cloudsMask, cloudsOn);
+
+	float specularMask = texture2D(texCloudsSpecular, texcoord).r;
+	specularMask = min(specularMask, specularOn);
+	
+	vec3 cloudsColor = vec3(cloudsMask, cloudsMask, cloudsMask) * lambertian;
+
+	vec3 nightColor = mix(texture2D(texNight, texcoord).rgb * 0.3, cloudsColor, cloudsMask);
+	specular *= (1.0 - specularMask);
+	vec3 dayColor = mix(texture2D(texDay, texcoord).rgb * lambertian + specular * specColor, cloudsColor, cloudsMask);
 
 	vec3 albedo = mix(nightColor, dayColor, lambertian);
 	gl_FragColor = vec4(albedo, 1.0);

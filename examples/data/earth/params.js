@@ -4,9 +4,17 @@
 	],
 	
 	uniforms: {
-		rotationSpeed: { type: "float", value: 0.25, min: 0, max: 1, displayName: "Rotation Speed" },
-		cloudsSpeed:   { type: "float", value: 0.25, min: 0, max: 1, displayName: "Clouds Speed" },
-		cloudsOn:      { type: "boolean", value: true, displayName: "Clouds" },
+		Speeds: [{
+			rotationSpeed: { type: "float", value: 0.25, min: 0, max: 1, displayName: "Rotation Speed" },
+			cloudsSpeed:   { type: "float", value: 0.25, min: 0, max: 1, displayName: "Clouds Speed" }
+		}],
+		
+		Textures: [{
+			cloudsOn:      { type: "boolean", value: true, displayName: "Clouds" },	
+			normalOn:      { type: "boolean", value: true, displayName: "Normal Map" },
+			specularOn:    { type: "boolean", value: true, displayName: "Specular Map" },
+		}]
+		
 	},
 
 	backgroundColor: 0x000000,

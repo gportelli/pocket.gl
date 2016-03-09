@@ -7,13 +7,14 @@
 
 	uniforms: {
 		bFlat:   { type: "boolean", value: false, displayName: "Flat shading" },
-		diffuseColor: { type: "color", value: [38, 160, 12], displayName: "Color"}
+		diffuseColor: { type: "color", value: "#26a00c", displayName: "Color"}
 	},
 
 	//editorTheme: "bright",
 	editorTheme: "dark",
 
 	doubleSided: true,
+	backgroundColor: "#dd0",
 
 	vertexShader: [
 		"varying vec3 normalInterp;",

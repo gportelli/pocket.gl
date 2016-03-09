@@ -705,11 +705,12 @@ define([
 						type: "f",
 						value: u.value
 					};
-				else if(u.type == "color")
+				else if(u.type == "color") {
 					scope.uniforms[index] = {
 						type: "c",
 						value: new THREE.Color(u.value)
 					};
+				}
 			}
 
 			if(this.params.uniforms != undefined) {
@@ -809,8 +810,8 @@ define([
 			if(!this.fragmentOnly) {
 				var cameraControls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
 				cameraControls.enablePan = false;
-				cameraControls.enableZoom   = this.params.enableZoom;
-				cameraControls.enableRotate = this.params.enableOrbit;
+				cameraControls.enableZoom   = this.params.zoom;
+				cameraControls.enableRotate = this.params.orbiting;
 				cameraControls.target.set( 0, 0, 0 );
 				cameraControls.addEventListener( 'change', function() { scope.render() } );
 			}
@@ -828,7 +829,7 @@ define([
 					scope.GUIParams[u.displayName] = u.value;
 				}
 				else if(u.type == "color") {
-					scope.GUIParams[u.displayName] = "#" + Utils.toHex(u.value[0]) + Utils.toHex(u.value[1]) + Utils.toHex(u.value[2]);
+					scope.GUIParams[u.displayName] = u.value;
 				}
 			}
 

@@ -26,10 +26,8 @@ define(function() {
 			return { width: element.offsetWidth, height: element.offsetHeight };
 	}
 
-	Utils.prototype.countLines = function(text) { return text.split("\n").length }
+	Utils.prototype.countLines = function(text) { return text.split("\n").length; }
 
-	Utils.prototype.toHex = function(v) { hex = v.toString(16); if(hex.length == 1) hex = "0" + hex; return hex; }
-	
 	Utils.prototype.hasFullscreen = function() {
 		var r =  
 			document.FullscreenEnabled ||

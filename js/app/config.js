@@ -27,7 +27,7 @@ define({
 	fluidWidth: false,
 	width: 620,
 	height: 400,
-	backgroundColor: 0xdddddd,
+	backgroundColor: "#ddd",
 	tabColor: "#1c90f3",
 	doubleSided: false,
 	animated: false,
@@ -36,6 +36,6 @@ define({
 	editorWrap: true,
 	showTabs: true,
 	guiOpened: true,
-	enableOrbiting: true,
-	enableZoom: true
+	orbiting: true,
+	zoom: true
 });

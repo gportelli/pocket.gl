@@ -20,7 +20,7 @@
 	uniforms: {
 		"Folder A": [{ uvscale: { type: "float", value: 1, min: 0.5, max: 2, displayName: "UV Scale" } }],
 		"Folder B": [{
-			color:   { type: "color", value: [255, 255, 255], displayName: "Color" },
+			color:   { type: "color", value: "#fff", displayName: "Color" },
 			useTexture:   { type: "boolean", value: true, displayName: "Use Texture" },
 		}]
 	},

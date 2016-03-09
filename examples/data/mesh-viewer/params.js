@@ -8,11 +8,11 @@
 		{ 
 			url: "light-bulb.obj", name: "Light Bulb", y: 0, rx:90, scale: 0.18,
 		  	materials: [
-			  	{ color: 0xaaaaaa },
-			  	{ color: 0xc0a84a },
+			  	{ color: "#aaa" },
+			  	{ color: "#c0a84a" },
 	  	  	]
 		}
 	],
 
-	backgroundColor: 0x000000
+	backgroundColor: "#000"
 }

@@ -13,12 +13,13 @@
 			cloudsOn:      { type: "boolean", value: true, displayName: "Clouds" },	
 			normalOn:      { type: "boolean", value: true, displayName: "Normal Map" },
 			specularOn:    { type: "boolean", value: true, displayName: "Specular Map" },
-		}]
+		}, "opened"]
 		
 	},
 
 	backgroundColor: 0x000000,
 	animated: true,
+	guiClosed: false,
 
 	textures: [
 		{ 

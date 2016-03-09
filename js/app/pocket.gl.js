@@ -164,6 +164,7 @@ define([
 			if(params.editorTheme == undefined) params.editorTheme = config.editorTheme;
 			if(params.editorWrap == undefined) params.editorWrap = config.editorWrap;
 			if(params.showTabs == undefined) params.showTabs = config.showTabs;
+			if(params.guiClosed == undefined) params.guiClosed = config.guiClosed;
 
 			var urlMeshesCount = 0;
 			for(var i in params.meshes) if(params.meshes[i].url !== undefined) urlMeshesCount++;
@@ -541,7 +542,7 @@ define([
 			for(uniformid in this.params.uniforms) {
 				var u = this.params.uniforms[uniformid];
 
-				if(u.length != 1)
+				if(u.length == undefined)
 					update(u, uniformid, this);
 				else for(i in u[0]) 
 					update(u[0][i], i, this);				
@@ -725,7 +726,7 @@ define([
 				for(var i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.length === 1) // folder
+					if(u.length != undefined) // folder
 						for(var j in u[0]) addUniform(u[0][j], j);
 					else
 						addUniform(u, i);
@@ -843,7 +844,7 @@ define([
 				for(var i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.length != 1) {
+					if(u.length == undefined) {
 						addGuiParams(u);
 					}
 					else {
@@ -856,8 +857,10 @@ define([
 				meshes[this.params.meshes[i].name] = i;
 
 			var gui = false;
-			if(this.params.meshes.length > 1 || this.params.uniforms != undefined)
+			if(this.params.meshes.length > 1 || this.params.uniforms != undefined) {
 				gui = new dat.GUI({ autoPlace: false });
+				if(this.params.guiClosed) gui.close();
+			}
 
 			if(this.params.meshes.length > 1)
 				gui.add(this.GUIParams, 'Mesh', meshes).onChange(function() {
@@ -894,9 +897,12 @@ define([
 			for(var i in this.params.uniforms) {
 				var u = this.params.uniforms[i];
 
-				if(u.length == 1) {
+				if(u.length != undefined) {
 					var folder = gui.addFolder(i);
-					for(var j in u[0]) addGuiData(u[0][j], folder);					
+					for(var j in u[0]) addGuiData(u[0][j], folder);	
+
+					if(u.length >= 2 && u[1] == "opened")				
+						folder.open();
 				}
 				else addGuiData(u, gui);
 			}

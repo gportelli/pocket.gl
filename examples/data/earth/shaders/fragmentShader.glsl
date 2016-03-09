@@ -41,6 +41,8 @@ vec3 perturbNormal( vec3 p, vec3 N, vec2 uv, vec3 mapN )
 
 void main() {
 	vec3 mapN = texture2D( texNormal, texcoord ).xyz * 2.0 - 1.0;
+	mapN = normalize(mix(mapN, vec3(0,0,1), 0.3));
+	
 	vec3 normal = normalize(normalInterp);
 	normal = mix(normal, perturbNormal(vertPos, normal, texcoord, mapN), normalOn);
 

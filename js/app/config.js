@@ -34,5 +34,6 @@ define({
 	transparent: false,
 	editorTheme: "dark",
 	editorWrap: true,
-	showTabs: true
+	showTabs: true,
+	guiOpened: true
 });

@@ -141,7 +141,8 @@ define(
 							var percentComplete = xhr.loaded / xhr.total;
 							_this.LoadingManager.onProgress(loader, percentComplete);
 						}
-					} 
+					},
+					function(xhr) { _this.LoadingManager.onError(xhr); }
 				);
 			}
 			else if(endsWith(meshurl.toLowerCase(), ".obj")) {
@@ -167,7 +168,8 @@ define(
 							var percentComplete = xhr.loaded / xhr.total;
 							_this.LoadingManager.onProgress(loader, percentComplete);
 						}
-					} 
+					},
+					function(xhr) { _this.LoadingManager.onError(xhr); }
 				);
 			}
 		}

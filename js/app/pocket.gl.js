@@ -542,7 +542,7 @@ define([
 				var u = this.params.uniforms[uniformid];
 
 				if(u.length != 1)
-					update(u, this);
+					update(u, uniformid, this);
 				else for(i in u[0]) 
 					update(u[0][i], i, this);				
 			}
@@ -760,7 +760,8 @@ define([
 									scope.LoadingManager.onProgress(loader, percentComplete);
 								}
 							}
-						}(loader)
+						}(loader),
+						function(xhr) { scope.LoadingManager.onError(xhr); }
 					);
 
 					texture.wrapS = texture.wrapT = texparams.wrap == "clamp" ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;

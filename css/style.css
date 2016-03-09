@@ -92,7 +92,8 @@
 }
 
 /* dat js */
-/* .dg.main li { margin: 0px; } */
+.dg.main li { margin: 0px; }
+.dg.main li.title { margin-left: -4px; }
 .dg .c input[type=text] {
   font: 13.3333px Arial;
   line-height: normal;

@@ -529,15 +529,22 @@ define([
 			if(this.uniforms.time != undefined && this.params.animated) 
 				this.uniforms.time.value += this.clock.getDelta();
 
+			function update(u, uniformid, scope) {
+				if(u.type == "float")
+					scope.uniforms[uniformid].value = scope.GUIParams[u.displayName];
+				else if(u.type == "color")
+					scope.uniforms[uniformid].value = new THREE.Color(scope.GUIParams[u.displayName]);
+				else if(u.type == "boolean")
+					scope.uniforms[uniformid].value = scope.GUIParams[u.displayName] ? 1 : 0;
+			}
+
 			for(uniformid in this.params.uniforms) {
 				var u = this.params.uniforms[uniformid];
 
-				if(u.type == "float")
-					this.uniforms[uniformid].value = this.GUIParams[u.displayName];
-				else if(u.type == "color")
-					this.uniforms[uniformid].value = new THREE.Color(this.GUIParams[u.displayName]);
-				else if(u.type == "boolean")
-					this.uniforms[uniformid].value = this.GUIParams[u.displayName] ? 1 : 0;
+				if(u.length != 1)
+					update(u, this);
+				else for(i in u[0]) 
+					update(u[0][i], i, this);				
 			}
 		}
 

@@ -35,5 +35,7 @@ define({
 	editorTheme: "dark",
 	editorWrap: true,
 	showTabs: true,
-	guiOpened: true
+	guiOpened: true,
+	enableOrbiting: true,
+	enableZoom: true
 });

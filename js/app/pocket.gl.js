@@ -151,20 +151,10 @@ define([
 		PocketGL.prototype.readParams = function(params)
 		{
 			if(params == undefined) params = {};
-
-			if(params.fluidWidth == undefined) params.fluidWidth = config.fluidWidth;
-			if(params.width == undefined) params.width = 620;
-			if(params.height == undefined) params.height = 400;
-			if(params.backgroundColor == undefined) params.backgroundColor = config.backgroundColor;
 			if(params.meshes == undefined) params.meshes = [];
-			if(params.tabColor == undefined) params.tabColor = config.tabColor;
-			if(params.doubleSided == undefined) params.doubleSided = config.doubleSided;
-			if(params.animated == undefined) params.animated = config.animated;
-			if(params.transparent == undefined) params.transparent= config.transparent;
-			if(params.editorTheme == undefined) params.editorTheme = config.editorTheme;
-			if(params.editorWrap == undefined) params.editorWrap = config.editorWrap;
-			if(params.showTabs == undefined) params.showTabs = config.showTabs;
-			if(params.guiClosed == undefined) params.guiClosed = config.guiClosed;
+
+			for(id in config)
+				if(params[id] == undefined) params[id] = config[id];
 
 			var urlMeshesCount = 0;
 			for(var i in params.meshes) if(params.meshes[i].url !== undefined) urlMeshesCount++;
@@ -819,6 +809,8 @@ define([
 			if(!this.fragmentOnly) {
 				var cameraControls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
 				cameraControls.enablePan = false;
+				cameraControls.enableZoom   = this.params.enableZoom;
+				cameraControls.enableRotate = this.params.enableOrbit;
 				cameraControls.target.set( 0, 0, 0 );
 				cameraControls.addEventListener( 'change', function() { scope.render() } );
 			}

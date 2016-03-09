@@ -799,14 +799,14 @@ define([
 				// Lights
 				scene.add( new THREE.AmbientLight( 0xcccccc ) );
 
-				var directionalLight = new THREE.DirectionalLight(0xffffff );
+				var directionalLight = new THREE.DirectionalLight(0xaaaaaa);
 				directionalLight.position.x = 100;
 				directionalLight.position.y = 60;
 				directionalLight.position.z = 100;
 				directionalLight.position.normalize();
 				scene.add( directionalLight );
 
-				var directionalLight1 = new THREE.DirectionalLight(0xaaaaaa );
+				var directionalLight1 = new THREE.DirectionalLight(0x666666);
 				directionalLight1.position.x = -100;
 				directionalLight1.position.y = 60;
 				directionalLight1.position.z = -100;

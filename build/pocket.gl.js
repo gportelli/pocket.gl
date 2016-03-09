@@ -839,7 +839,7 @@ define('text',['module'], function (module) {
 });
 
 
-define('text!css/style.css',[],function () { return '/**\r\n * pocket.gl http://pocketgl.aclockworkberry.com\r\n *\r\n * Copyright 2016 Giuseppe Portelli <info@aclockworkberry.com>\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the "License");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n * \r\n *  http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an "AS IS" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\r\n \r\n.pocketgl.errorConsole { box-sizing: border-box; position: relative; background: #333; color: white; padding: 5px; overflow: auto; font: 14px Arial; }\r\n.pocketgl-tabs { height: 44px; font: 14px Verdana; position: relative;}\r\n.pocketgl-tabs ul {padding: 0px; margin: 0px; list-style: none; }\r\n.pocketgl-tabs ul li { float: left; margin: 0;}\r\n.pocketgl-tabs ul li.active { }\r\n.pocketgl-tabs ul li.active { }\r\n.pocketgl-tabs ul li a { display: block; padding: 0px 10px; line-height: 40px; height: 40px; text-decoration: none; color: #333; outline: 0;}\r\n.pocketgl-tabs .hl.animated { height: 6px; position: absolute; bottom: 0px; transition: all 0.15s;}\r\n\r\n.pocketgl-logo-pocket {\r\n\tposition: absolute;\r\n\tleft: 0px;\r\n\tbottom: 0px;\r\n\t\r\n\tbackground: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAWCAYAAAAxSueLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowZTEzN2M2Mi00ODIwLTU3NGMtODE5My1jOGYxMDA2YmYxN2MiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTIxQTFGQjZERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTIxQTFGQjVERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzlmZjU0M2MtNWQyMy05NDQyLTkzYWUtYWJkZWQ3MjFmYmZjIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjBlMTM3YzYyLTQ4MjAtNTc0Yy04MTkzLWM4ZjEwMDZiZjE3YyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp9C7KgAAAKjSURBVHjavJVNaxpRFIbPmJnRaMRaN2YhCCENUbuwfsQsBAOuBUu7dtcEuqzpT0h37gqxf6Gl/oGsstDEj7pqF0HBoBtd1Gri1zg6Pec2iiM1BDQ5cBnmMrzPnHPfcy53HI9f8Dz/DB45ZFn+w4/H45cf4nH9Y8M+nZx0eY7jxhaL5bFZQBwNPGEQbOOJWBt8r9eDRCLB3gb9PnAaDaBhQIPPkSwDnum/Mtztj0cjkHGxPVyCKAIoCkjD4VRVwO+wbjCUJBC1WrZHHF6n03VisZiBNlKpFITDYTAajUuncXNzA2dnZxCNRicG6ZBBlIlBtPgXZrMZTCbT0jCqAulNtImjMojX6wXMdCUHRDqkp/qB2Zfd3d2VuYGymtdTZZZOp6Hb7a4ERjqktxBWLpdhOOOqZYJ0SG8h7Cmaeho2m425aBVBOqS3EBYKhWg6w+3t7VKgPg6HETY+6S10I0Wj0WDNSP3h8Xhga2vrwZBqtQqFQgFqtRocHByA0+lUwxRF0eCipmMb29vbbFUqlWmG9XqdleV/t0Oz2YTBYABWqxVarRY4HA6IRCJs3E2C9InD48zLfjw+9rjdbsG/t6ejTAhst9unH7fbbTg/P2fAQCAAOzs7UCqVIJPJsJIFg0EGc7lcKgC5MXt52S8Wi0PkFFg6R4eHJkEQogaD4QiHrPMVggP7+1oCTjKeZEgDlfavr69BxCG8ubmpAlBFLjKZwQ8E8GtrPzudzim2Qeo0mWxx82W5A7/W6/XvceK/wJEj+Px+3Tx4HpDLZvv5fH6I5bvChv6MgO8EUF2g9x04gp9j6d5gxocoSmDR6/OJBCZAPpeTECDhT1xhBkl08jcE/F54Wz/UaQTGsr1dX19/h+fkwEH7C0v6RZKkr/cBZuOvAAMAuYUk4+WQJugAAAAASUVORK5CYII=);\r\n\twidth: 27px;\r\n\theight: 22px;\r\n}\r\n\r\n.pocketgl-logo {\r\n\tdisplay: block;\r\n\tposition: absolute;\r\n\tright: 10px;\r\n\tbottom: 10px;\r\n\tbackground-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAaCAYAAABCfffNAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowZTEzN2M2Mi00ODIwLTU3NGMtODE5My1jOGYxMDA2YmYxN2MiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTIxQTFGQjJERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTIxQTFGQjFERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzlmZjU0M2MtNWQyMy05NDQyLTkzYWUtYWJkZWQ3MjFmYmZjIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjBlMTM3YzYyLTQ4MjAtNTc0Yy04MTkzLWM4ZjEwMDZiZjE3YyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsnkHIgAAAWFSURBVHjajFZJaCVVFH3vVWWeRzMPhIxGiMadNDRBBEHcutCNklVHDXGTuPKLGxfpluDCkITehRAIkgZ3TZBIwEUg82zmeerMyc/03/Oc568Q0x3tguLXr3rv3nPPOfdWSfEfR3d3d14gEPgUlx9GRESUXV5eOjjPXNc9McZcXl9fB168eLG6vb1d6/P5/rovjnzVzerqaqeqqurHmJiYr+Li4sIQTBQUFIioqCixuroqtra2xPHxsdBai/z8fDE+Pu5fWVl5vLS05Gtrawv8b5Kmpqb83NzcZ9HR0W/hFOfn5xq3DSqROERoaKhMSUkRJycnempqSqAyheRyf39frK+vz6LybxsaGrruTdLa2pqbnp7eV1lZmUXU8/PzAb/fb8rLyxWCK1Bk17GC8PBw0d/fb1hlSEiI5L3Z2VkxOTkpLi4uHjU2Nv7ixVXeRVdXV3lRUdGfsbGxWUBtZmZmNBIqUOagAgWENjhPHqhQVFRUSAQ0SilWYRISEjTWC4D5qb6+PumlJImJiT+npaWl4zKwsLAgysrKVGpqqkRwQ5pedbAyroNOV2dnZyYsLIx7DFgIw56n/0rS0dHxbnx8/EO4RMA5mguxwXiUejTdPRzHEdhjUJ2tCGbQ2dnZgloC3MfQ5v0bTXp6en5HFQ9hx2u4xSY+ODggNeb09NSUlJQ4SCpvVwSNxNDQkCaNR0dHYEyZnZ0diwb/zdramnN1dbWO/blOZ2fng4yMjO8PDw9FXl4eA8ucnBwF+iRRMjLtygA0AQ1BoQcHBymOhA4KJrAJoKeC5SUcpxHPoLo4gDt0k5OTn9AhqMRgMQMaoJPwvkZvqMXFRVFcXMxcZnd316AX+HsNMCorK0uCXoFEcm5uzmpHbRBccX2w6AcKtLxDd6AKiV8KLcfGxphAglvyY4KnRHUKKHlPkT4mBAiNwJp9xJ4CTSYyMlLSBIyLZIUuFvixMWpgYEADlQGPurS01A0mIDX0vSDno6OjJjMzk2AURQfNkhSCKtIcYAIkC+EeBNegT0KfNxR9zzILCwuteNgkJyYmzPDwsN7b27O+J01IIOAcSZSgxxqCopMq3OMaJnSCE4KgbGwkcV2WBPQWMW44DMSkWKDZwXhmsNHQdajOdj3FBU1ELZaXlzleaGMHzcuZpmEYzXgbGxsKYFwXfxSF5yxiQjonaFXFGUUbIxm5FhiCAVQmqR/nFcTWGD1c47BiHvi1LYC1bFBeh0AGN4KIMEYMHObc7gXyjueSifGMGwzdMz09bTAQA5jGdNFNAq9p2YzQka8FSrGtsHgMJQvwKbzFL41qJKZeTMi+QA/Izc1NTgJFPW4n4Fq2AV1IkKhympb8knRBZAXK7LC7e3DiogIGsoZgwKSkJIeJKe7tscO+oVGgBRkgG32qpqamF+L+wZsY04xj7g5BBJQEgP6x9PGdgp4R3mS+fXDcYK09AX4TQH6wsFHe197AHBkZ4XC0wfkLNJxDGpoFQK3x3iXUiQlZOdEzOO8jsEGDkyGC+AzvKH2jcnNzcx9s+h7nDpqIo0ShNzQD8znsaNEzCKcCtcBajhD+clJQNw5WOtEFyOctLS0fWAq9JAjiQ0W/YnMMkPGdcsW3IRA75Bb3NfilmIrIMbEDCGiC08CKzMmN7qdjNfZ+fuNS76K3t3ceb8bnoOMT0BQBe3JUW7SkgjqwAqIFIA1ACs/Z4RI00TQS5rGvYYDygZnf7v2QqKurexs+fwbKsqkJRzvnEjez82kQUgO0iv1FQ+BUfOEB0Cpo+q69vf3pa30S4RXwGH1TDQ2iEJgB7Em7MznpCfaBpQ4AngBYAz6J9Gt9d3lHbW1tKhrvC6D7CH/fVP8cfvw/57cEri/RxBvQ5Rt8iIzfF+dvAQYApzzUHl3xZPcAAAAASUVORK5CYII=);\r\n\tbackground-position: 1px 6px;\r\n\tbackground-repeat: no-repeat;\r\n\ttransition: background-position 0.25s ease-in-out;\r\n\twidth: 27px;\r\n\theight: 40px;\r\n}\r\n\r\n.pocketgl-logo:hover {\r\n\tbackground-position: 1px 0px; \r\n}\r\n';});
+define('text!css/style.css',[],function () { return '/**\r\n * pocket.gl http://pocketgl.aclockworkberry.com\r\n *\r\n * Copyright 2016 Giuseppe Portelli <info@aclockworkberry.com>\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the "License");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n * \r\n *  http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an "AS IS" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\r\n \r\n.pocketgl.errorConsole { box-sizing: border-box; position: relative; background: #333; color: white; padding: 5px; overflow: auto; font: 14px Arial; }\r\n\r\n.pocketgl.loadingProgress { box-sizing: border-box; position: relative; background: #eee; color: white; padding: 5px; overflow: auto; font: 14px Arial; }\r\n.pocketglProgress { \r\n\tbox-sizing: content-box;\r\n\r\n    width: 60%;\r\n    height: 14px;\r\n    padding: 1px;\r\n    border: 1px solid #666;\r\n    background-color: #aaa;\r\n\r\n    position: absolute;\r\n\ttop: 50%;\r\n\tleft: 20%;\r\n\tmargin-top: -7px;\r\n}\r\n.pocketglProgressBar {\r\n    width: 0%;\r\n    height: 14px;\r\n    background-color: #fff;\r\n}\r\n\r\n.pocketgl-tabs { height: 44px; font: 14px Verdana; position: relative;}\r\n.pocketgl-tabs ul {padding: 0px; margin: 0px; list-style: none; }\r\n.pocketgl-tabs ul li { float: left; margin: 0;}\r\n.pocketgl-tabs ul li.active { }\r\n.pocketgl-tabs ul li.active { }\r\n.pocketgl-tabs ul li a { display: block; padding: 0px 10px; line-height: 40px; height: 40px; text-decoration: none; color: #333; outline: 0;}\r\n.pocketgl-tabs .hl.animated { height: 6px; position: absolute; bottom: 0px; transition: all 0.15s;}\r\n\r\n.pocketgl-fullscreenbutton\r\n{\r\n\tposition: absolute;\r\n\tright: 10px;\r\n\tbottom: 10px;\r\n\twidth: 27px;\r\n\theight:27px;\r\n\tdisplay: block;\r\n\tbackground-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAIAAAACtmMCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowOTc4NjNGOEU0MTExMUU1QTk5MUREQTA0NzE5NkM1NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo2MjcxOEY3MEU0QzkxMUU1QjhCMUJGMTIwRDMzNTc4RSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2MjcxOEY2RkU0QzkxMUU1QjhCMUJGMTIwRDMzNTc4RSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1ODA4OWM4Ny00NDcyLThhNDktYTI4MS0zZDJlYmRiZTE3OTQiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpjZDFlNDZiNi1lNGM4LTExZTUtYjM0MS1kMGQ2YzU0ODVlOWUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz499X0AAAAAyUlEQVR42tyWzQ6EIAyE+ZOHJoAHJLyzRthJNtmwwoqJvbhzwlA/Sae0cu99KYV9i3M+TRM71bZt3RdVzjmEwIjknBOMVDgjMRGiJ6rD87Isn/W6ru/FPM9SSvgQY2wR1tozYhtR56jdqk8A4asCccTOaK0JiaA9wetbxH3fx8RfRneFkmrjn5jHQ8UO1cb/ffX0iWjuhDjQBKbCzZKuBZq6Yp8xRgiBTpVSGvYedf3OdPvjQ72mn1zIDsZ2m7Jhb8dc6/5TvAQYAK88TiEWsQSrAAAAAElFTkSuQmCC\');\r\n}\r\n\r\n.pocketgl-fullscreenbutton:hover\r\n{\r\n\tbackground-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAIAAAACtmMCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowOTc4NjNGOEU0MTExMUU1QTk5MUREQTA0NzE5NkM1NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpGRDZFQUEzOEU0QzkxMUU1QUEwM0Q3MzVGRDg5NkFEOCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpGRDZFQUEzN0U0QzkxMUU1QUEwM0Q3MzVGRDg5NkFEOCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpjODY5N2IxMy0zMTc2LTczNDgtYTZlZS03NzQyYWY0Mjk0ZmQiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpjZDFlNDZiNi1lNGM4LTExZTUtYjM0MS1kMGQ2YzU0ODVlOWUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7w6edPAAAArUlEQVR42tRWwQ7FEBCkNvw0LiT+meDtsbFCJV5ac2uyOzrGDtxaW2tlN0gp2QOklJpGBOccSinOObYJxpiLbQX+42ZGBNw/vPe0Qmu9VANKqUF/znm8AF1joloIsSQZ3f+8M3iW93v9Z0bq4xM0XcepPoGxO7NTrE3hN1RjuG9mxFvhZdU0MUcZ3rW7GbIQwoAuxgircz2tOeH0AOY4Xts03KcvC9yy7pviJ8AAa8BCHoOmjVcAAAAASUVORK5CYII=\');\r\n}\r\n\r\n.pocketgl-logo-pocket {\r\n\tposition: absolute;\r\n\tleft: 0px;\r\n\tbottom: 0px;\r\n\t\r\n\tbackground: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAWCAYAAAAxSueLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowZTEzN2M2Mi00ODIwLTU3NGMtODE5My1jOGYxMDA2YmYxN2MiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTIxQTFGQjZERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTIxQTFGQjVERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzlmZjU0M2MtNWQyMy05NDQyLTkzYWUtYWJkZWQ3MjFmYmZjIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjBlMTM3YzYyLTQ4MjAtNTc0Yy04MTkzLWM4ZjEwMDZiZjE3YyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp9C7KgAAAKjSURBVHjavJVNaxpRFIbPmJnRaMRaN2YhCCENUbuwfsQsBAOuBUu7dtcEuqzpT0h37gqxf6Gl/oGsstDEj7pqF0HBoBtd1Gri1zg6Pec2iiM1BDQ5cBnmMrzPnHPfcy53HI9f8Dz/DB45ZFn+w4/H45cf4nH9Y8M+nZx0eY7jxhaL5bFZQBwNPGEQbOOJWBt8r9eDRCLB3gb9PnAaDaBhQIPPkSwDnum/Mtztj0cjkHGxPVyCKAIoCkjD4VRVwO+wbjCUJBC1WrZHHF6n03VisZiBNlKpFITDYTAajUuncXNzA2dnZxCNRicG6ZBBlIlBtPgXZrMZTCbT0jCqAulNtImjMojX6wXMdCUHRDqkp/qB2Zfd3d2VuYGymtdTZZZOp6Hb7a4ERjqktxBWLpdhOOOqZYJ0SG8h7Cmaeho2m425aBVBOqS3EBYKhWg6w+3t7VKgPg6HETY+6S10I0Wj0WDNSP3h8Xhga2vrwZBqtQqFQgFqtRocHByA0+lUwxRF0eCipmMb29vbbFUqlWmG9XqdleV/t0Oz2YTBYABWqxVarRY4HA6IRCJs3E2C9InD48zLfjw+9rjdbsG/t6ejTAhst9unH7fbbTg/P2fAQCAAOzs7UCqVIJPJsJIFg0EGc7lcKgC5MXt52S8Wi0PkFFg6R4eHJkEQogaD4QiHrPMVggP7+1oCTjKeZEgDlfavr69BxCG8ubmpAlBFLjKZwQ8E8GtrPzudzim2Qeo0mWxx82W5A7/W6/XvceK/wJEj+Px+3Tx4HpDLZvv5fH6I5bvChv6MgO8EUF2g9x04gp9j6d5gxocoSmDR6/OJBCZAPpeTECDhT1xhBkl08jcE/F54Wz/UaQTGsr1dX19/h+fkwEH7C0v6RZKkr/cBZuOvAAMAuYUk4+WQJugAAAAASUVORK5CYII=);\r\n\twidth: 27px;\r\n\theight: 22px;\r\n}\r\n\r\n.pocketgl-logo:focus { border: 0; }\r\n.pocketgl-logo {\r\n\tdisplay: block;\r\n\tposition: absolute;\r\n\tleft: 10px;\r\n\tbottom: 10px;\r\n\tbackground-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAaCAYAAABCfffNAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowZTEzN2M2Mi00ODIwLTU3NGMtODE5My1jOGYxMDA2YmYxN2MiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTIxQTFGQjJERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTIxQTFGQjFERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzlmZjU0M2MtNWQyMy05NDQyLTkzYWUtYWJkZWQ3MjFmYmZjIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjBlMTM3YzYyLTQ4MjAtNTc0Yy04MTkzLWM4ZjEwMDZiZjE3YyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsnkHIgAAAWFSURBVHjajFZJaCVVFH3vVWWeRzMPhIxGiMadNDRBBEHcutCNklVHDXGTuPKLGxfpluDCkITehRAIkgZ3TZBIwEUg82zmeerMyc/03/Oc568Q0x3tguLXr3rv3nPPOfdWSfEfR3d3d14gEPgUlx9GRESUXV5eOjjPXNc9McZcXl9fB168eLG6vb1d6/P5/rovjnzVzerqaqeqqurHmJiYr+Li4sIQTBQUFIioqCixuroqtra2xPHxsdBai/z8fDE+Pu5fWVl5vLS05Gtrawv8b5Kmpqb83NzcZ9HR0W/hFOfn5xq3DSqROERoaKhMSUkRJycnempqSqAyheRyf39frK+vz6LybxsaGrruTdLa2pqbnp7eV1lZmUXU8/PzAb/fb8rLyxWCK1Bk17GC8PBw0d/fb1hlSEiI5L3Z2VkxOTkpLi4uHjU2Nv7ixVXeRVdXV3lRUdGfsbGxWUBtZmZmNBIqUOagAgWENjhPHqhQVFRUSAQ0SilWYRISEjTWC4D5qb6+PumlJImJiT+npaWl4zKwsLAgysrKVGpqqkRwQ5pedbAyroNOV2dnZyYsLIx7DFgIw56n/0rS0dHxbnx8/EO4RMA5mguxwXiUejTdPRzHEdhjUJ2tCGbQ2dnZgloC3MfQ5v0bTXp6en5HFQ9hx2u4xSY+ODggNeb09NSUlJQ4SCpvVwSNxNDQkCaNR0dHYEyZnZ0diwb/zdramnN1dbWO/blOZ2fng4yMjO8PDw9FXl4eA8ucnBwF+iRRMjLtygA0AQ1BoQcHBymOhA4KJrAJoKeC5SUcpxHPoLo4gDt0k5OTn9AhqMRgMQMaoJPwvkZvqMXFRVFcXMxcZnd316AX+HsNMCorK0uCXoFEcm5uzmpHbRBccX2w6AcKtLxDd6AKiV8KLcfGxphAglvyY4KnRHUKKHlPkT4mBAiNwJp9xJ4CTSYyMlLSBIyLZIUuFvixMWpgYEADlQGPurS01A0mIDX0vSDno6OjJjMzk2AURQfNkhSCKtIcYAIkC+EeBNegT0KfNxR9zzILCwuteNgkJyYmzPDwsN7b27O+J01IIOAcSZSgxxqCopMq3OMaJnSCE4KgbGwkcV2WBPQWMW44DMSkWKDZwXhmsNHQdajOdj3FBU1ELZaXlzleaGMHzcuZpmEYzXgbGxsKYFwXfxSF5yxiQjonaFXFGUUbIxm5FhiCAVQmqR/nFcTWGD1c47BiHvi1LYC1bFBeh0AGN4KIMEYMHObc7gXyjueSifGMGwzdMz09bTAQA5jGdNFNAq9p2YzQka8FSrGtsHgMJQvwKbzFL41qJKZeTMi+QA/Izc1NTgJFPW4n4Fq2AV1IkKhympb8knRBZAXK7LC7e3DiogIGsoZgwKSkJIeJKe7tscO+oVGgBRkgG32qpqamF+L+wZsY04xj7g5BBJQEgP6x9PGdgp4R3mS+fXDcYK09AX4TQH6wsFHe197AHBkZ4XC0wfkLNJxDGpoFQK3x3iXUiQlZOdEzOO8jsEGDkyGC+AzvKH2jcnNzcx9s+h7nDpqIo0ShNzQD8znsaNEzCKcCtcBajhD+clJQNw5WOtEFyOctLS0fWAq9JAjiQ0W/YnMMkPGdcsW3IRA75Bb3NfilmIrIMbEDCGiC08CKzMmN7qdjNfZ+fuNS76K3t3ceb8bnoOMT0BQBe3JUW7SkgjqwAqIFIA1ACs/Z4RI00TQS5rGvYYDygZnf7v2QqKurexs+fwbKsqkJRzvnEjez82kQUgO0iv1FQ+BUfOEB0Cpo+q69vf3pa30S4RXwGH1TDQ2iEJgB7Em7MznpCfaBpQ4AngBYAz6J9Gt9d3lHbW1tKhrvC6D7CH/fVP8cfvw/57cEri/RxBvQ5Rt8iIzfF+dvAQYApzzUHl3xZPcAAAAASUVORK5CYII=);\r\n\tbackground-position: 1px 6px;\r\n\tbackground-repeat: no-repeat;\r\n\ttransition: background-position 0.25s ease-in-out;\r\n\twidth: 27px;\r\n\theight: 40px;\r\n}\r\n\r\n.pocketgl-logo:hover {\r\n\tbackground-position: 1px 0px; \r\n}\r\n\r\n/* dat js */\r\n.dg.main li { margin: 0px; }\r\n.dg.main li.title { margin-left: -4px; }\r\n.dg .c input[type=text] {\r\n  font: 13.3333px Arial;\r\n  line-height: normal;\r\n}\r\n.dg .c select { padding: 0; border-radius: 0;}';});
 
 
 define('text!default_shaders/vertex.glsl',[],function () { return 'varying vec3 normalInterp;\r\nvarying vec3 vertPos;\r\n\r\nvoid main(){\r\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\r\n    vec4 vertPos4 = modelViewMatrix * vec4(position, 1.0);\r\n\r\n    vertPos = vec3(vertPos4) / vertPos4.w;\r\n    normalInterp = normalMatrix * normal;\r\n}';});
@@ -865,10 +865,85 @@ define('text!default_shaders/fragment.glsl',[],function () { return 'precision m
  * limitations under the License.
  */
  
-define('app/tabs',[],function() {
+define('app/utils',[],function() {
+	Utils = function() {}
 
-	function PocketGLTabs(container, tabs, hl) {
-		this.widget = container;
+	Utils.prototype.getElementSize = function(element) {
+		if(element.getBoundingClientRect != undefined)
+			return element.getBoundingClientRect();
+		else
+			return { width: element.offsetWidth, height: element.offsetHeight };
+	}
+
+	Utils.prototype.countLines = function(text) { return text.split("\n").length; }
+
+	Utils.prototype.hasFullscreen = function() {
+		var r =  
+			document.FullscreenEnabled ||
+			document.webkitFullscreenEnabled ||
+			document.mozFullScreenEnabled ||
+			document.msFullscreenEnabled;
+
+		return r;
+	}
+
+	Utils.prototype.isFullscreen = function() {
+		return 	document.fullscreen || 
+				document.mozFullScreen || 
+				document.webkitIsFullScreen || 
+				document.msFullscreenElement || 
+				false;
+	}
+
+	Utils.prototype.getWindowSize = function() {
+		if(document.webkitFullscreenEnabled)
+			return { width: screen.width, height: screen.height };
+
+		return { width: window.outerWidth, height: window.outerHeight };
+	}
+
+	Utils.prototype.goFullscreen = function(canvas) {
+		if(canvas.webkitRequestFullscreen != undefined)
+			canvas.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT); 
+
+		else if(canvas.mozRequestFullScreen != undefined)
+			canvas.mozRequestFullScreen(); 
+
+		else if(canvas.msRequestFullscreen != undefined)
+			canvas.msRequestFullscreen(); 
+
+		else if(canvas.requestFullscreen != undefined)
+			canvas.requestFullscreen(); 
+	}
+
+	return new Utils();
+});
+/**
+ * pocket.gl http://pocketgl.aclockworkberry.com
+ *
+ * Copyright 2016 Giuseppe Portelli <info@aclockworkberry.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+define('app/tabs',[
+		"app/utils"
+	],
+
+	function(Utils) {
+
+	function PocketGLTabs(callback, tabs, hl) {
+		this.callback = callback;
 		this.tabs = tabs;
 		this.hl = hl;
 
@@ -898,13 +973,13 @@ define('app/tabs',[],function() {
 		event.stopPropagation();
 		this.repositionHighlight(action);
 
-		this.widget.switchTab(index);
+		this.callback(index);
 	};
 
 	PocketGLTabs.prototype.repositionHighlight = function(action) {
 		var position;
-		position = action.getBoundingClientRect();
-		container = this.tabs[0].getBoundingClientRect();
+		position = Utils.getElementSize(action);
+		container = Utils.getElementSize(this.tabs[0]);
 		return this.setStyles(this.hl, {
 			left: (position.left - container.left) + "px",
 			width: position.width + "px"
@@ -920,6 +995,20 @@ define('app/tabs',[],function() {
 		}
 
 		return results;
+	};
+
+	PocketGLTabs.prototype.disable = function() {
+		for(var i in this.tabs)
+			this.tabs[i].style.visibility = "hidden";
+
+		this.hl.style.visibility = "hidden";
+	};
+
+	PocketGLTabs.prototype.enable = function() {
+		for(var i in this.tabs)
+			this.tabs[i].style.visibility = "visible";
+
+		this.hl.style.visibility = "visible";
 	};
 
 	return PocketGLTabs;
@@ -943,22 +1032,138 @@ define('app/tabs',[],function() {
  */
 
 define('app/config',{
-	version: "1.0.0",
+	version: "0.5.0",
 	website: "http://pocketgl.aclockworkberry.com",
 
-	fragmentShaderPreambleLineCount: 8,
-	vertexShaderPreambleLineCount: 40,
+	brightAceTheme: "crimson_editor",
+	darkAceTheme: "vibrant_ink",
 
 	// default values
+	fluidWidth: false,
 	width: 620,
 	height: 400,
-	backgroundColor: 0xdddddd,
+	backgroundColor: "#ddd",
 	tabColor: "#1c90f3",
 	doubleSided: false,
 	animated: false,
 	transparent: false,
 	editorTheme: "dark",
-	showTabs: true
+	editorWrap: true,
+	showTabs: true,
+	guiOpened: true,
+	orbiting: true,
+	zoom: true
+});
+/**
+ * pocket.gl http://pocketgl.aclockworkberry.com
+ *
+ * Copyright 2016 Giuseppe Portelli <info@aclockworkberry.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+define('app/loadingManager',[],function() {
+	LoadingManager = function(domEl, onComplete)
+	{
+		this.domEl = domEl;
+		this.onComplete = onComplete;
+		this.reset();
+	}
+
+	LoadingManager.prototype = {
+		constructor: LoadingManager,
+
+		setProgress: function(progress) {
+			if(this.error) return;
+
+			this.domEl.style.width = (progress * 100) + "%";
+			this.domEl.style.backgroundColor = "#fff";
+		},
+
+		addObject: function(object) {
+			this.objects.push({obj: object, progress: 0});			
+		},
+
+		onProgress: function(object, progress) {
+			if(this.objects.length == 0) return;
+
+			console.log("onProgress " + progress);
+
+			for(i in this.objects) {
+				var obj = this.objects[i];
+				if(object != obj.obj) continue;
+
+				obj.progress = progress;
+			}
+
+			this.update();
+		},
+
+		onError: function( xhr ) {
+			console.log("Error loading: " + xhr);
+			this.error = true;
+
+			this.domEl.style.width = "100%";
+			this.domEl.style.backgroundColor = "#a00";
+		},
+
+		update: function() {
+			var scope = this;
+			var progress = 0;
+
+			for(i in this.objects) {
+				var obj = this.objects[i];
+
+				progress += obj.progress;
+			}
+
+			progress /= this.objects.length;
+
+			this.setProgress(progress);
+
+			if(progress == 1 && this.ready) {
+				setTimeout(function() { 					
+					if(scope.extraOnComplete) {
+						scope.extraOnComplete();
+						scope.extraOnComplete = undefined;
+					}
+
+					scope.onComplete(); 
+				}, 100);
+
+				this.reset();
+			}
+		},
+
+		// to avoid calling onComplete before adding all the objects to the manager
+		setReady: function() {
+			this.ready = true;
+			this.update();
+		},
+
+		reset: function() {
+			this.objects = [];
+			this.ready = false;
+			this.error = false;
+			this.setProgress(0);
+		},
+
+		setExtraCompleteCallback: function(callback) {
+			this.extraOnComplete= callback; // will be reset after call
+		}
+	}
+
+	return LoadingManager;
 });
 // File:src/Three.js
 
@@ -41524,1417 +41729,6 @@ THREE.MorphBlendMesh.prototype.update = function ( delta ) {
 define("three_builds/three", function(){});
 
 /**
- * @author alteredq / http://alteredqualia.com/
- * @author mr.doob / http://mrdoob.com/
- */
-
-var Detector = {
-
-	canvas: !! window.CanvasRenderingContext2D,
-	webgl: ( function () {
-
-		try {
-
-			var canvas = document.createElement( 'canvas' ); return !! ( window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ) );
-
-		} catch ( e ) {
-
-			return false;
-
-		}
-
-	} )(),
-	workers: !! window.Worker,
-	fileapi: window.File && window.FileReader && window.FileList && window.Blob,
-
-	getWebGLErrorMessage: function () {
-
-		var element = document.createElement( 'div' );
-		element.id = 'webgl-error-message';
-		element.style.fontFamily = 'monospace';
-		element.style.fontSize = '13px';
-		element.style.fontWeight = 'normal';
-		element.style.textAlign = 'center';
-		element.style.background = '#fff';
-		element.style.color = '#000';
-		element.style.padding = '1.5em';
-		element.style.width = '400px';
-		element.style.margin = '5em auto 0';
-
-		if ( ! this.webgl ) {
-
-			element.innerHTML = window.WebGLRenderingContext ? [
-				'Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">WebGL</a>.<br />',
-				'Find out how to get it <a href="http://get.webgl.org/" style="color:#000">here</a>.'
-			].join( '\n' ) : [
-				'Your browser does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">WebGL</a>.<br/>',
-				'Find out how to get it <a href="http://get.webgl.org/" style="color:#000">here</a>.'
-			].join( '\n' );
-
-		}
-
-		return element;
-
-	},
-
-	addGetWebGLMessage: function ( parameters ) {
-
-		var parent, id, element;
-
-		parameters = parameters || {};
-
-		parent = parameters.parent !== undefined ? parameters.parent : document.body;
-		id = parameters.id !== undefined ? parameters.id : 'oldie';
-
-		element = Detector.getWebGLErrorMessage();
-		element.id = id;
-
-		parent.appendChild( element );
-
-	}
-
-};
-
-// browserify support
-if ( typeof module === 'object' ) {
-
-	module.exports = Detector;
-
-}
-;
-define("three_examples/Detector", ["three_builds/three"], function(){});
-
-/**
- * @author qiao / https://github.com/qiao
- * @author mrdoob / http://mrdoob.com
- * @author alteredq / http://alteredqualia.com/
- * @author WestLangley / http://github.com/WestLangley
- * @author erich666 / http://erichaines.com
- */
-
-// This set of controls performs orbiting, dollying (zooming), and panning.
-// Unlike TrackballControls, it maintains the "up" direction object.up (+Y by default).
-//
-//    Orbit - left mouse / touch: one finger move
-//    Zoom - middle mouse, or mousewheel / touch: two finger spread or squish
-//    Pan - right mouse, or arrow keys / touch: three finter swipe
-
-THREE.OrbitControls = function ( object, domElement ) {
-
-	this.object = object;
-
-	this.domElement = ( domElement !== undefined ) ? domElement : document;
-
-	// Set to false to disable this control
-	this.enabled = true;
-
-	// "target" sets the location of focus, where the object orbits around
-	this.target = new THREE.Vector3();
-
-	// How far you can dolly in and out ( PerspectiveCamera only )
-	this.minDistance = 0;
-	this.maxDistance = Infinity;
-
-	// How far you can zoom in and out ( OrthographicCamera only )
-	this.minZoom = 0;
-	this.maxZoom = Infinity;
-
-	// How far you can orbit vertically, upper and lower limits.
-	// Range is 0 to Math.PI radians.
-	this.minPolarAngle = 0; // radians
-	this.maxPolarAngle = Math.PI; // radians
-
-	// How far you can orbit horizontally, upper and lower limits.
-	// If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
-	this.minAzimuthAngle = - Infinity; // radians
-	this.maxAzimuthAngle = Infinity; // radians
-
-	// Set to true to enable damping (inertia)
-	// If damping is enabled, you must call controls.update() in your animation loop
-	this.enableDamping = false;
-	this.dampingFactor = 0.25;
-
-	// This option actually enables dollying in and out; left as "zoom" for backwards compatibility.
-	// Set to false to disable zooming
-	this.enableZoom = true;
-	this.zoomSpeed = 1.0;
-
-	// Set to false to disable rotating
-	this.enableRotate = true;
-	this.rotateSpeed = 1.0;
-
-	// Set to false to disable panning
-	this.enablePan = true;
-	this.keyPanSpeed = 7.0;	// pixels moved per arrow key push
-
-	// Set to true to automatically rotate around the target
-	// If auto-rotate is enabled, you must call controls.update() in your animation loop
-	this.autoRotate = false;
-	this.autoRotateSpeed = 2.0; // 30 seconds per round when fps is 60
-
-	// Set to false to disable use of the keys
-	this.enableKeys = true;
-
-	// The four arrow keys
-	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };
-
-	// Mouse buttons
-	this.mouseButtons = { ORBIT: THREE.MOUSE.LEFT, ZOOM: THREE.MOUSE.MIDDLE, PAN: THREE.MOUSE.RIGHT };
-
-	// for reset
-	this.target0 = this.target.clone();
-	this.position0 = this.object.position.clone();
-	this.zoom0 = this.object.zoom;
-
-	//
-	// public methods
-	//
-
-	this.getPolarAngle = function () {
-
-		return phi;
-
-	};
-
-	this.getAzimuthalAngle = function () {
-
-		return theta;
-
-	};
-
-	this.reset = function () {
-
-		scope.target.copy( scope.target0 );
-		scope.object.position.copy( scope.position0 );
-		scope.object.zoom = scope.zoom0;
-
-		scope.object.updateProjectionMatrix();
-		scope.dispatchEvent( changeEvent );
-
-		scope.update();
-
-		state = STATE.NONE;
-
-	};
-
-	// this method is exposed, but perhaps it would be better if we can make it private...
-	this.update = function() {
-
-		var offset = new THREE.Vector3();
-
-		// so camera.up is the orbit axis
-		var quat = new THREE.Quaternion().setFromUnitVectors( object.up, new THREE.Vector3( 0, 1, 0 ) );
-		var quatInverse = quat.clone().inverse();
-
-		var lastPosition = new THREE.Vector3();
-		var lastQuaternion = new THREE.Quaternion();
-
-		return function () {
-
-			var position = scope.object.position;
-
-			offset.copy( position ).sub( scope.target );
-
-			// rotate offset to "y-axis-is-up" space
-			offset.applyQuaternion( quat );
-
-			// angle from z-axis around y-axis
-
-			theta = Math.atan2( offset.x, offset.z );
-
-			// angle from y-axis
-
-			phi = Math.atan2( Math.sqrt( offset.x * offset.x + offset.z * offset.z ), offset.y );
-
-			if ( scope.autoRotate && state === STATE.NONE ) {
-
-				rotateLeft( getAutoRotationAngle() );
-
-			}
-
-			theta += thetaDelta;
-			phi += phiDelta;
-
-			// restrict theta to be between desired limits
-			theta = Math.max( scope.minAzimuthAngle, Math.min( scope.maxAzimuthAngle, theta ) );
-
-			// restrict phi to be between desired limits
-			phi = Math.max( scope.minPolarAngle, Math.min( scope.maxPolarAngle, phi ) );
-
-			// restrict phi to be betwee EPS and PI-EPS
-			phi = Math.max( EPS, Math.min( Math.PI - EPS, phi ) );
-
-			var radius = offset.length() * scale;
-
-			// restrict radius to be between desired limits
-			radius = Math.max( scope.minDistance, Math.min( scope.maxDistance, radius ) );
-
-			// move target to panned location
-			scope.target.add( panOffset );
-
-			offset.x = radius * Math.sin( phi ) * Math.sin( theta );
-			offset.y = radius * Math.cos( phi );
-			offset.z = radius * Math.sin( phi ) * Math.cos( theta );
-
-			// rotate offset back to "camera-up-vector-is-up" space
-			offset.applyQuaternion( quatInverse );
-
-			position.copy( scope.target ).add( offset );
-
-			scope.object.lookAt( scope.target );
-
-			if ( scope.enableDamping === true ) {
-
-				thetaDelta *= ( 1 - scope.dampingFactor );
-				phiDelta *= ( 1 - scope.dampingFactor );
-
-			} else {
-
-				thetaDelta = 0;
-				phiDelta = 0;
-
-			}
-
-			scale = 1;
-			panOffset.set( 0, 0, 0 );
-
-			// update condition is:
-			// min(camera displacement, camera rotation in radians)^2 > EPS
-			// using small-angle approximation cos(x/2) = 1 - x^2 / 8
-
-			if ( zoomChanged ||
-				lastPosition.distanceToSquared( scope.object.position ) > EPS ||
-				8 * ( 1 - lastQuaternion.dot( scope.object.quaternion ) ) > EPS ) {
-
-				scope.dispatchEvent( changeEvent );
-
-				lastPosition.copy( scope.object.position );
-				lastQuaternion.copy( scope.object.quaternion );
-				zoomChanged = false;
-
-				return true;
-
-			}
-
-			return false;
-
-		};
-
-	}();
-
-	this.dispose = function() {
-
-		scope.domElement.removeEventListener( 'contextmenu', onContextMenu, false );
-		scope.domElement.removeEventListener( 'mousedown', onMouseDown, false );
-		scope.domElement.removeEventListener( 'mousewheel', onMouseWheel, false );
-		scope.domElement.removeEventListener( 'MozMousePixelScroll', onMouseWheel, false ); // firefox
-
-		scope.domElement.removeEventListener( 'touchstart', onTouchStart, false );
-		scope.domElement.removeEventListener( 'touchend', onTouchEnd, false );
-		scope.domElement.removeEventListener( 'touchmove', onTouchMove, false );
-
-		document.removeEventListener( 'mousemove', onMouseMove, false );
-		document.removeEventListener( 'mouseup', onMouseUp, false );
-		document.removeEventListener( 'mouseout', onMouseUp, false );
-
-		window.removeEventListener( 'keydown', onKeyDown, false );
-
-		//scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
-
-	};
-
-	//
-	// internals
-	//
-
-	var scope = this;
-
-	var changeEvent = { type: 'change' };
-	var startEvent = { type: 'start' };
-	var endEvent = { type: 'end' };
-
-	var STATE = { NONE : - 1, ROTATE : 0, DOLLY : 1, PAN : 2, TOUCH_ROTATE : 3, TOUCH_DOLLY : 4, TOUCH_PAN : 5 };
-
-	var state = STATE.NONE;
-
-	var EPS = 0.000001;
-
-	// current position in spherical coordinates
-	var theta;
-	var phi;
-
-	var phiDelta = 0;
-	var thetaDelta = 0;
-	var scale = 1;
-	var panOffset = new THREE.Vector3();
-	var zoomChanged = false;
-
-	var rotateStart = new THREE.Vector2();
-	var rotateEnd = new THREE.Vector2();
-	var rotateDelta = new THREE.Vector2();
-
-	var panStart = new THREE.Vector2();
-	var panEnd = new THREE.Vector2();
-	var panDelta = new THREE.Vector2();
-
-	var dollyStart = new THREE.Vector2();
-	var dollyEnd = new THREE.Vector2();
-	var dollyDelta = new THREE.Vector2();
-
-	function getAutoRotationAngle() {
-
-		return 2 * Math.PI / 60 / 60 * scope.autoRotateSpeed;
-
-	}
-
-	function getZoomScale() {
-
-		return Math.pow( 0.95, scope.zoomSpeed );
-
-	}
-
-	function rotateLeft( angle ) {
-
-		thetaDelta -= angle;
-
-	}
-
-	function rotateUp( angle ) {
-
-		phiDelta -= angle;
-
-	}
-
-	var panLeft = function() {
-
-		var v = new THREE.Vector3();
-
-		return function panLeft( distance, objectMatrix ) {
-
-			var te = objectMatrix.elements;
-
-			// get X column of objectMatrix
-			v.set( te[ 0 ], te[ 1 ], te[ 2 ] );
-
-			v.multiplyScalar( - distance );
-
-			panOffset.add( v );
-
-		};
-
-	}();
-
-	var panUp = function() {
-
-		var v = new THREE.Vector3();
-
-		return function panUp( distance, objectMatrix ) {
-
-			var te = objectMatrix.elements;
-
-			// get Y column of objectMatrix
-			v.set( te[ 4 ], te[ 5 ], te[ 6 ] );
-
-			v.multiplyScalar( distance );
-
-			panOffset.add( v );
-
-		};
-
-	}();
-
-	// deltaX and deltaY are in pixels; right and down are positive
-	var pan = function() {
-
-		var offset = new THREE.Vector3();
-
-		return function( deltaX, deltaY ) {
-
-			var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
-
-			if ( scope.object instanceof THREE.PerspectiveCamera ) {
-
-				// perspective
-				var position = scope.object.position;
-				offset.copy( position ).sub( scope.target );
-				var targetDistance = offset.length();
-
-				// half of the fov is center to top of screen
-				targetDistance *= Math.tan( ( scope.object.fov / 2 ) * Math.PI / 180.0 );
-
-				// we actually don't use screenWidth, since perspective camera is fixed to screen height
-				panLeft( 2 * deltaX * targetDistance / element.clientHeight, scope.object.matrix );
-				panUp( 2 * deltaY * targetDistance / element.clientHeight, scope.object.matrix );
-
-			} else if ( scope.object instanceof THREE.OrthographicCamera ) {
-
-				// orthographic
-				panLeft( deltaX * ( scope.object.right - scope.object.left ) / element.clientWidth, scope.object.matrix );
-				panUp( deltaY * ( scope.object.top - scope.object.bottom ) / element.clientHeight, scope.object.matrix );
-
-			} else {
-
-				// camera neither orthographic nor perspective
-				console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.' );
-				scope.enablePan = false;
-
-			}
-
-		};
-
-	}();
-
-	function dollyIn( dollyScale ) {
-
-		if ( scope.object instanceof THREE.PerspectiveCamera ) {
-
-			scale /= dollyScale;
-
-		} else if ( scope.object instanceof THREE.OrthographicCamera ) {
-
-			scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom * dollyScale ) );
-			scope.object.updateProjectionMatrix();
-			zoomChanged = true;
-
-		} else {
-
-			console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
-			scope.enableZoom = false;
-
-		}
-
-	}
-
-	function dollyOut( dollyScale ) {
-
-		if ( scope.object instanceof THREE.PerspectiveCamera ) {
-
-			scale *= dollyScale;
-
-		} else if ( scope.object instanceof THREE.OrthographicCamera ) {
-
-			scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom / dollyScale ) );
-			scope.object.updateProjectionMatrix();
-			zoomChanged = true;
-
-		} else {
-
-			console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
-			scope.enableZoom = false;
-
-		}
-
-	}
-
-	//
-	// event callbacks - update the object state
-	//
-
-	function handleMouseDownRotate( event ) {
-
-		//console.log( 'handleMouseDownRotate' );
-
-		rotateStart.set( event.clientX, event.clientY );
-
-	}
-
-	function handleMouseDownDolly( event ) {
-
-		//console.log( 'handleMouseDownDolly' );
-
-		dollyStart.set( event.clientX, event.clientY );
-
-	}
-
-	function handleMouseDownPan( event ) {
-
-		//console.log( 'handleMouseDownPan' );
-
-		panStart.set( event.clientX, event.clientY );
-
-	}
-
-	function handleMouseMoveRotate( event ) {
-
-		//console.log( 'handleMouseMoveRotate' );
-
-		rotateEnd.set( event.clientX, event.clientY );
-		rotateDelta.subVectors( rotateEnd, rotateStart );
-
-		var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
-
-		// rotating across whole screen goes 360 degrees around
-		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientWidth * scope.rotateSpeed );
-
-		// rotating up and down along whole screen attempts to go 360, but limited to 180
-		rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed );
-
-		rotateStart.copy( rotateEnd );
-
-		scope.update();
-
-	}
-
-	function handleMouseMoveDolly( event ) {
-
-		//console.log( 'handleMouseMoveDolly' );
-
-		dollyEnd.set( event.clientX, event.clientY );
-
-		dollyDelta.subVectors( dollyEnd, dollyStart );
-
-		if ( dollyDelta.y > 0 ) {
-
-			dollyIn( getZoomScale() );
-
-		} else if ( dollyDelta.y < 0 ) {
-
-			dollyOut( getZoomScale() );
-
-		}
-
-		dollyStart.copy( dollyEnd );
-
-		scope.update();
-
-	}
-
-	function handleMouseMovePan( event ) {
-
-		//console.log( 'handleMouseMovePan' );
-
-		panEnd.set( event.clientX, event.clientY );
-
-		panDelta.subVectors( panEnd, panStart );
-
-		pan( panDelta.x, panDelta.y );
-
-		panStart.copy( panEnd );
-
-		scope.update();
-
-	}
-
-	function handleMouseUp( event ) {
-
-		//console.log( 'handleMouseUp' );
-
-	}
-
-	function handleMouseWheel( event ) {
-
-		//console.log( 'handleMouseWheel' );
-
-		var delta = 0;
-
-		if ( event.wheelDelta !== undefined ) {
-
-			// WebKit / Opera / Explorer 9
-
-			delta = event.wheelDelta;
-
-		} else if ( event.detail !== undefined ) {
-
-			// Firefox
-
-			delta = - event.detail;
-
-		}
-
-		if ( delta > 0 ) {
-
-			dollyOut( getZoomScale() );
-
-		} else if ( delta < 0 ) {
-
-			dollyIn( getZoomScale() );
-
-		}
-
-		scope.update();
-
-	}
-
-	function handleKeyDown( event ) {
-
-		//console.log( 'handleKeyDown' );
-
-		switch ( event.keyCode ) {
-
-			case scope.keys.UP:
-				pan( 0, scope.keyPanSpeed );
-				scope.update();
-				break;
-
-			case scope.keys.BOTTOM:
-				pan( 0, - scope.keyPanSpeed );
-				scope.update();
-				break;
-
-			case scope.keys.LEFT:
-				pan( scope.keyPanSpeed, 0 );
-				scope.update();
-				break;
-
-			case scope.keys.RIGHT:
-				pan( - scope.keyPanSpeed, 0 );
-				scope.update();
-				break;
-
-		}
-
-	}
-
-	function handleTouchStartRotate( event ) {
-
-		//console.log( 'handleTouchStartRotate' );
-
-		rotateStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-
-	}
-
-	function handleTouchStartDolly( event ) {
-
-		//console.log( 'handleTouchStartDolly' );
-
-		var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
-		var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
-
-		var distance = Math.sqrt( dx * dx + dy * dy );
-
-		dollyStart.set( 0, distance );
-
-	}
-
-	function handleTouchStartPan( event ) {
-
-		//console.log( 'handleTouchStartPan' );
-
-		panStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-
-	}
-
-	function handleTouchMoveRotate( event ) {
-
-		//console.log( 'handleTouchMoveRotate' );
-
-		rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-		rotateDelta.subVectors( rotateEnd, rotateStart );
-
-		var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
-
-		// rotating across whole screen goes 360 degrees around
-		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientWidth * scope.rotateSpeed );
-
-		// rotating up and down along whole screen attempts to go 360, but limited to 180
-		rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed );
-
-		rotateStart.copy( rotateEnd );
-
-		scope.update();
-
-	}
-
-	function handleTouchMoveDolly( event ) {
-
-		//console.log( 'handleTouchMoveDolly' );
-
-		var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
-		var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
-
-		var distance = Math.sqrt( dx * dx + dy * dy );
-
-		dollyEnd.set( 0, distance );
-
-		dollyDelta.subVectors( dollyEnd, dollyStart );
-
-		if ( dollyDelta.y > 0 ) {
-
-			dollyOut( getZoomScale() );
-
-		} else if ( dollyDelta.y < 0 ) {
-
-			dollyIn( getZoomScale() );
-
-		}
-
-		dollyStart.copy( dollyEnd );
-
-		scope.update();
-
-	}
-
-	function handleTouchMovePan( event ) {
-
-		//console.log( 'handleTouchMovePan' );
-
-		panEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
-
-		panDelta.subVectors( panEnd, panStart );
-
-		pan( panDelta.x, panDelta.y );
-
-		panStart.copy( panEnd );
-
-		scope.update();
-
-	}
-
-	function handleTouchEnd( event ) {
-
-		//console.log( 'handleTouchEnd' );
-
-	}
-
-	//
-	// event handlers - FSM: listen for events and reset state
-	//
-
-	function onMouseDown( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		event.preventDefault();
-
-		if ( event.button === scope.mouseButtons.ORBIT ) {
-
-			if ( scope.enableRotate === false ) return;
-
-			handleMouseDownRotate( event );
-
-			state = STATE.ROTATE;
-
-		} else if ( event.button === scope.mouseButtons.ZOOM ) {
-
-			if ( scope.enableZoom === false ) return;
-
-			handleMouseDownDolly( event );
-
-			state = STATE.DOLLY;
-
-		} else if ( event.button === scope.mouseButtons.PAN ) {
-
-			if ( scope.enablePan === false ) return;
-
-			handleMouseDownPan( event );
-
-			state = STATE.PAN;
-
-		}
-
-		if ( state !== STATE.NONE ) {
-
-			document.addEventListener( 'mousemove', onMouseMove, false );
-			document.addEventListener( 'mouseup', onMouseUp, false );
-			document.addEventListener( 'mouseout', onMouseUp, false );
-
-			scope.dispatchEvent( startEvent );
-
-		}
-
-	}
-
-	function onMouseMove( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		event.preventDefault();
-
-		if ( state === STATE.ROTATE ) {
-
-			if ( scope.enableRotate === false ) return;
-
-			handleMouseMoveRotate( event );
-
-		} else if ( state === STATE.DOLLY ) {
-
-			if ( scope.enableZoom === false ) return;
-
-			handleMouseMoveDolly( event );
-
-		} else if ( state === STATE.PAN ) {
-
-			if ( scope.enablePan === false ) return;
-
-			handleMouseMovePan( event );
-
-		}
-
-	}
-
-	function onMouseUp( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		handleMouseUp( event );
-
-		document.removeEventListener( 'mousemove', onMouseMove, false );
-		document.removeEventListener( 'mouseup', onMouseUp, false );
-		document.removeEventListener( 'mouseout', onMouseUp, false );
-
-		scope.dispatchEvent( endEvent );
-
-		state = STATE.NONE;
-
-	}
-
-	function onMouseWheel( event ) {
-
-		if ( scope.enabled === false || scope.enableZoom === false || state !== STATE.NONE ) return;
-
-		event.preventDefault();
-		event.stopPropagation();
-
-		handleMouseWheel( event );
-
-		scope.dispatchEvent( startEvent ); // not sure why these are here...
-		scope.dispatchEvent( endEvent );
-
-	}
-
-	function onKeyDown( event ) {
-
-		if ( scope.enabled === false || scope.enableKeys === false || scope.enablePan === false ) return;
-
-		handleKeyDown( event );
-
-	}
-
-	function onTouchStart( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		switch ( event.touches.length ) {
-
-			case 1:	// one-fingered touch: rotate
-
-				if ( scope.enableRotate === false ) return;
-
-				handleTouchStartRotate( event );
-
-				state = STATE.TOUCH_ROTATE;
-
-				break;
-
-			case 2:	// two-fingered touch: dolly
-
-				if ( scope.enableZoom === false ) return;
-
-				handleTouchStartDolly( event );
-
-				state = STATE.TOUCH_DOLLY;
-
-				break;
-
-			case 3: // three-fingered touch: pan
-
-				if ( scope.enablePan === false ) return;
-
-				handleTouchStartPan( event );
-
-				state = STATE.TOUCH_PAN;
-
-				break;
-
-			default:
-
-				state = STATE.NONE;
-
-		}
-
-		if ( state !== STATE.NONE ) {
-
-			scope.dispatchEvent( startEvent );
-
-		}
-
-	}
-
-	function onTouchMove( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		event.preventDefault();
-		event.stopPropagation();
-
-		switch ( event.touches.length ) {
-
-			case 1: // one-fingered touch: rotate
-
-				if ( scope.enableRotate === false ) return;
-				if ( state !== STATE.TOUCH_ROTATE ) return; // is this needed?...
-
-				handleTouchMoveRotate( event );
-
-				break;
-
-			case 2: // two-fingered touch: dolly
-
-				if ( scope.enableZoom === false ) return;
-				if ( state !== STATE.TOUCH_DOLLY ) return; // is this needed?...
-
-				handleTouchMoveDolly( event );
-
-				break;
-
-			case 3: // three-fingered touch: pan
-
-				if ( scope.enablePan === false ) return;
-				if ( state !== STATE.TOUCH_PAN ) return; // is this needed?...
-
-				handleTouchMovePan( event );
-
-				break;
-
-			default:
-
-				state = STATE.NONE;
-
-		}
-
-	}
-
-	function onTouchEnd( event ) {
-
-		if ( scope.enabled === false ) return;
-
-		handleTouchEnd( event );
-
-		scope.dispatchEvent( endEvent );
-
-		state = STATE.NONE;
-
-	}
-
-	function onContextMenu( event ) {
-
-		event.preventDefault();
-
-	}
-
-	//
-
-	scope.domElement.addEventListener( 'contextmenu', onContextMenu, false );
-
-	scope.domElement.addEventListener( 'mousedown', onMouseDown, false );
-	scope.domElement.addEventListener( 'mousewheel', onMouseWheel, false );
-	scope.domElement.addEventListener( 'MozMousePixelScroll', onMouseWheel, false ); // firefox
-
-	scope.domElement.addEventListener( 'touchstart', onTouchStart, false );
-	scope.domElement.addEventListener( 'touchend', onTouchEnd, false );
-	scope.domElement.addEventListener( 'touchmove', onTouchMove, false );
-
-	window.addEventListener( 'keydown', onKeyDown, false );
-
-	// force an update at start
-
-	this.update();
-
-};
-
-THREE.OrbitControls.prototype = Object.create( THREE.EventDispatcher.prototype );
-THREE.OrbitControls.prototype.constructor = THREE.OrbitControls;
-
-Object.defineProperties( THREE.OrbitControls.prototype, {
-
-	center: {
-
-		get: function () {
-
-			console.warn( 'THREE.OrbitControls: .center has been renamed to .target' );
-			return this.target;
-
-		}
-
-	},
-
-	// backward compatibility
-
-	noZoom: {
-
-		get: function () {
-
-			console.warn( 'THREE.OrbitControls: .noZoom has been deprecated. Use .enableZoom instead.' );
-			return ! this.enableZoom;
-
-		},
-
-		set: function ( value ) {
-
-			console.warn( 'THREE.OrbitControls: .noZoom has been deprecated. Use .enableZoom instead.' );
-			this.enableZoom = ! value;
-
-		}
-
-	},
-
-	noRotate: {
-
-		get: function () {
-
-			console.warn( 'THREE.OrbitControls: .noRotate has been deprecated. Use .enableRotate instead.' );
-			return ! this.enableRotate;
-
-		},
-
-		set: function ( value ) {
-
-			console.warn( 'THREE.OrbitControls: .noRotate has been deprecated. Use .enableRotate instead.' );
-			this.enableRotate = ! value;
-
-		}
-
-	},
-
-	noPan: {
-
-		get: function () {
-
-			console.warn( 'THREE.OrbitControls: .noPan has been deprecated. Use .enablePan instead.' );
-			return ! this.enablePan;
-
-		},
-
-		set: function ( value ) {
-
-			console.warn( 'THREE.OrbitControls: .noPan has been deprecated. Use .enablePan instead.' );
-			this.enablePan = ! value;
-
-		}
-
-	},
-
-	noKeys: {
-
-		get: function () {
-
-			console.warn( 'THREE.OrbitControls: .noKeys has been deprecated. Use .enableKeys instead.' );
-			return ! this.enableKeys;
-
-		},
-
-		set: function ( value ) {
-
-			console.warn( 'THREE.OrbitControls: .noKeys has been deprecated. Use .enableKeys instead.' );
-			this.enableKeys = ! value;
-
-		}
-
-	},
-
-	staticMoving : {
-
-		get: function () {
-
-			console.warn( 'THREE.OrbitControls: .staticMoving has been deprecated. Use .enableDamping instead.' );
-			return ! this.constraint.enableDamping;
-
-		},
-
-		set: function ( value ) {
-
-			console.warn( 'THREE.OrbitControls: .staticMoving has been deprecated. Use .enableDamping instead.' );
-			this.constraint.enableDamping = ! value;
-
-		}
-
-	},
-
-	dynamicDampingFactor : {
-
-		get: function () {
-
-			console.warn( 'THREE.OrbitControls: .dynamicDampingFactor has been renamed. Use .dampingFactor instead.' );
-			return this.constraint.dampingFactor;
-
-		},
-
-		set: function ( value ) {
-
-			console.warn( 'THREE.OrbitControls: .dynamicDampingFactor has been renamed. Use .dampingFactor instead.' );
-			this.constraint.dampingFactor = value;
-
-		}
-
-	}
-
-} );
-
-define("three_examples/controls/OrbitControls", ["three_builds/three"], function(){});
-
-/*
- * @author mrdoob / http://mrdoob.com/
- */
-
-THREE.DDSLoader = function () {
-
-	this._parser = THREE.DDSLoader.parse;
-
-};
-
-THREE.DDSLoader.prototype = Object.create( THREE.CompressedTextureLoader.prototype );
-THREE.DDSLoader.prototype.constructor = THREE.DDSLoader;
-
-THREE.DDSLoader.parse = function ( buffer, loadMipmaps ) {
-
-	var dds = { mipmaps: [], width: 0, height: 0, format: null, mipmapCount: 1 };
-
-	// Adapted from @toji's DDS utils
-	// https://github.com/toji/webgl-texture-utils/blob/master/texture-util/dds.js
-
-	// All values and structures referenced from:
-	// http://msdn.microsoft.com/en-us/library/bb943991.aspx/
-
-	var DDS_MAGIC = 0x20534444;
-
-	var DDSD_CAPS = 0x1,
-		DDSD_HEIGHT = 0x2,
-		DDSD_WIDTH = 0x4,
-		DDSD_PITCH = 0x8,
-		DDSD_PIXELFORMAT = 0x1000,
-		DDSD_MIPMAPCOUNT = 0x20000,
-		DDSD_LINEARSIZE = 0x80000,
-		DDSD_DEPTH = 0x800000;
-
-	var DDSCAPS_COMPLEX = 0x8,
-		DDSCAPS_MIPMAP = 0x400000,
-		DDSCAPS_TEXTURE = 0x1000;
-
-	var DDSCAPS2_CUBEMAP = 0x200,
-		DDSCAPS2_CUBEMAP_POSITIVEX = 0x400,
-		DDSCAPS2_CUBEMAP_NEGATIVEX = 0x800,
-		DDSCAPS2_CUBEMAP_POSITIVEY = 0x1000,
-		DDSCAPS2_CUBEMAP_NEGATIVEY = 0x2000,
-		DDSCAPS2_CUBEMAP_POSITIVEZ = 0x4000,
-		DDSCAPS2_CUBEMAP_NEGATIVEZ = 0x8000,
-		DDSCAPS2_VOLUME = 0x200000;
-
-	var DDPF_ALPHAPIXELS = 0x1,
-		DDPF_ALPHA = 0x2,
-		DDPF_FOURCC = 0x4,
-		DDPF_RGB = 0x40,
-		DDPF_YUV = 0x200,
-		DDPF_LUMINANCE = 0x20000;
-
-	function fourCCToInt32( value ) {
-
-		return value.charCodeAt( 0 ) +
-			( value.charCodeAt( 1 ) << 8 ) +
-			( value.charCodeAt( 2 ) << 16 ) +
-			( value.charCodeAt( 3 ) << 24 );
-
-	}
-
-	function int32ToFourCC( value ) {
-
-		return String.fromCharCode(
-			value & 0xff,
-			( value >> 8 ) & 0xff,
-			( value >> 16 ) & 0xff,
-			( value >> 24 ) & 0xff
-		);
-
-	}
-
-	function loadARGBMip( buffer, dataOffset, width, height ) {
-
-		var dataLength = width * height * 4;
-		var srcBuffer = new Uint8Array( buffer, dataOffset, dataLength );
-		var byteArray = new Uint8Array( dataLength );
-		var dst = 0;
-		var src = 0;
-		for ( var y = 0; y < height; y ++ ) {
-
-			for ( var x = 0; x < width; x ++ ) {
-
-				var b = srcBuffer[ src ]; src ++;
-				var g = srcBuffer[ src ]; src ++;
-				var r = srcBuffer[ src ]; src ++;
-				var a = srcBuffer[ src ]; src ++;
-				byteArray[ dst ] = r; dst ++;	//r
-				byteArray[ dst ] = g; dst ++;	//g
-				byteArray[ dst ] = b; dst ++;	//b
-				byteArray[ dst ] = a; dst ++;	//a
-
-			}
-
-		}
-		return byteArray;
-
-	}
-
-	var FOURCC_DXT1 = fourCCToInt32( "DXT1" );
-	var FOURCC_DXT3 = fourCCToInt32( "DXT3" );
-	var FOURCC_DXT5 = fourCCToInt32( "DXT5" );
-	var FOURCC_ETC1 = fourCCToInt32( "ETC1" );
-
-	var headerLengthInt = 31; // The header length in 32 bit ints
-
-	// Offsets into the header array
-
-	var off_magic = 0;
-
-	var off_size = 1;
-	var off_flags = 2;
-	var off_height = 3;
-	var off_width = 4;
-
-	var off_mipmapCount = 7;
-
-	var off_pfFlags = 20;
-	var off_pfFourCC = 21;
-	var off_RGBBitCount = 22;
-	var off_RBitMask = 23;
-	var off_GBitMask = 24;
-	var off_BBitMask = 25;
-	var off_ABitMask = 26;
-
-	var off_caps = 27;
-	var off_caps2 = 28;
-	var off_caps3 = 29;
-	var off_caps4 = 30;
-
-	// Parse header
-
-	var header = new Int32Array( buffer, 0, headerLengthInt );
-
-	if ( header[ off_magic ] !== DDS_MAGIC ) {
-
-		console.error( 'THREE.DDSLoader.parse: Invalid magic number in DDS header.' );
-		return dds;
-
-	}
-
-	if ( ! header[ off_pfFlags ] & DDPF_FOURCC ) {
-
-		console.error( 'THREE.DDSLoader.parse: Unsupported format, must contain a FourCC code.' );
-		return dds;
-
-	}
-
-	var blockBytes;
-
-	var fourCC = header[ off_pfFourCC ];
-
-	var isRGBAUncompressed = false;
-
-	switch ( fourCC ) {
-
-		case FOURCC_DXT1:
-
-			blockBytes = 8;
-			dds.format = THREE.RGB_S3TC_DXT1_Format;
-			break;
-
-		case FOURCC_DXT3:
-
-			blockBytes = 16;
-			dds.format = THREE.RGBA_S3TC_DXT3_Format;
-			break;
-
-		case FOURCC_DXT5:
-
-			blockBytes = 16;
-			dds.format = THREE.RGBA_S3TC_DXT5_Format;
-			break;
-
-		case FOURCC_ETC1:
-
-			blockBytes = 8;
-			dds.format = THREE.RGB_ETC1_Format;
-			break;
-
-		default:
-
-			if ( header[ off_RGBBitCount ] === 32
-				&& header[ off_RBitMask ] & 0xff0000
-				&& header[ off_GBitMask ] & 0xff00
-				&& header[ off_BBitMask ] & 0xff
-				&& header[ off_ABitMask ] & 0xff000000  ) {
-
-				isRGBAUncompressed = true;
-				blockBytes = 64;
-				dds.format = THREE.RGBAFormat;
-
-			} else {
-
-				console.error( 'THREE.DDSLoader.parse: Unsupported FourCC code ', int32ToFourCC( fourCC ) );
-				return dds;
-
-			}
-	}
-
-	dds.mipmapCount = 1;
-
-	if ( header[ off_flags ] & DDSD_MIPMAPCOUNT && loadMipmaps !== false ) {
-
-		dds.mipmapCount = Math.max( 1, header[ off_mipmapCount ] );
-
-	}
-
-	var caps2 = header[ off_caps2 ];
-	dds.isCubemap = caps2 & DDSCAPS2_CUBEMAP ? true : false;
-	if ( dds.isCubemap && (
-		! ( caps2 & DDSCAPS2_CUBEMAP_POSITIVEX ) ||
-		! ( caps2 & DDSCAPS2_CUBEMAP_NEGATIVEX ) ||
-		! ( caps2 & DDSCAPS2_CUBEMAP_POSITIVEY ) ||
-		! ( caps2 & DDSCAPS2_CUBEMAP_NEGATIVEY ) ||
-		! ( caps2 & DDSCAPS2_CUBEMAP_POSITIVEZ ) ||
-		! ( caps2 & DDSCAPS2_CUBEMAP_NEGATIVEZ )
-		) ) {
-
-		console.error( 'THREE.DDSLoader.parse: Incomplete cubemap faces' );
-		return dds;
-
-	}
-
-	dds.width = header[ off_width ];
-	dds.height = header[ off_height ];
-
-	var dataOffset = header[ off_size ] + 4;
-
-	// Extract mipmaps buffers
-
-	var faces = dds.isCubemap ? 6 : 1;
-
-	for ( var face = 0; face < faces; face ++ ) {
-
-		var width = dds.width;
-		var height = dds.height;
-
-		for ( var i = 0; i < dds.mipmapCount; i ++ ) {
-
-			if ( isRGBAUncompressed ) {
-
-				var byteArray = loadARGBMip( buffer, dataOffset, width, height );
-				var dataLength = byteArray.length;
-
-			} else {
-
-				var dataLength = Math.max( 4, width ) / 4 * Math.max( 4, height ) / 4 * blockBytes;
-				var byteArray = new Uint8Array( buffer, dataOffset, dataLength );
-
-			}
-
-			var mipmap = { "data": byteArray, "width": width, "height": height };
-			dds.mipmaps.push( mipmap );
-
-			dataOffset += dataLength;
-
-			width = Math.max( width >> 1, 1 );
-			height = Math.max( height >> 1, 1 );
-
-		}
-
-	}
-
-	return dds;
-
-};
-
-define("three_examples/loaders/DDSLoader", ["three_builds/three"], function(){});
-
-/**
  * @author mrdoob / http://mrdoob.com/
  */
 
@@ -43339,426 +42133,6 @@ THREE.OBJLoader.prototype = {
 };
 
 define("three_examples/loaders/OBJLoader", ["three_builds/three"], function(){});
-
-/**
- * Loads a Wavefront .mtl file specifying materials
- *
- * @author angelxuanchang
- */
-
-THREE.MTLLoader = function( manager ) {
-
-	this.manager = ( manager !== undefined ) ? manager : THREE.DefaultLoadingManager;
-
-};
-
-THREE.MTLLoader.prototype = {
-
-	constructor: THREE.MTLLoader,
-
-	load: function ( url, onLoad, onProgress, onError ) {
-
-		var scope = this;
-
-		var loader = new THREE.XHRLoader( this.manager );
-		loader.setPath( this.path );
-		loader.load( url, function ( text ) {
-
-			onLoad( scope.parse( text ) );
-
-		}, onProgress, onError );
-
-	},
-
-	setPath: function ( value ) {
-
-		this.path = value;
-
-	},
-
-	setBaseUrl: function( value ) {
-
-		// TODO: Merge with setPath()? Or rename to setTexturePath?
-
-		this.baseUrl = value;
-
-	},
-
-	setCrossOrigin: function ( value ) {
-
-		this.crossOrigin = value;
-
-	},
-
-	setMaterialOptions: function ( value ) {
-
-		this.materialOptions = value;
-
-	},
-
-	/**
-	 * Parses loaded MTL file
-	 * @param text - Content of MTL file
-	 * @return {THREE.MTLLoader.MaterialCreator}
-	 */
-	parse: function ( text ) {
-
-		var lines = text.split( "\n" );
-		var info = {};
-		var delimiter_pattern = /\s+/;
-		var materialsInfo = {};
-
-		for ( var i = 0; i < lines.length; i ++ ) {
-
-			var line = lines[ i ];
-			line = line.trim();
-
-			if ( line.length === 0 || line.charAt( 0 ) === '#' ) {
-
-				// Blank line or comment ignore
-				continue;
-
-			}
-
-			var pos = line.indexOf( ' ' );
-
-			var key = ( pos >= 0 ) ? line.substring( 0, pos ) : line;
-			key = key.toLowerCase();
-
-			var value = ( pos >= 0 ) ? line.substring( pos + 1 ) : "";
-			value = value.trim();
-
-			if ( key === "newmtl" ) {
-
-				// New material
-
-				info = { name: value };
-				materialsInfo[ value ] = info;
-
-			} else if ( info ) {
-
-				if ( key === "ka" || key === "kd" || key === "ks" ) {
-
-					var ss = value.split( delimiter_pattern, 3 );
-					info[ key ] = [ parseFloat( ss[ 0 ] ), parseFloat( ss[ 1 ] ), parseFloat( ss[ 2 ] ) ];
-
-				} else {
-
-					info[ key ] = value;
-
-				}
-
-			}
-
-		}
-
-		var materialCreator = new THREE.MTLLoader.MaterialCreator( this.baseUrl, this.materialOptions );
-		materialCreator.setCrossOrigin( this.crossOrigin );
-		materialCreator.setManager( this.manager );
-		materialCreator.setMaterials( materialsInfo );
-		return materialCreator;
-
-	}
-
-};
-
-/**
- * Create a new THREE-MTLLoader.MaterialCreator
- * @param baseUrl - Url relative to which textures are loaded
- * @param options - Set of options on how to construct the materials
- *                  side: Which side to apply the material
- *                        THREE.FrontSide (default), THREE.BackSide, THREE.DoubleSide
- *                  wrap: What type of wrapping to apply for textures
- *                        THREE.RepeatWrapping (default), THREE.ClampToEdgeWrapping, THREE.MirroredRepeatWrapping
- *                  normalizeRGB: RGBs need to be normalized to 0-1 from 0-255
- *                                Default: false, assumed to be already normalized
- *                  ignoreZeroRGBs: Ignore values of RGBs (Ka,Kd,Ks) that are all 0's
- *                                  Default: false
- * @constructor
- */
-
-THREE.MTLLoader.MaterialCreator = function( baseUrl, options ) {
-
-	this.baseUrl = baseUrl;
-	this.options = options;
-	this.materialsInfo = {};
-	this.materials = {};
-	this.materialsArray = [];
-	this.nameLookup = {};
-
-	this.side = ( this.options && this.options.side ) ? this.options.side : THREE.FrontSide;
-	this.wrap = ( this.options && this.options.wrap ) ? this.options.wrap : THREE.RepeatWrapping;
-
-};
-
-THREE.MTLLoader.MaterialCreator.prototype = {
-
-	constructor: THREE.MTLLoader.MaterialCreator,
-
-	setCrossOrigin: function ( value ) {
-
-		this.crossOrigin = value;
-
-	},
-
-	setManager: function ( value ) {
-
-		this.manager = value;
-
-	},
-
-	setMaterials: function( materialsInfo ) {
-
-		this.materialsInfo = this.convert( materialsInfo );
-		this.materials = {};
-		this.materialsArray = [];
-		this.nameLookup = {};
-
-	},
-
-	convert: function( materialsInfo ) {
-
-		if ( ! this.options ) return materialsInfo;
-
-		var converted = {};
-
-		for ( var mn in materialsInfo ) {
-
-			// Convert materials info into normalized form based on options
-
-			var mat = materialsInfo[ mn ];
-
-			var covmat = {};
-
-			converted[ mn ] = covmat;
-
-			for ( var prop in mat ) {
-
-				var save = true;
-				var value = mat[ prop ];
-				var lprop = prop.toLowerCase();
-
-				switch ( lprop ) {
-
-					case 'kd':
-					case 'ka':
-					case 'ks':
-
-						// Diffuse color (color under white light) using RGB values
-
-						if ( this.options && this.options.normalizeRGB ) {
-
-							value = [ value[ 0 ] / 255, value[ 1 ] / 255, value[ 2 ] / 255 ];
-
-						}
-
-						if ( this.options && this.options.ignoreZeroRGBs ) {
-
-							if ( value[ 0 ] === 0 && value[ 1 ] === 0 && value[ 1 ] === 0 ) {
-
-								// ignore
-
-								save = false;
-
-							}
-
-						}
-
-						break;
-
-					default:
-
-						break;
-				}
-
-				if ( save ) {
-
-					covmat[ lprop ] = value;
-
-				}
-
-			}
-
-		}
-
-		return converted;
-
-	},
-
-	preload: function () {
-
-		for ( var mn in this.materialsInfo ) {
-
-			this.create( mn );
-
-		}
-
-	},
-
-	getIndex: function( materialName ) {
-
-		return this.nameLookup[ materialName ];
-
-	},
-
-	getAsArray: function() {
-
-		var index = 0;
-
-		for ( var mn in this.materialsInfo ) {
-
-			this.materialsArray[ index ] = this.create( mn );
-			this.nameLookup[ mn ] = index;
-			index ++;
-
-		}
-
-		return this.materialsArray;
-
-	},
-
-	create: function ( materialName ) {
-
-		if ( this.materials[ materialName ] === undefined ) {
-
-			this.createMaterial_( materialName );
-
-		}
-
-		return this.materials[ materialName ];
-
-	},
-
-	createMaterial_: function ( materialName ) {
-
-		// Create material
-
-		var mat = this.materialsInfo[ materialName ];
-		var params = {
-
-			name: materialName,
-			side: this.side
-
-		};
-
-		for ( var prop in mat ) {
-
-			var value = mat[ prop ];
-
-			if ( value === '' ) continue;
-
-			switch ( prop.toLowerCase() ) {
-
-				// Ns is material specular exponent
-
-				case 'kd':
-
-					// Diffuse color (color under white light) using RGB values
-
-					params[ 'color' ] = new THREE.Color().fromArray( value );
-
-					break;
-
-				case 'ks':
-
-					// Specular color (color when light is reflected from shiny surface) using RGB values
-					params[ 'specular' ] = new THREE.Color().fromArray( value );
-
-					break;
-
-				case 'map_kd':
-
-					// Diffuse texture map
-
-					params[ 'map' ] = this.loadTexture( this.baseUrl + value );
-					params[ 'map' ].wrapS = this.wrap;
-					params[ 'map' ].wrapT = this.wrap;
-
-					break;
-
-				case 'ns':
-
-					// The specular exponent (defines the focus of the specular highlight)
-					// A high exponent results in a tight, concentrated highlight. Ns values normally range from 0 to 1000.
-
-					params[ 'shininess' ] = parseFloat( value );
-
-					break;
-
-				case 'd':
-
-					if ( value < 1 ) {
-
-						params[ 'opacity' ] = value;
-						params[ 'transparent' ] = true;
-
-					}
-
-					break;
-
-				case 'Tr':
-
-					if ( value > 0 ) {
-
-						params[ 'opacity' ] = 1 - value;
-						params[ 'transparent' ] = true;
-
-					}
-
-					break;
-
-				case 'map_bump':
-				case 'bump':
-
-					// Bump texture map
-
-					if ( params[ 'bumpMap' ] ) break; // Avoid loading twice.
-
-					params[ 'normalMap' ] = this.loadTexture( this.baseUrl + value );
-					params[ 'normalMap' ].wrapS = this.wrap;
-					params[ 'normalMap' ].wrapT = this.wrap;
-
-					break;
-
-				default:
-					break;
-
-			}
-
-		}
-
-		this.materials[ materialName ] = new THREE.MeshPhongMaterial( params );
-		return this.materials[ materialName ];
-
-	},
-
-
-	loadTexture: function ( url, mapping, onLoad, onProgress, onError ) {
-
-		var texture;
-		var loader = THREE.Loader.Handlers.get( url );
-		var manager = ( this.manager !== undefined ) ? this.manager : THREE.DefaultLoadingManager;
-
-		if ( loader === null ) {
-
-			loader = new THREE.TextureLoader( manager );
-
-		}
-
-		if ( loader.setCrossOrigin ) loader.setCrossOrigin( this.crossOrigin );
-		texture = loader.load( url, onLoad, onProgress, onError );
-
-		if ( mapping !== undefined ) texture.mapping = mapping;
-
-		return texture;
-
-	}
-
-};
-
-THREE.EventDispatcher.prototype.apply( THREE.MTLLoader.prototype );
-
-define("three_examples/loaders/MTLLoader", ["three_builds/three"], function(){});
 
 /**
 * @author Tim Knip / http://www.floorplanner.com/ / tim at floorplanner.com
@@ -50016,6 +48390,1430 @@ THREE.TeapotBufferGeometry.prototype.clone = function () {
 };
 
 define("three_examples/geometries/TeapotBufferGeometry", ["three_builds/three"], function(){});
+
+/**
+ * pocket.gl http://pocketgl.aclockworkberry.com
+ *
+ * Copyright 2016 Giuseppe Portelli <info@aclockworkberry.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+define(
+	'app/meshLoader',[
+		"three_builds/three",
+		"three_examples/loaders/OBJLoader",
+		"three_examples/loaders/ColladaLoader",
+		"three_examples/geometries/TeapotBufferGeometry",
+	],
+
+	function() {
+
+		function MeshLoader(mesh, material, baseURL, loadingManager, onLoaded) { 
+			this.mesh = mesh;
+			this.material = material;
+			this.baseURL = baseURL;
+			this.onLoaded = onLoaded;
+			this.LoadingManager = loadingManager;
+
+			this.materials = [];
+
+			this.loadMesh();
+		}
+
+		MeshLoader.prototype.loadMesh = function() {
+			var _this = this;
+
+			// Procedural mesh
+			if(this.mesh.type !== undefined) {
+				procMesh = this.createProceduralMesh(
+					this.mesh, 
+					this.material != undefined 
+					? this.material 
+					: new THREE.MeshPhongMaterial( { color: 0xaa0000, specular: 0x220000, shininess: 40, shading: THREE.SmoothShading } )
+				);
+
+				if(this.mesh.y === undefined) this.mesh.y = 0;
+				if(this.mesh.scale === undefined) this.mesh.scale = 1;
+
+				this.setObjectTransform(procMesh, this.mesh);
+
+				if(this.onLoaded != undefined) this.onLoaded(procMesh);
+				return;
+			}
+
+			this.LoadingManager.setExtraCompleteCallback(
+				function() {
+					// set materials
+					console.log("Mesh loading complete!");
+
+					if(_this.materials.length <= 1) {
+						var m = undefined;
+						if(_this.materials.length == 0) 
+							m = _this.material; 
+						else 
+							m = _this.createMaterial(_this.materials[0]);
+
+						_this.loadedMesh.traverse( function ( child ) {
+							if ( child instanceof THREE.Mesh )
+								child.material = m;						
+						} );
+					}
+					else {
+						var multiMaterials = [];
+
+						for(i in _this.materials) 
+							multiMaterials.push(_this.createMaterial(_this.materials[i]));
+
+						for(var i in _this.loadedMesh.children) {
+							var m = i < multiMaterials.length ? multiMaterials[i] : multiMaterials[multiMaterials.length-1];
+
+							_this.loadedMesh.children[i].material = m;
+						}
+					}
+					
+					_this.setObjectTransform(_this.loadedMesh, _this.mesh);
+
+					if(_this.onLoaded != undefined) _this.onLoaded(_this.loadedMesh);
+				}
+			);
+
+			// Embedded materials
+			if(this.mesh.materials != undefined) {
+				for(var i in this.mesh.materials) {
+					var m = this.mesh.materials[i];
+
+					this.materials.push(m);					
+					if(m.diffuseMap != undefined)
+						this.materials[i].diffuseMap = this.loadTexture(this.baseURL + m.diffuseMap);	
+
+					if(m.normalMap != undefined)
+						this.materials[i].normalMap = this.loadTexture(this.baseURL + m.normalMap);				
+				}
+			}
+
+			function endsWith(str, suffix) {
+			    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+			}
+
+			var meshurl = this.baseURL + this.mesh.url;
+
+			if(endsWith(meshurl.toLowerCase(), ".dae")) {
+				var loader = new THREE.ColladaLoader();
+				this.LoadingManager.addObject(loader);
+				loader.options.convertUpAxis = true;
+				loader.load(
+					meshurl, 
+					function ( collada ) {
+						_this.LoadingManager.onProgress(loader, 1);
+
+						dae = collada.scene;
+
+						dae.traverse( function ( child ) {
+							if ( child instanceof THREE.Mesh ) {
+								if(_this.material != undefined) child.material = _this.material;
+							}
+						} );
+
+						_this.setObjectTransform(dae, _this.mesh);
+						_this.loadedMesh = dae;
+						if(_this.onLoaded != undefined) _this.onLoaded(dae);
+					}, 
+					function ( xhr ) {
+						if ( xhr.lengthComputable ) {
+							var percentComplete = xhr.loaded / xhr.total;
+							_this.LoadingManager.onProgress(loader, percentComplete);
+						}
+					},
+					function(xhr) { _this.LoadingManager.onError(xhr); }
+				);
+			}
+			else if(endsWith(meshurl.toLowerCase(), ".obj")) {
+				var loader = new THREE.OBJLoader();
+				this.LoadingManager.addObject(loader);
+				loader.load(
+					meshurl, 
+					function( object ) {
+						_this.LoadingManager.onProgress(loader, 1);
+
+						object.traverse( function( child ) {
+							if ( child instanceof THREE.Mesh ) {
+								if(_this.material != undefined) child.material = _this.material;
+							}
+						} );
+
+						_this.setObjectTransform(object, _this.mesh);
+						_this.loadedMesh = object;
+						if(_this.onLoaded != undefined) _this.onLoaded(object);
+					},
+					function ( xhr ) {
+						if ( xhr.lengthComputable ) {
+							var percentComplete = xhr.loaded / xhr.total;
+							_this.LoadingManager.onProgress(loader, percentComplete);
+						}
+					},
+					function(xhr) { _this.LoadingManager.onError(xhr); }
+				);
+			}
+		}
+
+		MeshLoader.prototype.createMaterial = function(params) {
+			var color    = params.color != undefined 	? params.color 		: 0xaaaaaa;
+			var specular = params.specular != undefined ? params.specular 	: 0x222222;
+			var shininess= params.shininess != undefined ? params.shininess 	: 100;
+
+			var mdata = { 
+				color: color, specular: specular, shininess: shininess,
+			};
+
+			if(params.diffuseMap) mdata.map = params.diffuseMap;
+			if(params.normalMap)  mdata.normalMap = params.normalMap;
+
+			return new THREE.MeshPhongMaterial(mdata);
+		}
+
+		MeshLoader.prototype.loadTexture = function(url) {
+			var _this = this;
+
+			var loader = new THREE.TextureLoader();
+			this.LoadingManager.addObject(loader);
+
+			return loader.load(
+				url,
+
+				function(loader) {
+					return function (texture) {
+						_this.LoadingManager.onProgress(loader, 1);
+					}
+				}(loader),
+				
+				function(loader) {
+					return function ( xhr ) {
+						if ( xhr.lengthComputable ) {
+							var percentComplete = xhr.loaded / xhr.total;
+							console.log( Math.round(percentComplete * 100, 2) + '% downloaded' );
+							_this.LoadingManager.onProgress(loader, percentComplete);
+						}
+					}
+				}(loader)
+			);
+		}
+
+		MeshLoader.prototype.createProceduralMesh = function(mesh, material) {
+			var geometry = null;
+
+			switch(mesh.type) {
+				case "sphere":
+					if(mesh.subdivision === undefined) mesh.subdivision = 32;
+					if(mesh.subdivision < 10) mesh.subdivision = 10;
+					if(mesh.subdivision > 64) mesh.subdivision = 64;
+					geometry = new THREE.SphereGeometry(30, mesh.subdivision, mesh.subdivision);
+					break;
+
+				case "torus":
+					if(mesh.subdivision === undefined) mesh.subdivision = 32;
+					if(mesh.subdivision < 10) mesh.subdivision = 10;
+					if(mesh.subdivision > 64) mesh.subdivision = 64;
+					geometry = new THREE.TorusGeometry(30, 10, mesh.subdivision, mesh.subdivision * 4);
+					break;
+
+				case "cylinder":
+					if(mesh.subdivision === undefined) mesh.subdivision = 32;
+					if(mesh.subdivision < 10) mesh.subdivision = 10;
+					if(mesh.subdivision > 64) mesh.subdivision = 64;
+					geometry = new THREE.CylinderGeometry( 25, 25, 60, mesh.subdivision, 1);
+					break;
+
+				case "cube":
+					geometry = new THREE.BoxGeometry(40, 40, 40);
+					break;
+
+				case "teapot":
+				default:
+					if(mesh.subdivision === undefined || mesh.subdivision <= 1) mesh.subdivision = 6;
+					if(mesh.subdivision > 10) mesh.subdivision = 10;
+					geometry = new THREE.TeapotBufferGeometry( 
+						25,
+						mesh.subdivision,
+						true, true, true, false, true);
+					break;
+			}
+
+			return new THREE.Mesh(geometry, material);
+		}
+
+		MeshLoader.prototype.setObjectTransform = function(obj, params) {
+			if(params.scale == undefined) params.scale = 1;
+			if(params.x == undefined) params.x = 0;
+			if(params.y == undefined) params.y = 0;
+			if(params.z == undefined) params.z = 0;
+			if(params.rx == undefined) params.rx = 0;
+			if(params.ry == undefined) params.ry = 0;
+			if(params.rz == undefined) params.rz = 0;
+
+			obj.scale.x = obj.scale.y = obj.scale.z = params.scale;
+			obj.updateMatrix();
+
+			obj.position.x = params.x;
+			obj.position.y = params.y;
+			obj.position.z = params.z;
+
+			obj.rotation.x = params.rx * 3.1415926 / 180;
+			obj.rotation.y = params.ry * 3.1415926 / 180;
+			obj.rotation.z = params.rz * 3.1415926 / 180;
+		}
+
+		return MeshLoader;
+	}
+);
+/**
+ * @author alteredq / http://alteredqualia.com/
+ * @author mr.doob / http://mrdoob.com/
+ */
+
+var Detector = {
+
+	canvas: !! window.CanvasRenderingContext2D,
+	webgl: ( function () {
+
+		try {
+
+			var canvas = document.createElement( 'canvas' ); return !! ( window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ) );
+
+		} catch ( e ) {
+
+			return false;
+
+		}
+
+	} )(),
+	workers: !! window.Worker,
+	fileapi: window.File && window.FileReader && window.FileList && window.Blob,
+
+	getWebGLErrorMessage: function () {
+
+		var element = document.createElement( 'div' );
+		element.id = 'webgl-error-message';
+		element.style.fontFamily = 'monospace';
+		element.style.fontSize = '13px';
+		element.style.fontWeight = 'normal';
+		element.style.textAlign = 'center';
+		element.style.background = '#fff';
+		element.style.color = '#000';
+		element.style.padding = '1.5em';
+		element.style.width = '400px';
+		element.style.margin = '5em auto 0';
+
+		if ( ! this.webgl ) {
+
+			element.innerHTML = window.WebGLRenderingContext ? [
+				'Your graphics card does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">WebGL</a>.<br />',
+				'Find out how to get it <a href="http://get.webgl.org/" style="color:#000">here</a>.'
+			].join( '\n' ) : [
+				'Your browser does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">WebGL</a>.<br/>',
+				'Find out how to get it <a href="http://get.webgl.org/" style="color:#000">here</a>.'
+			].join( '\n' );
+
+		}
+
+		return element;
+
+	},
+
+	addGetWebGLMessage: function ( parameters ) {
+
+		var parent, id, element;
+
+		parameters = parameters || {};
+
+		parent = parameters.parent !== undefined ? parameters.parent : document.body;
+		id = parameters.id !== undefined ? parameters.id : 'oldie';
+
+		element = Detector.getWebGLErrorMessage();
+		element.id = id;
+
+		parent.appendChild( element );
+
+	}
+
+};
+
+// browserify support
+if ( typeof module === 'object' ) {
+
+	module.exports = Detector;
+
+}
+;
+define("three_examples/Detector", ["three_builds/three"], function(){});
+
+/**
+ * @author qiao / https://github.com/qiao
+ * @author mrdoob / http://mrdoob.com
+ * @author alteredq / http://alteredqualia.com/
+ * @author WestLangley / http://github.com/WestLangley
+ * @author erich666 / http://erichaines.com
+ */
+
+// This set of controls performs orbiting, dollying (zooming), and panning.
+// Unlike TrackballControls, it maintains the "up" direction object.up (+Y by default).
+//
+//    Orbit - left mouse / touch: one finger move
+//    Zoom - middle mouse, or mousewheel / touch: two finger spread or squish
+//    Pan - right mouse, or arrow keys / touch: three finter swipe
+
+THREE.OrbitControls = function ( object, domElement ) {
+
+	this.object = object;
+
+	this.domElement = ( domElement !== undefined ) ? domElement : document;
+
+	// Set to false to disable this control
+	this.enabled = true;
+
+	// "target" sets the location of focus, where the object orbits around
+	this.target = new THREE.Vector3();
+
+	// How far you can dolly in and out ( PerspectiveCamera only )
+	this.minDistance = 0;
+	this.maxDistance = Infinity;
+
+	// How far you can zoom in and out ( OrthographicCamera only )
+	this.minZoom = 0;
+	this.maxZoom = Infinity;
+
+	// How far you can orbit vertically, upper and lower limits.
+	// Range is 0 to Math.PI radians.
+	this.minPolarAngle = 0; // radians
+	this.maxPolarAngle = Math.PI; // radians
+
+	// How far you can orbit horizontally, upper and lower limits.
+	// If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
+	this.minAzimuthAngle = - Infinity; // radians
+	this.maxAzimuthAngle = Infinity; // radians
+
+	// Set to true to enable damping (inertia)
+	// If damping is enabled, you must call controls.update() in your animation loop
+	this.enableDamping = false;
+	this.dampingFactor = 0.25;
+
+	// This option actually enables dollying in and out; left as "zoom" for backwards compatibility.
+	// Set to false to disable zooming
+	this.enableZoom = true;
+	this.zoomSpeed = 1.0;
+
+	// Set to false to disable rotating
+	this.enableRotate = true;
+	this.rotateSpeed = 1.0;
+
+	// Set to false to disable panning
+	this.enablePan = true;
+	this.keyPanSpeed = 7.0;	// pixels moved per arrow key push
+
+	// Set to true to automatically rotate around the target
+	// If auto-rotate is enabled, you must call controls.update() in your animation loop
+	this.autoRotate = false;
+	this.autoRotateSpeed = 2.0; // 30 seconds per round when fps is 60
+
+	// Set to false to disable use of the keys
+	this.enableKeys = true;
+
+	// The four arrow keys
+	this.keys = { LEFT: 37, UP: 38, RIGHT: 39, BOTTOM: 40 };
+
+	// Mouse buttons
+	this.mouseButtons = { ORBIT: THREE.MOUSE.LEFT, ZOOM: THREE.MOUSE.MIDDLE, PAN: THREE.MOUSE.RIGHT };
+
+	// for reset
+	this.target0 = this.target.clone();
+	this.position0 = this.object.position.clone();
+	this.zoom0 = this.object.zoom;
+
+	//
+	// public methods
+	//
+
+	this.getPolarAngle = function () {
+
+		return phi;
+
+	};
+
+	this.getAzimuthalAngle = function () {
+
+		return theta;
+
+	};
+
+	this.reset = function () {
+
+		scope.target.copy( scope.target0 );
+		scope.object.position.copy( scope.position0 );
+		scope.object.zoom = scope.zoom0;
+
+		scope.object.updateProjectionMatrix();
+		scope.dispatchEvent( changeEvent );
+
+		scope.update();
+
+		state = STATE.NONE;
+
+	};
+
+	// this method is exposed, but perhaps it would be better if we can make it private...
+	this.update = function() {
+
+		var offset = new THREE.Vector3();
+
+		// so camera.up is the orbit axis
+		var quat = new THREE.Quaternion().setFromUnitVectors( object.up, new THREE.Vector3( 0, 1, 0 ) );
+		var quatInverse = quat.clone().inverse();
+
+		var lastPosition = new THREE.Vector3();
+		var lastQuaternion = new THREE.Quaternion();
+
+		return function () {
+
+			var position = scope.object.position;
+
+			offset.copy( position ).sub( scope.target );
+
+			// rotate offset to "y-axis-is-up" space
+			offset.applyQuaternion( quat );
+
+			// angle from z-axis around y-axis
+
+			theta = Math.atan2( offset.x, offset.z );
+
+			// angle from y-axis
+
+			phi = Math.atan2( Math.sqrt( offset.x * offset.x + offset.z * offset.z ), offset.y );
+
+			if ( scope.autoRotate && state === STATE.NONE ) {
+
+				rotateLeft( getAutoRotationAngle() );
+
+			}
+
+			theta += thetaDelta;
+			phi += phiDelta;
+
+			// restrict theta to be between desired limits
+			theta = Math.max( scope.minAzimuthAngle, Math.min( scope.maxAzimuthAngle, theta ) );
+
+			// restrict phi to be between desired limits
+			phi = Math.max( scope.minPolarAngle, Math.min( scope.maxPolarAngle, phi ) );
+
+			// restrict phi to be betwee EPS and PI-EPS
+			phi = Math.max( EPS, Math.min( Math.PI - EPS, phi ) );
+
+			var radius = offset.length() * scale;
+
+			// restrict radius to be between desired limits
+			radius = Math.max( scope.minDistance, Math.min( scope.maxDistance, radius ) );
+
+			// move target to panned location
+			scope.target.add( panOffset );
+
+			offset.x = radius * Math.sin( phi ) * Math.sin( theta );
+			offset.y = radius * Math.cos( phi );
+			offset.z = radius * Math.sin( phi ) * Math.cos( theta );
+
+			// rotate offset back to "camera-up-vector-is-up" space
+			offset.applyQuaternion( quatInverse );
+
+			position.copy( scope.target ).add( offset );
+
+			scope.object.lookAt( scope.target );
+
+			if ( scope.enableDamping === true ) {
+
+				thetaDelta *= ( 1 - scope.dampingFactor );
+				phiDelta *= ( 1 - scope.dampingFactor );
+
+			} else {
+
+				thetaDelta = 0;
+				phiDelta = 0;
+
+			}
+
+			scale = 1;
+			panOffset.set( 0, 0, 0 );
+
+			// update condition is:
+			// min(camera displacement, camera rotation in radians)^2 > EPS
+			// using small-angle approximation cos(x/2) = 1 - x^2 / 8
+
+			if ( zoomChanged ||
+				lastPosition.distanceToSquared( scope.object.position ) > EPS ||
+				8 * ( 1 - lastQuaternion.dot( scope.object.quaternion ) ) > EPS ) {
+
+				scope.dispatchEvent( changeEvent );
+
+				lastPosition.copy( scope.object.position );
+				lastQuaternion.copy( scope.object.quaternion );
+				zoomChanged = false;
+
+				return true;
+
+			}
+
+			return false;
+
+		};
+
+	}();
+
+	this.dispose = function() {
+
+		scope.domElement.removeEventListener( 'contextmenu', onContextMenu, false );
+		scope.domElement.removeEventListener( 'mousedown', onMouseDown, false );
+		scope.domElement.removeEventListener( 'mousewheel', onMouseWheel, false );
+		scope.domElement.removeEventListener( 'MozMousePixelScroll', onMouseWheel, false ); // firefox
+
+		scope.domElement.removeEventListener( 'touchstart', onTouchStart, false );
+		scope.domElement.removeEventListener( 'touchend', onTouchEnd, false );
+		scope.domElement.removeEventListener( 'touchmove', onTouchMove, false );
+
+		document.removeEventListener( 'mousemove', onMouseMove, false );
+		document.removeEventListener( 'mouseup', onMouseUp, false );
+		document.removeEventListener( 'mouseout', onMouseUp, false );
+
+		window.removeEventListener( 'keydown', onKeyDown, false );
+
+		//scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
+
+	};
+
+	//
+	// internals
+	//
+
+	var scope = this;
+
+	var changeEvent = { type: 'change' };
+	var startEvent = { type: 'start' };
+	var endEvent = { type: 'end' };
+
+	var STATE = { NONE : - 1, ROTATE : 0, DOLLY : 1, PAN : 2, TOUCH_ROTATE : 3, TOUCH_DOLLY : 4, TOUCH_PAN : 5 };
+
+	var state = STATE.NONE;
+
+	var EPS = 0.000001;
+
+	// current position in spherical coordinates
+	var theta;
+	var phi;
+
+	var phiDelta = 0;
+	var thetaDelta = 0;
+	var scale = 1;
+	var panOffset = new THREE.Vector3();
+	var zoomChanged = false;
+
+	var rotateStart = new THREE.Vector2();
+	var rotateEnd = new THREE.Vector2();
+	var rotateDelta = new THREE.Vector2();
+
+	var panStart = new THREE.Vector2();
+	var panEnd = new THREE.Vector2();
+	var panDelta = new THREE.Vector2();
+
+	var dollyStart = new THREE.Vector2();
+	var dollyEnd = new THREE.Vector2();
+	var dollyDelta = new THREE.Vector2();
+
+	function getAutoRotationAngle() {
+
+		return 2 * Math.PI / 60 / 60 * scope.autoRotateSpeed;
+
+	}
+
+	function getZoomScale() {
+
+		return Math.pow( 0.95, scope.zoomSpeed );
+
+	}
+
+	function rotateLeft( angle ) {
+
+		thetaDelta -= angle;
+
+	}
+
+	function rotateUp( angle ) {
+
+		phiDelta -= angle;
+
+	}
+
+	var panLeft = function() {
+
+		var v = new THREE.Vector3();
+
+		return function panLeft( distance, objectMatrix ) {
+
+			var te = objectMatrix.elements;
+
+			// get X column of objectMatrix
+			v.set( te[ 0 ], te[ 1 ], te[ 2 ] );
+
+			v.multiplyScalar( - distance );
+
+			panOffset.add( v );
+
+		};
+
+	}();
+
+	var panUp = function() {
+
+		var v = new THREE.Vector3();
+
+		return function panUp( distance, objectMatrix ) {
+
+			var te = objectMatrix.elements;
+
+			// get Y column of objectMatrix
+			v.set( te[ 4 ], te[ 5 ], te[ 6 ] );
+
+			v.multiplyScalar( distance );
+
+			panOffset.add( v );
+
+		};
+
+	}();
+
+	// deltaX and deltaY are in pixels; right and down are positive
+	var pan = function() {
+
+		var offset = new THREE.Vector3();
+
+		return function( deltaX, deltaY ) {
+
+			var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
+
+			if ( scope.object instanceof THREE.PerspectiveCamera ) {
+
+				// perspective
+				var position = scope.object.position;
+				offset.copy( position ).sub( scope.target );
+				var targetDistance = offset.length();
+
+				// half of the fov is center to top of screen
+				targetDistance *= Math.tan( ( scope.object.fov / 2 ) * Math.PI / 180.0 );
+
+				// we actually don't use screenWidth, since perspective camera is fixed to screen height
+				panLeft( 2 * deltaX * targetDistance / element.clientHeight, scope.object.matrix );
+				panUp( 2 * deltaY * targetDistance / element.clientHeight, scope.object.matrix );
+
+			} else if ( scope.object instanceof THREE.OrthographicCamera ) {
+
+				// orthographic
+				panLeft( deltaX * ( scope.object.right - scope.object.left ) / element.clientWidth, scope.object.matrix );
+				panUp( deltaY * ( scope.object.top - scope.object.bottom ) / element.clientHeight, scope.object.matrix );
+
+			} else {
+
+				// camera neither orthographic nor perspective
+				console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.' );
+				scope.enablePan = false;
+
+			}
+
+		};
+
+	}();
+
+	function dollyIn( dollyScale ) {
+
+		if ( scope.object instanceof THREE.PerspectiveCamera ) {
+
+			scale /= dollyScale;
+
+		} else if ( scope.object instanceof THREE.OrthographicCamera ) {
+
+			scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom * dollyScale ) );
+			scope.object.updateProjectionMatrix();
+			zoomChanged = true;
+
+		} else {
+
+			console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
+			scope.enableZoom = false;
+
+		}
+
+	}
+
+	function dollyOut( dollyScale ) {
+
+		if ( scope.object instanceof THREE.PerspectiveCamera ) {
+
+			scale *= dollyScale;
+
+		} else if ( scope.object instanceof THREE.OrthographicCamera ) {
+
+			scope.object.zoom = Math.max( scope.minZoom, Math.min( scope.maxZoom, scope.object.zoom / dollyScale ) );
+			scope.object.updateProjectionMatrix();
+			zoomChanged = true;
+
+		} else {
+
+			console.warn( 'WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.' );
+			scope.enableZoom = false;
+
+		}
+
+	}
+
+	//
+	// event callbacks - update the object state
+	//
+
+	function handleMouseDownRotate( event ) {
+
+		//console.log( 'handleMouseDownRotate' );
+
+		rotateStart.set( event.clientX, event.clientY );
+
+	}
+
+	function handleMouseDownDolly( event ) {
+
+		//console.log( 'handleMouseDownDolly' );
+
+		dollyStart.set( event.clientX, event.clientY );
+
+	}
+
+	function handleMouseDownPan( event ) {
+
+		//console.log( 'handleMouseDownPan' );
+
+		panStart.set( event.clientX, event.clientY );
+
+	}
+
+	function handleMouseMoveRotate( event ) {
+
+		//console.log( 'handleMouseMoveRotate' );
+
+		rotateEnd.set( event.clientX, event.clientY );
+		rotateDelta.subVectors( rotateEnd, rotateStart );
+
+		var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
+
+		// rotating across whole screen goes 360 degrees around
+		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientWidth * scope.rotateSpeed );
+
+		// rotating up and down along whole screen attempts to go 360, but limited to 180
+		rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed );
+
+		rotateStart.copy( rotateEnd );
+
+		scope.update();
+
+	}
+
+	function handleMouseMoveDolly( event ) {
+
+		//console.log( 'handleMouseMoveDolly' );
+
+		dollyEnd.set( event.clientX, event.clientY );
+
+		dollyDelta.subVectors( dollyEnd, dollyStart );
+
+		if ( dollyDelta.y > 0 ) {
+
+			dollyIn( getZoomScale() );
+
+		} else if ( dollyDelta.y < 0 ) {
+
+			dollyOut( getZoomScale() );
+
+		}
+
+		dollyStart.copy( dollyEnd );
+
+		scope.update();
+
+	}
+
+	function handleMouseMovePan( event ) {
+
+		//console.log( 'handleMouseMovePan' );
+
+		panEnd.set( event.clientX, event.clientY );
+
+		panDelta.subVectors( panEnd, panStart );
+
+		pan( panDelta.x, panDelta.y );
+
+		panStart.copy( panEnd );
+
+		scope.update();
+
+	}
+
+	function handleMouseUp( event ) {
+
+		//console.log( 'handleMouseUp' );
+
+	}
+
+	function handleMouseWheel( event ) {
+
+		//console.log( 'handleMouseWheel' );
+
+		var delta = 0;
+
+		if ( event.wheelDelta !== undefined ) {
+
+			// WebKit / Opera / Explorer 9
+
+			delta = event.wheelDelta;
+
+		} else if ( event.detail !== undefined ) {
+
+			// Firefox
+
+			delta = - event.detail;
+
+		}
+
+		if ( delta > 0 ) {
+
+			dollyOut( getZoomScale() );
+
+		} else if ( delta < 0 ) {
+
+			dollyIn( getZoomScale() );
+
+		}
+
+		scope.update();
+
+	}
+
+	function handleKeyDown( event ) {
+
+		//console.log( 'handleKeyDown' );
+
+		switch ( event.keyCode ) {
+
+			case scope.keys.UP:
+				pan( 0, scope.keyPanSpeed );
+				scope.update();
+				break;
+
+			case scope.keys.BOTTOM:
+				pan( 0, - scope.keyPanSpeed );
+				scope.update();
+				break;
+
+			case scope.keys.LEFT:
+				pan( scope.keyPanSpeed, 0 );
+				scope.update();
+				break;
+
+			case scope.keys.RIGHT:
+				pan( - scope.keyPanSpeed, 0 );
+				scope.update();
+				break;
+
+		}
+
+	}
+
+	function handleTouchStartRotate( event ) {
+
+		//console.log( 'handleTouchStartRotate' );
+
+		rotateStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+
+	}
+
+	function handleTouchStartDolly( event ) {
+
+		//console.log( 'handleTouchStartDolly' );
+
+		var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
+		var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+
+		var distance = Math.sqrt( dx * dx + dy * dy );
+
+		dollyStart.set( 0, distance );
+
+	}
+
+	function handleTouchStartPan( event ) {
+
+		//console.log( 'handleTouchStartPan' );
+
+		panStart.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+
+	}
+
+	function handleTouchMoveRotate( event ) {
+
+		//console.log( 'handleTouchMoveRotate' );
+
+		rotateEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+		rotateDelta.subVectors( rotateEnd, rotateStart );
+
+		var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
+
+		// rotating across whole screen goes 360 degrees around
+		rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientWidth * scope.rotateSpeed );
+
+		// rotating up and down along whole screen attempts to go 360, but limited to 180
+		rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed );
+
+		rotateStart.copy( rotateEnd );
+
+		scope.update();
+
+	}
+
+	function handleTouchMoveDolly( event ) {
+
+		//console.log( 'handleTouchMoveDolly' );
+
+		var dx = event.touches[ 0 ].pageX - event.touches[ 1 ].pageX;
+		var dy = event.touches[ 0 ].pageY - event.touches[ 1 ].pageY;
+
+		var distance = Math.sqrt( dx * dx + dy * dy );
+
+		dollyEnd.set( 0, distance );
+
+		dollyDelta.subVectors( dollyEnd, dollyStart );
+
+		if ( dollyDelta.y > 0 ) {
+
+			dollyOut( getZoomScale() );
+
+		} else if ( dollyDelta.y < 0 ) {
+
+			dollyIn( getZoomScale() );
+
+		}
+
+		dollyStart.copy( dollyEnd );
+
+		scope.update();
+
+	}
+
+	function handleTouchMovePan( event ) {
+
+		//console.log( 'handleTouchMovePan' );
+
+		panEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
+
+		panDelta.subVectors( panEnd, panStart );
+
+		pan( panDelta.x, panDelta.y );
+
+		panStart.copy( panEnd );
+
+		scope.update();
+
+	}
+
+	function handleTouchEnd( event ) {
+
+		//console.log( 'handleTouchEnd' );
+
+	}
+
+	//
+	// event handlers - FSM: listen for events and reset state
+	//
+
+	function onMouseDown( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		event.preventDefault();
+
+		if ( event.button === scope.mouseButtons.ORBIT ) {
+
+			if ( scope.enableRotate === false ) return;
+
+			handleMouseDownRotate( event );
+
+			state = STATE.ROTATE;
+
+		} else if ( event.button === scope.mouseButtons.ZOOM ) {
+
+			if ( scope.enableZoom === false ) return;
+
+			handleMouseDownDolly( event );
+
+			state = STATE.DOLLY;
+
+		} else if ( event.button === scope.mouseButtons.PAN ) {
+
+			if ( scope.enablePan === false ) return;
+
+			handleMouseDownPan( event );
+
+			state = STATE.PAN;
+
+		}
+
+		if ( state !== STATE.NONE ) {
+
+			document.addEventListener( 'mousemove', onMouseMove, false );
+			document.addEventListener( 'mouseup', onMouseUp, false );
+			document.addEventListener( 'mouseout', onMouseUp, false );
+
+			scope.dispatchEvent( startEvent );
+
+		}
+
+	}
+
+	function onMouseMove( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		event.preventDefault();
+
+		if ( state === STATE.ROTATE ) {
+
+			if ( scope.enableRotate === false ) return;
+
+			handleMouseMoveRotate( event );
+
+		} else if ( state === STATE.DOLLY ) {
+
+			if ( scope.enableZoom === false ) return;
+
+			handleMouseMoveDolly( event );
+
+		} else if ( state === STATE.PAN ) {
+
+			if ( scope.enablePan === false ) return;
+
+			handleMouseMovePan( event );
+
+		}
+
+	}
+
+	function onMouseUp( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		handleMouseUp( event );
+
+		document.removeEventListener( 'mousemove', onMouseMove, false );
+		document.removeEventListener( 'mouseup', onMouseUp, false );
+		document.removeEventListener( 'mouseout', onMouseUp, false );
+
+		scope.dispatchEvent( endEvent );
+
+		state = STATE.NONE;
+
+	}
+
+	function onMouseWheel( event ) {
+
+		if ( scope.enabled === false || scope.enableZoom === false || state !== STATE.NONE ) return;
+
+		event.preventDefault();
+		event.stopPropagation();
+
+		handleMouseWheel( event );
+
+		scope.dispatchEvent( startEvent ); // not sure why these are here...
+		scope.dispatchEvent( endEvent );
+
+	}
+
+	function onKeyDown( event ) {
+
+		if ( scope.enabled === false || scope.enableKeys === false || scope.enablePan === false ) return;
+
+		handleKeyDown( event );
+
+	}
+
+	function onTouchStart( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		switch ( event.touches.length ) {
+
+			case 1:	// one-fingered touch: rotate
+
+				if ( scope.enableRotate === false ) return;
+
+				handleTouchStartRotate( event );
+
+				state = STATE.TOUCH_ROTATE;
+
+				break;
+
+			case 2:	// two-fingered touch: dolly
+
+				if ( scope.enableZoom === false ) return;
+
+				handleTouchStartDolly( event );
+
+				state = STATE.TOUCH_DOLLY;
+
+				break;
+
+			case 3: // three-fingered touch: pan
+
+				if ( scope.enablePan === false ) return;
+
+				handleTouchStartPan( event );
+
+				state = STATE.TOUCH_PAN;
+
+				break;
+
+			default:
+
+				state = STATE.NONE;
+
+		}
+
+		if ( state !== STATE.NONE ) {
+
+			scope.dispatchEvent( startEvent );
+
+		}
+
+	}
+
+	function onTouchMove( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		event.preventDefault();
+		event.stopPropagation();
+
+		switch ( event.touches.length ) {
+
+			case 1: // one-fingered touch: rotate
+
+				if ( scope.enableRotate === false ) return;
+				if ( state !== STATE.TOUCH_ROTATE ) return; // is this needed?...
+
+				handleTouchMoveRotate( event );
+
+				break;
+
+			case 2: // two-fingered touch: dolly
+
+				if ( scope.enableZoom === false ) return;
+				if ( state !== STATE.TOUCH_DOLLY ) return; // is this needed?...
+
+				handleTouchMoveDolly( event );
+
+				break;
+
+			case 3: // three-fingered touch: pan
+
+				if ( scope.enablePan === false ) return;
+				if ( state !== STATE.TOUCH_PAN ) return; // is this needed?...
+
+				handleTouchMovePan( event );
+
+				break;
+
+			default:
+
+				state = STATE.NONE;
+
+		}
+
+	}
+
+	function onTouchEnd( event ) {
+
+		if ( scope.enabled === false ) return;
+
+		handleTouchEnd( event );
+
+		scope.dispatchEvent( endEvent );
+
+		state = STATE.NONE;
+
+	}
+
+	function onContextMenu( event ) {
+
+		event.preventDefault();
+
+	}
+
+	//
+
+	scope.domElement.addEventListener( 'contextmenu', onContextMenu, false );
+
+	scope.domElement.addEventListener( 'mousedown', onMouseDown, false );
+	scope.domElement.addEventListener( 'mousewheel', onMouseWheel, false );
+	scope.domElement.addEventListener( 'MozMousePixelScroll', onMouseWheel, false ); // firefox
+
+	scope.domElement.addEventListener( 'touchstart', onTouchStart, false );
+	scope.domElement.addEventListener( 'touchend', onTouchEnd, false );
+	scope.domElement.addEventListener( 'touchmove', onTouchMove, false );
+
+	window.addEventListener( 'keydown', onKeyDown, false );
+
+	// force an update at start
+
+	this.update();
+
+};
+
+THREE.OrbitControls.prototype = Object.create( THREE.EventDispatcher.prototype );
+THREE.OrbitControls.prototype.constructor = THREE.OrbitControls;
+
+Object.defineProperties( THREE.OrbitControls.prototype, {
+
+	center: {
+
+		get: function () {
+
+			console.warn( 'THREE.OrbitControls: .center has been renamed to .target' );
+			return this.target;
+
+		}
+
+	},
+
+	// backward compatibility
+
+	noZoom: {
+
+		get: function () {
+
+			console.warn( 'THREE.OrbitControls: .noZoom has been deprecated. Use .enableZoom instead.' );
+			return ! this.enableZoom;
+
+		},
+
+		set: function ( value ) {
+
+			console.warn( 'THREE.OrbitControls: .noZoom has been deprecated. Use .enableZoom instead.' );
+			this.enableZoom = ! value;
+
+		}
+
+	},
+
+	noRotate: {
+
+		get: function () {
+
+			console.warn( 'THREE.OrbitControls: .noRotate has been deprecated. Use .enableRotate instead.' );
+			return ! this.enableRotate;
+
+		},
+
+		set: function ( value ) {
+
+			console.warn( 'THREE.OrbitControls: .noRotate has been deprecated. Use .enableRotate instead.' );
+			this.enableRotate = ! value;
+
+		}
+
+	},
+
+	noPan: {
+
+		get: function () {
+
+			console.warn( 'THREE.OrbitControls: .noPan has been deprecated. Use .enablePan instead.' );
+			return ! this.enablePan;
+
+		},
+
+		set: function ( value ) {
+
+			console.warn( 'THREE.OrbitControls: .noPan has been deprecated. Use .enablePan instead.' );
+			this.enablePan = ! value;
+
+		}
+
+	},
+
+	noKeys: {
+
+		get: function () {
+
+			console.warn( 'THREE.OrbitControls: .noKeys has been deprecated. Use .enableKeys instead.' );
+			return ! this.enableKeys;
+
+		},
+
+		set: function ( value ) {
+
+			console.warn( 'THREE.OrbitControls: .noKeys has been deprecated. Use .enableKeys instead.' );
+			this.enableKeys = ! value;
+
+		}
+
+	},
+
+	staticMoving : {
+
+		get: function () {
+
+			console.warn( 'THREE.OrbitControls: .staticMoving has been deprecated. Use .enableDamping instead.' );
+			return ! this.constraint.enableDamping;
+
+		},
+
+		set: function ( value ) {
+
+			console.warn( 'THREE.OrbitControls: .staticMoving has been deprecated. Use .enableDamping instead.' );
+			this.constraint.enableDamping = ! value;
+
+		}
+
+	},
+
+	dynamicDampingFactor : {
+
+		get: function () {
+
+			console.warn( 'THREE.OrbitControls: .dynamicDampingFactor has been renamed. Use .dampingFactor instead.' );
+			return this.constraint.dampingFactor;
+
+		},
+
+		set: function ( value ) {
+
+			console.warn( 'THREE.OrbitControls: .dynamicDampingFactor has been renamed. Use .dampingFactor instead.' );
+			this.constraint.dampingFactor = value;
+
+		}
+
+	}
+
+} );
+
+define("three_examples/controls/OrbitControls", ["three_builds/three"], function(){});
 
 /**
  * dat-gui JavaScript Controller Library
@@ -72390,24 +72188,22 @@ define('app/pocket.gl',[
 	"text!default_shaders/vertex.glsl",
 	"text!default_shaders/fragment.glsl",
 
+	"app/utils",
 	"app/tabs",
 	"app/config",
+	"app/loadingManager",
+	"app/meshLoader",
 
 	"three_builds/three",
 
 	"three_examples/Detector",
-	"three_examples/controls/OrbitControls",
-	"three_examples/loaders/DDSLoader",
-	"three_examples/loaders/OBJLoader",
-	"three_examples/loaders/MTLLoader",
-	"three_examples/loaders/ColladaLoader",
-	"three_examples/geometries/TeapotBufferGeometry",
+	"three_examples/controls/OrbitControls",	
 
 	"dat_gui/dat.gui",
 
 	"ace_builds/ace"],
 
-	function(stylesheet, defaultVertex, defaultFragment, PocketGLTabs, config) {
+	function(stylesheet, defaultVertex, defaultFragment, Utils, PocketGLTabs, config, LoadingManager, MeshLoader) {
 		console.log("pocket.gl " + config.version);
 
 		// Inject css
@@ -72416,72 +72212,146 @@ define('app/pocket.gl',[
 		sheet.appendChild(document.createTextNode(stylesheet));
 	    document.head.appendChild(sheet);
 
-		function PocketGL(containerID, params, baseURL)
+		function PocketGL(containerIDorDomEl, params, baseURL)
 		{
-			if ( ! Detector.webgl ) {
-				Detector.addGetWebGLMessage();
-				return;
+			var scope = this;
+
+			if(typeof params === 'string' || params instanceof String)
+			{
+				if(baseURL == undefined) {
+					var lastSlash = params.lastIndexOf("/");
+					if(lastSlash == -1) lastSlash = params.lastIndexOf("\\");
+					baseURL = lastSlash == -1
+						? "/"
+						: params.substring(0, lastSlash);
+				}
+				var loaderV = new THREE.XHRLoader();
+				loaderV.load( 
+					params, 
+					function(text) { 
+						eval("params = " + text);
+			            scope.initObject(containerIDorDomEl, params, baseURL);  
+			        }
+				);
 			}
+			else {
+				this.initObject(containerIDorDomEl, params, baseURL);
+			}
+		}
+
+		PocketGL.prototype.initObject = function(containerIDorDomEl, params, baseURL)
+		{
+			var scope = this;
+
+			this.domContainer = 
+				(typeof containerIDorDomEl === 'string' || containerIDorDomEl instanceof String) 
+				? document.getElementById(containerIDorDomEl) 
+				: containerIDorDomEl;
 
 			this.baseURL = baseURL == undefined ? "" : baseURL;
 			if(this.baseURL != "" && this.baseURL[this.baseURL.length-1] != "/") this.baseURL += "/";
 
 			if( ! this.readParams(params)) return;
 
-			this.domContainer = document.getElementById(containerID);
+			if ( ! Detector.webgl ) {
+				this.domContainer.style.border = "1px solid #aaa";
+				this.domContainer.appendChild(Detector.getWebGLErrorMessage());
+				return;
+			}
 
 			this.currentTab = 0;
 
 			this.createDomElements();
 
-			this.brightAceTheme = "crimson_editor";
-			this.darkAceTheme = "vibrant_ink";
-
 			this.clock = new THREE.Clock();
-
-			this.init();
 
 			this.frameCount = 0;
 
 			this.animationPaused = false;
-			if(this.params.animated)
-				this.animate();
-			else
-				this.render();
+
+			if(params.vertexShaderFile != undefined || params.fragmentShaderFile != undefined) {
+				this.showLoading();
+				this.loadingShaders = true;
+
+				if(params.vertexShaderFile != undefined) {
+					var loaderV = new THREE.XHRLoader();
+					this.LoadingManager.addObject(loaderV);
+					loaderV.load( 
+						this.baseURL + params.vertexShaderFile, 
+						function(text) { params.vertexShader = text;  },
+						function ( xhr ) {
+							if ( xhr.lengthComputable ) {
+								var percentComplete = xhr.loaded / xhr.total;
+								scope.LoadingManager.onProgress(loaderV, percentComplete);
+							}
+						},
+						function(xhr) { scope.LoadingManager.onError(xhr); }
+					);
+				}
+
+				if(params.fragmentShaderFile != undefined) {
+					var loader = new THREE.XHRLoader();
+					this.LoadingManager.addObject(loader);
+					loader.load( 
+						this.baseURL + params.fragmentShaderFile, 
+						function(text) { params.fragmentShader = text; scope.LoadingManager.onProgress(loader, 1); },
+						function ( xhr ) {
+							if ( xhr.lengthComputable ) {
+								var percentComplete = xhr.loaded / xhr.total;
+								scope.LoadingManager.onProgress(loader, percentComplete);
+							}
+						},
+						function(xhr) { scope.LoadingManager.onError(xhr); }
+					);
+				}
+
+				this.LoadingManager.setReady();
+			}
+			else {
+				this.loadingShaders = false;
+
+				this.init();
+			}		
 		}
 
 		PocketGL.prototype.readParams = function(params)
 		{
-			if(params.width == undefined) params.width = 620;
-			this.canvasWidth = params.width;
-			
-			if(params.height == undefined) params.height = 400;			
-			this.canvasHeight = params.height;
-
 			if(params == undefined) params = {};
-			if(params.backgroundColor == undefined) params.backgroundColor = config.backgroundColor;
 			if(params.meshes == undefined) params.meshes = [];
-			if(params.tabColor == undefined) params.tabColor = config.tabColor;
-			if(params.doubleSided == undefined) params.doubleSided = config.doubleSided;
-			if(params.animated == undefined) params.animated = config.animated;
-			if(params.transparent == undefined) params.transparent= config.transparent;
-			if(params.editorTheme == undefined) params.editorTheme = config.editorTheme;
-			if(params.showTabs == undefined) params.showTabs = config.showTabs;
+
+			for(id in config)
+				if(params[id] == undefined) params[id] = config[id];
 
 			var urlMeshesCount = 0;
-			for(i in params.meshes) if(params.meshes[i].url !== undefined) urlMeshesCount++;
+			for(var i in params.meshes) if(params.meshes[i].url !== undefined) urlMeshesCount++;
 
 			this.shaderEditorEnabled = true;
-			if(params.vertexShader == undefined && params.fragmentShader == undefined && urlMeshesCount > 0) {
-				if(params.addDefaultShaders !== undefined && params.addDefaultShaders == true) {
-					params.vertexShader = defaultVertex;
-					params.fragmentShader = defaultFragment;
-				}
-				else this.shaderEditorEnabled = false;
+
+			if(params.vertexShaderFile != undefined)
+				params.vertexShader = "loading...";
+
+			if(params.fragmentShaderFile != undefined)
+				params.fragmentShader = "loading...";
+
+			if(params.vertexShader == undefined && params.fragmentShader == undefined && params.meshes.length > 0) {
+				// mesh viewer
+				this.shaderEditorEnabled = false;
 			}
 			else {
-				if(params.vertexShader == undefined) params.vertexShader = defaultVertex;
-				if(params.fragmentShader == undefined) params.fragmentShader = defaultFragment;
+				// fragment only
+				if(params.vertexShader == undefined && params.fragmentShader != undefined)
+				{
+					this.fragmentOnly = true;
+					params.vertexShader = "void main(){ gl_Position = vec4( position, 1.0 ); }";
+					params.meshes = [];
+					this.shaderEditorEnabled = true;
+				}
+				else {
+					this.fragmentOnly = false;
+
+					if(params.vertexShader   == undefined) params.vertexShader   = defaultVertex;
+					if(params.fragmentShader == undefined) params.fragmentShader = defaultFragment;
+				}
 			}
 
 			this.params = params;
@@ -72491,6 +72361,8 @@ define('app/pocket.gl',[
 
 		PocketGL.prototype.createDomElements = function()
 		{
+			var scope = this;
+
 			// Tabs
 			if(this.shaderEditorEnabled && this.params.showTabs) {
 				var div = document.createElement("div");
@@ -72499,7 +72371,7 @@ define('app/pocket.gl',[
 
 				var tabNames = ["Render", "Vertex Shader", "Fragment Shader"];
 				var tabs = [];
-				for(i=0; i<3; i++) {
+				for(var i=0; i<3; i++) {
 					var li = document.createElement("li");
 					var a = document.createElement("a");
 					a.href = "#";
@@ -72514,41 +72386,113 @@ define('app/pocket.gl',[
 
 				var divHl = document.createElement("div");
 				divHl.className = "hl animated";
-				divHl.style = "width: 70px; left: 0px; background-color: " + this.params.tabColor + ";";
+				divHl.style.width = "70px";
+				divHl.style.left = "0px";
+				divHl.style.backgroundColor = this.params.tabColor;
+
 				div.appendChild(divHl);	
 
 				this.domContainer.appendChild(div);
-
-				new PocketGLTabs(this, tabs, divHl);
+				this.tabs = new PocketGLTabs(function (tabIndex) { scope.switchTab(tabIndex); }, tabs, divHl);
 			}
 
 			this.containers = [];
-			for(i=0; i<4; i++) {
+			for(var i=0; i<5; i++) {
 				this.containers[i] = document.createElement("div");
 				
 				if(i > 0) this.containers[i].style.display = "none";
 				
-				this.containers[i].style.width  = this.canvasWidth + "px";
-				this.containers[i].style.height = this.canvasHeight + "px";
+
+				if(!this.params.fluidWidth)  this.containers[i].style.width  = this.params.width + "px";
+				else { 
+					// Fluid layout
+					this.params.width = Utils.getElementSize(this.domContainer).width;
+					window.addEventListener( 'resize', function() { scope.onWindowResize(); }, false );
+				}
+
+				this.containers[i].style.height = this.params.height + "px";
 				this.containers[i].style.position = "relative";
 
 				this.domContainer.appendChild(this.containers[i]);
 			}
 
 			this.containers[3].className = "pocketgl errorConsole";
+
+			// Loading Manager progress bar
+			this.containers[4].className = "pocketgl loadingProgress";
+
+			this.containers[4].innerHTML = 
+				"<div class='pocketglProgress'><div class='pocketglProgressBar'></div></div>";
+
+			var progressBar = this.containers[4].getElementsByTagName("div")[1];
+			this.LoadingManager = new LoadingManager(
+				progressBar,
+				function() { scope.onLoadingComplete(); }
+			);
+		}
+
+		PocketGL.prototype.onWindowResize = function() {
+			if(Utils.isFullscreen()) return;
+
+			var containerSize = Utils.getElementSize(this.domContainer);
+
+			if(!this.fragmentOnly) {
+				var containerWidth = containerSize.width;
+
+				this.camera.aspect = containerWidth / this.params.height;
+				this.camera.updateProjectionMatrix();
+			}
+			else {
+				this.uniforms.resolution.value.x = containerSize.width;
+				this.uniforms.resolution.value.y = containerSize.height;
+			}
+
+			this.renderer.setSize( containerSize.width, this.params.height );
+
+			this.render();
+		}
+
+		PocketGL.prototype.onLoadingComplete = function()
+		{
+			//console.log("loading complete");
+
+			if(this.loadingShaders) {
+				this.loadingShaders = false;
+				this.init();
+			}
+			else
+				this.switchTab(0);
 		}
 
 		PocketGL.prototype.addSkybox = function() 
 		{
+			var scope = this;
+
 			var urls = [];
 
-			for(i in this.params.skybox)
+			for(var i in this.params.skybox)
 				urls[i] = this.baseURL + this.params.skybox[i];
 
 			var textureCube;
 
 			if(urls.length == 1) {
-				equirectangularTexture = new THREE.TextureLoader().load( urls[0] );
+				this.showLoading();
+
+				var loader = new THREE.TextureLoader();
+				this.LoadingManager.addObject(loader);
+				
+				var equirectangularTexture = loader.load( 
+					urls[0], 
+					function() { scope.LoadingManager.onProgress(loader, 1); },
+					function ( xhr ) {
+						if ( xhr.lengthComputable ) {
+							var percentComplete = xhr.loaded / xhr.total;
+							scope.LoadingManager.onProgress(loader, percentComplete);
+						}
+					},
+					function(xhr) { scope.LoadingManager.onError(xhr); }
+				);
+
 				equirectangularTexture.wrapS = THREE.ClampToEdgeWrapping;
 				equirectangularTexture.wrapT = THREE.ClampToEdgeWrapping;
 				equirectangularTexture.minFilter = equirectangularTexture.magFilter =THREE.LinearFilter;
@@ -72568,7 +72512,22 @@ define('app/pocket.gl',[
 				this.uniforms["tCube"] = { type:"t", value: equirectangularTexture };
 			}
 			else {
-				textureCube = new THREE.CubeTextureLoader().load( urls );
+				var loader = new THREE.CubeTextureLoader();
+				this.LoadingManager.addObject(loader);
+
+				var textureCube = loader.load( 
+					urls,
+
+					function() { scope.LoadingManager.onProgress(loader, 1); },
+					function ( xhr ) {
+						if ( xhr.lengthComputable ) {
+							var percentComplete = xhr.loaded / xhr.total;
+							scope.LoadingManager.onProgress(loader, percentComplete);
+						}
+					},
+					function(xhr) { scope.LoadingManager.onError(xhr); }
+				);
+
 				textureCube.mapping = THREE.CubeReflectionMapping;
 
 				var shader = THREE.ShaderLib[ "cube" ];
@@ -72591,6 +72550,35 @@ define('app/pocket.gl',[
 			}
 		}
 
+		PocketGL.prototype.addFullscreenButton = function(domElement)
+		{
+			var fullscreenButton = document.createElement("a");
+			fullscreenButton.href = "#";
+			fullscreenButton.innerHTML = " ";
+			fullscreenButton.title = "fullscreen";
+			fullscreenButton.className = "pocketgl-fullscreenbutton";
+
+			fullscreenButton.onclick = function() { 
+				// save windowed size
+				scope.windowedSize = Utils.getElementSize(scope.renderer.domElement);
+
+				// pause the animation while going fullscreen on iexplorer
+				if(document.msFullscreenEnabled) scope.animationPaused = true; 
+
+				Utils.goFullscreen(scope.renderer.domElement);
+				
+				return false; 
+			}
+
+			var scope = this;
+			document.addEventListener('mozfullscreenchange', function() { scope.onFullscreenChange(); } );
+			document.addEventListener('webkitfullscreenchange', function() { scope.onFullscreenChange(); } );
+			document.addEventListener('MSFullscreenChange', function() { scope.onFullscreenChange(); } );
+			document.addEventListener('fullscreenChange', function() { scope.onFullscreenChange(); } );
+
+			domElement.appendChild(fullscreenButton);
+		}
+
 		PocketGL.prototype.getLogoDomEl = function()
 		{
 			var logo = document.createElement("a");
@@ -72603,36 +72591,79 @@ define('app/pocket.gl',[
 			return logo;
 		}
 
+		PocketGL.prototype.onFullscreenChange = function()
+		{
+			var size;
+			if(Utils.isFullscreen()) {
+				size = Utils.getWindowSize();
+			}
+			else {
+				size = this.windowedSize;
+			}
+
+			if(this.fragmentOnly) {
+				this.uniforms.resolution.value.x = size.width;
+				this.uniforms.resolution.value.y = size.height;
+			}
+			else {
+				this.camera.aspect = size.width / size.height;
+				this.camera.updateProjectionMatrix();
+			}
+
+			//this.renderer.setPixelRatio( window.devicePixelRatio );
+			this.renderer.setSize( size.width, size.height );
+
+			this.render();
+
+			var scope = this;
+			if(this.params.animated)
+				window.setTimeout( 
+					function() { 
+						scope.animationPaused = false; 
+						scope.animate();
+					}, 500);
+		}
+
 		PocketGL.prototype.switchTab = function(tabIndex)
 		{
-			if(tabIndex < 0 || tabIndex > 3) return;
+			if(tabIndex < 0 || tabIndex > 4) return;
 			if(tabIndex == this.currentTab) return;
 			
 			this.containers[this.currentTab].style.display = "none";
 			this.containers[tabIndex].style.display   = "block";
 
 			this.currentTab = tabIndex;
+			this.animationPaused = tabIndex != 0;
+			if(this.tabs != undefined) this.tabs.enable();
 
 			switch(tabIndex) {
 				case 0:
-					this.animationPaused = false;			
-					this.updateShadersFromEditor();
+					if(this.shaderEditorEnabled) this.updateShadersFromEditor();
 					break;
 
 				case 1:
-					this.animationPaused = true;
-					if(this.editorVertex == undefined)
-						this.editorVertex = this.createEditor(this.containers[1], this.params.vertexShader);						
+					if(this.editorVertex == undefined) {
+						this.editorVertex = this.createEditor(this.containers[1], this.params.vertexShader);
+						if(this.params.fluidWidth) this.containers[tabIndex].style.width = "";
+					}
+
+					this.editorVertex.focus();					
 					break;
 
 				case 2:
-					this.animationPaused = true;
-					if(this.editorFragment == undefined)
+					if(this.editorFragment == undefined) {
 						this.editorFragment = this.createEditor(this.containers[2], this.params.fragmentShader);
+						if(this.params.fluidWidth) this.containers[tabIndex].style.width = "";
+					}
+
+					this.editorFragment.focus();
+					break;
+
+				case 4:
+					if(this.tabs != undefined) this.tabs.disable();
 					break;
 
 				deafult:
-					this.animationPaused = true;
 					break;
 			}
 		}
@@ -72642,27 +72673,35 @@ define('app/pocket.gl',[
 			var editor = ace.edit(container);
 
 			editor.$blockScrolling = Infinity;
-			editor.setTheme("ace/theme/" + (this.params.editorTheme == "dark" ? this.darkAceTheme : this.brightAceTheme));
+			editor.setTheme("ace/theme/" + (this.params.editorTheme == "dark" ? config.darkAceTheme : config.brightAceTheme));
 			editor.session.setMode("ace/mode/glsl");
 			editor.setShowPrintMargin(false);
 			editor.setValue(text, -1);
-			editor.setOption("wrap", 80);
+			editor.getSession().setUseWrapMode(this.params.editorWrap);
 
 			return editor;
 		}
 
 		PocketGL.prototype.updateUniforms = function() {
-			if(this.uniforms.time != undefined) this.uniforms.time.value += this.clock.getDelta();
+			if(this.uniforms.time != undefined && this.params.animated) 
+				this.uniforms.time.value += this.clock.getDelta();
+
+			function update(u, uniformid, scope) {
+				if(u.type == "float")
+					scope.uniforms[uniformid].value = scope.GUIParams[u.displayName];
+				else if(u.type == "color")
+					scope.uniforms[uniformid].value = new THREE.Color(scope.GUIParams[u.displayName]);
+				else if(u.type == "boolean")
+					scope.uniforms[uniformid].value = scope.GUIParams[u.displayName] ? 1 : 0;
+			}
 
 			for(uniformid in this.params.uniforms) {
 				var u = this.params.uniforms[uniformid];
 
-				if(u.type == "float")
-					this.uniforms[uniformid].value = this.GUIParams[u.displayName];
-				else if(u.type == "color")
-					this.uniforms[uniformid].value = new THREE.Color(this.GUIParams[u.displayName]);
-				else if(u.type == "boolean")
-					this.uniforms[uniformid].value = this.GUIParams[u.displayName] ? 1 : 0;
+				if(u.length == undefined)
+					update(u, uniformid, this);
+				else for(i in u[0]) 
+					update(u[0][i], i, this);				
 			}
 		}
 
@@ -72688,176 +72727,47 @@ define('app/pocket.gl',[
 			//console.log("render " + this.frameCount);
 		}
 
-		PocketGL.prototype.setObjectTransform = function(obj, params) {
-			if(params.scale == undefined) params.scale = 1;
-			if(params.x == undefined) params.x = 0;
-			if(params.y == undefined) params.y = 0;
-			if(params.z == undefined) params.z = 0;
-			if(params.rx == undefined) params.rx = 0;
-			if(params.ry == undefined) params.ry = 0;
-			if(params.rz == undefined) params.rz = 0;
-
-			obj.scale.x = obj.scale.y = obj.scale.z = params.scale;
-			obj.updateMatrix();
-
-			obj.position.x = params.x;
-			obj.position.y = params.y;
-			obj.position.z = params.z;
-
-			obj.rotation.x = params.rx * 3.1415926 / 180;
-			obj.rotation.y = params.ry * 3.1415926 / 180;
-			obj.rotation.z = params.rz * 3.1415926 / 180;
-		}
-
 		PocketGL.prototype.loadMesh = function(mesh, material) {
-			var _this = this;
+			var scope = this;
 
-			if (typeof this.currentmesh != "undefined") {
-			   this.scene.remove(this.currentmesh);
-			}
+			// retrieve cached mesh
+			if(mesh.quaternion) {
+				if (typeof this.currentmesh != "undefined")
+				   this.scene.remove(scope.currentmesh);
 
-			if(mesh.type !== undefined) {
-				this.currentmesh = this.createProceduralMesh(mesh, this.shaderEditorEnabled ? this.currentMaterial : new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0x220000, shininess: 40, shading: THREE.FlatShading } ));
+				this.currentmesh = mesh;
+				this.scene.add(mesh);
 
-				if(mesh.y === undefined) mesh.y = 0;
-				if(mesh.scale === undefined) mesh.scale = 1;
+				this.currentMaterial = material;
 
-				this.setObjectTransform(this.currentmesh, mesh);
-
-				this.scene.add(this.currentmesh);
 				this.render();
 				return;
 			}
-			
-			var manager = new THREE.LoadingManager();
-			manager.onProgress = function ( item, loaded, total ) {
-				console.log( item, loaded, total );
-			};
 
-			var onProgress = function ( xhr ) {
-				if ( xhr.lengthComputable ) {
-					var percentComplete = xhr.loaded / xhr.total * 100;
-					console.log( Math.round(percentComplete, 2) + '% downloaded' );
+			if(mesh.type == undefined) {
+				this.showLoading();
+			}
+
+			var loader = new MeshLoader(mesh, material, this.baseURL, this.LoadingManager, 
+				function(loadedMesh) {
+					if (typeof scope.currentmesh != "undefined") {
+					   scope.scene.remove(scope.currentmesh);
+					}
+
+					// cache the mesh
+					for(i in scope.params.meshes) {
+						if(scope.params.meshes[i] == mesh)
+							scope.params.meshes[i] = loadedMesh;
+					}
+
+					scope.currentmesh = loadedMesh;
+					scope.scene.add(loadedMesh);
+
+					scope.currentMaterial = material;
+
+					scope.render();
 				}
-			};
-
-			var onError = function ( xhr ) {
-			};
-
-			function endsWith(str, suffix) {
-			    return str.indexOf(suffix, str.length - suffix.length) !== -1;
-			}
-
-			var meshurl = this.baseURL + mesh.url;
-			
-			if(endsWith(meshurl.toLowerCase(), ".dae")) {
-				var loader = new THREE.ColladaLoader( manager );
-				loader.options.convertUpAxis = true;
-				loader.load(meshurl, function ( collada ) {
-					dae = collada.scene;
-
-					dae.traverse( function ( child ) {
-						if ( child instanceof THREE.Mesh ) {
-							if(_this.shaderEditorEnabled) child.material = material;
-						}
-					} );
-
-					_this.setObjectTransform(dae, mesh);
-
-					_this.scene.add( dae );
-					_this.currentmesh = dae;
-					_this.render();
-				}, 
-				onProgress, onError );
-			}
-			else if(endsWith(meshurl.toLowerCase(), ".obj") && mesh.mtl !== undefined && !_this.shaderEditorEnabled) {
-				var mtlLoader = new THREE.MTLLoader();
-				mtlLoader.setBaseUrl(_this.baseURL );
-				mtlLoader.load( _this.baseURL + mesh.mtl, function( materials ) {
-
-					materials.preload();
-					
-					for(i in materials.materials)
-						_this.currentMaterial = materials.materials[i];
-
-					var objLoader = new THREE.OBJLoader();
-					objLoader.setMaterials( materials );
-					objLoader.load( meshurl, function ( object ) {
-
-						_this.setObjectTransform(object, mesh);
-
-						_this.scene.add( object );
-						_this.currentmesh = object;
-						_this.render();
-					}, onProgress, onError );
-				}, onProgress, onError );
-			}
-			else if(endsWith(meshurl.toLowerCase(), ".obj")) {
-				var loader = 
-					endsWith(meshurl.toLowerCase(), ".fbx")
-					? new THREE.FBXLoader( manager )
-					: new THREE.OBJLoader( manager );
-
-				loader.load(meshurl, function( object ) {
-
-					object.traverse( function( child ) {
-						if ( child instanceof THREE.Mesh ) {
-							if(_this.shaderEditorEnabled) child.material = material;
-						}
-					} );
-
-					_this.setObjectTransform(object, mesh);
-
-					_this.scene.add(object);
-					_this.currentmesh = object;
-					_this.render();
-				}, onProgress, onError );
-			}
-
-			this.currentMaterial = material;
-		}
-
-		PocketGL.prototype.createProceduralMesh = function(mesh, material) {
-			var geometry = null;
-
-			switch(mesh.type) {
-				case "sphere":
-					if(mesh.subdivision === undefined) mesh.subdivision = 32;
-					if(mesh.subdivision < 10) mesh.subdivision = 10;
-					if(mesh.subdivision > 64) mesh.subdivision = 64;
-					geometry = new THREE.SphereGeometry(30, mesh.subdivision, mesh.subdivision);
-					break;
-
-				case "torus":
-					if(mesh.subdivision === undefined) mesh.subdivision = 32;
-					if(mesh.subdivision < 10) mesh.subdivision = 10;
-					if(mesh.subdivision > 64) mesh.subdivision = 64;
-					geometry = new THREE.TorusGeometry(30, 10, mesh.subdivision, mesh.subdivision * 4);
-					break;
-
-				case "cylinder":
-					if(mesh.subdivision === undefined) mesh.subdivision = 32;
-					if(mesh.subdivision < 10) mesh.subdivision = 10;
-					if(mesh.subdivision > 64) mesh.subdivision = 64;
-					geometry = new THREE.CylinderGeometry( 25, 25, 60, mesh.subdivision, 1);
-					break;
-
-				case "cube":
-					geometry = new THREE.BoxGeometry(40, 40, 40);
-					break;
-
-				case "teapot":
-				default:
-					if(mesh.subdivision === undefined || mesh.subdivision <= 1) mesh.subdivision = 6;
-					if(mesh.subdivision > 10) mesh.subdivision = 10;
-					geometry = new THREE.TeapotBufferGeometry( 
-						25,
-						mesh.subdivision,
-						true, true, true, false, true);
-					break;
-			}
-
-			return new THREE.Mesh(geometry, material);
+			);
 		}
 
 		PocketGL.prototype.updateShadersFromEditor = function() {
@@ -72881,13 +72791,17 @@ define('app/pocket.gl',[
 			for(var i in rows) {		
 				var lineNumber = /:([0-9]+):/i.exec(rows[i]);
 				if(lineNumber != null) {
-					var modifiedRow = rows[i].replace(/:([0-9]+):/i, ":" + (lineNumber[1] - offset) + ":");
+					var modifiedRow = rows[i].replace(/:([0-9]+):/i, " line: " + (lineNumber[1] - offset + 1)+ " ");
 					result.push(modifiedRow);
 				}
 				else result.push(rows[i]);
 			}
 
 			return result.join("<br/>");
+		}
+
+		PocketGL.prototype.showLoading = function() {
+			this.switchTab(4);
 		}
 
 		PocketGL.prototype.logErrors = function() {
@@ -72901,8 +72815,8 @@ define('app/pocket.gl',[
 				var vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log;
 				
 				// Subtracting from errors line numbers the lines of code included by three.js into the shader programs
-				vertexLog   = this.adjustLineNumbers(vertexLog, config.vertexShaderPreambleLineCount);
-				fragmentLog = this.adjustLineNumbers(fragmentLog, config.fragmentShaderPreambleLineCount);
+				//vertexLog   = this.adjustLineNumbers(vertexLog, Utils.countLines(this.currentMaterial.program.diagnostics.vertexShader.prefix));
+				//fragmentLog = this.adjustLineNumbers(fragmentLog, Utils.countLines(this.currentMaterial.program.diagnostics.fragmentShader.prefix));
 
 				errorMessage = programLog + "<br/><br/>";
 
@@ -72921,12 +72835,18 @@ define('app/pocket.gl',[
 		}
 
 		PocketGL.prototype.init = function() {
-			var that = this;
+			var scope = this;
 
 			// Camera
-			this.camera = new THREE.PerspectiveCamera( 45, this.canvasWidth/this.canvasHeight, 0.1, 1000 );
-			this.camera.position.z = 100;
-			this.camera.position.y = 50;
+			if(!this.fragmentOnly) {
+				this.camera = new THREE.PerspectiveCamera( 45, this.params.width/this.params.height, 0.1, 1000 );
+				this.camera.position.z = 100;
+				this.camera.position.y = 50;
+			}
+			else {
+				this.camera = new THREE.Camera();
+				this.camera.position.z = 1;
+			}
 
 			// Scene
 			var scene = new THREE.Scene();
@@ -72937,45 +72857,74 @@ define('app/pocket.gl',[
 			if(this.params.animated)
 				this.uniforms.time = {type: "f", value: 0};
 
+			if(this.fragmentOnly)
+				this.uniforms.resolution = {type: "v2", value: new THREE.Vector2(this.params.width, this.params.height)};
+
+			function addUniform(u, index) {
+				if(u.type == "boolean")
+					scope.uniforms[index] = {
+						type: "f",
+						value: u.type ? 1.0 : 0.0 
+					};
+				else if(u.type == "float")
+					scope.uniforms[index] = {
+						type: "f",
+						value: u.value
+					};
+				else if(u.type == "color") {
+					scope.uniforms[index] = {
+						type: "c",
+						value: new THREE.Color(u.value)
+					};
+				}
+			}
+
 			if(this.params.uniforms != undefined) {
-				for(i in this.params.uniforms) {
+				for(var i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.type == "boolean")
-						this.uniforms[i] = {
-							type: "f",
-							value: u.type ? 1.0 : 0.0 
-						};
-					else if(u.type == "float")
-						this.uniforms[i] = {
-							type: "f",
-							value: u.value
-						};
-					else if(u.type == "color")
-						this.uniforms[i] = {
-							type: "c",
-							value: new THREE.Color(u.value)
-						};
+					if(u.length != undefined) // folder
+						for(var j in u[0]) addUniform(u[0][j], j);
+					else
+						addUniform(u, i);
 				}
 			}
 
 			// Textures
 			if(this.params.textures != undefined) {
-				for(i in this.params.textures) {
-					this.uniforms[this.params.textures[i].uniformName] = { type: "t", value: null };
+				for(var i in this.params.textures) {
+					var texparams = this.params.textures[i];
+					this.uniforms[texparams.uniformName] = { type: "t", value: null };
+
+					this.showLoading();
 
 					var loader = new THREE.TextureLoader();
-					loader.load(
+					this.LoadingManager.addObject(loader);
+
+					var texture = loader.load(
 						this.baseURL + this.params.textures[i].url,
-						(function(texparams) {
-							return function ( texture ) {
-								texture.wrapS = texture.wrapT = texparams.wrap == "clamp" ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;
-								if(texparams.filter == "nearest") texture.minFilter = texture.magFilter =THREE.NearestFilter;
-								that.uniforms[texparams.uniformName].value = texture;
-								that.render();
+
+						function(loader) {
+							return function (texture) {
+								scope.LoadingManager.onProgress(loader, 1);
 							}
-						})(that.params.textures[i])
-					);			
+						}(loader),
+						
+						function(loader) {
+							return function ( xhr ) {
+								if ( xhr.lengthComputable ) {
+									var percentComplete = xhr.loaded / xhr.total;
+									console.log( Math.round(percentComplete * 100, 2) + '% downloaded' );
+									scope.LoadingManager.onProgress(loader, percentComplete);
+								}
+							}
+						}(loader),
+						function(xhr) { scope.LoadingManager.onError(xhr); }
+					);
+
+					texture.wrapS = texture.wrapT = texparams.wrap == "clamp" ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;
+					if(texparams.filter == "nearest") texture.minFilter = texture.magFilter =THREE.NearestFilter;
+					this.uniforms[texparams.uniformName].value = texture;
 				}
 			}
 
@@ -73000,7 +72949,7 @@ define('app/pocket.gl',[
 			// Renderer
 			this.renderer = new THREE.WebGLRenderer({ antialias: true });				
 			this.renderer.setPixelRatio( window.devicePixelRatio );
-			this.renderer.setSize(this.canvasWidth, this.canvasHeight);
+			this.renderer.setSize(this.params.width, this.params.height);
 			this.renderer.setClearColor( this.params.backgroundColor );
 			//this.renderer.sortObjects = false;
 
@@ -73008,14 +72957,14 @@ define('app/pocket.gl',[
 				// Lights
 				scene.add( new THREE.AmbientLight( 0xcccccc ) );
 
-				var directionalLight = new THREE.DirectionalLight(0xffffff );
+				var directionalLight = new THREE.DirectionalLight(0xaaaaaa);
 				directionalLight.position.x = 100;
 				directionalLight.position.y = 60;
 				directionalLight.position.z = 100;
 				directionalLight.position.normalize();
 				scene.add( directionalLight );
 
-				var directionalLight1 = new THREE.DirectionalLight(0xaaaaaa );
+				var directionalLight1 = new THREE.DirectionalLight(0x666666);
 				directionalLight1.position.x = -100;
 				directionalLight1.position.y = 60;
 				directionalLight1.position.z = -100;
@@ -73024,63 +72973,97 @@ define('app/pocket.gl',[
 			}
 
 			// Orbit
-			var cameraControls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
-			cameraControls.enablePan = false;
-			cameraControls.target.set( 0, 0, 0 );
-			cameraControls.addEventListener( 'change', function() { that.render() } );
+			if(!this.fragmentOnly) {
+				var cameraControls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
+				cameraControls.enablePan = false;
+				cameraControls.enableZoom   = this.params.zoom;
+				cameraControls.enableRotate = this.params.orbiting;
+				cameraControls.target.set( 0, 0, 0 );
+				cameraControls.addEventListener( 'change', function() { scope.render() } );
+			}
 
 			// Add webgl canvas renderer to DOM container	
 			this.containers[0].appendChild( this.renderer.domElement );
 			this.containers[0].appendChild(this.getLogoDomEl());
+			if(Utils.hasFullscreen()) this.addFullscreenButton(this.containers[0]);
 
 			// GUI	
 			this.GUIParams = { Mesh: 0 };
 
+			function addGuiParams(u) {
+				if(u.type == "float" || u.type == "boolean") {
+					scope.GUIParams[u.displayName] = u.value;
+				}
+				else if(u.type == "color") {
+					scope.GUIParams[u.displayName] = u.value;
+				}
+			}
+
 			if(this.params.uniforms != undefined)
-				for(i in this.params.uniforms) {
+				for(var i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.type == "float" || u.type == "boolean") {
-						this.GUIParams[u.displayName] = u.value;
+					if(u.length == undefined) {
+						addGuiParams(u);
 					}
-					else if(u.type == "color") {
-						function toHex(v) { hex = v.toString(16); if(hex.length == 1) hex = "0" + hex; return hex;}
-						this.GUIParams[u.displayName] = "#" + toHex(u.value[0]) + toHex(u.value[1]) + toHex(u.value[2]);
+					else {
+						for(var j in u[0]) addGuiParams(u[0][j]);
 					}
 				}
 
 			var meshes = {};
-			for(i in this.params.meshes)
+			for(var i in this.params.meshes)
 				meshes[this.params.meshes[i].name] = i;
 
 			var gui = false;
-			if(this.params.meshes.length > 1 || this.params.uniforms != undefined)
+			if(this.params.meshes.length > 1 || this.params.uniforms != undefined) {
 				gui = new dat.GUI({ autoPlace: false });
+				if(this.params.guiClosed) gui.close();
+			}
 
 			if(this.params.meshes.length > 1)
 				gui.add(this.GUIParams, 'Mesh', meshes).onChange(function() {
-					that.loadMesh(that.params.meshes[that.GUIParams['Mesh']], material);
+					scope.loadMesh(scope.params.meshes[scope.GUIParams['Mesh']], material);
+					scope.LoadingManager.setReady();
 				});
 			else if(this.params.meshes.length == 0) {
-				material.side = THREE.DoubleSide;
-				this.scene.add(this.createProceduralMesh({id:"teapot"}, material));
+				if(this.fragmentOnly) {
+					var geometry = new THREE.PlaneBufferGeometry(2, 2);
+					var mesh = new THREE.Mesh( geometry, material );
+					scene.add( mesh );
+				}
+				else {
+					material.side = THREE.DoubleSide;
+					this.loadMesh({type:"teapot"}, material);
+				}
 			}
 
-			for(i in this.params.uniforms) {
-				var u = this.params.uniforms[i];
-
+			function addGuiData(u, gui) {
 				if(u.type == "float") 
-					gui.add(this.GUIParams, u.displayName, u.min, u.max).onChange(function() {
-						that.render();
+					gui.add(scope.GUIParams, u.displayName, u.min, u.max).onChange(function() {
+						scope.render();
 					});
 				else if(u.type == "color")
-					gui.addColor(this.GUIParams, "Color").onChange(function() {
-						that.render();
+					gui.addColor(scope.GUIParams, "Color").onChange(function() {
+						scope.render();
 					});
 				else if(u.type == "boolean")
-					gui.add(this.GUIParams, u.displayName).onChange(function() {
-						that.render();
+					gui.add(scope.GUIParams, u.displayName).onChange(function() {
+						scope.render();
 					});
+			}
+
+			for(var i in this.params.uniforms) {
+				var u = this.params.uniforms[i];
+
+				if(u.length != undefined) {
+					var folder = gui.addFolder(i);
+					for(var j in u[0]) addGuiData(u[0][j], folder);	
+
+					if(u.length >= 2 && u[1] == "opened")				
+						folder.open();
+				}
+				else addGuiData(u, gui);
 			}
 
 			if(gui) {
@@ -73093,12 +73076,18 @@ define('app/pocket.gl',[
 			}
 
 			// Load mesh
-			if(this.params.meshes.length != 0) {
-				// setup dds format texture loader
-				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-
+			if(this.params.meshes.length != 0)
 				this.loadMesh(this.params.meshes[0], material);
-			}
+
+			if(this.params.animated)
+				this.animate();
+			else
+				this.render();
+
+			if(this.LoadingManager.objects.length == 0)
+				this.switchTab(0);
+			else
+				this.LoadingManager.setReady();
 		}
 
 		return PocketGL;

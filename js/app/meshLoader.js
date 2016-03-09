@@ -47,7 +47,7 @@ define(
 					this.mesh, 
 					this.material != undefined 
 					? this.material 
-					: new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0x220000, shininess: 40, shading: THREE.FlatShading } )
+					: new THREE.MeshPhongMaterial( { color: 0xaa0000, specular: 0x220000, shininess: 40, shading: THREE.SmoothShading } )
 				);
 
 				if(this.mesh.y === undefined) this.mesh.y = 0;

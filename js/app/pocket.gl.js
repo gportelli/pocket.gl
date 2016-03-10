@@ -469,7 +469,7 @@ define([
 				scope.windowedSize = Utils.getElementSize(scope.renderer.domElement);
 
 				// pause the animation while going fullscreen on iexplorer
-				if(document.msFullscreenEnabled) scope.animationPaused = true; 
+				if(document.msFullscreenEnabled) scope.pauseBeforeFullscreen(); 
 
 				Utils.goFullscreen(scope.renderer.domElement);
 				
@@ -525,8 +525,7 @@ define([
 			if(this.params.animated)
 				window.setTimeout( 
 					function() { 
-						scope.animationPaused = false; 
-						scope.animate();
+						scope.resumeAfterFullscreen();
 					}, 500);
 		}
 
@@ -641,7 +640,11 @@ define([
 		}
 
 		PocketGL.prototype.isPlaying = function() {
-			return this.params.animated && !this.animationStopped && !this.animationPaused && !this.stoppedByError;
+			return 	this.params.animated   && 
+					!this.animationStopped && 
+					!this.animationPaused  && 
+					!this.stoppedByError   && 
+					!this.pausedBeforeFullscreen;
 		}
 
 		PocketGL.prototype.stop = function() {
@@ -658,6 +661,8 @@ define([
 
 			this.pauseButton.style.display = "none";
 			this.playButton.style.display = "block";
+
+			this.render();
 		}
 
 		PocketGL.prototype.errorStop = function() {
@@ -667,11 +672,24 @@ define([
 		}
 
 		PocketGL.prototype.errorResume = function() {
-			if(! this.params.animated) return;
-
-			if(!this.stoppedByError) return;
+			if(! this.params.animated || !this.stoppedByError) return;
 
 			this.stoppedByError = false;
+
+			if(this.isPlaying())
+				this.play();
+		}
+
+		PocketGL.prototype.pauseBeforeFullscreen = function() {
+			if(! this.params.animated) return;
+
+			this.pausedBeforeFullscreen = true;
+		}
+
+		PocketGL.prototype.resumeAfterFullscreen = function() {
+			if(! this.params.animated || !this.pausedBeforeFullscreen) return;
+
+			this.pausedBeforeFullscreen = false;
 
 			if(this.isPlaying())
 				this.play();

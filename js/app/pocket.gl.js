@@ -938,8 +938,7 @@ define([
 			if(this.shaderEditorEnabled) {
 				var material = new THREE.ShaderMaterial( {
 					uniforms: this.uniforms,
-					vertexShader: this.params.vertexShader, fragmentShader: this.params.fragmentShader,
-					side: this.params.doubleSided ? THREE.DoubleSide : THREE.FrontSide,
+					vertexShader: this.params.vertexShader, fragmentShader: this.params.fragmentShader,					
 					transparent: this.params.transparent,
 					extensions: {
 						derivatives: true
@@ -1042,8 +1041,7 @@ define([
 					scene.add( mesh );
 				}
 				else {
-					material.side = THREE.DoubleSide;
-					this.loadMesh({type:"teapot"}, material);
+					this.loadMesh({type:"teapot", doubleSided: true}, material);
 				}
 			}
 

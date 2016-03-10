@@ -1,8 +1,8 @@
 {
 	meshes: [
-		{ type: "teapot", name: "Teapot", y: 0},
-		{ type: "sphere",  name: "Sphere",  y: 0},
-		{ url: "meshes/light-bulb.obj",  name: "Light Bulb (obj)",  y: 0, rx: 90, scale: 0.17},
+		{ type: "teapot", name: "Teapot", doubleSided: true},
+		{ type: "sphere",  name: "Sphere"},
+		{ url: "meshes/light-bulb.obj",  name: "Light Bulb (obj)", rx: 90, scale: 0.17},
 	],
 
 	uniforms: {

@@ -1,7 +1,7 @@
 {
 	meshes: [
-		{ url: "meshes/teapot.DAE", name: "Teapot", y: -23},
-		{ url: "meshes/torus.DAE",  name: "Torus",  y: 0}
+		{ url: "meshes/teapot.DAE", name: "Teapot", y: -23, doubleSided: true},
+		{ url: "meshes/torus.DAE",  name: "Torus"}
 	],
 
 	textures: [

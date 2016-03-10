@@ -1,6 +1,6 @@
 {
 	meshes: [
-		{ url: "meshes/teapot.DAE", name: "Teapot", y: -23},
+		{ url: "meshes/teapot.DAE", name: "Teapot", y: -23, doubleSided: true},
 	],
 
 	//editorTheme: "bright",

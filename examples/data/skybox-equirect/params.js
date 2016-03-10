@@ -1,6 +1,6 @@
 {
 	meshes: [ 
-		{type: "teapot", name: "Teapot"},
+		{type: "teapot", name: "Teapot", doubleSided: true},
 		{type: "sphere", name: "Sphere"},
 		{type: "torus", name: "Torus"},
 	],

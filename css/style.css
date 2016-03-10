@@ -178,6 +178,15 @@
 	color: #000;
 }
 
+.pocketgl-playbutton:focus,
+.pocketgl-stopbutton:focus,
+.pocketgl-pausebutton:focus,
+.pocketgl-logo:focus,
+.pocketgl-copyButton:focus {
+	border: 0;
+	outline: none;
+}
+
 /* dat js */
 .dg.main li { margin: 0px; }
 .dg.main li.title { margin-left: -4px; }
@@ -186,5 +195,3 @@
   line-height: normal;
 }
 .dg .c select { padding: 0; border-radius: 0;}
-
-.pocketgl-stopbutton:focus { border: 1px dotted gray; }

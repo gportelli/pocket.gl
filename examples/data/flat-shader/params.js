@@ -1,7 +1,7 @@
 {
 	meshes: [
-		{ type: "teapot", name: "Teapot", y: 0},
-		{ type: "sphere",  name: "Sphere",  y: 0}
+		{ type: "teapot", name: "Teapot", doubleSided: true},
+		{ type: "sphere",  name: "Sphere"}
 	],
 
 	uniforms: {

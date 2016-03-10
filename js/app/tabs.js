@@ -22,31 +22,57 @@ define([
 
 	function(Utils) {
 
-	function PocketGLTabs(callback, tabs, hl) {
-		this.callback = callback;
-		this.tabs = tabs;
-		this.hl = hl;
-
-		this.setupEvents();
-
-		this.repositionHighlight(tabs[0]);
-	}
-
-	PocketGLTabs.prototype.setupEvents = function() {
+	function PocketGLTabs(container, tabColor, addVertex, callback) {
 		var _this = this;
-		var i=0;
 
-		while(i < this.tabs.length) {
-			this.tabs[i].addEventListener("click", (function (action, index) {
+		this.callback = callback;
+		this.container = container;
+
+		var div = document.createElement("div");
+		div.className = "pocketgl pocketgl-tabs";
+		var ul = document.createElement("ul");
+
+		var tabNames = ["Render", "Vertex Shader", "Fragment Shader"];
+		var tabIDs = ["render", "vertex_shader", "fragment_shader"];
+		var tabs = [];
+
+		for(var i=0; i<3; i++) {
+			if(!addVertex && i == 1) continue;
+
+			var li = document.createElement("li");
+			var a = document.createElement("a");
+			a.href = "#";
+			a.innerHTML = tabNames[i];
+			li.appendChild(a);
+			ul.appendChild(li);
+
+			a.addEventListener("click", (function (action, index) {
 					return function(event) {
 						_this.switchTab(event, action, index);
 					}
-				})(this.tabs[i], i) 
+				})(a, tabIDs[i]) 
 			);
 
-			i++;
+			tabs.push(a);
 		}
-	};
+		
+		div.appendChild(ul);
+
+		var divHl = document.createElement("div");
+		divHl.className = "hl animated";
+		divHl.style.width = "70px";
+		divHl.style.left = "0px";
+		divHl.style.backgroundColor = tabColor;
+
+		div.appendChild(divHl);	
+
+		this.container.appendChild(div);
+
+		this.hl = divHl;
+		this.tabs = tabs;
+
+		this.repositionHighlight(tabs[0]);
+	}
 
 	PocketGLTabs.prototype.switchTab = function(event, action, index) {
 		event.preventDefault();

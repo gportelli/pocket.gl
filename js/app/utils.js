@@ -67,5 +67,22 @@ define(function() {
 			canvas.requestFullscreen(); 
 	}
 
+	Utils.prototype.toJSString = function(text) {
+		lines = text.split("\n");
+
+		result = "[\n";
+
+		for(i in lines) {
+			lines[i] = lines[i].replace("\n", "");
+			lines[i] = lines[i].replace("\r", "");
+
+			result += '\t"' + lines[i] + '"' + (i != lines.length - 1 ? ',' : "") + "\n";
+		}
+
+		result += '].join("\\n")';
+
+		return result;
+	}
+
 	return new Utils();
 });

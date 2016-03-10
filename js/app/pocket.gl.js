@@ -28,6 +28,8 @@ define([
 	"app/loadingManager",
 	"app/meshLoader",
 
+	"clipboard",
+
 	"three_builds/three",
 
 	"three_examples/Detector",
@@ -35,9 +37,10 @@ define([
 
 	"dat_gui/dat.gui",
 
-	"ace_builds/ace"],
+	"ace_builds/ace"
+	],
 
-	function(stylesheet, defaultVertex, defaultFragment, Utils, PocketGLTabs, config, LoadingManager, MeshLoader) {
+	function(stylesheet, defaultVertex, defaultFragment, Utils, PocketGLTabs, config, LoadingManager, MeshLoader, Clipboard) {
 		console.log("pocket.gl " + config.version);
 
 		// Inject css
@@ -49,6 +52,9 @@ define([
 		function PocketGL(containerIDorDomEl, params, baseURL)
 		{
 			var scope = this;
+
+			// all the views
+			this.containerNames = ["render", "errors", "loading", "vertex_shader", "fragment_shader"];
 
 			if(typeof params === 'string' || params instanceof String)
 			{
@@ -93,15 +99,13 @@ define([
 				return;
 			}
 
-			this.currentTab = 0;
+			this.currentView = "render";
 
 			this.createDomElements();
 
 			this.clock = new THREE.Clock();
 
-			this.frameCount = 0;
-
-			this.animationPaused = false;
+			this.frameCount = 0;			
 
 			if(params.vertexShaderFile != undefined || params.fragmentShaderFile != undefined) {
 				this.showLoading();
@@ -167,6 +171,8 @@ define([
 			if(params.fragmentShaderFile != undefined)
 				params.fragmentShader = "loading...";
 
+			this.fragmentOnly = false;
+
 			if(params.vertexShader == undefined && params.fragmentShader == undefined && params.meshes.length > 0) {
 				// mesh viewer
 				this.shaderEditorEnabled = false;
@@ -181,8 +187,6 @@ define([
 					this.shaderEditorEnabled = true;
 				}
 				else {
-					this.fragmentOnly = false;
-
 					if(params.vertexShader   == undefined) params.vertexShader   = defaultVertex;
 					if(params.fragmentShader == undefined) params.fragmentShader = defaultFragment;
 				}
@@ -198,67 +202,46 @@ define([
 			var scope = this;
 
 			// Tabs
-			if(this.shaderEditorEnabled && this.params.showTabs) {
-				var div = document.createElement("div");
-				div.className = "pocketgl-tabs";
-				var ul = document.createElement("ul");
+			if(this.shaderEditorEnabled && this.params.showTabs) 				
+				this.tabs = new PocketGLTabs(this.domContainer, this.params.tabColor, !this.fragmentOnly, function (view) { scope.switchView(view); });
 
-				var tabNames = ["Render", "Vertex Shader", "Fragment Shader"];
-				var tabs = [];
-				for(var i=0; i<3; i++) {
-					var li = document.createElement("li");
-					var a = document.createElement("a");
-					a.href = "#";
-					a.innerHTML = tabNames[i];
-					li.appendChild(a);
-					ul.appendChild(li);
-
-					tabs.push(a);
-				}
-				
-				div.appendChild(ul);
-
-				var divHl = document.createElement("div");
-				divHl.className = "hl animated";
-				divHl.style.width = "70px";
-				divHl.style.left = "0px";
-				divHl.style.backgroundColor = this.params.tabColor;
-
-				div.appendChild(divHl);	
-
-				this.domContainer.appendChild(div);
-				this.tabs = new PocketGLTabs(function (tabIndex) { scope.switchTab(tabIndex); }, tabs, divHl);
+			if(!this.params.fluidWidth) {
+				this.domContainer.style.width = this.params.width + "px";
+				this.domContainer.style.position = "relative";
 			}
 
-			this.containers = [];
-			for(var i=0; i<5; i++) {
-				this.containers[i] = document.createElement("div");
+			this.containers = {};
+			for(var i in this.containerNames) {
+				var id = this.containerNames[i];
+
+				this.containers[id] = document.createElement("div");
 				
-				if(i > 0) this.containers[i].style.display = "none";
+				if(i > 0) this.containers[id].style.display = "none";
 				
 
-				if(!this.params.fluidWidth)  this.containers[i].style.width  = this.params.width + "px";
+				if(!this.params.fluidWidth)  
+					this.containers[id].style.width  = this.params.width + "px";
 				else { 
 					// Fluid layout
 					this.params.width = Utils.getElementSize(this.domContainer).width;
 					window.addEventListener( 'resize', function() { scope.onWindowResize(); }, false );
 				}
 
-				this.containers[i].style.height = this.params.height + "px";
-				this.containers[i].style.position = "relative";
+				this.containers[id].style.height = this.params.height + "px";
+				this.containers[id].style.position = "relative";
 
-				this.domContainer.appendChild(this.containers[i]);
+				this.domContainer.appendChild(this.containers[id]);
 			}
 
-			this.containers[3].className = "pocketgl errorConsole";
+			this.containers.errors.className = "pocketgl errorConsole";
 
 			// Loading Manager progress bar
-			this.containers[4].className = "pocketgl loadingProgress";
+			this.containers.loading.className = "pocketgl loadingProgress";
 
-			this.containers[4].innerHTML = 
+			this.containers.loading.innerHTML = 
 				"<div class='pocketglProgress'><div class='pocketglProgressBar'></div></div>";
 
-			var progressBar = this.containers[4].getElementsByTagName("div")[1];
+			var progressBar = this.containers.loading.getElementsByTagName("div")[1];
 			this.LoadingManager = new LoadingManager(
 				progressBar,
 				function() { scope.onLoadingComplete(); }
@@ -295,7 +278,7 @@ define([
 				this.init();
 			}
 			else
-				this.switchTab(0);
+				this.switchView("render");
 		}
 
 		PocketGL.prototype.addSkybox = function() 
@@ -384,12 +367,101 @@ define([
 			}
 		}
 
+		PocketGL.prototype.addCopyButtons = function() {
+			var scope = this;
+
+			var buttons = document.createElement("div");
+			buttons.className = "pocketgl pocketgl-copyButtons";
+			buttons.style.display = "none";			
+
+			var copyButton = document.createElement("button");
+			copyButton.className = "pocketgl pocketgl-copyButton";
+			copyButton.innerHTML = "copy";
+
+			copyButton.title = "Copy to clipboard";			
+
+			var copyButtonJS = document.createElement("button");
+			copyButtonJS.className = "pocketgl pocketgl-copyButton";
+			copyButtonJS.innerHTML = "copy js";
+
+			copyButtonJS.title = "Copy as js string";
+
+			buttons.appendChild(copyButtonJS);
+			buttons.appendChild(copyButton);
+
+			this.domContainer.appendChild(buttons);
+
+			this.copyButtons = buttons;
+			this.copyButton = copyButton;
+			this.copyButtonJS = copyButtonJS;
+
+			this.clipboard = new Clipboard(copyButton);
+			this.clipboardJS = new Clipboard(copyButtonJS);
+		}
+
+		PocketGL.prototype.editorChanged = function(editor) {
+			var scope = this;
+
+			if(this.currentClipboardTimeout)
+				clearTimeout(this.currentClipboardTimeout);
+
+			this.currentClipboardTimeout = setTimeout(function(){ scope.updateClipboardButtons(); }, 1000);
+		}
+
+		PocketGL.prototype.updateClipboardButtons = function() {
+			var text;
+
+			if(this.currentView == "vertex_shader" && this.editorVertex) 
+				text = this.editorVertex.getValue();
+
+			if(this.currentView == "fragment_shader" && this.editorFragment) 
+				text = this.editorFragment.getValue();
+
+			if(text == undefined) return;
+
+			this.copyButton.setAttribute("data-clipboard-text", text);
+			this.copyButtonJS.setAttribute("data-clipboard-text", Utils.toJSString(text));
+		}
+
+		PocketGL.prototype.addPlayButtons = function(domElement)
+		{
+			var scope = this;
+
+			this.playButton = document.createElement("a");
+			this.playButton.href = "#";
+			this.playButton.innerHTML = " ";
+			this.playButton.title = "Play";
+			this.playButton.className = "pocketgl-playbutton";
+			this.playButton.style.display = "none";
+			this.playButton.onclick = function() { scope.play(); }
+
+			domElement.appendChild(this.playButton);
+
+			this.pauseButton = document.createElement("a");
+			this.pauseButton.href = "#";
+			this.pauseButton.innerHTML = " ";
+			this.pauseButton.title = "Pause";
+			this.pauseButton.className = "pocketgl-pausebutton";
+			this.pauseButton.onclick = function() { scope.pause(); }
+
+			domElement.appendChild(this.pauseButton);
+
+			this.stopButton = document.createElement("a");
+			this.stopButton.href = "#";
+			this.stopButton.innerHTML = " ";
+			this.stopButton.title = "Stop";
+			this.stopButton.className = "pocketgl-stopbutton";
+			this.stopButton.onclick = function() { scope.stop(); }
+
+			domElement.appendChild(this.stopButton);
+		}
+
 		PocketGL.prototype.addFullscreenButton = function(domElement)
 		{
 			var fullscreenButton = document.createElement("a");
 			fullscreenButton.href = "#";
 			fullscreenButton.innerHTML = " ";
-			fullscreenButton.title = "fullscreen";
+			fullscreenButton.title = "Fullscreen";
 			fullscreenButton.className = "pocketgl-fullscreenbutton";
 
 			fullscreenButton.onclick = function() { 
@@ -458,42 +530,56 @@ define([
 					}, 500);
 		}
 
-		PocketGL.prototype.switchTab = function(tabIndex)
+		PocketGL.prototype.switchView = function(view)
 		{
-			if(tabIndex < 0 || tabIndex > 4) return;
-			if(tabIndex == this.currentTab) return;
+			var scope = this;
+
+			if(this.containers[view] == undefined) return;
+
+			if(view == this.currentView) return;
 			
-			this.containers[this.currentTab].style.display = "none";
-			this.containers[tabIndex].style.display   = "block";
+			this.containers[this.currentView].style.display = "none";
+			this.containers[view].style.display   = "block";
 
-			this.currentTab = tabIndex;
-			this.animationPaused = tabIndex != 0;
+			this.currentView = view;
 			if(this.tabs != undefined) this.tabs.enable();
+			if(this.copyButtons) this.copyButtons.style.display = "none";
 
-			switch(tabIndex) {
-				case 0:
+			switch(view) {
+				case "render":
 					if(this.shaderEditorEnabled) this.updateShadersFromEditor();
 					break;
 
-				case 1:
+				case "vertex_shader":
 					if(this.editorVertex == undefined) {
-						this.editorVertex = this.createEditor(this.containers[1], this.params.vertexShader);
-						if(this.params.fluidWidth) this.containers[tabIndex].style.width = "";
+						this.editorVertex = this.createEditor(this.containers["vertex_shader"], this.params.vertexShader);
+						if(this.params.fluidWidth) this.containers[view].style.width = "";
+						this.editorVertex.on("change", function(e) { scope.editorChanged(scope.editorVertex); });
 					}
 
-					this.editorVertex.focus();					
+					this.editorVertex.focus();	
+
+					if(this.copyButtons) {
+						this.copyButtons.style.display = "block";
+						this.updateClipboardButtons();
+					}
 					break;
 
-				case 2:
+				case "fragment_shader":
 					if(this.editorFragment == undefined) {
-						this.editorFragment = this.createEditor(this.containers[2], this.params.fragmentShader);
-						if(this.params.fluidWidth) this.containers[tabIndex].style.width = "";
+						this.editorFragment = this.createEditor(this.containers["fragment_shader"], this.params.fragmentShader);
+						if(this.params.fluidWidth) this.containers[view].style.width = "";
+						this.editorFragment.on("change", function(e) { scope.editorChanged(scope.editorFragment); });
 					}
 
 					this.editorFragment.focus();
+					if(this.copyButtons) {
+						this.copyButtons.style.display = "block";
+						this.updateClipboardButtons();
+					}
 					break;
 
-				case 4:
+				case "loading":
 					if(this.tabs != undefined) this.tabs.disable();
 					break;
 
@@ -517,7 +603,9 @@ define([
 		}
 
 		PocketGL.prototype.updateUniforms = function() {
-			if(this.uniforms.time != undefined && this.params.animated) 
+			if(!this.uniforms) return;
+
+			if(this.uniforms.time != undefined && this.params.animated && this.isPlaying()) 
 				this.uniforms.time.value += this.clock.getDelta();
 
 			function update(u, uniformid, scope) {
@@ -539,12 +627,73 @@ define([
 			}
 		}
 
-		PocketGL.prototype.animate = function() {
-			var _this = this;
-			requestAnimationFrame(function () { _this.animate() });
+		PocketGL.prototype.play = function() {		
+			if(! this.params.animated) return;
 
-			if(!this.animationPaused)
-				this.render();
+			this.clock.start();
+
+			this.animationStopped = this.animationPaused = false;
+
+			this.pauseButton.style.display = "block";
+			this.playButton.style.display = "none";
+
+			this.animate();
+		}
+
+		PocketGL.prototype.isPlaying = function() {
+			return this.params.animated && !this.animationStopped && !this.animationPaused && !this.stoppedByError;
+		}
+
+		PocketGL.prototype.stop = function() {
+			if(! this.params.animated) return;
+
+			// reset time
+			if(this.uniforms && this.uniforms.time != undefined) {
+				this.uniforms.time.value = 0;
+				this.frameCount = 0;
+			}
+
+			this.animationStopped = true;
+			this.clock.stop();
+
+			this.pauseButton.style.display = "none";
+			this.playButton.style.display = "block";
+		}
+
+		PocketGL.prototype.errorStop = function() {
+			if(! this.params.animated) return;
+
+			this.stoppedByError = true;
+		}
+
+		PocketGL.prototype.errorResume = function() {
+			if(! this.params.animated) return;
+
+			if(!this.stoppedByError) return;
+
+			this.stoppedByError = false;
+
+			if(this.isPlaying())
+				this.play();
+		}
+
+		PocketGL.prototype.pause = function() {
+			if(! this.params.animated)	 return;
+
+			this.animationPaused = true;
+			this.clock.stop();
+
+			this.pauseButton.style.display = "none";
+			this.playButton.style.display = "block";
+		}
+
+		PocketGL.prototype.animate = function() {			
+			var _this = this;
+
+			if(this.isPlaying())
+				requestAnimationFrame(function () { _this.animate() });
+
+			this.render();
 		}
 
 		PocketGL.prototype.render = function() {
@@ -558,6 +707,7 @@ define([
 			this.logErrors();
 
 			this.frameCount++;
+
 			//console.log("render " + this.frameCount);
 		}
 
@@ -635,7 +785,7 @@ define([
 		}
 
 		PocketGL.prototype.showLoading = function() {
-			this.switchTab(4);
+			this.switchView("loading");
 		}
 
 		PocketGL.prototype.logErrors = function() {
@@ -660,12 +810,13 @@ define([
 				if(fragmentLog != "") 
 					errorMessage += "Fragment Shader errors:<br/>" + fragmentLog;
 
-				this.switchTab(3);
+				this.switchView("errors");
 
-				this.animationPaused = true;
+				this.errorStop();
 			}
+			else this.errorResume();
 
-			this.containers[3].innerHTML = errorMessage;
+			this.containers.errors.innerHTML = errorMessage;
 		}
 
 		PocketGL.prototype.init = function() {
@@ -817,9 +968,15 @@ define([
 			}
 
 			// Add webgl canvas renderer to DOM container	
-			this.containers[0].appendChild( this.renderer.domElement );
-			this.containers[0].appendChild(this.getLogoDomEl());
-			if(Utils.hasFullscreen()) this.addFullscreenButton(this.containers[0]);
+			this.containers.render.appendChild( this.renderer.domElement );
+			this.containers.render.appendChild(this.getLogoDomEl());
+			if(Utils.hasFullscreen()) this.addFullscreenButton(this.containers.render);
+
+			if(this.params.animated && this.params.playButtons)
+				this.addPlayButtons(this.containers.render);
+
+			if(this.tabs)
+				this.addCopyButtons();
 
 			// GUI	
 			this.GUIParams = { Mesh: 0 };
@@ -906,7 +1063,7 @@ define([
 				guiContainer.style.right = "0px";
 				guiContainer.style.top = "0px";
 				guiContainer.appendChild(gui.domElement);
-				this.containers[0].appendChild(guiContainer);
+				this.containers.render.appendChild(guiContainer);
 			}
 
 			// Load mesh
@@ -914,12 +1071,12 @@ define([
 				this.loadMesh(this.params.meshes[0], material);
 
 			if(this.params.animated)
-				this.animate();
+				this.play();
 			else
 				this.render();
 
 			if(this.LoadingManager.objects.length == 0)
-				this.switchTab(0);
+				this.switchView("render");
 			else
 				this.LoadingManager.setReady();
 		}

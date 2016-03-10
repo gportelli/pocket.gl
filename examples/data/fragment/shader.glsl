@@ -1,9 +1,10 @@
 uniform vec2 resolution;
 uniform float time;
+uniform float speed;
 
 void main()	{
 	vec2 p = -1.0 + 2.0 * gl_FragCoord.xy / resolution.xy;
-	float a = time*40.0;
+	float a = time*speed;
 	float d,e,f,g=1.0/40.0,h,i,r,q;
 	e=400.0*(p.x*0.5+0.5);
 	f=400.0*(p.y*0.5+0.5);

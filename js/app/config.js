@@ -31,6 +31,7 @@ define({
 	tabColor: "#1c90f3",
 	doubleSided: false,
 	animated: false,
+	playButtons: true,
 	transparent: false,
 	editorTheme: "dark",
 	editorWrap: true,

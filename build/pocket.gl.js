@@ -839,7 +839,7 @@ define('text',['module'], function (module) {
 });
 
 
-define('text!css/style.css',[],function () { return '/**\r\n * pocket.gl http://pocketgl.aclockworkberry.com\r\n *\r\n * Copyright 2016 Giuseppe Portelli <info@aclockworkberry.com>\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the "License");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n * \r\n *  http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an "AS IS" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\r\n \r\n.pocketgl.errorConsole { box-sizing: border-box; position: relative; background: #333; color: white; padding: 5px; overflow: auto; font: 14px Arial; }\r\n\r\n.pocketgl.loadingProgress { box-sizing: border-box; position: relative; background: #eee; color: white; padding: 5px; overflow: auto; font: 14px Arial; }\r\n.pocketglProgress { \r\n\tbox-sizing: content-box;\r\n\r\n    width: 60%;\r\n    height: 14px;\r\n    padding: 1px;\r\n    border: 1px solid #666;\r\n    background-color: #aaa;\r\n\r\n    position: absolute;\r\n\ttop: 50%;\r\n\tleft: 20%;\r\n\tmargin-top: -7px;\r\n}\r\n.pocketglProgressBar {\r\n    width: 0%;\r\n    height: 14px;\r\n    background-color: #fff;\r\n}\r\n\r\n.pocketgl-tabs { height: 44px; font: 14px Verdana; position: relative;}\r\n.pocketgl-tabs ul {padding: 0px; margin: 0px; list-style: none; }\r\n.pocketgl-tabs ul li { float: left; margin: 0;}\r\n.pocketgl-tabs ul li.active { }\r\n.pocketgl-tabs ul li.active { }\r\n.pocketgl-tabs ul li a { display: block; padding: 0px 10px; line-height: 40px; height: 40px; text-decoration: none; color: #333; outline: 0;}\r\n.pocketgl-tabs .hl.animated { height: 6px; position: absolute; bottom: 0px; transition: all 0.15s;}\r\n\r\n.pocketgl-fullscreenbutton\r\n{\r\n\tposition: absolute;\r\n\tright: 10px;\r\n\tbottom: 10px;\r\n\twidth: 27px;\r\n\theight:27px;\r\n\tdisplay: block;\r\n\tbackground-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAIAAAACtmMCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowOTc4NjNGOEU0MTExMUU1QTk5MUREQTA0NzE5NkM1NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo2MjcxOEY3MEU0QzkxMUU1QjhCMUJGMTIwRDMzNTc4RSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2MjcxOEY2RkU0QzkxMUU1QjhCMUJGMTIwRDMzNTc4RSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1ODA4OWM4Ny00NDcyLThhNDktYTI4MS0zZDJlYmRiZTE3OTQiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpjZDFlNDZiNi1lNGM4LTExZTUtYjM0MS1kMGQ2YzU0ODVlOWUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz499X0AAAAAyUlEQVR42tyWzQ6EIAyE+ZOHJoAHJLyzRthJNtmwwoqJvbhzwlA/Sae0cu99KYV9i3M+TRM71bZt3RdVzjmEwIjknBOMVDgjMRGiJ6rD87Isn/W6ru/FPM9SSvgQY2wR1tozYhtR56jdqk8A4asCccTOaK0JiaA9wetbxH3fx8RfRneFkmrjn5jHQ8UO1cb/ffX0iWjuhDjQBKbCzZKuBZq6Yp8xRgiBTpVSGvYedf3OdPvjQ72mn1zIDsZ2m7Jhb8dc6/5TvAQYAK88TiEWsQSrAAAAAElFTkSuQmCC\');\r\n}\r\n\r\n.pocketgl-fullscreenbutton:hover\r\n{\r\n\tbackground-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAIAAAACtmMCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowOTc4NjNGOEU0MTExMUU1QTk5MUREQTA0NzE5NkM1NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpGRDZFQUEzOEU0QzkxMUU1QUEwM0Q3MzVGRDg5NkFEOCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpGRDZFQUEzN0U0QzkxMUU1QUEwM0Q3MzVGRDg5NkFEOCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpjODY5N2IxMy0zMTc2LTczNDgtYTZlZS03NzQyYWY0Mjk0ZmQiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpjZDFlNDZiNi1lNGM4LTExZTUtYjM0MS1kMGQ2YzU0ODVlOWUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7w6edPAAAArUlEQVR42tRWwQ7FEBCkNvw0LiT+meDtsbFCJV5ac2uyOzrGDtxaW2tlN0gp2QOklJpGBOccSinOObYJxpiLbQX+42ZGBNw/vPe0Qmu9VANKqUF/znm8AF1joloIsSQZ3f+8M3iW93v9Z0bq4xM0XcepPoGxO7NTrE3hN1RjuG9mxFvhZdU0MUcZ3rW7GbIQwoAuxgircz2tOeH0AOY4Xts03KcvC9yy7pviJ8AAa8BCHoOmjVcAAAAASUVORK5CYII=\');\r\n}\r\n\r\n.pocketgl-logo-pocket {\r\n\tposition: absolute;\r\n\tleft: 0px;\r\n\tbottom: 0px;\r\n\t\r\n\tbackground: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAWCAYAAAAxSueLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowZTEzN2M2Mi00ODIwLTU3NGMtODE5My1jOGYxMDA2YmYxN2MiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTIxQTFGQjZERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTIxQTFGQjVERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzlmZjU0M2MtNWQyMy05NDQyLTkzYWUtYWJkZWQ3MjFmYmZjIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjBlMTM3YzYyLTQ4MjAtNTc0Yy04MTkzLWM4ZjEwMDZiZjE3YyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp9C7KgAAAKjSURBVHjavJVNaxpRFIbPmJnRaMRaN2YhCCENUbuwfsQsBAOuBUu7dtcEuqzpT0h37gqxf6Gl/oGsstDEj7pqF0HBoBtd1Gri1zg6Pec2iiM1BDQ5cBnmMrzPnHPfcy53HI9f8Dz/DB45ZFn+w4/H45cf4nH9Y8M+nZx0eY7jxhaL5bFZQBwNPGEQbOOJWBt8r9eDRCLB3gb9PnAaDaBhQIPPkSwDnum/Mtztj0cjkHGxPVyCKAIoCkjD4VRVwO+wbjCUJBC1WrZHHF6n03VisZiBNlKpFITDYTAajUuncXNzA2dnZxCNRicG6ZBBlIlBtPgXZrMZTCbT0jCqAulNtImjMojX6wXMdCUHRDqkp/qB2Zfd3d2VuYGymtdTZZZOp6Hb7a4ERjqktxBWLpdhOOOqZYJ0SG8h7Cmaeho2m425aBVBOqS3EBYKhWg6w+3t7VKgPg6HETY+6S10I0Wj0WDNSP3h8Xhga2vrwZBqtQqFQgFqtRocHByA0+lUwxRF0eCipmMb29vbbFUqlWmG9XqdleV/t0Oz2YTBYABWqxVarRY4HA6IRCJs3E2C9InD48zLfjw+9rjdbsG/t6ejTAhst9unH7fbbTg/P2fAQCAAOzs7UCqVIJPJsJIFg0EGc7lcKgC5MXt52S8Wi0PkFFg6R4eHJkEQogaD4QiHrPMVggP7+1oCTjKeZEgDlfavr69BxCG8ubmpAlBFLjKZwQ8E8GtrPzudzim2Qeo0mWxx82W5A7/W6/XvceK/wJEj+Px+3Tx4HpDLZvv5fH6I5bvChv6MgO8EUF2g9x04gp9j6d5gxocoSmDR6/OJBCZAPpeTECDhT1xhBkl08jcE/F54Wz/UaQTGsr1dX19/h+fkwEH7C0v6RZKkr/cBZuOvAAMAuYUk4+WQJugAAAAASUVORK5CYII=);\r\n\twidth: 27px;\r\n\theight: 22px;\r\n}\r\n\r\n.pocketgl-logo:focus { border: 0; }\r\n.pocketgl-logo {\r\n\tdisplay: block;\r\n\tposition: absolute;\r\n\tleft: 10px;\r\n\tbottom: 10px;\r\n\tbackground-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAaCAYAAABCfffNAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowZTEzN2M2Mi00ODIwLTU3NGMtODE5My1jOGYxMDA2YmYxN2MiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTIxQTFGQjJERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTIxQTFGQjFERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzlmZjU0M2MtNWQyMy05NDQyLTkzYWUtYWJkZWQ3MjFmYmZjIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjBlMTM3YzYyLTQ4MjAtNTc0Yy04MTkzLWM4ZjEwMDZiZjE3YyIv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);\r\n\tbackground-position: 1px 6px;\r\n\tbackground-repeat: no-repeat;\r\n\ttransition: background-position 0.25s ease-in-out;\r\n\twidth: 27px;\r\n\theight: 40px;\r\n}\r\n\r\n.pocketgl-logo:hover {\r\n\tbackground-position: 1px 0px; \r\n}\r\n\r\n/* dat js */\r\n.dg.main li { margin: 0px; }\r\n.dg.main li.title { margin-left: -4px; }\r\n.dg .c input[type=text] {\r\n  font: 13.3333px Arial;\r\n  line-height: normal;\r\n}\r\n.dg .c select { padding: 0; border-radius: 0;}';});
+define('text!css/style.css',[],function () { return '/**\r\n * pocket.gl http://pocketgl.aclockworkberry.com\r\n *\r\n * Copyright 2016 Giuseppe Portelli <info@aclockworkberry.com>\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the "License");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n * \r\n *  http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an "AS IS" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\r\n\r\n.pocketgl {\r\n\tfont-family: "Verdana", Sans-serif;\r\n} \r\n\r\n.pocketgl.errorConsole { box-sizing: border-box; position: relative; background: #333; color: white; padding: 5px; overflow: auto; font: 14px Arial; }\r\n\r\n.pocketgl.loadingProgress { box-sizing: border-box; position: relative; background: #eee; color: white; padding: 5px; overflow: auto; font: 14px Arial; }\r\n.pocketglProgress { \r\n\tbox-sizing: content-box;\r\n\r\n    width: 60%;\r\n    height: 14px;\r\n    padding: 1px;\r\n    border: 1px solid #666;\r\n    background-color: #aaa;\r\n\r\n    position: absolute;\r\n\ttop: 50%;\r\n\tleft: 20%;\r\n\tmargin-top: -7px;\r\n}\r\n.pocketglProgressBar {\r\n    width: 0%;\r\n    height: 14px;\r\n    background-color: #fff;\r\n}\r\n\r\n.pocketgl-tabs { height: 44px; font-size: 14px; position: relative;}\r\n.pocketgl-tabs ul {padding: 0px; margin: 0px; list-style: none; }\r\n.pocketgl-tabs ul li { float: left; margin: 0;}\r\n.pocketgl-tabs ul li.active { }\r\n.pocketgl-tabs ul li.active { }\r\n.pocketgl-tabs ul li a { display: block; padding: 0px 10px; line-height: 40px; height: 40px; text-decoration: none; color: #333; outline: 0;}\r\n.pocketgl-tabs .hl.animated { height: 6px; position: absolute; bottom: 0px; transition: all 0.15s;}\r\n\r\n.pocketgl-fullscreenbutton\r\n{\r\n\tposition: absolute;\r\n\tright: 10px;\r\n\tbottom: 10px;\r\n\twidth: 27px;\r\n\theight:27px;\r\n\tdisplay: block;\r\n\tbackground-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbBAMAAAB/+ulmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowOTc4NjNGOEU0MTExMUU1QTk5MUREQTA0NzE5NkM1NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowNzhDNEE3M0U2MjkxMUU1QjQ3MTg5NzEzNTgwRjk5RiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowNzhDNEE3MkU2MjkxMUU1QjQ3MTg5NzEzNTgwRjk5RiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpjODY5N2IxMy0zMTc2LTczNDgtYTZlZS03NzQyYWY0Mjk0ZmQiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpjZDFlNDZiNi1lNGM4LTExZTUtYjM0MS1kMGQ2YzU0ODVlOWUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5fbFs0AAAAGFBMVEV8fHx9fX1+fn6Dg4P8/Pz9/f3+/v7///8z+RsmAAAAcElEQVQY02NQFBQUMgYBI0FBQQUG9nIkwIDKFSDILTY2FHRPBhoG5UKlikFGiSNzBRjMkbkGWLlAc8yRuOYg5AzhlkO55cRwYXpxmozTGerIXAWYj0qgPgL519g4HOFfksIKhSvAwMAIjgVDBgYGAQB7EYtfcvKVtwAAAABJRU5ErkJggg==\');\r\n}\r\n\r\n.pocketgl-fullscreenbutton:hover\r\n{\r\n\tbackground-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbBAMAAAB/+ulmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowOTc4NjNGOEU0MTExMUU1QTk5MUREQTA0NzE5NkM1NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpGRUNGQUVBM0U2MjgxMUU1ODY1N0E0RkQ0QjU0RjlFOCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpGRUNGQUVBMkU2MjgxMUU1ODY1N0E0RkQ0QjU0RjlFOCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpjODY5N2IxMy0zMTc2LTczNDgtYTZlZS03NzQyYWY0Mjk0ZmQiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpjZDFlNDZiNi1lNGM4LTExZTUtYjM0MS1kMGQ2YzU0ODVlOWUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5+hDczAAAAElBMVEV8fHx9fX1+fn6Dg4P8/Pz///936n6MAAAAYklEQVQY02NQFBQ0BgMjQUFBBQbWUCTAgMoVwOQC9ZmGQkgBBtNQINsVLAfnhkK5DKhcNFkDrFyI4RAuWByihlIumsn4nKGKymXFznWFcVFCg1DQoXAFGBgYwbFgyMDAIAAAB4Jl0fXFoOsAAAAASUVORK5CYII=\');\r\n}\r\n\r\n.pocketgl-playbutton\r\n{\r\n\tposition: absolute;\r\n\tmargin-left: 14px;\r\n\twidth: 13px;\r\n\theight:20px;\r\n\tbackground-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAUCAYAAABWMrcvAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowOTc4NjNGOEU0MTExMUU1QTk5MUREQTA0NzE5NkM1NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozOEYzRkM5M0U2MzQxMUU1ODc0RUEwMEM2MjRGQjY5QyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozOEYzRkM5MkU2MzQxMUU1ODc0RUEwMEM2MjRGQjY5QyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4YjI2Yzg2Ny0yNDUwLTE3NDMtYjA5Yi03NzYwZDE2YzBiY2MiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDphNmFiMzFmYi1lNjI5LTExZTUtOTJmMy04ZDlhNzg2YmE4NTAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6VVb0FAAAAuklEQVR42pTTPQoCMRAF4HFQ8ABptvYmgnfJIdKlzAVyI7GwsxUrsQlbWZhi1cliYNUseQk88gMfkwxkYa09EdFOcqPKMMaMM0s2kqOkI3Ak9NJady0wIVJK3aX0CoU8WSsU8s8eglw4q8KxEZJnC8yIWipypVFFuPxUGuZUjPEs0zotoUoCDs65BLaSvvqmOTBFAwqK16uBP4SAL4SC3HIKISjv/RUBGT0EXFCQr7dPQD5ij/7ctwADAKGcXmjkff0mAAAAAElFTkSuQmCC\');\r\n}\r\n\r\n.pocketgl-pausebutton\r\n{\r\n\tposition: absolute;\r\n\tmargin-left: 14px;\r\n\twidth: 13px;\r\n\theight:20px;\r\n\tbackground-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAUCAYAAABWMrcvAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowOTc4NjNGOEU0MTExMUU1QTk5MUREQTA0NzE5NkM1NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozNTZFOTkzMEU2MzQxMUU1QjM2NkMxMTQ2MUFGMEMxNSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozNTZFOTkyRkU2MzQxMUU1QjM2NkMxMTQ2MUFGMEMxNSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4YjI2Yzg2Ny0yNDUwLTE3NDMtYjA5Yi03NzYwZDE2YzBiY2MiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDphNmFiMzFmYi1lNjI5LTExZTUtOTJmMy04ZDlhNzg2YmE4NTAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4ETEivAAAANklEQVR42mJsbm7+z4AJGJHYGPIsIKKmpgYu0NLSgmECujwTAxlgVNOoplFN1NPESE52BwgwAFX7DTnLN3O9AAAAAElFTkSuQmCC\');\r\n}\r\n\r\n.pocketgl-stopbutton\r\n{\r\n\tposition: absolute;\r\n\tmargin-left: -16px;\r\n\twidth: 20px;\r\n\theight:20px;\r\n\tbackground-image: url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4BpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowOTc4NjNGOEU0MTExMUU1QTk5MUREQTA0NzE5NkM1NCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyQjIyNTZENkU2MzQxMUU1OEYxRUZBRjE4MEFCQjg1QSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyQjIyNTZENUU2MzQxMUU1OEYxRUZBRjE4MEFCQjg1QSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNCAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4YjI2Yzg2Ny0yNDUwLTE3NDMtYjA5Yi03NzYwZDE2YzBiY2MiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDphNmFiMzFmYi1lNjI5LTExZTUtOTJmMy04ZDlhNzg2YmE4NTAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5i0EC2AAAAL0lEQVR42mJsbm5mIBewAHFNTQ0ZOltaWpgYKACjmkc1j2oePppZIGUCeZoBAgwARcEGQbL5dtgAAAAASUVORK5CYII=\');\r\n}\r\n\r\n.pocketgl-playbutton,\r\n.pocketgl-stopbutton,\r\n.pocketgl-pausebutton\r\n{\r\n\ttransition: all 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);\r\n\ttransform: translateY(0);\r\n\r\n\tleft: 50%;\r\n\tbottom: 14px;\r\n\tdisplay: block;\r\n}\r\n\r\n.pocketgl-playbutton:hover,\r\n.pocketgl-stopbutton:hover,\r\n.pocketgl-pausebutton:hover\r\n{\r\n\ttransform: translateY(-1px) translateX(-1px);\r\n}\r\n\r\n.pocketgl-playbutton:active,\r\n.pocketgl-stopbutton:active,\r\n.pocketgl-pausebutton:active\r\n{\r\n\ttransform: translateY(0) translateX(0);\r\n}\r\n\r\n.pocketgl-logo-pocket {\r\n\tposition: absolute;\r\n\tleft: 0px;\r\n\tbottom: 0px;\r\n\t\r\n\tbackground: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAWCAYAAAAxSueLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowZTEzN2M2Mi00ODIwLTU3NGMtODE5My1jOGYxMDA2YmYxN2MiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTIxQTFGQjZERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTIxQTFGQjVERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzlmZjU0M2MtNWQyMy05NDQyLTkzYWUtYWJkZWQ3MjFmYmZjIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjBlMTM3YzYyLTQ4MjAtNTc0Yy04MTkzLWM4ZjEwMDZiZjE3YyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp9C7KgAAAKjSURBVHjavJVNaxpRFIbPmJnRaMRaN2YhCCENUbuwfsQsBAOuBUu7dtcEuqzpT0h37gqxf6Gl/oGsstDEj7pqF0HBoBtd1Gri1zg6Pec2iiM1BDQ5cBnmMrzPnHPfcy53HI9f8Dz/DB45ZFn+w4/H45cf4nH9Y8M+nZx0eY7jxhaL5bFZQBwNPGEQbOOJWBt8r9eDRCLB3gb9PnAaDaBhQIPPkSwDnum/Mtztj0cjkHGxPVyCKAIoCkjD4VRVwO+wbjCUJBC1WrZHHF6n03VisZiBNlKpFITDYTAajUuncXNzA2dnZxCNRicG6ZBBlIlBtPgXZrMZTCbT0jCqAulNtImjMojX6wXMdCUHRDqkp/qB2Zfd3d2VuYGymtdTZZZOp6Hb7a4ERjqktxBWLpdhOOOqZYJ0SG8h7Cmaeho2m425aBVBOqS3EBYKhWg6w+3t7VKgPg6HETY+6S10I0Wj0WDNSP3h8Xhga2vrwZBqtQqFQgFqtRocHByA0+lUwxRF0eCipmMb29vbbFUqlWmG9XqdleV/t0Oz2YTBYABWqxVarRY4HA6IRCJs3E2C9InD48zLfjw+9rjdbsG/t6ejTAhst9unH7fbbTg/P2fAQCAAOzs7UCqVIJPJsJIFg0EGc7lcKgC5MXt52S8Wi0PkFFg6R4eHJkEQogaD4QiHrPMVggP7+1oCTjKeZEgDlfavr69BxCG8ubmpAlBFLjKZwQ8E8GtrPzudzim2Qeo0mWxx82W5A7/W6/XvceK/wJEj+Px+3Tx4HpDLZvv5fH6I5bvChv6MgO8EUF2g9x04gp9j6d5gxocoSmDR6/OJBCZAPpeTECDhT1xhBkl08jcE/F54Wz/UaQTGsr1dX19/h+fkwEH7C0v6RZKkr/cBZuOvAAMAuYUk4+WQJugAAAAASUVORK5CYII=);\r\n\twidth: 27px;\r\n\theight: 22px;\r\n}\r\n\r\n.pocketgl-logo:focus { border: 0; }\r\n.pocketgl-logo {\r\n\tdisplay: block;\r\n\tposition: absolute;\r\n\tleft: 10px;\r\n\tbottom: 10px;\r\n\tbackground-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAaCAYAAABCfffNAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowZTEzN2M2Mi00ODIwLTU3NGMtODE5My1jOGYxMDA2YmYxN2MiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTIxQTFGQjJERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTIxQTFGQjFERDk5MTFFNThDM0JERUFBNjRDNTY3RUQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzlmZjU0M2MtNWQyMy05NDQyLTkzYWUtYWJkZWQ3MjFmYmZjIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjBlMTM3YzYyLTQ4MjAtNTc0Yy04MTkzLWM4ZjEwMDZiZjE3YyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsnkHIgAAAWFSURBVHjajFZJaCVVFH3vVWWeRzMPhIxGiMadNDRBBEHcutCNklVHDXGTuPKLGxfpluDCkITehRAIkgZ3TZBIwEUg82zmeerMyc/03/Oc568Q0x3tguLXr3rv3nPPOfdWSfEfR3d3d14gEPgUlx9GRESUXV5eOjjPXNc9McZcXl9fB168eLG6vb1d6/P5/rovjnzVzerqaqeqqurHmJiYr+Li4sIQTBQUFIioqCixuroqtra2xPHxsdBai/z8fDE+Pu5fWVl5vLS05Gtrawv8b5Kmpqb83NzcZ9HR0W/hFOfn5xq3DSqROERoaKhMSUkRJycnempqSqAyheRyf39frK+vz6LybxsaGrruTdLa2pqbnp7eV1lZmUXU8/PzAb/fb8rLyxWCK1Bk17GC8PBw0d/fb1hlSEiI5L3Z2VkxOTkpLi4uHjU2Nv7ixVXeRVdXV3lRUdGfsbGxWUBtZmZmNBIqUOagAgWENjhPHqhQVFRUSAQ0SilWYRISEjTWC4D5qb6+PumlJImJiT+npaWl4zKwsLAgysrKVGpqqkRwQ5pedbAyroNOV2dnZyYsLIx7DFgIw56n/0rS0dHxbnx8/EO4RMA5mguxwXiUejTdPRzHEdhjUJ2tCGbQ2dnZgloC3MfQ5v0bTXp6en5HFQ9hx2u4xSY+ODggNeb09NSUlJQ4SCpvVwSNxNDQkCaNR0dHYEyZnZ0diwb/zdramnN1dbWO/blOZ2fng4yMjO8PDw9FXl4eA8ucnBwF+iRRMjLtygA0AQ1BoQcHBymOhA4KJrAJoKeC5SUcpxHPoLo4gDt0k5OTn9AhqMRgMQMaoJPwvkZvqMXFRVFcXMxcZnd316AX+HsNMCorK0uCXoFEcm5uzmpHbRBccX2w6AcKtLxDd6AKiV8KLcfGxphAglvyY4KnRHUKKHlPkT4mBAiNwJp9xJ4CTSYyMlLSBIyLZIUuFvixMWpgYEADlQGPurS01A0mIDX0vSDno6OjJjMzk2AURQfNkhSCKtIcYAIkC+EeBNegT0KfNxR9zzILCwuteNgkJyYmzPDwsN7b27O+J01IIOAcSZSgxxqCopMq3OMaJnSCE4KgbGwkcV2WBPQWMW44DMSkWKDZwXhmsNHQdajOdj3FBU1ELZaXlzleaGMHzcuZpmEYzXgbGxsKYFwXfxSF5yxiQjonaFXFGUUbIxm5FhiCAVQmqR/nFcTWGD1c47BiHvi1LYC1bFBeh0AGN4KIMEYMHObc7gXyjueSifGMGwzdMz09bTAQA5jGdNFNAq9p2YzQka8FSrGtsHgMJQvwKbzFL41qJKZeTMi+QA/Izc1NTgJFPW4n4Fq2AV1IkKhympb8knRBZAXK7LC7e3DiogIGsoZgwKSkJIeJKe7tscO+oVGgBRkgG32qpqamF+L+wZsY04xj7g5BBJQEgP6x9PGdgp4R3mS+fXDcYK09AX4TQH6wsFHe197AHBkZ4XC0wfkLNJxDGpoFQK3x3iXUiQlZOdEzOO8jsEGDkyGC+AzvKH2jcnNzcx9s+h7nDpqIo0ShNzQD8znsaNEzCKcCtcBajhD+clJQNw5WOtEFyOctLS0fWAq9JAjiQ0W/YnMMkPGdcsW3IRA75Bb3NfilmIrIMbEDCGiC08CKzMmN7qdjNfZ+fuNS76K3t3ceb8bnoOMT0BQBe3JUW7SkgjqwAqIFIA1ACs/Z4RI00TQS5rGvYYDygZnf7v2QqKurexs+fwbKsqkJRzvnEjez82kQUgO0iv1FQ+BUfOEB0Cpo+q69vf3pa30S4RXwGH1TDQ2iEJgB7Em7MznpCfaBpQ4AngBYAz6J9Gt9d3lHbW1tKhrvC6D7CH/fVP8cfvw/57cEri/RxBvQ5Rt8iIzfF+dvAQYApzzUHl3xZPcAAAAASUVORK5CYII=);\r\n\tbackground-position: 1px 6px;\r\n\tbackground-repeat: no-repeat;\r\n\ttransition: background-position 0.25s ease-in-out;\r\n\twidth: 27px;\r\n\theight: 40px;\r\n}\r\n\r\n.pocketgl-logo:hover {\r\n\tbackground-position: 1px 0px; \r\n}\r\n\r\n.pocketgl-copyButtons {\r\n\tposition: absolute;\r\n\ttop: 20px;\r\n\tright: 0px;\r\n}\r\n\r\n.pocketgl-copyButton {\r\n\tfont-size: 12px;\r\n\tcolor: #444;\r\n\tborder: 1px solid #aaa;\r\n\tbackground: white;\r\n\tcursor: pointer;\r\n\tmargin-left: 5px;\r\n}\r\n\r\n.pocketgl-copyButton:hover {\r\n\tborder: 1px solid #999;\r\n\tbackground: #ddd;\r\n\tcolor: #000;\r\n}\r\n\r\n.pocketgl-copyButton:active {\r\n\tborder: 1px solid #999;\r\n\tbackground: #aaa;\r\n\tcolor: #000;\r\n}\r\n\r\n/* dat js */\r\n.dg.main li { margin: 0px; }\r\n.dg.main li.title { margin-left: -4px; }\r\n.dg .c input[type=text] {\r\n  font: 13.3333px Arial;\r\n  line-height: normal;\r\n}\r\n.dg .c select { padding: 0; border-radius: 0;}';});
 
 
 define('text!default_shaders/vertex.glsl',[],function () { return 'varying vec3 normalInterp;\r\nvarying vec3 vertPos;\r\n\r\nvoid main(){\r\n    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\r\n    vec4 vertPos4 = modelViewMatrix * vec4(position, 1.0);\r\n\r\n    vertPos = vec3(vertPos4) / vertPos4.w;\r\n    normalInterp = normalMatrix * normal;\r\n}';});
@@ -916,6 +916,23 @@ define('app/utils',[],function() {
 			canvas.requestFullscreen(); 
 	}
 
+	Utils.prototype.toJSString = function(text) {
+		lines = text.split("\n");
+
+		result = "[\n";
+
+		for(i in lines) {
+			lines[i] = lines[i].replace("\n", "");
+			lines[i] = lines[i].replace("\r", "");
+
+			result += '\t"' + lines[i] + '"' + (i != lines.length - 1 ? ',' : "") + "\n";
+		}
+
+		result += '].join("\\n")';
+
+		return result;
+	}
+
 	return new Utils();
 });
 /**
@@ -942,31 +959,57 @@ define('app/tabs',[
 
 	function(Utils) {
 
-	function PocketGLTabs(callback, tabs, hl) {
-		this.callback = callback;
-		this.tabs = tabs;
-		this.hl = hl;
-
-		this.setupEvents();
-
-		this.repositionHighlight(tabs[0]);
-	}
-
-	PocketGLTabs.prototype.setupEvents = function() {
+	function PocketGLTabs(container, tabColor, addVertex, callback) {
 		var _this = this;
-		var i=0;
 
-		while(i < this.tabs.length) {
-			this.tabs[i].addEventListener("click", (function (action, index) {
+		this.callback = callback;
+		this.container = container;
+
+		var div = document.createElement("div");
+		div.className = "pocketgl pocketgl-tabs";
+		var ul = document.createElement("ul");
+
+		var tabNames = ["Render", "Vertex Shader", "Fragment Shader"];
+		var tabIDs = ["render", "vertex_shader", "fragment_shader"];
+		var tabs = [];
+
+		for(var i=0; i<3; i++) {
+			if(!addVertex && i == 1) continue;
+
+			var li = document.createElement("li");
+			var a = document.createElement("a");
+			a.href = "#";
+			a.innerHTML = tabNames[i];
+			li.appendChild(a);
+			ul.appendChild(li);
+
+			a.addEventListener("click", (function (action, index) {
 					return function(event) {
 						_this.switchTab(event, action, index);
 					}
-				})(this.tabs[i], i) 
+				})(a, tabIDs[i]) 
 			);
 
-			i++;
+			tabs.push(a);
 		}
-	};
+		
+		div.appendChild(ul);
+
+		var divHl = document.createElement("div");
+		divHl.className = "hl animated";
+		divHl.style.width = "70px";
+		divHl.style.left = "0px";
+		divHl.style.backgroundColor = tabColor;
+
+		div.appendChild(divHl);	
+
+		this.container.appendChild(div);
+
+		this.hl = divHl;
+		this.tabs = tabs;
+
+		this.repositionHighlight(tabs[0]);
+	}
 
 	PocketGLTabs.prototype.switchTab = function(event, action, index) {
 		event.preventDefault();
@@ -1046,6 +1089,7 @@ define('app/config',{
 	tabColor: "#1c90f3",
 	doubleSided: false,
 	animated: false,
+	playButtons: true,
 	transparent: false,
 	editorTheme: "dark",
 	editorWrap: true,
@@ -48676,6 +48720,13 @@ define(
 		return MeshLoader;
 	}
 );
+/*!
+ * clipboard.js v1.5.9
+ * https://zenorocha.github.io/clipboard.js
+ *
+ * Licensed MIT © Zeno Rocha
+ */
+!function(t){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define('clipboard',[],t);else{var e;e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this,e.Clipboard=t()}}(function(){var t,e,n;return function t(e,n,o){function r(c,s){if(!n[c]){if(!e[c]){var a="function"==typeof require&&require;if(!s&&a)return a(c,!0);if(i)return i(c,!0);var l=new Error("Cannot find module '"+c+"'");throw l.code="MODULE_NOT_FOUND",l}var u=n[c]={exports:{}};e[c][0].call(u.exports,function(t){var n=e[c][1][t];return r(n?n:t)},u,u.exports,t,e,n,o)}return n[c].exports}for(var i="function"==typeof require&&require,c=0;c<o.length;c++)r(o[c]);return r}({1:[function(t,e,n){var o=t("matches-selector");e.exports=function(t,e,n){for(var r=n?t:t.parentNode;r&&r!==document;){if(o(r,e))return r;r=r.parentNode}}},{"matches-selector":5}],2:[function(t,e,n){function o(t,e,n,o,i){var c=r.apply(this,arguments);return t.addEventListener(n,c,i),{destroy:function(){t.removeEventListener(n,c,i)}}}function r(t,e,n,o){return function(n){n.delegateTarget=i(n.target,e,!0),n.delegateTarget&&o.call(t,n)}}var i=t("closest");e.exports=o},{closest:1}],3:[function(t,e,n){n.node=function(t){return void 0!==t&&t instanceof HTMLElement&&1===t.nodeType},n.nodeList=function(t){var e=Object.prototype.toString.call(t);return void 0!==t&&("[object NodeList]"===e||"[object HTMLCollection]"===e)&&"length"in t&&(0===t.length||n.node(t[0]))},n.string=function(t){return"string"==typeof t||t instanceof String},n.fn=function(t){var e=Object.prototype.toString.call(t);return"[object Function]"===e}},{}],4:[function(t,e,n){function o(t,e,n){if(!t&&!e&&!n)throw new Error("Missing required arguments");if(!s.string(e))throw new TypeError("Second argument must be a String");if(!s.fn(n))throw new TypeError("Third argument must be a Function");if(s.node(t))return r(t,e,n);if(s.nodeList(t))return i(t,e,n);if(s.string(t))return c(t,e,n);throw new TypeError("First argument must be a String, HTMLElement, HTMLCollection, or NodeList")}function r(t,e,n){return t.addEventListener(e,n),{destroy:function(){t.removeEventListener(e,n)}}}function i(t,e,n){return Array.prototype.forEach.call(t,function(t){t.addEventListener(e,n)}),{destroy:function(){Array.prototype.forEach.call(t,function(t){t.removeEventListener(e,n)})}}}function c(t,e,n){return a(document.body,t,e,n)}var s=t("./is"),a=t("delegate");e.exports=o},{"./is":3,delegate:2}],5:[function(t,e,n){function o(t,e){if(i)return i.call(t,e);for(var n=t.parentNode.querySelectorAll(e),o=0;o<n.length;++o)if(n[o]==t)return!0;return!1}var r=Element.prototype,i=r.matchesSelector||r.webkitMatchesSelector||r.mozMatchesSelector||r.msMatchesSelector||r.oMatchesSelector;e.exports=o},{}],6:[function(t,e,n){function o(t){var e;if("INPUT"===t.nodeName||"TEXTAREA"===t.nodeName)t.focus(),t.setSelectionRange(0,t.value.length),e=t.value;else{t.hasAttribute("contenteditable")&&t.focus();var n=window.getSelection(),o=document.createRange();o.selectNodeContents(t),n.removeAllRanges(),n.addRange(o),e=n.toString()}return e}e.exports=o},{}],7:[function(t,e,n){function o(){}o.prototype={on:function(t,e,n){var o=this.e||(this.e={});return(o[t]||(o[t]=[])).push({fn:e,ctx:n}),this},once:function(t,e,n){function o(){r.off(t,o),e.apply(n,arguments)}var r=this;return o._=e,this.on(t,o,n)},emit:function(t){var e=[].slice.call(arguments,1),n=((this.e||(this.e={}))[t]||[]).slice(),o=0,r=n.length;for(o;r>o;o++)n[o].fn.apply(n[o].ctx,e);return this},off:function(t,e){var n=this.e||(this.e={}),o=n[t],r=[];if(o&&e)for(var i=0,c=o.length;c>i;i++)o[i].fn!==e&&o[i].fn._!==e&&r.push(o[i]);return r.length?n[t]=r:delete n[t],this}},e.exports=o},{}],8:[function(e,n,o){!function(r,i){if("function"==typeof t&&t.amd)t(["module","select"],i);else if("undefined"!=typeof o)i(n,e("select"));else{var c={exports:{}};i(c,r.select),r.clipboardAction=c.exports}}(this,function(t,e){"use strict";function n(t){return t&&t.__esModule?t:{"default":t}}function o(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var r=n(e),i="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol?"symbol":typeof t},c=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}(),s=function(){function t(e){o(this,t),this.resolveOptions(e),this.initSelection()}return t.prototype.resolveOptions=function t(){var e=arguments.length<=0||void 0===arguments[0]?{}:arguments[0];this.action=e.action,this.emitter=e.emitter,this.target=e.target,this.text=e.text,this.trigger=e.trigger,this.selectedText=""},t.prototype.initSelection=function t(){if(this.text&&this.target)throw new Error('Multiple attributes declared, use either "target" or "text"');if(this.text)this.selectFake();else{if(!this.target)throw new Error('Missing required attributes, use either "target" or "text"');this.selectTarget()}},t.prototype.selectFake=function t(){var e=this,n="rtl"==document.documentElement.getAttribute("dir");this.removeFake(),this.fakeHandler=document.body.addEventListener("click",function(){return e.removeFake()}),this.fakeElem=document.createElement("textarea"),this.fakeElem.style.fontSize="12pt",this.fakeElem.style.border="0",this.fakeElem.style.padding="0",this.fakeElem.style.margin="0",this.fakeElem.style.position="fixed",this.fakeElem.style[n?"right":"left"]="-9999px",this.fakeElem.style.top=(window.pageYOffset||document.documentElement.scrollTop)+"px",this.fakeElem.setAttribute("readonly",""),this.fakeElem.value=this.text,document.body.appendChild(this.fakeElem),this.selectedText=(0,r.default)(this.fakeElem),this.copyText()},t.prototype.removeFake=function t(){this.fakeHandler&&(document.body.removeEventListener("click"),this.fakeHandler=null),this.fakeElem&&(document.body.removeChild(this.fakeElem),this.fakeElem=null)},t.prototype.selectTarget=function t(){this.selectedText=(0,r.default)(this.target),this.copyText()},t.prototype.copyText=function t(){var e=void 0;try{e=document.execCommand(this.action)}catch(n){e=!1}this.handleResult(e)},t.prototype.handleResult=function t(e){e?this.emitter.emit("success",{action:this.action,text:this.selectedText,trigger:this.trigger,clearSelection:this.clearSelection.bind(this)}):this.emitter.emit("error",{action:this.action,trigger:this.trigger,clearSelection:this.clearSelection.bind(this)})},t.prototype.clearSelection=function t(){this.target&&this.target.blur(),window.getSelection().removeAllRanges()},t.prototype.destroy=function t(){this.removeFake()},c(t,[{key:"action",set:function t(){var e=arguments.length<=0||void 0===arguments[0]?"copy":arguments[0];if(this._action=e,"copy"!==this._action&&"cut"!==this._action)throw new Error('Invalid "action" value, use either "copy" or "cut"')},get:function t(){return this._action}},{key:"target",set:function t(e){if(void 0!==e){if(!e||"object"!==("undefined"==typeof e?"undefined":i(e))||1!==e.nodeType)throw new Error('Invalid "target" value, use a valid Element');this._target=e}},get:function t(){return this._target}}]),t}();t.exports=s})},{select:6}],9:[function(e,n,o){!function(r,i){if("function"==typeof t&&t.amd)t(["module","./clipboard-action","tiny-emitter","good-listener"],i);else if("undefined"!=typeof o)i(n,e("./clipboard-action"),e("tiny-emitter"),e("good-listener"));else{var c={exports:{}};i(c,r.clipboardAction,r.tinyEmitter,r.goodListener),r.clipboard=c.exports}}(this,function(t,e,n,o){"use strict";function r(t){return t&&t.__esModule?t:{"default":t}}function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function c(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function s(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}function a(t,e){var n="data-clipboard-"+t;if(e.hasAttribute(n))return e.getAttribute(n)}var l=r(e),u=r(n),f=r(o),d=function(t){function e(n,o){i(this,e);var r=c(this,t.call(this));return r.resolveOptions(o),r.listenClick(n),r}return s(e,t),e.prototype.resolveOptions=function t(){var e=arguments.length<=0||void 0===arguments[0]?{}:arguments[0];this.action="function"==typeof e.action?e.action:this.defaultAction,this.target="function"==typeof e.target?e.target:this.defaultTarget,this.text="function"==typeof e.text?e.text:this.defaultText},e.prototype.listenClick=function t(e){var n=this;this.listener=(0,f.default)(e,"click",function(t){return n.onClick(t)})},e.prototype.onClick=function t(e){var n=e.delegateTarget||e.currentTarget;this.clipboardAction&&(this.clipboardAction=null),this.clipboardAction=new l.default({action:this.action(n),target:this.target(n),text:this.text(n),trigger:n,emitter:this})},e.prototype.defaultAction=function t(e){return a("action",e)},e.prototype.defaultTarget=function t(e){var n=a("target",e);return n?document.querySelector(n):void 0},e.prototype.defaultText=function t(e){return a("text",e)},e.prototype.destroy=function t(){this.listener.destroy(),this.clipboardAction&&(this.clipboardAction.destroy(),this.clipboardAction=null)},e}(u.default);t.exports=d})},{"./clipboard-action":8,"good-listener":4,"tiny-emitter":7}]},{},[9])(9)});
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -72194,6 +72245,8 @@ define('app/pocket.gl',[
 	"app/loadingManager",
 	"app/meshLoader",
 
+	"clipboard",
+
 	"three_builds/three",
 
 	"three_examples/Detector",
@@ -72201,9 +72254,10 @@ define('app/pocket.gl',[
 
 	"dat_gui/dat.gui",
 
-	"ace_builds/ace"],
+	"ace_builds/ace"
+	],
 
-	function(stylesheet, defaultVertex, defaultFragment, Utils, PocketGLTabs, config, LoadingManager, MeshLoader) {
+	function(stylesheet, defaultVertex, defaultFragment, Utils, PocketGLTabs, config, LoadingManager, MeshLoader, Clipboard) {
 		console.log("pocket.gl " + config.version);
 
 		// Inject css
@@ -72215,6 +72269,9 @@ define('app/pocket.gl',[
 		function PocketGL(containerIDorDomEl, params, baseURL)
 		{
 			var scope = this;
+
+			// all the views
+			this.containerNames = ["render", "errors", "loading", "vertex_shader", "fragment_shader"];
 
 			if(typeof params === 'string' || params instanceof String)
 			{
@@ -72259,15 +72316,13 @@ define('app/pocket.gl',[
 				return;
 			}
 
-			this.currentTab = 0;
+			this.currentView = "render";
 
 			this.createDomElements();
 
 			this.clock = new THREE.Clock();
 
-			this.frameCount = 0;
-
-			this.animationPaused = false;
+			this.frameCount = 0;			
 
 			if(params.vertexShaderFile != undefined || params.fragmentShaderFile != undefined) {
 				this.showLoading();
@@ -72333,6 +72388,8 @@ define('app/pocket.gl',[
 			if(params.fragmentShaderFile != undefined)
 				params.fragmentShader = "loading...";
 
+			this.fragmentOnly = false;
+
 			if(params.vertexShader == undefined && params.fragmentShader == undefined && params.meshes.length > 0) {
 				// mesh viewer
 				this.shaderEditorEnabled = false;
@@ -72347,8 +72404,6 @@ define('app/pocket.gl',[
 					this.shaderEditorEnabled = true;
 				}
 				else {
-					this.fragmentOnly = false;
-
 					if(params.vertexShader   == undefined) params.vertexShader   = defaultVertex;
 					if(params.fragmentShader == undefined) params.fragmentShader = defaultFragment;
 				}
@@ -72364,67 +72419,46 @@ define('app/pocket.gl',[
 			var scope = this;
 
 			// Tabs
-			if(this.shaderEditorEnabled && this.params.showTabs) {
-				var div = document.createElement("div");
-				div.className = "pocketgl-tabs";
-				var ul = document.createElement("ul");
+			if(this.shaderEditorEnabled && this.params.showTabs) 				
+				this.tabs = new PocketGLTabs(this.domContainer, this.params.tabColor, !this.fragmentOnly, function (view) { scope.switchView(view); });
 
-				var tabNames = ["Render", "Vertex Shader", "Fragment Shader"];
-				var tabs = [];
-				for(var i=0; i<3; i++) {
-					var li = document.createElement("li");
-					var a = document.createElement("a");
-					a.href = "#";
-					a.innerHTML = tabNames[i];
-					li.appendChild(a);
-					ul.appendChild(li);
-
-					tabs.push(a);
-				}
-				
-				div.appendChild(ul);
-
-				var divHl = document.createElement("div");
-				divHl.className = "hl animated";
-				divHl.style.width = "70px";
-				divHl.style.left = "0px";
-				divHl.style.backgroundColor = this.params.tabColor;
-
-				div.appendChild(divHl);	
-
-				this.domContainer.appendChild(div);
-				this.tabs = new PocketGLTabs(function (tabIndex) { scope.switchTab(tabIndex); }, tabs, divHl);
+			if(!this.params.fluidWidth) {
+				this.domContainer.style.width = this.params.width + "px";
+				this.domContainer.style.position = "relative";
 			}
 
-			this.containers = [];
-			for(var i=0; i<5; i++) {
-				this.containers[i] = document.createElement("div");
+			this.containers = {};
+			for(var i in this.containerNames) {
+				var id = this.containerNames[i];
+
+				this.containers[id] = document.createElement("div");
 				
-				if(i > 0) this.containers[i].style.display = "none";
+				if(i > 0) this.containers[id].style.display = "none";
 				
 
-				if(!this.params.fluidWidth)  this.containers[i].style.width  = this.params.width + "px";
+				if(!this.params.fluidWidth)  
+					this.containers[id].style.width  = this.params.width + "px";
 				else { 
 					// Fluid layout
 					this.params.width = Utils.getElementSize(this.domContainer).width;
 					window.addEventListener( 'resize', function() { scope.onWindowResize(); }, false );
 				}
 
-				this.containers[i].style.height = this.params.height + "px";
-				this.containers[i].style.position = "relative";
+				this.containers[id].style.height = this.params.height + "px";
+				this.containers[id].style.position = "relative";
 
-				this.domContainer.appendChild(this.containers[i]);
+				this.domContainer.appendChild(this.containers[id]);
 			}
 
-			this.containers[3].className = "pocketgl errorConsole";
+			this.containers.errors.className = "pocketgl errorConsole";
 
 			// Loading Manager progress bar
-			this.containers[4].className = "pocketgl loadingProgress";
+			this.containers.loading.className = "pocketgl loadingProgress";
 
-			this.containers[4].innerHTML = 
+			this.containers.loading.innerHTML = 
 				"<div class='pocketglProgress'><div class='pocketglProgressBar'></div></div>";
 
-			var progressBar = this.containers[4].getElementsByTagName("div")[1];
+			var progressBar = this.containers.loading.getElementsByTagName("div")[1];
 			this.LoadingManager = new LoadingManager(
 				progressBar,
 				function() { scope.onLoadingComplete(); }
@@ -72461,7 +72495,7 @@ define('app/pocket.gl',[
 				this.init();
 			}
 			else
-				this.switchTab(0);
+				this.switchView("render");
 		}
 
 		PocketGL.prototype.addSkybox = function() 
@@ -72550,12 +72584,101 @@ define('app/pocket.gl',[
 			}
 		}
 
+		PocketGL.prototype.addCopyButtons = function() {
+			var scope = this;
+
+			var buttons = document.createElement("div");
+			buttons.className = "pocketgl pocketgl-copyButtons";
+			buttons.style.display = "none";			
+
+			var copyButton = document.createElement("button");
+			copyButton.className = "pocketgl pocketgl-copyButton";
+			copyButton.innerHTML = "copy";
+
+			copyButton.title = "Copy to clipboard";			
+
+			var copyButtonJS = document.createElement("button");
+			copyButtonJS.className = "pocketgl pocketgl-copyButton";
+			copyButtonJS.innerHTML = "copy js";
+
+			copyButtonJS.title = "Copy as js string";
+
+			buttons.appendChild(copyButtonJS);
+			buttons.appendChild(copyButton);
+
+			this.domContainer.appendChild(buttons);
+
+			this.copyButtons = buttons;
+			this.copyButton = copyButton;
+			this.copyButtonJS = copyButtonJS;
+
+			this.clipboard = new Clipboard(copyButton);
+			this.clipboardJS = new Clipboard(copyButtonJS);
+		}
+
+		PocketGL.prototype.editorChanged = function(editor) {
+			var scope = this;
+
+			if(this.currentClipboardTimeout)
+				clearTimeout(this.currentClipboardTimeout);
+
+			this.currentClipboardTimeout = setTimeout(function(){ scope.updateClipboardButtons(); }, 1000);
+		}
+
+		PocketGL.prototype.updateClipboardButtons = function() {
+			var text;
+
+			if(this.currentView == "vertex_shader" && this.editorVertex) 
+				text = this.editorVertex.getValue();
+
+			if(this.currentView == "fragment_shader" && this.editorFragment) 
+				text = this.editorFragment.getValue();
+
+			if(text == undefined) return;
+
+			this.copyButton.setAttribute("data-clipboard-text", text);
+			this.copyButtonJS.setAttribute("data-clipboard-text", Utils.toJSString(text));
+		}
+
+		PocketGL.prototype.addPlayButtons = function(domElement)
+		{
+			var scope = this;
+
+			this.playButton = document.createElement("a");
+			this.playButton.href = "#";
+			this.playButton.innerHTML = " ";
+			this.playButton.title = "Play";
+			this.playButton.className = "pocketgl-playbutton";
+			this.playButton.style.display = "none";
+			this.playButton.onclick = function() { scope.play(); }
+
+			domElement.appendChild(this.playButton);
+
+			this.pauseButton = document.createElement("a");
+			this.pauseButton.href = "#";
+			this.pauseButton.innerHTML = " ";
+			this.pauseButton.title = "Pause";
+			this.pauseButton.className = "pocketgl-pausebutton";
+			this.pauseButton.onclick = function() { scope.pause(); }
+
+			domElement.appendChild(this.pauseButton);
+
+			this.stopButton = document.createElement("a");
+			this.stopButton.href = "#";
+			this.stopButton.innerHTML = " ";
+			this.stopButton.title = "Stop";
+			this.stopButton.className = "pocketgl-stopbutton";
+			this.stopButton.onclick = function() { scope.stop(); }
+
+			domElement.appendChild(this.stopButton);
+		}
+
 		PocketGL.prototype.addFullscreenButton = function(domElement)
 		{
 			var fullscreenButton = document.createElement("a");
 			fullscreenButton.href = "#";
 			fullscreenButton.innerHTML = " ";
-			fullscreenButton.title = "fullscreen";
+			fullscreenButton.title = "Fullscreen";
 			fullscreenButton.className = "pocketgl-fullscreenbutton";
 
 			fullscreenButton.onclick = function() { 
@@ -72624,42 +72747,56 @@ define('app/pocket.gl',[
 					}, 500);
 		}
 
-		PocketGL.prototype.switchTab = function(tabIndex)
+		PocketGL.prototype.switchView = function(view)
 		{
-			if(tabIndex < 0 || tabIndex > 4) return;
-			if(tabIndex == this.currentTab) return;
+			var scope = this;
+
+			if(this.containers[view] == undefined) return;
+
+			if(view == this.currentView) return;
 			
-			this.containers[this.currentTab].style.display = "none";
-			this.containers[tabIndex].style.display   = "block";
+			this.containers[this.currentView].style.display = "none";
+			this.containers[view].style.display   = "block";
 
-			this.currentTab = tabIndex;
-			this.animationPaused = tabIndex != 0;
+			this.currentView = view;
 			if(this.tabs != undefined) this.tabs.enable();
+			if(this.copyButtons) this.copyButtons.style.display = "none";
 
-			switch(tabIndex) {
-				case 0:
+			switch(view) {
+				case "render":
 					if(this.shaderEditorEnabled) this.updateShadersFromEditor();
 					break;
 
-				case 1:
+				case "vertex_shader":
 					if(this.editorVertex == undefined) {
-						this.editorVertex = this.createEditor(this.containers[1], this.params.vertexShader);
-						if(this.params.fluidWidth) this.containers[tabIndex].style.width = "";
+						this.editorVertex = this.createEditor(this.containers["vertex_shader"], this.params.vertexShader);
+						if(this.params.fluidWidth) this.containers[view].style.width = "";
+						this.editorVertex.on("change", function(e) { scope.editorChanged(scope.editorVertex); });
 					}
 
-					this.editorVertex.focus();					
+					this.editorVertex.focus();	
+
+					if(this.copyButtons) {
+						this.copyButtons.style.display = "block";
+						this.updateClipboardButtons();
+					}
 					break;
 
-				case 2:
+				case "fragment_shader":
 					if(this.editorFragment == undefined) {
-						this.editorFragment = this.createEditor(this.containers[2], this.params.fragmentShader);
-						if(this.params.fluidWidth) this.containers[tabIndex].style.width = "";
+						this.editorFragment = this.createEditor(this.containers["fragment_shader"], this.params.fragmentShader);
+						if(this.params.fluidWidth) this.containers[view].style.width = "";
+						this.editorFragment.on("change", function(e) { scope.editorChanged(scope.editorFragment); });
 					}
 
 					this.editorFragment.focus();
+					if(this.copyButtons) {
+						this.copyButtons.style.display = "block";
+						this.updateClipboardButtons();
+					}
 					break;
 
-				case 4:
+				case "loading":
 					if(this.tabs != undefined) this.tabs.disable();
 					break;
 
@@ -72683,7 +72820,9 @@ define('app/pocket.gl',[
 		}
 
 		PocketGL.prototype.updateUniforms = function() {
-			if(this.uniforms.time != undefined && this.params.animated) 
+			if(!this.uniforms) return;
+
+			if(this.uniforms.time != undefined && this.params.animated && this.isPlaying()) 
 				this.uniforms.time.value += this.clock.getDelta();
 
 			function update(u, uniformid, scope) {
@@ -72705,12 +72844,73 @@ define('app/pocket.gl',[
 			}
 		}
 
-		PocketGL.prototype.animate = function() {
-			var _this = this;
-			requestAnimationFrame(function () { _this.animate() });
+		PocketGL.prototype.play = function() {		
+			if(! this.params.animated) return;
 
-			if(!this.animationPaused)
-				this.render();
+			this.clock.start();
+
+			this.animationStopped = this.animationPaused = false;
+
+			this.pauseButton.style.display = "block";
+			this.playButton.style.display = "none";
+
+			this.animate();
+		}
+
+		PocketGL.prototype.isPlaying = function() {
+			return this.params.animated && !this.animationStopped && !this.animationPaused && !this.stoppedByError;
+		}
+
+		PocketGL.prototype.stop = function() {
+			if(! this.params.animated) return;
+
+			// reset time
+			if(this.uniforms && this.uniforms.time != undefined) {
+				this.uniforms.time.value = 0;
+				this.frameCount = 0;
+			}
+
+			this.animationStopped = true;
+			this.clock.stop();
+
+			this.pauseButton.style.display = "none";
+			this.playButton.style.display = "block";
+		}
+
+		PocketGL.prototype.errorStop = function() {
+			if(! this.params.animated) return;
+
+			this.stoppedByError = true;
+		}
+
+		PocketGL.prototype.errorResume = function() {
+			if(! this.params.animated) return;
+
+			if(!this.stoppedByError) return;
+
+			this.stoppedByError = false;
+
+			if(this.isPlaying())
+				this.play();
+		}
+
+		PocketGL.prototype.pause = function() {
+			if(! this.params.animated)	 return;
+
+			this.animationPaused = true;
+			this.clock.stop();
+
+			this.pauseButton.style.display = "none";
+			this.playButton.style.display = "block";
+		}
+
+		PocketGL.prototype.animate = function() {			
+			var _this = this;
+
+			if(this.isPlaying())
+				requestAnimationFrame(function () { _this.animate() });
+
+			this.render();
 		}
 
 		PocketGL.prototype.render = function() {
@@ -72724,6 +72924,7 @@ define('app/pocket.gl',[
 			this.logErrors();
 
 			this.frameCount++;
+
 			//console.log("render " + this.frameCount);
 		}
 
@@ -72801,7 +73002,7 @@ define('app/pocket.gl',[
 		}
 
 		PocketGL.prototype.showLoading = function() {
-			this.switchTab(4);
+			this.switchView("loading");
 		}
 
 		PocketGL.prototype.logErrors = function() {
@@ -72826,12 +73027,13 @@ define('app/pocket.gl',[
 				if(fragmentLog != "") 
 					errorMessage += "Fragment Shader errors:<br/>" + fragmentLog;
 
-				this.switchTab(3);
+				this.switchView("errors");
 
-				this.animationPaused = true;
+				this.errorStop();
 			}
+			else this.errorResume();
 
-			this.containers[3].innerHTML = errorMessage;
+			this.containers.errors.innerHTML = errorMessage;
 		}
 
 		PocketGL.prototype.init = function() {
@@ -72983,9 +73185,15 @@ define('app/pocket.gl',[
 			}
 
 			// Add webgl canvas renderer to DOM container	
-			this.containers[0].appendChild( this.renderer.domElement );
-			this.containers[0].appendChild(this.getLogoDomEl());
-			if(Utils.hasFullscreen()) this.addFullscreenButton(this.containers[0]);
+			this.containers.render.appendChild( this.renderer.domElement );
+			this.containers.render.appendChild(this.getLogoDomEl());
+			if(Utils.hasFullscreen()) this.addFullscreenButton(this.containers.render);
+
+			if(this.params.animated && this.params.playButtons)
+				this.addPlayButtons(this.containers.render);
+
+			if(this.tabs)
+				this.addCopyButtons();
 
 			// GUI	
 			this.GUIParams = { Mesh: 0 };
@@ -73072,7 +73280,7 @@ define('app/pocket.gl',[
 				guiContainer.style.right = "0px";
 				guiContainer.style.top = "0px";
 				guiContainer.appendChild(gui.domElement);
-				this.containers[0].appendChild(guiContainer);
+				this.containers.render.appendChild(guiContainer);
 			}
 
 			// Load mesh
@@ -73080,12 +73288,12 @@ define('app/pocket.gl',[
 				this.loadMesh(this.params.meshes[0], material);
 
 			if(this.params.animated)
-				this.animate();
+				this.play();
 			else
 				this.render();
 
 			if(this.LoadingManager.objects.length == 0)
-				this.switchTab(0);
+				this.switchView("render");
 			else
 				this.LoadingManager.setReady();
 		}

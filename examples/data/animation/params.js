@@ -29,6 +29,7 @@
 	editorTheme: "dark",
 	doubleSided: true,
 	animated: true,
+	playButtons: true,
 
 	vertexShader: [
 		"varying vec3 normalInterp;",

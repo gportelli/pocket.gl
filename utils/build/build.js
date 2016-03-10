@@ -8,7 +8,8 @@
         text:               'bower_components/text/text',
         ace_builds:         'bower_components/ace-builds/src-noconflict',
         dat_gui:            'bower_components/dat-gui/build',
-        almond:             'bower_components/almond'
+        almond:             'bower_components/almond',
+        clipboard:          'bower_components/clipboard/dist/clipboard.min'
     },
 
     shim: {

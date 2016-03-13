@@ -18,13 +18,14 @@
  
 define(
 	[
+		"app/utils",
 		"three_builds/three",
 		"three_examples/loaders/OBJLoader",
 		"three_examples/loaders/ColladaLoader",
-		"three_examples/geometries/TeapotBufferGeometry",
+		"three_examples/geometries/TeapotBufferGeometry"
 	],
 
-	function() {
+	function(Utils, t) {
 
 		function MeshLoader(mesh, material, baseURL, loadingManager, onLoaded) { 
 			this.mesh = mesh;
@@ -112,13 +113,9 @@ define(
 				}
 			}
 
-			function endsWith(str, suffix) {
-			    return str.indexOf(suffix, str.length - suffix.length) !== -1;
-			}
-
 			var meshurl = this.baseURL + this.mesh.url;
 
-			if(endsWith(meshurl.toLowerCase(), ".dae")) {
+			if(Utils.endsWith(meshurl.toLowerCase(), ".dae")) {
 				var loader = new THREE.ColladaLoader();
 				this.LoadingManager.addObject(loader);
 				loader.options.convertUpAxis = true;
@@ -148,7 +145,7 @@ define(
 					function(xhr) { _this.LoadingManager.onError(xhr); }
 				);
 			}
-			else if(endsWith(meshurl.toLowerCase(), ".obj")) {
+			else if(Utils.endsWith(meshurl.toLowerCase(), ".obj")) {
 				var loader = new THREE.OBJLoader();
 				this.LoadingManager.addObject(loader);
 				loader.load(

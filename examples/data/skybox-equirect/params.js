@@ -18,7 +18,7 @@
 	],
 
 	uniforms: {
-		bNormal: {type: "boolean", value: true, displayName: "Normal map"}
+		bNormal: {type: "boolean", value: true, name: "Normal map"}
 	},
 
 	vertexShader: [

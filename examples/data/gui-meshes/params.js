@@ -6,8 +6,8 @@
 	],
 
 	uniforms: {
-		bFlat:   { type: "boolean", value: false, displayName: "Flat shading" },
-		diffuseColor: { type: "color", value: "#26a00c", displayName: "Color"}
+		bFlat:   { type: "boolean", value: false, name: "Flat shading" },
+		diffuseColor: { type: "color", value: "#26a00c", name: "Color"}
 	},
 
 	//editorTheme: "bright",

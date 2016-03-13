@@ -5,7 +5,7 @@
 	],
 
 	uniforms: {
-		bFlat:   { type: "boolean", value: true, displayName: "Flat enabled" },
+		bFlat:   { type: "boolean", value: true, name: "Flat enabled" },
 	},
 
 	//editorTheme: "bright",

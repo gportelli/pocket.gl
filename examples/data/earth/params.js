@@ -5,14 +5,14 @@
 	
 	uniforms: {
 		Speeds: [{
-			rotationSpeed: { type: "float", value: 0.25, min: 0, max: 1, displayName: "Rotation Speed" },
-			cloudsSpeed:   { type: "float", value: 0.25, min: 0, max: 1, displayName: "Clouds Speed" }
+			rotationSpeed: { type: "float", value: 0.25, min: 0, max: 1, name: "Rotation Speed" },
+			cloudsSpeed:   { type: "float", value: 0.25, min: 0, max: 1, name: "Clouds Speed" }
 		}],
 		
 		Textures: [{
-			cloudsOn:      { type: "boolean", value: true, displayName: "Clouds" },	
-			normalOn:      { type: "boolean", value: true, displayName: "Normal Map" },
-			specularOn:    { type: "boolean", value: true, displayName: "Specular Map" },
+			cloudsOn:      { type: "boolean", value: true, name: "Clouds" },	
+			normalOn:      { type: "boolean", value: true, name: "Normal Map" },
+			specularOn:    { type: "boolean", value: true, name: "Specular Map" },
 		}, "opened"]
 		
 	},

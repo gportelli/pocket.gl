@@ -18,10 +18,10 @@
 	],
 
 	uniforms: {
-		"Folder A": [{ uvscale: { type: "float", value: 1, min: 0.5, max: 2, displayName: "UV Scale" } }],
+		"Folder A": [{ uvscale: { type: "float", value: 1, min: 0.5, max: 2, name: "UV Scale" } }],
 		"Folder B": [{
-			color:   { type: "color", value: "#fff", displayName: "Color" },
-			useTexture:   { type: "boolean", value: true, displayName: "Use Texture" },
+			color:   { type: "color", value: "#fff", name: "Color" },
+			useTexture:   { type: "boolean", value: true, name: "Use Texture" },
 		}]
 	},
 

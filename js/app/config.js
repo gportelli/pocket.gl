@@ -29,6 +29,7 @@ define({
 	height: 400,
 	backgroundColor: "#ddd",
 	tabColor: "#1c90f3",
+	tabTextColor: "#333",
 	doubleSided: false,
 	animated: false,
 	playButtons: true,
@@ -38,5 +39,5 @@ define({
 	showTabs: true,
 	guiOpened: true,
 	orbiting: true,
-	zoom: true
+	zoom: false
 });

@@ -56,6 +56,8 @@ define([
 			// all the views
 			this.containerNames = ["render", "errors", "loading", "vertex_shader", "fragment_shader"];
 
+			if(params == undefined) params = {};
+
 			if(typeof params === 'string' || params instanceof String)
 			{
 				if(baseURL == undefined) {
@@ -87,6 +89,8 @@ define([
 				(typeof containerIDorDomEl === 'string' || containerIDorDomEl instanceof String) 
 				? document.getElementById(containerIDorDomEl) 
 				: containerIDorDomEl;
+
+			this.domContainer.className += " pocketgl";
 
 			this.baseURL = baseURL == undefined ? "" : baseURL;
 			if(this.baseURL != "" && this.baseURL[this.baseURL.length-1] != "/") this.baseURL += "/";
@@ -160,9 +164,6 @@ define([
 			for(id in config)
 				if(params[id] == undefined) params[id] = config[id];
 
-			var urlMeshesCount = 0;
-			for(var i in params.meshes) if(params.meshes[i].url !== undefined) urlMeshesCount++;
-
 			this.shaderEditorEnabled = true;
 
 			if(params.vertexShaderFile != undefined)
@@ -171,9 +172,15 @@ define([
 			if(params.fragmentShaderFile != undefined)
 				params.fragmentShader = "loading...";
 
+			var meshWithEmbeddedMaterial = false;
+			for(var i in params.meshes) if(params.meshes[i].materials !== undefined) {
+				meshWithEmbeddedMaterial = true;
+				break;
+			}
+
 			this.fragmentOnly = false;
 
-			if(params.vertexShader == undefined && params.fragmentShader == undefined && params.meshes.length > 0) {
+			if(params.vertexShader == undefined && params.fragmentShader == undefined && meshWithEmbeddedMaterial) {
 				// mesh viewer
 				this.shaderEditorEnabled = false;
 			}
@@ -203,7 +210,7 @@ define([
 
 			// Tabs
 			if(this.shaderEditorEnabled && this.params.showTabs) 				
-				this.tabs = new PocketGLTabs(this.domContainer, this.params.tabColor, !this.fragmentOnly, function (view) { scope.switchView(view); });
+				this.tabs = new PocketGLTabs(this.domContainer, this.params.tabColor, this.params.tabTextColor, !this.fragmentOnly, function (view) { scope.switchView(view); });
 
 			if(!this.params.fluidWidth) {
 				this.domContainer.style.width = this.params.width + "px";
@@ -233,10 +240,10 @@ define([
 				this.domContainer.appendChild(this.containers[id]);
 			}
 
-			this.containers.errors.className = "pocketgl errorConsole";
+			this.containers.errors.className = "errorConsole";
 
 			// Loading Manager progress bar
-			this.containers.loading.className = "pocketgl loadingProgress";
+			this.containers.loading.className = "loadingProgress";
 
 			this.containers.loading.innerHTML = 
 				"<div class='pocketglProgress'><div class='pocketglProgressBar'></div></div>";
@@ -267,6 +274,9 @@ define([
 			this.renderer.setSize( containerSize.width, this.params.height );
 
 			this.render();
+
+			// repositioning and resizing tab cursor
+			if(this.tabs) this.tabs.refresh();
 		}
 
 		PocketGL.prototype.onLoadingComplete = function()
@@ -371,17 +381,17 @@ define([
 			var scope = this;
 
 			var buttons = document.createElement("div");
-			buttons.className = "pocketgl pocketgl-copyButtons";
+			buttons.className = "pocketgl-copyButtons";
 			buttons.style.display = "none";			
 
 			var copyButton = document.createElement("button");
-			copyButton.className = "pocketgl pocketgl-copyButton";
+			copyButton.className = "pocketgl-copyButton";
 			copyButton.innerHTML = "copy";
 
 			copyButton.title = "Copy to clipboard";			
 
 			var copyButtonJS = document.createElement("button");
-			copyButtonJS.className = "pocketgl pocketgl-copyButton";
+			copyButtonJS.className = "pocketgl-copyButton";
 			copyButtonJS.innerHTML = "copy js";
 
 			copyButtonJS.title = "Copy as js string";
@@ -395,8 +405,8 @@ define([
 			this.copyButton = copyButton;
 			this.copyButtonJS = copyButtonJS;
 
-			this.clipboard = new Clipboard(copyButton);
 			this.clipboardJS = new Clipboard(copyButtonJS);
+			this.clipboard = new Clipboard(copyButton);
 		}
 
 		PocketGL.prototype.editorChanged = function(editor) {
@@ -465,6 +475,8 @@ define([
 			fullscreenButton.className = "pocketgl-fullscreenbutton";
 
 			fullscreenButton.onclick = function() { 
+				scope.togglingFullscreen = true;
+
 				// save windowed size
 				scope.windowedSize = Utils.getElementSize(scope.renderer.domElement);
 
@@ -499,6 +511,9 @@ define([
 
 		PocketGL.prototype.onFullscreenChange = function()
 		{
+			if(! this.togglingFullscreen) return;
+			this.togglingFullscreen = false;
+
 			var size;
 			if(Utils.isFullscreen()) {
 				size = Utils.getWindowSize();
@@ -556,7 +571,8 @@ define([
 						this.editorVertex.on("change", function(e) { scope.editorChanged(scope.editorVertex); });
 					}
 
-					this.editorVertex.focus();	
+					if(!Utils.mobileAndTabletcheck())
+						this.editorVertex.focus();	
 
 					if(this.copyButtons) {
 						this.copyButtons.style.display = "block";
@@ -570,8 +586,10 @@ define([
 						if(this.params.fluidWidth) this.containers[view].style.width = "";
 						this.editorFragment.on("change", function(e) { scope.editorChanged(scope.editorFragment); });
 					}
+	
+					if(!Utils.mobileAndTabletcheck())
+						this.editorFragment.focus();
 
-					this.editorFragment.focus();
 					if(this.copyButtons) {
 						this.copyButtons.style.display = "block";
 						this.updateClipboardButtons();
@@ -609,11 +627,11 @@ define([
 
 			function update(u, uniformid, scope) {
 				if(u.type == "float")
-					scope.uniforms[uniformid].value = scope.GUIParams[u.displayName];
+					scope.uniforms[uniformid].value = scope.GUIParams[u.name];
 				else if(u.type == "color")
-					scope.uniforms[uniformid].value = new THREE.Color(scope.GUIParams[u.displayName]);
+					scope.uniforms[uniformid].value = new THREE.Color(scope.GUIParams[u.name]);
 				else if(u.type == "boolean")
-					scope.uniforms[uniformid].value = scope.GUIParams[u.displayName] ? 1 : 0;
+					scope.uniforms[uniformid].value = scope.GUIParams[u.name] ? 1 : 0;
 			}
 
 			for(uniformid in this.params.uniforms) {
@@ -1000,10 +1018,10 @@ define([
 
 			function addGuiParams(u) {
 				if(u.type == "float" || u.type == "boolean") {
-					scope.GUIParams[u.displayName] = u.value;
+					scope.GUIParams[u.name] = u.value;
 				}
 				else if(u.type == "color") {
-					scope.GUIParams[u.displayName] = u.value;
+					scope.GUIParams[u.name] = u.value;
 				}
 			}
 
@@ -1047,7 +1065,7 @@ define([
 
 			function addGuiData(u, gui) {
 				if(u.type == "float") 
-					gui.add(scope.GUIParams, u.displayName, u.min, u.max).onChange(function() {
+					gui.add(scope.GUIParams, u.name, u.min, u.max).onChange(function() {
 						scope.render();
 					});
 				else if(u.type == "color")
@@ -1055,7 +1073,7 @@ define([
 						scope.render();
 					});
 				else if(u.type == "boolean")
-					gui.add(scope.GUIParams, u.displayName).onChange(function() {
+					gui.add(scope.GUIParams, u.name).onChange(function() {
 						scope.render();
 					});
 			}

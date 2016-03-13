@@ -22,14 +22,14 @@ define([
 
 	function(Utils) {
 
-	function PocketGLTabs(container, tabColor, addVertex, callback) {
+	function PocketGLTabs(container, tabColor, textColor, addVertex, callback) {
 		var _this = this;
 
 		this.callback = callback;
 		this.container = container;
 
 		var div = document.createElement("div");
-		div.className = "pocketgl pocketgl-tabs";
+		div.className = "pocketgl-tabs";
 		var ul = document.createElement("ul");
 
 		var tabNames = ["Render", "Vertex Shader", "Fragment Shader"];
@@ -43,12 +43,13 @@ define([
 			var a = document.createElement("a");
 			a.href = "#";
 			a.innerHTML = tabNames[i];
+			a.style.color = textColor;
 			li.appendChild(a);
 			ul.appendChild(li);
 
-			a.addEventListener("click", (function (action, index) {
+			a.addEventListener("click", (function (tab, index) {
 					return function(event) {
-						_this.switchTab(event, action, index);
+						_this.switchTab(event, tab, index);
 					}
 				})(a, tabIDs[i]) 
 			);
@@ -71,20 +72,26 @@ define([
 		this.hl = divHl;
 		this.tabs = tabs;
 
-		this.repositionHighlight(tabs[0]);
+		this.currentTab = tabs[0];
+		
+		this.refresh();
 	}
 
-	PocketGLTabs.prototype.switchTab = function(event, action, index) {
+	PocketGLTabs.prototype.refresh = function() {
+		this.repositionHighlight(this.currentTab);
+	}
+
+	PocketGLTabs.prototype.switchTab = function(event, tab, index) {
 		event.preventDefault();
 		event.stopPropagation();
-		this.repositionHighlight(action);
-
+		this.repositionHighlight(tab);
+		this.currentTab = tab;
 		this.callback(index);
 	};
 
-	PocketGLTabs.prototype.repositionHighlight = function(action) {
+	PocketGLTabs.prototype.repositionHighlight = function(tab) {
 		var position;
-		position = Utils.getElementSize(action);
+		position = Utils.getElementSize(tab);
 		container = Utils.getElementSize(this.tabs[0]);
 		return this.setStyles(this.hl, {
 			left: (position.left - container.left) + "px",

@@ -14,8 +14,8 @@
 	],
 
 	uniforms: {
-		seed: 	   { type: "float", value: 62 , min: 0, max: 100, displayName: "Seed" },
-		intensity: { type: "float", value: 0.5, min: 0, max: 1  , displayName: "Intensity" },
+		seed: 	   { type: "float", value: 62 , min: 0, max: 100, name: "Seed" },
+		intensity: { type: "float", value: 0.5, min: 0, max: 1  , name: "Intensity" },
 	},
 
 	//editorTheme: "bright",

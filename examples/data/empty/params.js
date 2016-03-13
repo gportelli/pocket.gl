@@ -1,3 +1,3 @@
 {
-	fluidWidth: true, editorWrap: false
+	fluidWidth: true, editorWrap: false, tabTextColor: "#a00"
 }

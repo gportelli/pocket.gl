@@ -396,8 +396,8 @@ define([
 
 			copyButtonJS.title = "Copy as js string";
 
-			buttons.appendChild(copyButtonJS);
 			buttons.appendChild(copyButton);
+			buttons.appendChild(copyButtonJS);
 
 			this.domContainer.appendChild(buttons);
 
@@ -405,8 +405,8 @@ define([
 			this.copyButton = copyButton;
 			this.copyButtonJS = copyButtonJS;
 
-			this.clipboardJS = new Clipboard(copyButtonJS);
 			this.clipboard = new Clipboard(copyButton);
+			this.clipboardJS = new Clipboard(copyButtonJS);
 		}
 
 		PocketGL.prototype.editorChanged = function(editor) {
@@ -835,8 +835,8 @@ define([
 				var vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log;
 				
 				// Subtracting from errors line numbers the lines of code included by three.js into the shader programs
-				//vertexLog   = this.adjustLineNumbers(vertexLog, Utils.countLines(this.currentMaterial.program.diagnostics.vertexShader.prefix));
-				//fragmentLog = this.adjustLineNumbers(fragmentLog, Utils.countLines(this.currentMaterial.program.diagnostics.fragmentShader.prefix));
+				vertexLog   = this.adjustLineNumbers(vertexLog, Utils.countLines(this.currentMaterial.program.diagnostics.vertexShader.prefix));
+				fragmentLog = this.adjustLineNumbers(fragmentLog, Utils.countLines(this.currentMaterial.program.diagnostics.fragmentShader.prefix));
 
 				errorMessage = programLog + "<br/><br/>";
 

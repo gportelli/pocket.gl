@@ -10,10 +10,7 @@
 		diffuseColor: { type: "color", value: "#26a00c", name: "Color"}
 	},
 
-	//editorTheme: "bright",
 	editorTheme: "dark",
-
-	doubleSided: true,
 	backgroundColor: "#dd0",
 
 	vertexShader: [

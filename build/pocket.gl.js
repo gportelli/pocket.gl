@@ -72307,7 +72307,7 @@ define('app/pocket.gl',[
 					var lastSlash = params.lastIndexOf("/");
 					if(lastSlash == -1) lastSlash = params.lastIndexOf("\\");
 					baseURL = lastSlash == -1
-						? "/"
+						? "./"
 						: params.substring(0, lastSlash);
 				}
 				var loaderV = new THREE.XHRLoader();

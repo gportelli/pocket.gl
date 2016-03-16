@@ -981,8 +981,7 @@ define('app/tabs',[
 		div.className = "pocketgl-tabs";
 		var ul = document.createElement("ul");
 
-		var tabNames = ["Render", "Vertex Shader", "Fragment Shader"];
-		var tabIDs = ["render", "vertex_shader", "fragment_shader"];
+		this.tabIDs = ["render", "vertex_shader", "fragment_shader"];
 		var tabs = [];
 
 		for(var i=0; i<3; i++) {
@@ -991,7 +990,6 @@ define('app/tabs',[
 			var li = document.createElement("li");
 			var a = document.createElement("a");
 			a.href = "#";
-			a.innerHTML = tabNames[i];
 			a.style.color = textColor;
 			li.appendChild(a);
 			ul.appendChild(li);
@@ -1000,10 +998,10 @@ define('app/tabs',[
 					return function(event) {
 						_this.switchTab(event, tab, index);
 					}
-				})(a, tabIDs[i]) 
+				})(a, this.tabIDs[i]) 
 			);
 
-			tabs.push(a);
+			tabs[this.tabIDs[i]] = a;
 		}
 		
 		div.appendChild(ul);
@@ -1021,13 +1019,31 @@ define('app/tabs',[
 		this.hl = divHl;
 		this.tabs = tabs;
 
-		this.currentTab = tabs[0];
+		this.currentTab = tabs["render"];
 		
 		this.refresh();
 	}
 
 	PocketGLTabs.prototype.refresh = function() {
+		var containerSize = Utils.getElementSize(this.container);
+		this.setTabNames(containerSize.width);
 		this.repositionHighlight(this.currentTab);
+	}
+
+	PocketGLTabs.prototype.setTabNames = function(size) {
+		var tabNamesBig = ["Render", "Vertex Shader", "Fragment Shader"];
+		var tabNamesSmall = ["Render", "Vertex", "Fragment"];
+		var tabNamesXSmall = ["Rnd", "Vtx", "Frag"];
+		var tabNames;
+
+		tabNames = size < 340 ? tabNamesXSmall : size < 450 ? tabNamesSmall : tabNamesBig;
+
+		for(var i in this.tabIDs) {
+			var id = this.tabIDs[i];
+			if(this.tabs[id] == undefined) continue;
+
+			this.tabs[this.tabIDs[i]].innerHTML = tabNames[i];
+		}
 	}
 
 	PocketGLTabs.prototype.switchTab = function(event, tab, index) {
@@ -1041,7 +1057,7 @@ define('app/tabs',[
 	PocketGLTabs.prototype.repositionHighlight = function(tab) {
 		var position;
 		position = Utils.getElementSize(tab);
-		container = Utils.getElementSize(this.tabs[0]);
+		container = Utils.getElementSize(this.tabs["render"]);
 		return this.setStyles(this.hl, {
 			left: (position.left - container.left) + "px",
 			width: position.width + "px"
@@ -1060,15 +1076,23 @@ define('app/tabs',[
 	};
 
 	PocketGLTabs.prototype.disable = function() {
-		for(var i in this.tabs)
-			this.tabs[i].style.visibility = "hidden";
+		for(var i in this.tabIDs) {
+			var id = this.tabIDs[i];
+			if(this.tabs[id] == undefined) continue;
+
+			this.tabs[this.tabIDs[i]].style.visibility = "hidden";
+		}
 
 		this.hl.style.visibility = "hidden";
 	};
 
 	PocketGLTabs.prototype.enable = function() {
-		for(var i in this.tabs)
-			this.tabs[i].style.visibility = "visible";
+		for(var i in this.tabIDs) {
+			var id = this.tabIDs[i];
+			if(this.tabs[id] == undefined) continue;
+
+			this.tabs[id].style.visibility = "visible";
+		}
 
 		this.hl.style.visibility = "visible";
 	};

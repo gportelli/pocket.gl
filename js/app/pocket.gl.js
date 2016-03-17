@@ -405,20 +405,20 @@ define([
 			this.copyButton = copyButton;
 			this.copyButtonJS = copyButtonJS;
 
-			this.clipboard = new Clipboard(copyButton);
-			this.clipboardJS = new Clipboard(copyButtonJS);
+			this.clipboard = new Clipboard(copyButton, {
+			    text: function(trigger) {
+			        return scope.getEditorText(false);
+			    }
+			});
+
+			this.clipboardJS = new Clipboard(copyButtonJS, {
+			    text: function(trigger) {
+			        return scope.getEditorText(true);
+			    }
+			});
 		}
 
-		PocketGL.prototype.editorChanged = function(editor) {
-			var scope = this;
-
-			if(this.currentClipboardTimeout)
-				clearTimeout(this.currentClipboardTimeout);
-
-			this.currentClipboardTimeout = setTimeout(function(){ scope.updateClipboardButtons(); }, 1000);
-		}
-
-		PocketGL.prototype.updateClipboardButtons = function() {
+		PocketGL.prototype.getEditorText = function(jsFormat) {
 			var text;
 
 			if(this.currentView == "vertex_shader" && this.editorVertex) 
@@ -429,8 +429,7 @@ define([
 
 			if(text == undefined) return;
 
-			this.copyButton.setAttribute("data-clipboard-text", text);
-			this.copyButtonJS.setAttribute("data-clipboard-text", Utils.toJSString(text));
+			return jsFormat ? Utils.toJSString(text) : text;
 		}
 
 		PocketGL.prototype.addPlayButtons = function(domElement)
@@ -568,32 +567,26 @@ define([
 					if(this.editorVertex == undefined) {
 						this.editorVertex = this.createEditor(this.containers["vertex_shader"], this.params.vertexShader);
 						if(this.params.fluidWidth) this.containers[view].style.width = "";
-						this.editorVertex.on("change", function(e) { scope.editorChanged(scope.editorVertex); });
 					}
 
 					if(!Utils.mobileAndTabletcheck())
 						this.editorVertex.focus();	
 
-					if(this.copyButtons) {
+					if(this.copyButtons) 
 						this.copyButtons.style.display = "block";
-						this.updateClipboardButtons();
-					}
 					break;
 
 				case "fragment_shader":
 					if(this.editorFragment == undefined) {
 						this.editorFragment = this.createEditor(this.containers["fragment_shader"], this.params.fragmentShader);
 						if(this.params.fluidWidth) this.containers[view].style.width = "";
-						this.editorFragment.on("change", function(e) { scope.editorChanged(scope.editorFragment); });
 					}
 	
 					if(!Utils.mobileAndTabletcheck())
 						this.editorFragment.focus();
 
-					if(this.copyButtons) {
+					if(this.copyButtons)
 						this.copyButtons.style.display = "block";
-						this.updateClipboardButtons();
-					}
 					break;
 
 				case "loading":

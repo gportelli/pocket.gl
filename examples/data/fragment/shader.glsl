@@ -21,7 +21,7 @@ void main()	{
 	float t = time * VELOCITY;
 	float tw= twist * TWIST;
 
-	vec2 uv = vec2(angle / PI * 0.5 + 1.0 + t * rot_speed + tw * radius, pow(radius, 0.5) - t * z_speed);
+	vec2 uv = vec2(angle / PI * 0.5 + 1.0 + t * rot_speed + tw * radius, pow(radius, 0.25) - t * z_speed);
 
 	gl_FragColor = vec4(texture2D(texture, uv).rgb, 1.0);
 }

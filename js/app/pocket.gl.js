@@ -261,6 +261,8 @@ define([
 
 			var containerSize = Utils.getElementSize(this.domContainer);
 
+			this.renderer.setSize( containerSize.width, this.params.height );
+
 			if(!this.fragmentOnly) {
 				var containerWidth = containerSize.width;
 
@@ -268,11 +270,9 @@ define([
 				this.camera.updateProjectionMatrix();
 			}
 			else {
-				this.uniforms.resolution.value.x = containerSize.width;
-				this.uniforms.resolution.value.y = containerSize.height;
+				this.uniforms.resolution.value.x = this.renderer.domElement.width;
+				this.uniforms.resolution.value.y = this.renderer.domElement.height;
 			}
-
-			this.renderer.setSize( containerSize.width, this.params.height );
 
 			this.render();
 
@@ -443,7 +443,7 @@ define([
 			this.playButton.title = "Play";
 			this.playButton.className = "pocketgl-playbutton";
 			this.playButton.style.display = "none";
-			this.playButton.onclick = function() { scope.play(); }
+			this.playButton.onclick = function() { scope.play(); return false; }
 
 			domElement.appendChild(this.playButton);
 
@@ -452,7 +452,7 @@ define([
 			this.pauseButton.innerHTML = " ";
 			this.pauseButton.title = "Pause";
 			this.pauseButton.className = "pocketgl-pausebutton";
-			this.pauseButton.onclick = function() { scope.pause(); }
+			this.pauseButton.onclick = function() { scope.pause(); return false; }
 
 			domElement.appendChild(this.pauseButton);
 
@@ -461,7 +461,7 @@ define([
 			this.stopButton.innerHTML = " ";
 			this.stopButton.title = "Stop";
 			this.stopButton.className = "pocketgl-stopbutton";
-			this.stopButton.onclick = function() { scope.stop(); }
+			this.stopButton.onclick = function() { scope.stop(); return false; }
 
 			domElement.appendChild(this.stopButton);
 		}
@@ -475,7 +475,7 @@ define([
 			fullscreenButton.className = "pocketgl-fullscreenbutton";
 
 			fullscreenButton.onclick = function() { 
-				scope.togglingFullscreen = true;
+				scope.fullscreenMode = true;
 
 				// save windowed size
 				scope.windowedSize = Utils.getElementSize(scope.renderer.domElement);
@@ -511,8 +511,8 @@ define([
 
 		PocketGL.prototype.onFullscreenChange = function()
 		{
-			if(! this.togglingFullscreen) return;
-			this.togglingFullscreen = false;
+			if(! this.fullscreenMode) return;
+			if(!Utils.isFullscreen()) this.fullscreenMode = false;
 
 			var size;
 			if(Utils.isFullscreen()) {
@@ -522,17 +522,16 @@ define([
 				size = this.windowedSize;
 			}
 
+			this.renderer.setSize( size.width, size.height );
+
 			if(this.fragmentOnly) {
-				this.uniforms.resolution.value.x = size.width;
-				this.uniforms.resolution.value.y = size.height;
+				this.uniforms.resolution.value.x = this.renderer.domElement.width;
+				this.uniforms.resolution.value.y = this.renderer.domElement.height;
 			}
 			else {
 				this.camera.aspect = size.width / size.height;
 				this.camera.updateProjectionMatrix();
 			}
-
-			//this.renderer.setPixelRatio( window.devicePixelRatio );
-			this.renderer.setSize( size.width, size.height );
 
 			this.render();
 
@@ -545,10 +544,8 @@ define([
 		}
 
 		PocketGL.prototype.switchView = function(view)
-		{
-			var scope = this;
-
-			if(this.containers[view] == undefined) return;
+		{			if(this.containers[view] == undefined) return;
+			if(!Utils.isFullscreen()) this.fullscreenMode = false;
 
 			if(view == this.currentView) return;
 			
@@ -873,7 +870,7 @@ define([
 				this.uniforms.time = {type: "f", value: 0};
 
 			if(this.fragmentOnly)
-				this.uniforms.resolution = {type: "v2", value: new THREE.Vector2(this.params.width, this.params.height)};
+				this.uniforms.resolution = {type: "v2", value: new THREE.Vector2()};
 
 			function addUniform(u, index) {
 				if(u.type == "boolean")
@@ -1093,6 +1090,9 @@ define([
 				guiContainer.appendChild(gui.domElement);
 				this.containers.render.appendChild(guiContainer);
 			}
+
+			// adjust resolution uniform value
+			this.onWindowResize();
 
 			// Load mesh
 			if(this.params.meshes.length != 0)

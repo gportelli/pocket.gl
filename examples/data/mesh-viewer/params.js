@@ -1,8 +1,10 @@
 {
+	tabColor: "#a00", editorTheme: "dark", fluidWidth: false, backgroundColor: "#333",
+	
 	meshes: [
 		{ 
 			url: "dice.obj", name: "Dice", y: 0, ry: -55, scale: 1,
-		  	materials: [{ diffuseMap: "diceDiffuseMap.jpg", normalMap: "dice-normal-clean.png" }]
+		  	materials: [{ diffuseMap: "diffuse.jpg", normalMap: "normal.png" }]
 		},
 		
 		{ 
@@ -13,6 +15,4 @@
 	  	  	]
 		}
 	],
-
-	backgroundColor: "#000"
 }

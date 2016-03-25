@@ -26,7 +26,7 @@ require.config({
     baseUrl: '..',
 
     paths: {
-        app: 				'js/app',
+        app: 				'src/js',
         three_examples: 	'bower_components/three.js/examples/js',
         three_builds: 		'bower_components/three.js/build',
         text: 				'bower_components/text/text',

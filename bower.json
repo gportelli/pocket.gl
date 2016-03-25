@@ -4,14 +4,14 @@
     "Giuseppe Portelli <info@aclockworkberry.com>"
   ],
   "description": "Easily embed webgl shaders inside your pages",
-  "main": "js/app/pocket.gl.js",
+  "main": "src/js/pocket.gl.js",
   "moduleType": [],
   "keywords": [
     "pocket.gl",
     "pocketgl"
   ],
-  "license": "MIT",
-  "homepage": "pocketgl.aclockworkberry.com",
+  "license": "GPL",
+  "homepage": "pocket.gl",
   "private": true,
   "ignore": [
     "**/.*",

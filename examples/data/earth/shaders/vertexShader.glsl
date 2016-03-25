@@ -6,7 +6,7 @@ varying vec2 texcoord;
 uniform float time;
 uniform float rotationSpeed;
 
-const vec3 lightPos = vec3(-10, 3, 2);
+const vec3 lightPos = vec3(0, 0, 1);
 
 void main(){
 	gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);

@@ -294,6 +294,9 @@ define([
 
 		PocketGL.prototype.addSkybox = function() 
 		{
+			if(typeof this.params.skybox == "string")
+				this.params.skybox = [this.params.skybox];
+
 			var scope = this;
 
 			var urls = [];
@@ -320,6 +323,7 @@ define([
 					},
 					function(xhr) { scope.LoadingManager.onError(xhr); }
 				);
+				this.LoadingManager.setReady();
 
 				equirectangularTexture.wrapS = THREE.ClampToEdgeWrapping;
 				equirectangularTexture.wrapT = THREE.ClampToEdgeWrapping;
@@ -340,6 +344,8 @@ define([
 				this.uniforms["tCube"] = { type:"t", value: equirectangularTexture };
 			}
 			else {
+				this.showLoading();
+				
 				var loader = new THREE.CubeTextureLoader();
 				this.LoadingManager.addObject(loader);
 
@@ -355,6 +361,7 @@ define([
 					},
 					function(xhr) { scope.LoadingManager.onError(xhr); }
 				);
+				this.LoadingManager.setReady();
 
 				textureCube.mapping = THREE.CubeReflectionMapping;
 
@@ -1035,7 +1042,7 @@ define([
 			var gui = false;
 			if(this.params.meshes.length > 1 || this.params.uniforms != undefined) {
 				gui = new dat.GUI({ autoPlace: false });
-				if(this.params.guiClosed) gui.close();
+				if(this.params.GUIClosed) gui.close();
 			}
 
 			if(this.params.meshes.length > 1)

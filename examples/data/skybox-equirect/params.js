@@ -5,9 +5,7 @@
 		{type: "torus", name: "Torus"},
 	],
 
-	skybox: [
-		"textures/panorama.jpg"
-	],
+	skybox: "textures/panorama.jpg",
 
 	textures: [
 		{ 

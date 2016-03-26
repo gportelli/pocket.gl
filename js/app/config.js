@@ -31,14 +31,13 @@ define({
 	backgroundColor: "#ddd",
 	tabColor: "#1c90f3",
 	tabTextColor: "#333",
-	doubleSided: false,
 	animated: false,
 	playButtons: true,
 	transparent: false,
 	editorTheme: "dark",
 	editorWrap: true,
 	showTabs: true,
-	guiOpened: true,
+	GUIClosed: false,
 	orbiting: true,
 	zoom: false
 });

@@ -19,7 +19,6 @@
 
 	backgroundColor: 0x000000,
 	animated: true,
-	guiClosed: false,
 
 	textures: [
 		{ 

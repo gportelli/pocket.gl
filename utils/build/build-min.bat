@@ -1,1 +1,0 @@
-node ../../bower_components/rjs/dist/r.js -o build.js optimize=uglify2 out=../../build/pocket.gl.min.js

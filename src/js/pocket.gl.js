@@ -18,10 +18,10 @@
  */
  
 define([
-	"text!css/style.css",
+	"text!src/css/style.css",
 	
-	"text!default_shaders/vertex.glsl",
-	"text!default_shaders/fragment.glsl",
+	"text!src/default_shaders/vertex.glsl",
+	"text!src/default_shaders/fragment.glsl",
 
 	"app/utils",
 	"app/tabs",

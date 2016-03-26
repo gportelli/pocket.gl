@@ -12,8 +12,7 @@ define({
 		"flat-shader",
 		"procedural-meshes",
 		"random-colors",
-		"lowpoly-shader",
-		"variables"
+		"lowpoly-shader"
 	]
 }
 // do not put a semicolon after the parenthesis or the index.html concat eval code will break

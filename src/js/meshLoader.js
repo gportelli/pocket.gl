@@ -229,15 +229,15 @@ define(
 					break;
 
 				case "torus":
-					if(mesh.subdivision === undefined) mesh.subdivision = 32;
-					if(mesh.subdivision < 10) mesh.subdivision = 10;
+					if(mesh.subdivision === undefined) mesh.subdivision = 16;
+					if(mesh.subdivision < 4) mesh.subdivision = 4;
 					if(mesh.subdivision > 64) mesh.subdivision = 64;
 					geometry = new THREE.TorusGeometry(30, 10, mesh.subdivision, mesh.subdivision * 4);
 					break;
 
 				case "cylinder":
 					if(mesh.subdivision === undefined) mesh.subdivision = 32;
-					if(mesh.subdivision < 10) mesh.subdivision = 10;
+					if(mesh.subdivision < 4) mesh.subdivision = 4;
 					if(mesh.subdivision > 64) mesh.subdivision = 64;
 					geometry = new THREE.CylinderGeometry( 25, 25, 60, mesh.subdivision, 1);
 					break;

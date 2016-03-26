@@ -749,6 +749,7 @@ define([
 			var scope = this;
 
 			// retrieve cached mesh
+			// if the quaternion propery is defined, the mesh has already been loaded
 			if(mesh.quaternion) {
 				if (typeof this.currentmesh != "undefined")
 				   this.scene.remove(scope.currentmesh);

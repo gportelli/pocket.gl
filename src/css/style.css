@@ -63,6 +63,18 @@
     background-color: #fff;
 }
 
+.pocketgl-disclaimer {
+	position: absolute;
+    top: 0;
+    padding: 5px;
+    font-size: 12px;
+}
+.pocketgl-disclaimer a,
+.pocketgl-disclaimer a:hover,
+.pocketgl-disclaimer a:active,
+.pocketgl-disclaimer a:visited,
+.pocketgl-disclaimer a:focus { text-decoration: none; }
+
 .pocketgl-tabs { height: 44px; font-size: 14px; position: relative;}
 .pocketgl-tabs ul {padding: 0px; margin: 0px; list-style: none; }
 .pocketgl-tabs ul li { float: left; margin: 0;}

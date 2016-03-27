@@ -39,5 +39,8 @@ define({
 	showTabs: true,
 	GUIClosed: false,
 	orbiting: true,
-	zoom: false
+	zoom: false,
+	disclaimer: "",
+	disclaimerColor: "#666",
+	disclaimerLinkColor: "#a00"
 });

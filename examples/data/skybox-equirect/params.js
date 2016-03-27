@@ -1,4 +1,6 @@
 {
+	disclaimer: "Equirectangular panorama by <a href='http://paulbourke.net/miscellaneous/sphericalpano/'>Paul Bourke</a>", disclaimerColor: "#fff", disclaimerLinkColor: "#FFECCE",
+
 	meshes: [ 
 		{type: "teapot", name: "Teapot", doubleSided: true},
 		{type: "sphere", name: "Sphere"},
@@ -15,9 +17,9 @@
 		}
 	],
 
-	uniforms: {
-		bNormal: {type: "boolean", value: true, name: "Normal map"}
-	},
+	uniforms: [
+		{type: "boolean", value: true, name: "bNormal", GUIName: "Normal map"}
+	],
 
 	vertexShader: [
 		"varying vec3 viewVector;",

@@ -5,10 +5,10 @@
 		{ url: "meshes/light-bulb.obj",  name: "Light Bulb (obj)", rx: 90, scale: 0.17},
 	],
 
-	uniforms: {
-		bFlat:   { type: "boolean", value: false, name: "Flat shading" },
-		diffuseColor: { type: "color", value: "#26a00c", name: "Color"}
-	},
+	uniforms: [
+		{ type: "boolean", value: false, name:"bFlat", GUIName: "Flat shading" },
+		{ type: "color", value: "#26a00c", name: "diffuseColor", GUIName: "Color"}
+	],
 
 	editorTheme: "dark",
 	backgroundColor: "#dd0",

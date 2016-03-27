@@ -4,9 +4,9 @@
 		{ type: "sphere",  name: "Sphere"}
 	],
 
-	uniforms: {
-		bFlat:   { type: "boolean", value: true, name: "Flat enabled" },
-	},
+	uniforms: [
+		{ type: "boolean", value: true, name: "bFlat", GUIName: "Flat enabled" },
+	],
 
 	//editorTheme: "bright",
 	editorTheme: "dark",

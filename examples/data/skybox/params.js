@@ -1,4 +1,6 @@
 {
+	disclaimer: "Skybox by <a href='http://www.humus.name/index.php?page=Textures'>Humus</a>", disclaimerColor: "#fff", disclaimerLinkColor: "#FFB43D",
+
 	meshes: [ 
 		{type: "teapot", name: "Teapot", doubleSided: true},
 		{type: "sphere", name: "Sphere"},
@@ -19,9 +21,9 @@
 		}
 	],
 
-	uniforms: {
-		bNormal: {type: "boolean", value: true, name: "Normal map"}
-	},
+	uniforms: [
+		{type: "boolean", value: true, name: "bNormal", GUIName: "Normal map"}
+	],
 
 	vertexShader: [
 		"varying vec3 viewVector;",

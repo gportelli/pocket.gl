@@ -17,13 +17,18 @@
 		}
 	],
 
-	uniforms: {
-		"Folder A": [{ uvscale: { type: "float", value: 1, min: 0.5, max: 2, name: "UV Scale" } }],
-		"Folder B": [{
-			color:   { type: "color", value: "#fff", name: "Color" },
-			useTexture:   { type: "boolean", value: true, name: "Use Texture" },
-		}]
-	},
+	uniforms: [
+		[
+			{ groupName: "Folder A", opened: true },
+			{ type: "float", value: 1, min: 0.5, max: 2, name: "uvscale", GUIName: "UV Scale" }
+		],
+			
+		[
+			{ groupName: "Folder B", opened: true },
+			{ type: "color", value: "#fff", name: "color", GUIName: "Color" },
+			{ type: "boolean", value: true, name: "useTexture", GUIName: "Use Texture" }
+		]
+	],
 
 	//editorTheme: "bright",
 	editorTheme: "dark",

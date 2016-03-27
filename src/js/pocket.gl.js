@@ -426,6 +426,26 @@ define([
 			});
 		}
 
+		PocketGL.prototype.addDisclaimer = function(domElement) {
+			if(this.params.disclaimer == "") return;
+
+			var disclaimer = document.createElement("div");
+			disclaimer.innerHTML = this.params.disclaimer;
+			disclaimer.className = "pocketgl-disclaimer pocketgl";
+			disclaimer.style.color = this.params.disclaimerColor;
+
+			var style = document.createElement("style");
+			style.innerHTML = [
+				".pocketgl-disclaimer a,",
+				".pocketgl-disclaimer a:hover,",
+				".pocketgl-disclaimer a:active,",
+				".pocketgl-disclaimer a:visited,",
+				".pocketgl-disclaimer a:focus { color: " + this.params.disclaimerLinkColor + "; }"].join("\n");
+
+			domElement.appendChild(disclaimer);
+			domElement.appendChild(style);
+		}
+
 		PocketGL.prototype.getEditorText = function(jsFormat) {
 			var text;
 
@@ -623,22 +643,22 @@ define([
 			if(this.uniforms.time != undefined && this.params.animated && this.isPlaying()) 
 				this.uniforms.time.value += this.clock.getDelta();
 
-			function update(u, uniformid, scope) {
+			function update(u, scope) {
 				if(u.type == "float")
-					scope.uniforms[uniformid].value = scope.GUIParams[u.name];
+					scope.uniforms[u.name].value = scope.GUIParams[u.GUIName];
 				else if(u.type == "color")
-					scope.uniforms[uniformid].value = new THREE.Color(scope.GUIParams[u.name]);
+					scope.uniforms[u.name].value = new THREE.Color(scope.GUIParams[u.GUIName]);
 				else if(u.type == "boolean")
-					scope.uniforms[uniformid].value = scope.GUIParams[u.name] ? 1 : 0;
+					scope.uniforms[u.name].value = scope.GUIParams[u.GUIName] ? 1 : 0;
 			}
 
 			for(uniformid in this.params.uniforms) {
 				var u = this.params.uniforms[uniformid];
 
 				if(u.length == undefined)
-					update(u, uniformid, this);
-				else for(i in u[0]) 
-					update(u[0][i], i, this);				
+					update(u, this);
+				else for(var i=1; i<u.length; i++) 
+					update(u[i], this);				
 			}
 		}
 
@@ -880,19 +900,19 @@ define([
 			if(this.fragmentOnly)
 				this.uniforms.resolution = {type: "v2", value: new THREE.Vector2()};
 
-			function addUniform(u, index) {
+			function addUniform(u) {
 				if(u.type == "boolean")
-					scope.uniforms[index] = {
+					scope.uniforms[u.name] = {
 						type: "f",
 						value: u.type ? 1.0 : 0.0 
 					};
 				else if(u.type == "float")
-					scope.uniforms[index] = {
+					scope.uniforms[u.name] = {
 						type: "f",
 						value: u.value
 					};
 				else if(u.type == "color") {
-					scope.uniforms[index] = {
+					scope.uniforms[u.name] = {
 						type: "c",
 						value: new THREE.Color(u.value)
 					};
@@ -904,9 +924,9 @@ define([
 					var u = this.params.uniforms[i];
 
 					if(u.length != undefined) // folder
-						for(var j in u[0]) addUniform(u[0][j], j);
+						for(var j=1; j<u.length; j++) addUniform(u[j]);
 					else
-						addUniform(u, i);
+						addUniform(u);
 				}
 			}
 
@@ -1012,15 +1032,17 @@ define([
 			if(this.tabs)
 				this.addCopyButtons();
 
+			this.addDisclaimer(this.containers.render);
+
 			// GUI	
 			this.GUIParams = { Mesh: 0 };
 
 			function addGuiParams(u) {
 				if(u.type == "float" || u.type == "boolean") {
-					scope.GUIParams[u.name] = u.value;
+					scope.GUIParams[u.GUIName] = u.value;
 				}
 				else if(u.type == "color") {
-					scope.GUIParams[u.name] = u.value;
+					scope.GUIParams[u.GUIName] = u.value;
 				}
 			}
 
@@ -1032,7 +1054,7 @@ define([
 						addGuiParams(u);
 					}
 					else {
-						for(var j in u[0]) addGuiParams(u[0][j]);
+						for(var j=1; j<u.length; j++) addGuiParams(u[j]);
 					}
 				}
 
@@ -1064,15 +1086,15 @@ define([
 
 			function addGuiData(u, gui) {
 				if(u.type == "float") 
-					gui.add(scope.GUIParams, u.name, u.min, u.max).onChange(function() {
+					gui.add(scope.GUIParams, u.GUIName, u.min, u.max).onChange(function() {
 						scope.render();
 					});
 				else if(u.type == "color")
-					gui.addColor(scope.GUIParams, "Color").onChange(function() {
+					gui.addColor(scope.GUIParams, u.GUIName).onChange(function() {
 						scope.render();
 					});
 				else if(u.type == "boolean")
-					gui.add(scope.GUIParams, u.name).onChange(function() {
+					gui.add(scope.GUIParams, u.GUIName).onChange(function() {
 						scope.render();
 					});
 			}
@@ -1081,11 +1103,10 @@ define([
 				var u = this.params.uniforms[i];
 
 				if(u.length != undefined) {
-					var folder = gui.addFolder(i);
-					for(var j in u[0]) addGuiData(u[0][j], folder);	
+					var folder = gui.addFolder(u[0].groupName);
+					for(var j=1; j<u.length; j++) addGuiData(u[j], folder);	
 
-					if(u.length >= 2 && u[1] == "opened")				
-						folder.open();
+					if(u[0].opened) folder.open();
 				}
 				else addGuiData(u, gui);
 			}

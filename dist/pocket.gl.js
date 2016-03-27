@@ -72918,7 +72918,7 @@ define('app/pocket.gl',[
 				this.uniforms.time.value += this.clock.getDelta();
 
 			function update(u, scope) {
-				if(u.type == "float")
+				if(u.type == "float" || u.type == "integer")
 					scope.uniforms[u.name].value = scope.GUIParams[u.GUIName];
 				else if(u.type == "color")
 					scope.uniforms[u.name].value = new THREE.Color(scope.GUIParams[u.GUIName]);
@@ -73185,6 +73185,11 @@ define('app/pocket.gl',[
 						type: "f",
 						value: u.value
 					};
+				else if(u.type == "integer")
+					scope.uniforms[u.name] = {
+						type: "f",
+						value: parseInt(u.value)
+					};
 				else if(u.type == "color") {
 					scope.uniforms[u.name] = {
 						type: "c",
@@ -73318,6 +73323,9 @@ define('app/pocket.gl',[
 				else if(u.type == "color") {
 					scope.GUIParams[u.GUIName] = u.value;
 				}
+				else if(u.type == "integer") {
+					scope.GUIParams[u.GUIName] = parseInt(u.value);
+				}
 			}
 
 			if(this.params.uniforms != undefined)
@@ -73361,6 +73369,10 @@ define('app/pocket.gl',[
 			function addGuiData(u, gui) {
 				if(u.type == "float") 
 					gui.add(scope.GUIParams, u.GUIName, u.min, u.max).onChange(function() {
+						scope.render();
+					});
+				if(u.type == "integer") 
+					gui.add(scope.GUIParams, u.GUIName, parseInt(u.min), parseInt(u.max)).step(1).onChange(function() {
 						scope.render();
 					});
 				else if(u.type == "color")

@@ -40,7 +40,7 @@ define({
 	GUIClosed: false,
 	orbiting: true,
 	zoom: false,
-	disclaimer: "",
-	disclaimerColor: "#666",
-	disclaimerLinkColor: "#a00"
+	copyright: "",
+	copyrightColor: "#666",
+	copyrightLinkColor: "#a00"
 });

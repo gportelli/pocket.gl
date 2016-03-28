@@ -63,17 +63,17 @@
     background-color: #fff;
 }
 
-.pocketgl-disclaimer {
+.pocketgl-copyright {
 	position: absolute;
     top: 0;
     padding: 5px;
     font-size: 12px;
 }
-.pocketgl-disclaimer a,
-.pocketgl-disclaimer a:hover,
-.pocketgl-disclaimer a:active,
-.pocketgl-disclaimer a:visited,
-.pocketgl-disclaimer a:focus { text-decoration: none; }
+.pocketgl-copyright a,
+.pocketgl-copyright a:hover,
+.pocketgl-copyright a:active,
+.pocketgl-copyright a:visited,
+.pocketgl-copyright a:focus { text-decoration: none; }
 
 .pocketgl-tabs { height: 44px; font-size: 14px; position: relative;}
 .pocketgl-tabs ul {padding: 0px; margin: 0px; list-style: none; }

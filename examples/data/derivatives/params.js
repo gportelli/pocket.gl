@@ -7,7 +7,7 @@
 		{ 
 			url: "texture.png", 
 			wrap: "repeat", // repeat (default), clamp
-			uniformName: "texture"
+			name: "texture"
 		}
 	],
 

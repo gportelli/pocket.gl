@@ -426,23 +426,23 @@ define([
 			});
 		}
 
-		PocketGL.prototype.addDisclaimer = function(domElement) {
-			if(this.params.disclaimer == "") return;
+		PocketGL.prototype.addCopyright = function(domElement) {
+			if(this.params.copyright == "") return;
 
-			var disclaimer = document.createElement("div");
-			disclaimer.innerHTML = this.params.disclaimer;
-			disclaimer.className = "pocketgl-disclaimer pocketgl";
-			disclaimer.style.color = this.params.disclaimerColor;
+			var copyright = document.createElement("div");
+			copyright.innerHTML = this.params.copyright;
+			copyright.className = "pocketgl-copyright pocketgl";
+			copyright.style.color = this.params.copyrightColor;
 
 			var style = document.createElement("style");
 			style.innerHTML = [
-				".pocketgl-disclaimer a,",
-				".pocketgl-disclaimer a:hover,",
-				".pocketgl-disclaimer a:active,",
-				".pocketgl-disclaimer a:visited,",
-				".pocketgl-disclaimer a:focus { color: " + this.params.disclaimerLinkColor + "; }"].join("\n");
+				".pocketgl-copyright a,",
+				".pocketgl-copyright a:hover,",
+				".pocketgl-copyright a:active,",
+				".pocketgl-copyright a:visited,",
+				".pocketgl-copyright a:focus { color: " + this.params.copyrightLinkColor + "; }"].join("\n");
 
-			domElement.appendChild(disclaimer);
+			domElement.appendChild(copyright);
 			domElement.appendChild(style);
 		}
 
@@ -939,7 +939,7 @@ define([
 			if(this.params.textures != undefined) {
 				for(var i in this.params.textures) {
 					var texparams = this.params.textures[i];
-					this.uniforms[texparams.uniformName] = { type: "t", value: null };
+					this.uniforms[texparams.name] = { type: "t", value: null };
 
 					this.showLoading();
 
@@ -969,7 +969,7 @@ define([
 
 					texture.wrapS = texture.wrapT = texparams.wrap == "clamp" ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;
 					if(texparams.filter == "nearest") texture.minFilter = texture.magFilter =THREE.NearestFilter;
-					this.uniforms[texparams.uniformName].value = texture;
+					this.uniforms[texparams.name].value = texture;
 				}
 			}
 
@@ -1037,7 +1037,7 @@ define([
 			if(this.tabs)
 				this.addCopyButtons();
 
-			this.addDisclaimer(this.containers.render);
+			this.addCopyright(this.containers.render);
 
 			// GUI	
 			this.GUIParams = { Mesh: 0 };

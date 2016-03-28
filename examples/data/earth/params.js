@@ -27,25 +27,25 @@
 		{ 
 			url: "textures/day.jpg", 
 			wrap: "repeat", // repeat (default), clamp
-			uniformName: "texDay"
+			name: "texDay"
 		},
 
 		{ 
 			url: "textures/night.jpg", 
 			wrap: "repeat", // repeat (default), clamp
-			uniformName: "texNight"
+			name: "texNight"
 		},
 
 		{ 
 			url: "textures/clouds-specular.png", 
 			wrap: "repeat", // repeat (default), clamp
-			uniformName: "texCloudsSpecular"
+			name: "texCloudsSpecular"
 		},
 
 		{ 
 			url: "textures/normal.jpg", 
 			wrap: "repeat", // repeat (default), clamp
-			uniformName: "texNormal"
+			name: "texNormal"
 		}
 	],
 

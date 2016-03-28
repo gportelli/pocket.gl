@@ -1,5 +1,5 @@
 {
-	disclaimer: "Equirectangular panorama by <a href='http://paulbourke.net/miscellaneous/sphericalpano/'>Paul Bourke</a>", disclaimerColor: "#fff", disclaimerLinkColor: "#FFECCE",
+	copyright: "Equirectangular panorama by <a href='http://paulbourke.net/miscellaneous/sphericalpano/'>Paul Bourke</a>", copyrightColor: "#fff", copyrightLinkColor: "#FFECCE",
 
 	meshes: [ 
 		{type: "teapot", name: "Teapot", doubleSided: true},
@@ -13,7 +13,7 @@
 		{ 
 			url: "textures/squares-normal.jpg", 
 			wrap: "repeat", // repeat (default), clamp
-			uniformName: "normalMap"
+			name: "normalMap"
 		}
 	],
 
@@ -54,27 +54,20 @@
 		"#define RECIPROCAL_PI2 0.15915494",
 		"#define saturate(a) clamp( a, 0.0, 1.0 )",
 		"",
-		"// Normal Mapping Without Precomputed Tangents",
-		"// http://www.thetenthplanet.de/archives/1180",
-		"vec3 perturbNormal( vec3 p, vec3 N, vec2 uv, vec3 mapN )",
-		"{",
-		"    // get edge vectors of the pixel triangle",
-		"    vec3 dp1 = dFdx( p );",
-		"    vec3 dp2 = dFdy( p );",
-		"    vec2 duv1 = dFdx( uv );",
-		"    vec2 duv2 = dFdy( uv );",
+		"// Per-Pixel Tangent Space Normal Mapping",
+		"// http://hacksoflife.blogspot.ch/2009/11/per-pixel-tangent-space-normal-mapping.html",
+		"vec3 perturbNormal( vec3 eye_pos, vec3 surf_norm, vec2 uv_coords, vec3 normal_perturbation ) {",
+		"	vec3 q0 = dFdx( eye_pos.xyz );",
+		"	vec3 q1 = dFdy( eye_pos.xyz );",
+		"	vec2 st0 = dFdx( uv_coords.st );",
+		"	vec2 st1 = dFdy( uv_coords.st );",
 		"",
-		"    // solve the linear system",
-		"    vec3 dp2perp = cross( dp2, N );",
-		"    vec3 dp1perp = cross( N, dp1 );",
-		"    vec3 T = dp2perp * duv1.x + dp1perp * duv2.x;",
-		"    vec3 B = dp2perp * duv1.y + dp1perp * duv2.y;",
-		"", 
-		"    // construct a scale-invariant frame",
-		"    float invmax = inversesqrt( max( dot(T,T), dot(B,B) ) );",
-		"    mat3 TBN = mat3( T * invmax, B * invmax, N );",
+		"	vec3 S = normalize( q0 * st1.t - q1 * st0.t );",
+		"	vec3 T = normalize( -q0 * st1.s + q1 * st0.s );",
+		"	vec3 N = normalize( surf_norm );",
 		"",
-		"	return normalize( TBN * mapN );",
+		"	mat3 tsn = mat3( S, T, N );",
+		"	return normalize( tsn * normal_perturbation );",
 		"}",
 		"",
 		"void main() {",

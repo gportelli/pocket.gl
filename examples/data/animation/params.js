@@ -13,7 +13,7 @@
 		{ 
 			url: "textures/checker.jpg", 
 			wrap: "repeat", // repeat (default), clamp
-			uniformName: "texture"
+			name: "texture"
 		}
 	],
 

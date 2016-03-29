@@ -31,7 +31,10 @@ define(
 		function MeshLoader(mesh, material, baseURL, loadingManager, onLoaded) { 
 			this.mesh = mesh;
 			this.material = material;
-			if(material) this.material.side =  mesh.doubleSided ? THREE.DoubleSide : THREE.FrontSide;
+			if(material) {
+				this.material.side =  mesh.doubleSided ? THREE.DoubleSide : THREE.FrontSide;
+				this.material.transparent = mesh.transparent;
+			}
 			this.baseURL = baseURL;
 			this.onLoaded = onLoaded;
 			this.LoadingManager = loadingManager;
@@ -52,7 +55,8 @@ define(
 					? this.material 
 					: new THREE.MeshPhongMaterial( { 
 						color: 0xaa0000, specular: 0x220000, shininess: 40, shading: THREE.SmoothShading,
-						side: this.mesh.doubleSided ? THREE.DoubleSide : THREE.FrontSide } )
+						side: this.mesh.doubleSided ? THREE.DoubleSide : THREE.FrontSide,
+						transparent: this.mesh.transparent})
 				);
 
 				if(this.mesh.y === undefined) this.mesh.y = 0;
@@ -181,7 +185,8 @@ define(
 			var shininess= params.shininess != undefined ? params.shininess 	: 100;
 
 			var mdata = { 
-				color: color, specular: specular, shininess: shininess, side: this.mesh.doubleSided ? THREE.DoubleSide : THREE.FrontSide
+				color: color, specular: specular, shininess: shininess, side: this.mesh.doubleSided ? THREE.DoubleSide : THREE.FrontSide,
+				transparent: this.mesh.transparent
 			};
 
 			if(params.diffuseMap) mdata.map = params.diffuseMap;

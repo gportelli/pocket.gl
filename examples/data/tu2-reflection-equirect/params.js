@@ -72,6 +72,7 @@
 		"",
 		"void main() {",
 		"	vec3 mapN = texture2D( normalMap, texcoord ).xyz * 2.0 - 1.0;",
+		"	mapN = mix(mapN, vec3(0,0,1), 0.8);",
 		"	vec3 normal = normalize(wNormalInterp);",
 		"",
 		"	normal = mix(normal, perturbNormal(vertPos, normal, texcoord, mapN), bNormal);",

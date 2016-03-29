@@ -25,7 +25,7 @@ define({
 	darkAceTheme: "vibrant_ink",
 
 	// default values
-	fluidWidth: false,
+	fluidWidth: true,
 	width: 620,
 	height: 400,
 	backgroundColor: "#ddd",

@@ -981,7 +981,6 @@ define([
 				var material = new THREE.ShaderMaterial( {
 					uniforms: this.uniforms,
 					vertexShader: this.params.vertexShader, fragmentShader: this.params.fragmentShader,					
-					transparent: this.params.transparent,
 					extensions: {
 						derivatives: true
 					}

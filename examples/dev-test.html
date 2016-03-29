@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>pocket.gl</title>
+		<title>webgl shader widget</title>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style type="text/css" media="screen">
 			body { margin: 10px; }
 		</style>
@@ -10,9 +11,11 @@
 	<body>
 		<h1>pocket.gl examples [dev-test]</h1>
 		
-		<div id="container" style="position: relative;"></div>
+		<div style="max-width: 900px">
+			<div id="container" style="position: relative;"></div>
 
-		<script data-main="main.js" src="../bower_components/requirejs/require.js"></script>
+			<script data-main="main.js" src="../bower_components/requirejs/require.js"></script>
+		</div>
 		
 	</body>
 </html>

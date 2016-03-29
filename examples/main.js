@@ -71,7 +71,7 @@ require(["examples/examples"], function(examples) {
 			document.getElementById("container").appendChild(menu);
 
 			var widgetContainer = document.createElement("div");
-			widgetContainer.style.marginLeft = "200px";
+			widgetContainer.style.marginLeft = "240px";
 			document.getElementById("container").appendChild(widgetContainer);
 
 		    new widget(widgetContainer, "data/" + examples.examples[index] + "/params.js"); 

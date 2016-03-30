@@ -663,7 +663,7 @@ define([
 		}
 
 		PocketGL.prototype.play = function() {		
-			if(! this.params.animated) return;
+			if(! this.params.animated || ! this.loaded) return;
 
 			this.clock.start();
 
@@ -684,7 +684,7 @@ define([
 		}
 
 		PocketGL.prototype.stop = function() {
-			if(! this.params.animated) return;
+			if(! this.params.animated || ! this.loaded) return;
 
 			// reset time
 			if(this.uniforms && this.uniforms.time != undefined) {
@@ -732,7 +732,7 @@ define([
 		}
 
 		PocketGL.prototype.pause = function() {
-			if(! this.params.animated)	 return;
+			if(! this.params.animated || ! this.loaded)	 return;
 
 			this.animationPaused = true;
 			this.clock.stop();
@@ -1138,15 +1138,17 @@ define([
 			if(this.params.meshes.length != 0)
 				this.loadMesh(this.params.meshes[0], material);
 
-			if(this.params.animated)
-				this.play();
-			else
-				this.render();
-
 			if(this.LoadingManager.objects.length == 0)
 				this.switchView("render");
 			else
 				this.LoadingManager.setReady();
+
+			this.loaded = true;
+
+			if(this.params.animated)
+				this.play();
+			else
+				this.render();
 		}
 
 		return PocketGL;

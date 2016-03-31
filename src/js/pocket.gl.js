@@ -571,7 +571,8 @@ define([
 		}
 
 		PocketGL.prototype.switchView = function(view)
-		{			if(this.containers[view] == undefined) return;
+		{			
+			if(this.containers[view] == undefined) return;
 			if(!Utils.isFullscreen()) this.fullscreenMode = false;
 
 			if(view == this.currentView) return;

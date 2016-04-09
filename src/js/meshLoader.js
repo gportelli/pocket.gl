@@ -218,7 +218,8 @@ define(
 							_this.LoadingManager.onProgress(loader, percentComplete);
 						}
 					}
-				}(loader)
+				}(loader),
+				function(xhr) { _this.LoadingManager.onError(xhr) }
 			);
 		}
 

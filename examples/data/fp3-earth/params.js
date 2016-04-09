@@ -1,5 +1,5 @@
 {
-	disclaimer: "Images courtesy of <a href='http://visibleearth.nasa.gov/'>nasa</a>", disclaimerColor: "#C2C7CE", disclaimerLinkColor: "#96C3FF",
+	copyright: "Images courtesy of <a href='http://visibleearth.nasa.gov/'>nasa</a>", copyrightColor: "#C2C7CE", copyrightLinkColor: "#96C3FF",
 	
 	tabColor: "#a00", editorTheme: "dark", backgroundColor: "#333",
 

@@ -1117,7 +1117,7 @@ define('app/tabs',[
  */
 
 define('app/config',{
-	version: "1.0.0",
+	version: "1.0.1",
 	website: "http://pocket.gl",
 
 	brightAceTheme: "crimson_editor",

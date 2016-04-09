@@ -5,7 +5,7 @@
 Visit http://pocket.gl for the full documentation, examples and tutorials.
 ***
 
-Here are some examples of what you can do with pocket.gl:
+Here are some examples of what you can do with pocket.gl
 
 *Load meshes and define editable shader variables*
 

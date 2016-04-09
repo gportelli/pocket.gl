@@ -1118,7 +1118,7 @@ define('app/tabs',[
 
 define('app/config',{
 	version: "1.0.0",
-	website: "http://pocketgl.aclockworkberry.com",
+	website: "http://pocket.gl",
 
 	brightAceTheme: "crimson_editor",
 	darkAceTheme: "vibrant_ink",

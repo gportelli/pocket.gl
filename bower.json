@@ -27,7 +27,8 @@
     "mysandboxes",
     "examples/dev-test.html",
     "examples/main.js",
-    "examples/sources"
+    "examples/sources",
+    "README.md"
   ],
   "devDependencies": {
     "dat-gui": "0.5.1",

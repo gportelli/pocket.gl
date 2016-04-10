@@ -6,23 +6,23 @@ Visit http://pocket.gl for the full documentation, examples and tutorials.
 [![http://pocket.gl](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/github-site-frontpage.png)](http://pocket.gl)
 
 ## Examples
-*Load meshes and define editable shader variables*
+> *Load meshes and define editable shader variables*
 
 ![example 1](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/screenshot1.png)
 ---
-*Edit vertex and fragment shader code in place*
+> *Edit vertex and fragment shader code in place*
 
 ![example 2](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/screenshot5.png)
 ---
-*Animate your shaders, add skyboxes and multiple textures*
+> *Animate your shaders, add skyboxes and multiple textures*
 
 ![example 3](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/screenshot2.png)
 ---
-*Make a fragment-only Shadertoy-like shader*
+> *Make a fragment-only [Shadertoy](https://www.shadertoy.com/)-like shader*
 
 ![example 4](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/screenshot3.png)
 ---
-*Or just use it as a 3D model viewer*
+> *Or just use it as a 3D model viewer*
 
 ![example 5](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/screenshot4.png)
 

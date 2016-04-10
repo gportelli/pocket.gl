@@ -6,7 +6,6 @@ Visit http://pocket.gl for the full documentation, examples and tutorials.
 [![http://pocket.gl](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/github-site-frontpage.png)](http://pocket.gl)
 
 ## Examples
----
 *Load meshes and define editable shader variables*
 
 ![example 1](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/screenshot1.png)
@@ -28,7 +27,6 @@ Visit http://pocket.gl for the full documentation, examples and tutorials.
 ![example 5](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/screenshot4.png)
 
 ## Dependencies
----
 Pocket.gl is based on these front-end libraries:
 * [Three.js](http://threejs.org/) for 3D rendering
 * [Ace](https://ace.c9.io/) for the editors

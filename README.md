@@ -1,6 +1,6 @@
 ![pocket.gl](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/logo.png)
 
-**A fully customizable webgl shader sandbox to embed in your pages.**
+*A fully customizable webgl shader sandbox to embed in your pages*
 
 Visit http://pocket.gl for the full documentation, examples and tutorials.
 [![http://pocket.gl](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/github-site-frontpage.png)](http://pocket.gl)
@@ -27,7 +27,7 @@ Visit http://pocket.gl for the full documentation, examples and tutorials.
 ![example 5](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/screenshot4.png)
 
 ## Dependencies
-Pocket.gl is based on these front-end libraries:
+pocket.gl is based on these front-end libraries:
 * [Three.js](http://threejs.org/) for 3D rendering
 * [Ace](https://ace.c9.io/) for the editors
 * [dat.GUI](http://workshop.chromeexperiments.com/examples/gui/) for the GUI panel

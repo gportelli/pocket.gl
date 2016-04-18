@@ -100,6 +100,13 @@ define([
 
 			if ( ! Detector.webgl ) {
 				this.domContainer.style.border = "1px solid #aaa";
+				this.domContainer.style.backgroundColor = "#fff";
+
+				var link = document.createElement("div");
+				link.style.textAlign = "center";
+				link.innerHTML = "<a href='" + config.website + "' title='pocket.gl: a fully customizable and embeddable webgl shader sandbox'><h1>pocket.gl</h1></a>";
+				this.domContainer.appendChild(link);
+
 				this.domContainer.appendChild(Detector.getWebGLErrorMessage());
 				return;
 			}

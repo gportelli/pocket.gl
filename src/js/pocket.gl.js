@@ -169,6 +169,10 @@ define([
 			if(params == undefined) params = {};
 			if(params.meshes == undefined) params.meshes = [];
 
+			// fluidWidth is true by default, but if only width is defined, it overrides the fluidWidth 
+			if(params.width != undefined && params.fluidWidth == undefined)
+				params.fluidWidth = false;
+
 			for(id in config)
 				if(params[id] == undefined) params[id] = config[id];
 

@@ -285,6 +285,17 @@ define([
 				this.uniforms.resolution.value.y = this.renderer.domElement.height;
 			}
 
+			if(this.currentmesh != undefined) {
+				var scale = 1;
+
+				if(containerSize.width < this.params.height)		
+					scale = containerSize.width / this.params.height;
+
+				this.currentmesh.scale.x = 
+				this.currentmesh.scale.y = 
+				this.currentmesh.scale.z = this.currentmesh.baseScale * scale;
+			}
+
 			this.render();
 
 			// repositioning and resizing tab cursor
@@ -804,6 +815,9 @@ define([
 					if (typeof scope.currentmesh != "undefined") {
 					   scope.scene.remove(scope.currentmesh);
 					}
+
+					// save current scale
+					loadedMesh.baseScale = loadedMesh.scale.x;
 
 					// cache the mesh
 					for(i in scope.params.meshes) {

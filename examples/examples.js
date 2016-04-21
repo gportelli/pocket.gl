@@ -6,6 +6,7 @@ define({
 		"05-grouping",
 		"06-skybox",
 		"07-skybox-equirect",
+		"fp0-reflection-normals",
 		"fp1-empty",
 		"fp2-gui-meshes",
 		"fp3-earth",

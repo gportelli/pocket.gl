@@ -38,9 +38,18 @@ define({
 	editorWrap: true,
 	showTabs: true,
 	GUIClosed: false,
+
 	orbiting: true,
+	autoOrbit: false,
+	autoOrbitSpeed: 2,
 	zoom: false,
+
 	copyright: "",
 	copyrightColor: "#666",
-	copyrightLinkColor: "#a00"
+	copyrightLinkColor: "#a00",
+
+	// camera
+	cameraDistance: 112,
+	cameraPitch: 27,
+	cameraYaw: 0,
 });

@@ -97,5 +97,13 @@ define(function() {
 	    return str.indexOf(suffix, str.length - suffix.length) !== -1;
 	}
 
+	Utils.prototype.rad2Deg = function(radiants) {
+	    return radiants * 180 / 3.1415926;
+	}
+
+	Utils.prototype.deg2Rad = function(degrees) {
+	    return degrees * 3.1415926 / 180;
+	}
+
 	return new Utils();
 });

@@ -942,6 +942,14 @@ define('app/utils',[],function() {
 	    return str.indexOf(suffix, str.length - suffix.length) !== -1;
 	}
 
+	Utils.prototype.rad2Deg = function(radiants) {
+	    return radiants * 180 / 3.1415926;
+	}
+
+	Utils.prototype.deg2Rad = function(degrees) {
+	    return degrees * 3.1415926 / 180;
+	}
+
 	return new Utils();
 });
 /**
@@ -1117,7 +1125,7 @@ define('app/tabs',[
  */
 
 define('app/config',{
-	version: "1.0.4",
+	version: "1.0.5",
 	website: "http://pocket.gl",
 
 	brightAceTheme: "crimson_editor",
@@ -1137,11 +1145,20 @@ define('app/config',{
 	editorWrap: true,
 	showTabs: true,
 	GUIClosed: false,
+
 	orbiting: true,
+	autoOrbit: false,
+	autoOrbitSpeed: 2,
 	zoom: false,
+
 	copyright: "",
 	copyrightColor: "#666",
-	copyrightLinkColor: "#a00"
+	copyrightLinkColor: "#a00",
+
+	// camera
+	cameraDistance: 112,
+	cameraPitch: 27,
+	cameraYaw: 0,
 });
 /**
  * pocket.gl - A fully customizable webgl shader sandbox to embed in your pages - http://pocket.gl
@@ -72539,6 +72556,10 @@ define('app/pocket.gl',[
 			if(params.width != undefined && params.fluidWidth == undefined)
 				params.fluidWidth = false;
 
+			// turn on animation if autoOrbit is true
+			if(params.autoOrbit == true)
+				params.animated = true;
+
 			for(id in config)
 				if(params[id] == undefined) params[id] = config[id];
 
@@ -73136,6 +73157,9 @@ define('app/pocket.gl',[
 			if(this.isPlaying())
 				requestAnimationFrame(function () { _this.animate() });
 
+			if(this.params.autoOrbit)
+				this.cameraControls.update();
+			
 			this.render();
 		}
 
@@ -73266,14 +73290,22 @@ define('app/pocket.gl',[
 			this.containers.errors.innerHTML = errorMessage;
 		}
 
+		PocketGL.prototype.rotateCamera = function(pitch, yaw) {
+			var x = this.params.cameraDistance * Math.cos(pitch);
+			var y = this.params.cameraDistance * Math.sin(pitch);
+
+			this.camera.position.x = x * Math.sin(yaw);
+			this.camera.position.y = y;
+			this.camera.position.z = x * Math.cos(yaw);
+		}
+
 		PocketGL.prototype.init = function() {
 			var scope = this;
 
 			// Camera
 			if(!this.fragmentOnly) {
 				this.camera = new THREE.PerspectiveCamera( 45, this.params.width/this.params.height, 0.1, 1000 );
-				this.camera.position.z = 100;
-				this.camera.position.y = 50;
+				this.rotateCamera(Utils.deg2Rad(this.params.cameraPitch), Utils.deg2Rad(this.params.cameraYaw));
 			}
 			else {
 				this.camera = new THREE.Camera();
@@ -73410,11 +73442,15 @@ define('app/pocket.gl',[
 			// Orbit
 			if(!this.fragmentOnly) {
 				var cameraControls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
+				cameraControls.autoRotate = this.params.autoOrbit;
+				cameraControls.autoRotateSpeed = this.params.autoOrbitSpeed;
 				cameraControls.enablePan = false;
 				cameraControls.enableZoom   = this.params.zoom;
 				cameraControls.enableRotate = this.params.orbiting;
 				cameraControls.target.set( 0, 0, 0 );
 				cameraControls.addEventListener( 'change', function() { scope.render() } );
+
+				this.cameraControls = cameraControls;
 			}
 
 			// Add webgl canvas renderer to DOM container	

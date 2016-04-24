@@ -950,6 +950,10 @@ define('app/utils',[],function() {
 	    return degrees * 3.1415926 / 180;
 	}
 
+	Utils.prototype.cloneObj = function(obj) {
+		return JSON.parse(JSON.stringify(obj));
+	}
+
 	return new Utils();
 });
 /**
@@ -1125,7 +1129,7 @@ define('app/tabs',[
  */
 
 define('app/config',{
-	version: "1.0.5",
+	version: "1.0.6",
 	website: "http://pocket.gl",
 
 	brightAceTheme: "crimson_editor",
@@ -72701,8 +72705,11 @@ define('app/pocket.gl',[
 				this.switchView("render");
 		}
 
+		// Will add a cubemap based skybox or equrectangular based skybox, depending on the param skybox
 		PocketGL.prototype.addSkybox = function() 
 		{
+			// if the param skybox is a string (equirectangular skybox case) transform it into an array of one element
+			// so that the next code, based on an array of strings can process it
 			if(typeof this.params.skybox == "string")
 				this.params.skybox = [this.params.skybox];
 
@@ -72713,8 +72720,7 @@ define('app/pocket.gl',[
 			for(var i in this.params.skybox)
 				urls[i] = this.baseURL + this.params.skybox[i];
 
-			var textureCube;
-
+			// only one texture, equirectangular skybox
 			if(urls.length == 1) {
 				this.showLoading();
 
@@ -72738,8 +72744,12 @@ define('app/pocket.gl',[
 				equirectangularTexture.wrapT = THREE.ClampToEdgeWrapping;
 				equirectangularTexture.minFilter = equirectangularTexture.magFilter =THREE.LinearFilter;
 
+				// Map the equirectangular texture to a sphere centered on the camera
 				var geometry = new THREE.SphereGeometry( 500, 60, 40 );
-				geometry.scale( - 1, 1, 1 );
+
+				// need to flip x: face up will flip to backside (don't need for backside on material)
+				// and texture orientation will look correctly
+				geometry.scale( - 1, 1, 1 ); 
 
 				var material = new THREE.MeshBasicMaterial( {
 					map: equirectangularTexture
@@ -72752,6 +72762,7 @@ define('app/pocket.gl',[
 
 				this.uniforms["tCube"] = { type:"t", value: equirectangularTexture };
 			}
+			// more than one texture, cubemapped skybox
 			else {
 				this.showLoading();
 				
@@ -72772,16 +72783,17 @@ define('app/pocket.gl',[
 				);
 				this.LoadingManager.setReady();
 
-				textureCube.mapping = THREE.CubeReflectionMapping;
-
 				var shader = THREE.ShaderLib[ "cube" ];
-				shader.uniforms[ "tCube" ].value = textureCube;
+				// need to clone the shader.uniforms, otherwise all the cubemaps will share the same uniform object
+				var uniforms = Utils.cloneObj(shader.uniforms);
+				uniforms["tCube"].value = textureCube;
+				uniforms["tFlip"].value = -1; // texture flipping, positive x is leftside
 
 				var material = new THREE.ShaderMaterial( {
 
 					fragmentShader: shader.fragmentShader,
 					vertexShader: shader.vertexShader,
-					uniforms: shader.uniforms,
+					uniforms: uniforms,
 					side: THREE.BackSide
 
 				} ),

@@ -929,7 +929,7 @@ define([
 
 			// Camera
 			if(!this.fragmentOnly) {
-				this.camera = new THREE.PerspectiveCamera( 45, this.params.width/this.params.height, 0.1, 1000 );
+				this.camera = new THREE.PerspectiveCamera( this.params.cameraFOV, this.params.width/this.params.height, 0.1, 1000 );
 				this.rotateCamera(Utils.deg2Rad(this.params.cameraPitch), Utils.deg2Rad(this.params.cameraYaw));
 			}
 			else {

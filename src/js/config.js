@@ -52,4 +52,5 @@ define({
 	cameraDistance: 112,
 	cameraPitch: 27,
 	cameraYaw: 0,
+	cameraFOV: 45,
 });

@@ -48,7 +48,7 @@
 		"varying vec2 texcoord;",
 		"",
 		"uniform sampler2D normalMap;",
-		"uniform sampler2D tCube;",
+		"uniform sampler2D tEquirect;",
 		"uniform float bNormal;",
 		"",
 		"#define RECIPROCAL_PI2 0.15915494",
@@ -81,7 +81,7 @@
 		"	vec2 uv;",
 		"	uv.y = saturate( reflectVec.y * 0.5 + 0.5 );",
 		"	uv.x = atan( -reflectVec.z, -reflectVec.x ) * RECIPROCAL_PI2 + 0.5;",
-		"	gl_FragColor = texture2D( tCube, uv );",
+		"	gl_FragColor = texture2D( tEquirect, uv );",
 		"}"
 	].join("\n")
 }

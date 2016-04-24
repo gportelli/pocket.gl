@@ -373,7 +373,7 @@ define([
 				this.skybox = mesh;
 				this.scene.add( mesh );
 
-				this.uniforms["tCube"] = { type:"t", value: equirectangularTexture };
+				this.uniforms["tEquirect"] = { type:"t", value: equirectangularTexture };
 			}
 			// more than one texture, cubemapped skybox
 			else {

@@ -5,6 +5,8 @@
 	autoOrbit: true,
 	autoOrbitSpeed: 1,
 
+	tabColor: "#a00",
+
 	meshes: [ 
 		{type: "teapot", name: "Teapot", doubleSided: true},
 		{type: "sphere", name: "Sphere"},

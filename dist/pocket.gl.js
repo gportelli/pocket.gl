@@ -1129,7 +1129,7 @@ define('app/tabs',[
  */
 
 define('app/config',{
-	version: "1.0.6",
+	version: "1.1.0",
 	website: "http://pocket.gl",
 
 	brightAceTheme: "crimson_editor",
@@ -1163,6 +1163,7 @@ define('app/config',{
 	cameraDistance: 112,
 	cameraPitch: 27,
 	cameraYaw: 0,
+	cameraFOV: 45,
 });
 /**
  * pocket.gl - A fully customizable webgl shader sandbox to embed in your pages - http://pocket.gl
@@ -72760,7 +72761,7 @@ define('app/pocket.gl',[
 				this.skybox = mesh;
 				this.scene.add( mesh );
 
-				this.uniforms["tCube"] = { type:"t", value: equirectangularTexture };
+				this.uniforms["tEquirect"] = { type:"t", value: equirectangularTexture };
 			}
 			// more than one texture, cubemapped skybox
 			else {
@@ -73316,7 +73317,7 @@ define('app/pocket.gl',[
 
 			// Camera
 			if(!this.fragmentOnly) {
-				this.camera = new THREE.PerspectiveCamera( 45, this.params.width/this.params.height, 0.1, 1000 );
+				this.camera = new THREE.PerspectiveCamera( this.params.cameraFOV, this.params.width/this.params.height, 0.1, 1000 );
 				this.rotateCamera(Utils.deg2Rad(this.params.cameraPitch), Utils.deg2Rad(this.params.cameraYaw));
 			}
 			else {

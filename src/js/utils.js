@@ -105,5 +105,9 @@ define(function() {
 	    return degrees * 3.1415926 / 180;
 	}
 
+	Utils.prototype.cloneObj = function(obj) {
+		return JSON.parse(JSON.stringify(obj));
+	}
+
 	return new Utils();
 });

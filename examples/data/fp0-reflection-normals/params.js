@@ -1,23 +1,25 @@
 {
-	copyright: "Skybox by <a href='http://www.humus.name/index.php?page=Textures'>Humus</a>", copyrightColor: "#fff", copyrightLinkColor: "#FFB43D",
+	copyright: "Skybox from the Cairo map of <a href='http://34bigthings.com/portfolio/redout/'>Redout</a>", copyrightColor: "#fff", copyrightLinkColor: "#c00",
 
 	cameraPitch: 10,
+	cameraYaw: 30,
+	cameraFOV: 70,
+
 	autoOrbit: true,
-	autoOrbitSpeed: 1,
+	autoOrbitSpeed: 1,	
 
 	tabColor: "#a00",
 
 	meshes: [ 
-		{type: "teapot", name: "Teapot", doubleSided: true},
-		{type: "sphere", name: "Sphere"},
-		{type: "torus", name: "Torus"},
+		{type: "teapot", name: "Teapot", doubleSided: true, scale: 1.4},
+		{type: "sphere", name: "Sphere", scale: 1.3},
+		{type: "torus", name: "Torus", scale: 1.2},
 	],
 
 	skybox: [
-		"cubemap/px.jpg", "cubemap/nx.jpg", 
-		"cubemap/py.jpg", "cubemap/ny.jpg", 
-		"cubemap/pz.jpg", "cubemap/nz.jpg",
-	],
+		"cubemap/px.jpg", "cubemap/nx.jpg",
+		"cubemap/py.jpg", "cubemap/ny.jpg",
+		"cubemap/pz.jpg", "cubemap/nz.jpg" ],
 
 	textures: [
 		{ 
@@ -78,10 +80,23 @@
 		"	return normalize( tsn * normal_perturbation );",
 		"}",
 		"",
+		"#define PERIOD 8.0",
+		"#define PERIOD_INV (1.0 / PERIOD)",
+		"#define STILL_PERIOD (0.8 / 2.0)",
+		"#define RAISE_PERIOD (0.5 - STILL_PERIOD)",
+		"#define M (1.0 / RAISE_PERIOD)",
+		"#define H (1.0 + STILL_PERIOD / (2.0 * RAISE_PERIOD))",
+		"",
+		"#define RECIPROCAL_PI2 0.15915494",
+		"#define saturate(a) clamp( a, 0.0, 1.0 )",
+		"",
 		"void main() {",
 		"	vec3 mapN = texture2D( normalMap, texcoord ).xyz * 2.0 - 1.0;",
-		"	float alpha = sin(fract(time * 0.2) * 2.0 * 3.1415926) * 0.5 + 0.5;",
-		"	mapN = mix(mapN, vec3(0,0,1), alpha);",
+		"	",
+		"	float t = fract(time * PERIOD_INV);",
+		"	float alpha = clamp(H - abs(M * t - H), 0.0, 1.0);",
+		"	",
+		"	mapN = mix(vec3(0,0,1), mapN, alpha);",
 		"	vec3 normal = normalize(wNormalInterp);",
 		"",
 		"	normal = mix(normal, perturbNormal(vertPos, normal, texcoord, mapN), bNormal);",

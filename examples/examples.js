@@ -14,7 +14,9 @@ define({
 		"fp5-mesh-viewer",
 		"tu1-normal",
 		"tu2-reflection-cubemap",
+		"tu2-refl-cubemap-debug",
 		"tu2-reflection-equirect",
+		"tu2-refl-equirect-debug",
 		"tu3-transparency-mat",
 		"tu3-transparency-shader",
 		"tu3-transparency-wrong"

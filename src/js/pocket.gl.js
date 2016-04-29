@@ -463,18 +463,22 @@ define([
 		PocketGL.prototype.addCopyright = function(domElement) {
 			if(this.params.copyright == "") return;
 
+			var className = "pocketgl-copyright-";
+			if(this.domContainer.id != "") className += this.domContainer.id;
+			else className += Utils.guid();
+
 			var copyright = document.createElement("div");
 			copyright.innerHTML = this.params.copyright;
-			copyright.className = "pocketgl-copyright pocketgl";
+			copyright.className =  className + " pocketgl-copyright pocketgl";
 			copyright.style.color = this.params.copyrightColor;
 
 			var style = document.createElement("style");
 			style.innerHTML = [
-				".pocketgl-copyright a,",
-				".pocketgl-copyright a:hover,",
-				".pocketgl-copyright a:active,",
-				".pocketgl-copyright a:visited,",
-				".pocketgl-copyright a:focus { color: " + this.params.copyrightLinkColor + "; }"].join("\n");
+				"." + className + " a,",
+				"." + className + " a:hover,",
+				"." + className + " a:active,",
+				"." + className + " a:visited,",
+				"." + className + " a:focus { color: " + this.params.copyrightLinkColor + "; }"].join("\n");
 
 			domElement.appendChild(copyright);
 			domElement.appendChild(style);

@@ -954,6 +954,17 @@ define('app/utils',[],function() {
 		return JSON.parse(JSON.stringify(obj));
 	}
 
+	// http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+	Utils.prototype.guid = function() {
+		function s4() {
+			return Math.floor((1 + Math.random()) * 0x10000)
+				.toString(16)
+				.substring(1);
+		}
+
+		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+	}
+
 	return new Utils();
 });
 /**
@@ -1129,7 +1140,7 @@ define('app/tabs',[
  */
 
 define('app/config',{
-	version: "1.1.0",
+	version: "1.1.1",
 	website: "http://pocket.gl",
 
 	brightAceTheme: "crimson_editor",
@@ -72851,18 +72862,22 @@ define('app/pocket.gl',[
 		PocketGL.prototype.addCopyright = function(domElement) {
 			if(this.params.copyright == "") return;
 
+			var className = "pocketgl-copyright-";
+			if(this.domContainer.id != "") className += this.domContainer.id;
+			else className += Utils.guid();
+
 			var copyright = document.createElement("div");
 			copyright.innerHTML = this.params.copyright;
-			copyright.className = "pocketgl-copyright pocketgl";
+			copyright.className =  className + " pocketgl-copyright pocketgl";
 			copyright.style.color = this.params.copyrightColor;
 
 			var style = document.createElement("style");
 			style.innerHTML = [
-				".pocketgl-copyright a,",
-				".pocketgl-copyright a:hover,",
-				".pocketgl-copyright a:active,",
-				".pocketgl-copyright a:visited,",
-				".pocketgl-copyright a:focus { color: " + this.params.copyrightLinkColor + "; }"].join("\n");
+				"." + className + " a,",
+				"." + className + " a:hover,",
+				"." + className + " a:active,",
+				"." + className + " a:visited,",
+				"." + className + " a:focus { color: " + this.params.copyrightLinkColor + "; }"].join("\n");
 
 			domElement.appendChild(copyright);
 			domElement.appendChild(style);

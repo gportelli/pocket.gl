@@ -7,7 +7,7 @@
         three_builds:       'bower_components/three.js/build',
         text:               'bower_components/text/text',
         ace_builds:         'bower_components/ace-builds/src-noconflict',
-        dat_gui:            'bower_components/dat-gui/build',
+        dat_gui:            'src/external_libs',
         almond:             'bower_components/almond',
         clipboard:          'bower_components/clipboard/dist/clipboard.min'
     },

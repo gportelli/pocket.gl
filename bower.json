@@ -31,13 +31,12 @@
     "README.md"
   ],
   "devDependencies": {
-    "dat-gui": "0.5.1",
     "ace-builds": "1.2.3",
     "requirejs": "^2.2.0",
     "almond": "^0.3.1",
     "text": "requirejs-text#^2.0.15",
-    "three.js": "threejs#r76",
-    "clipboard": "^1.5.9",
+    "three.js": "threejs#r78",
+    "clipboard": "^1.5.12",
     "rjs": "^2.2.0"
   }
 }

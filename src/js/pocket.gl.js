@@ -928,6 +928,37 @@ define([
 			this.camera.position.z = x * Math.cos(yaw);
 		}
 
+		PocketGL.prototype.onMouseDown = function(e) {
+			e.preventDefault();
+
+			this.mouseDragging = true;
+
+			// Values needed to compute the z,w coordinates where we will store the relative values accumulated during dragging
+			this.mouseClickPosition    = [e.offsetX, e.offsetY];
+			this.mouseRelativePosition = [this.uniforms.mouse.value.z, this.uniforms.mouse.value.w];
+
+			this.uniforms.mouse.value = new THREE.Vector4(e.offsetX, e.offsetY, this.mouseRelativePosition[0], this.mouseRelativePosition[1]);
+			//console.log(this.uniforms.mouse.value.x + ", " + this.uniforms.mouse.value.y, this.uniforms.mouse.value.z + ", " + this.uniforms.mouse.value.w);
+		}
+
+		PocketGL.prototype.onMouseMove = function(e) {
+			e.preventDefault();
+
+			if(this.mouseDragging) {
+				this.uniforms.mouse.value = new THREE.Vector4(
+					e.offsetX, 
+					e.offsetY, 
+					this.mouseRelativePosition[0] + e.offsetX - this.mouseClickPosition[0], 
+					this.mouseRelativePosition[1] + e.offsetY - this.mouseClickPosition[1]);
+
+				//console.log(this.uniforms.mouse.value.x + ", " + this.uniforms.mouse.value.y, this.uniforms.mouse.value.z + ", " + this.uniforms.mouse.value.w);
+			}
+		}
+
+		PocketGL.prototype.onMouseUp = function(e) {
+			this.mouseDragging = false;
+		}
+
 		PocketGL.prototype.init = function() {
 			var scope = this;
 
@@ -950,8 +981,10 @@ define([
 			if(this.params.animated)
 				this.uniforms.time = {type: "f", value: 0};
 
-			if(this.fragmentOnly)
+			if(this.fragmentOnly) {
 				this.uniforms.resolution = {type: "v2", value: new THREE.Vector2()};
+				this.uniforms.mouse = {type: "v4", value: new THREE.Vector4()};
+			}
 
 			function addUniform(u) {
 				if(u.type == "boolean")
@@ -1022,6 +1055,8 @@ define([
 
 					texture.wrapS = texture.wrapT = texparams.wrap == "clamp" ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;
 					if(texparams.filter == "nearest") texture.minFilter = texture.magFilter =THREE.NearestFilter;
+					//else texture.minFilter = texture.magFilter =THREE.LinearFilter;
+
 					this.uniforms[texparams.name].value = texture;
 				}
 			}
@@ -1035,7 +1070,8 @@ define([
 					uniforms: this.uniforms,
 					vertexShader: this.params.vertexShader, fragmentShader: this.params.fragmentShader,					
 					extensions: {
-						derivatives: true
+						derivatives: true,
+						shaderTextureLOD: true
 					}
 				} );
 
@@ -1048,6 +1084,13 @@ define([
 			this.renderer.setSize(this.params.width, this.params.height);
 			this.renderer.setClearColor( this.params.backgroundColor );
 			//this.renderer.sortObjects = false;
+
+			if(this.fragmentOnly) {
+				this.renderer.domElement.addEventListener("mousedown", function(e) {scope.onMouseDown(e);});
+				this.renderer.domElement.addEventListener("mousemove", function(e) {scope.onMouseMove(e);});
+				this.renderer.domElement.addEventListener("mouseup", 	 function(e) {scope.onMouseUp(e);});
+				this.renderer.domElement.addEventListener("mouseout",  function(e) {scope.onMouseUp(e);});
+			}
 
 			if(! this.shaderEditorEnabled) {
 				// Lights
@@ -1114,10 +1157,10 @@ define([
 				for(var i in this.params.uniforms) {
 					var u = this.params.uniforms[i];
 
-					if(u.length == undefined) {
+					if(u.length == undefined) { // Not an array
 						addGuiParams(u);
 					}
-					else {
+					else { // It's a folder (array). Let's add all its elements.
 						for(var j=1; j<u.length; j++) addGuiParams(u[j]);
 					}
 				}
@@ -1150,7 +1193,7 @@ define([
 
 			function addGuiData(u, gui) {
 				if(u.type == "float") 
-					gui.add(scope.GUIParams, u.GUIName, u.min, u.max).onChange(function() {
+					gui.add(scope.GUIParams, u.GUIName, u.min, u.max).step((u.max - u.min)/100).onChange(function() {
 						scope.render();
 					});
 				if(u.type == "integer") 

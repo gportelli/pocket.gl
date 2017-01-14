@@ -850,6 +850,9 @@ define([
 					scope.currentMaterial = material;
 
 					scope.render();
+
+					// Schedule a second render in the case the first render was too early
+					setTimeout(function() { scope.render(); }, 200);
 				}
 			);
 		}

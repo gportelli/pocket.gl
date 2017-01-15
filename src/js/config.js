@@ -18,7 +18,7 @@
  */
 
 define({
-	version: "1.2.0",
+	version: "1.2.1",
 	website: "http://pocket.gl",
 
 	brightAceTheme: "crimson_editor",

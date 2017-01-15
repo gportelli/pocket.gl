@@ -14,7 +14,7 @@
     //almond, and your modules will be inlined here
 
 /**
- * @license almond 0.3.2 Copyright jQuery Foundation and other contributors.
+ * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
  * Released under MIT license, http://github.com/requirejs/almond/LICENSE
  */
 //Going sloppy to avoid 'use strict' string cost, but strict practices should
@@ -210,32 +210,39 @@ var requirejs, require, define;
         return [prefix, name];
     }
 
+    //Creates a parts array for a relName where first part is plugin ID,
+    //second part is resource ID. Assumes relName has already been normalized.
+    function makeRelParts(relName) {
+        return relName ? splitPrefix(relName) : [];
+    }
+
     /**
      * Makes a name map, normalizing the name, and using a plugin
      * for normalization if necessary. Grabs a ref to plugin
      * too, as an optimization.
      */
-    makeMap = function (name, relName) {
+    makeMap = function (name, relParts) {
         var plugin,
             parts = splitPrefix(name),
-            prefix = parts[0];
+            prefix = parts[0],
+            relResourceName = relParts[1];
 
         name = parts[1];
 
         if (prefix) {
-            prefix = normalize(prefix, relName);
+            prefix = normalize(prefix, relResourceName);
             plugin = callDep(prefix);
         }
 
         //Normalize according
         if (prefix) {
             if (plugin && plugin.normalize) {
-                name = plugin.normalize(name, makeNormalize(relName));
+                name = plugin.normalize(name, makeNormalize(relResourceName));
             } else {
-                name = normalize(name, relName);
+                name = normalize(name, relResourceName);
             }
         } else {
-            name = normalize(name, relName);
+            name = normalize(name, relResourceName);
             parts = splitPrefix(name);
             prefix = parts[0];
             name = parts[1];
@@ -282,13 +289,14 @@ var requirejs, require, define;
     };
 
     main = function (name, deps, callback, relName) {
-        var cjsModule, depName, ret, map, i,
+        var cjsModule, depName, ret, map, i, relParts,
             args = [],
             callbackType = typeof callback,
             usingExports;
 
         //Use name if no relName
         relName = relName || name;
+        relParts = makeRelParts(relName);
 
         //Call the callback to define the module, if necessary.
         if (callbackType === 'undefined' || callbackType === 'function') {
@@ -297,7 +305,7 @@ var requirejs, require, define;
             //Default to [require, exports, module] if no deps
             deps = !deps.length && callback.length ? ['require', 'exports', 'module'] : deps;
             for (i = 0; i < deps.length; i += 1) {
-                map = makeMap(deps[i], relName);
+                map = makeMap(deps[i], relParts);
                 depName = map.f;
 
                 //Fast path CommonJS standard dependencies.
@@ -353,7 +361,7 @@ var requirejs, require, define;
             //deps arg is the module name, and second arg (if passed)
             //is just the relName.
             //Normalize module name, if it contains . or ..
-            return callDep(makeMap(deps, callback).f);
+            return callDep(makeMap(deps, makeRelParts(callback)).f);
         } else if (!deps.splice) {
             //deps is a config object, not an array.
             config = deps;
@@ -1157,7 +1165,7 @@ define('app/tabs',[
  */
 
 define('app/config',{
-	version: "1.2.0",
+	version: "1.2.1",
 	website: "http://pocket.gl",
 
 	brightAceTheme: "crimson_editor",
@@ -50476,12 +50484,12 @@ define(
 	}
 );
 /*!
- * clipboard.js v1.5.12
+ * clipboard.js v1.5.16
  * https://zenorocha.github.io/clipboard.js
  *
  * Licensed MIT © Zeno Rocha
  */
-!function(t){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define('clipboard',[],t);else{var e;e="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this,e.Clipboard=t()}}(function(){var t,e,n;return function t(e,n,o){function i(a,c){if(!n[a]){if(!e[a]){var s="function"==typeof require&&require;if(!c&&s)return s(a,!0);if(r)return r(a,!0);var l=new Error("Cannot find module '"+a+"'");throw l.code="MODULE_NOT_FOUND",l}var u=n[a]={exports:{}};e[a][0].call(u.exports,function(t){var n=e[a][1][t];return i(n?n:t)},u,u.exports,t,e,n,o)}return n[a].exports}for(var r="function"==typeof require&&require,a=0;a<o.length;a++)i(o[a]);return i}({1:[function(t,e,n){var o=t("matches-selector");e.exports=function(t,e,n){for(var i=n?t:t.parentNode;i&&i!==document;){if(o(i,e))return i;i=i.parentNode}}},{"matches-selector":5}],2:[function(t,e,n){function o(t,e,n,o,r){var a=i.apply(this,arguments);return t.addEventListener(n,a,r),{destroy:function(){t.removeEventListener(n,a,r)}}}function i(t,e,n,o){return function(n){n.delegateTarget=r(n.target,e,!0),n.delegateTarget&&o.call(t,n)}}var r=t("closest");e.exports=o},{closest:1}],3:[function(t,e,n){n.node=function(t){return void 0!==t&&t instanceof HTMLElement&&1===t.nodeType},n.nodeList=function(t){var e=Object.prototype.toString.call(t);return void 0!==t&&("[object NodeList]"===e||"[object HTMLCollection]"===e)&&"length"in t&&(0===t.length||n.node(t[0]))},n.string=function(t){return"string"==typeof t||t instanceof String},n.fn=function(t){var e=Object.prototype.toString.call(t);return"[object Function]"===e}},{}],4:[function(t,e,n){function o(t,e,n){if(!t&&!e&&!n)throw new Error("Missing required arguments");if(!c.string(e))throw new TypeError("Second argument must be a String");if(!c.fn(n))throw new TypeError("Third argument must be a Function");if(c.node(t))return i(t,e,n);if(c.nodeList(t))return r(t,e,n);if(c.string(t))return a(t,e,n);throw new TypeError("First argument must be a String, HTMLElement, HTMLCollection, or NodeList")}function i(t,e,n){return t.addEventListener(e,n),{destroy:function(){t.removeEventListener(e,n)}}}function r(t,e,n){return Array.prototype.forEach.call(t,function(t){t.addEventListener(e,n)}),{destroy:function(){Array.prototype.forEach.call(t,function(t){t.removeEventListener(e,n)})}}}function a(t,e,n){return s(document.body,t,e,n)}var c=t("./is"),s=t("delegate");e.exports=o},{"./is":3,delegate:2}],5:[function(t,e,n){function o(t,e){if(r)return r.call(t,e);for(var n=t.parentNode.querySelectorAll(e),o=0;o<n.length;++o)if(n[o]==t)return!0;return!1}var i=Element.prototype,r=i.matchesSelector||i.webkitMatchesSelector||i.mozMatchesSelector||i.msMatchesSelector||i.oMatchesSelector;e.exports=o},{}],6:[function(t,e,n){function o(t){var e;if("INPUT"===t.nodeName||"TEXTAREA"===t.nodeName)t.focus(),t.setSelectionRange(0,t.value.length),e=t.value;else{t.hasAttribute("contenteditable")&&t.focus();var n=window.getSelection(),o=document.createRange();o.selectNodeContents(t),n.removeAllRanges(),n.addRange(o),e=n.toString()}return e}e.exports=o},{}],7:[function(t,e,n){function o(){}o.prototype={on:function(t,e,n){var o=this.e||(this.e={});return(o[t]||(o[t]=[])).push({fn:e,ctx:n}),this},once:function(t,e,n){function o(){i.off(t,o),e.apply(n,arguments)}var i=this;return o._=e,this.on(t,o,n)},emit:function(t){var e=[].slice.call(arguments,1),n=((this.e||(this.e={}))[t]||[]).slice(),o=0,i=n.length;for(o;i>o;o++)n[o].fn.apply(n[o].ctx,e);return this},off:function(t,e){var n=this.e||(this.e={}),o=n[t],i=[];if(o&&e)for(var r=0,a=o.length;a>r;r++)o[r].fn!==e&&o[r].fn._!==e&&i.push(o[r]);return i.length?n[t]=i:delete n[t],this}},e.exports=o},{}],8:[function(e,n,o){!function(i,r){if("function"==typeof t&&t.amd)t(["module","select"],r);else if("undefined"!=typeof o)r(n,e("select"));else{var a={exports:{}};r(a,i.select),i.clipboardAction=a.exports}}(this,function(t,e){"use strict";function n(t){return t&&t.__esModule?t:{"default":t}}function o(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var i=n(e),r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol?"symbol":typeof t},a=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}(),c=function(){function t(e){o(this,t),this.resolveOptions(e),this.initSelection()}return t.prototype.resolveOptions=function t(){var e=arguments.length<=0||void 0===arguments[0]?{}:arguments[0];this.action=e.action,this.emitter=e.emitter,this.target=e.target,this.text=e.text,this.trigger=e.trigger,this.selectedText=""},t.prototype.initSelection=function t(){this.text?this.selectFake():this.target&&this.selectTarget()},t.prototype.selectFake=function t(){var e=this,n="rtl"==document.documentElement.getAttribute("dir");this.removeFake(),this.fakeHandlerCallback=function(){return e.removeFake()},this.fakeHandler=document.body.addEventListener("click",this.fakeHandlerCallback)||!0,this.fakeElem=document.createElement("textarea"),this.fakeElem.style.fontSize="12pt",this.fakeElem.style.border="0",this.fakeElem.style.padding="0",this.fakeElem.style.margin="0",this.fakeElem.style.position="absolute",this.fakeElem.style[n?"right":"left"]="-9999px",this.fakeElem.style.top=(window.pageYOffset||document.documentElement.scrollTop)+"px",this.fakeElem.setAttribute("readonly",""),this.fakeElem.value=this.text,document.body.appendChild(this.fakeElem),this.selectedText=(0,i.default)(this.fakeElem),this.copyText()},t.prototype.removeFake=function t(){this.fakeHandler&&(document.body.removeEventListener("click",this.fakeHandlerCallback),this.fakeHandler=null,this.fakeHandlerCallback=null),this.fakeElem&&(document.body.removeChild(this.fakeElem),this.fakeElem=null)},t.prototype.selectTarget=function t(){this.selectedText=(0,i.default)(this.target),this.copyText()},t.prototype.copyText=function t(){var e=void 0;try{e=document.execCommand(this.action)}catch(n){e=!1}this.handleResult(e)},t.prototype.handleResult=function t(e){e?this.emitter.emit("success",{action:this.action,text:this.selectedText,trigger:this.trigger,clearSelection:this.clearSelection.bind(this)}):this.emitter.emit("error",{action:this.action,trigger:this.trigger,clearSelection:this.clearSelection.bind(this)})},t.prototype.clearSelection=function t(){this.target&&this.target.blur(),window.getSelection().removeAllRanges()},t.prototype.destroy=function t(){this.removeFake()},a(t,[{key:"action",set:function t(){var e=arguments.length<=0||void 0===arguments[0]?"copy":arguments[0];if(this._action=e,"copy"!==this._action&&"cut"!==this._action)throw new Error('Invalid "action" value, use either "copy" or "cut"')},get:function t(){return this._action}},{key:"target",set:function t(e){if(void 0!==e){if(!e||"object"!==("undefined"==typeof e?"undefined":r(e))||1!==e.nodeType)throw new Error('Invalid "target" value, use a valid Element');if("copy"===this.action&&e.hasAttribute("disabled"))throw new Error('Invalid "target" attribute. Please use "readonly" instead of "disabled" attribute');if("cut"===this.action&&(e.hasAttribute("readonly")||e.hasAttribute("disabled")))throw new Error('Invalid "target" attribute. You can\'t cut text from elements with "readonly" or "disabled" attributes');this._target=e}},get:function t(){return this._target}}]),t}();t.exports=c})},{select:6}],9:[function(e,n,o){!function(i,r){if("function"==typeof t&&t.amd)t(["module","./clipboard-action","tiny-emitter","good-listener"],r);else if("undefined"!=typeof o)r(n,e("./clipboard-action"),e("tiny-emitter"),e("good-listener"));else{var a={exports:{}};r(a,i.clipboardAction,i.tinyEmitter,i.goodListener),i.clipboard=a.exports}}(this,function(t,e,n,o){"use strict";function i(t){return t&&t.__esModule?t:{"default":t}}function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function a(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function c(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}function s(t,e){var n="data-clipboard-"+t;if(e.hasAttribute(n))return e.getAttribute(n)}var l=i(e),u=i(n),f=i(o),d=function(t){function e(n,o){r(this,e);var i=a(this,t.call(this));return i.resolveOptions(o),i.listenClick(n),i}return c(e,t),e.prototype.resolveOptions=function t(){var e=arguments.length<=0||void 0===arguments[0]?{}:arguments[0];this.action="function"==typeof e.action?e.action:this.defaultAction,this.target="function"==typeof e.target?e.target:this.defaultTarget,this.text="function"==typeof e.text?e.text:this.defaultText},e.prototype.listenClick=function t(e){var n=this;this.listener=(0,f.default)(e,"click",function(t){return n.onClick(t)})},e.prototype.onClick=function t(e){var n=e.delegateTarget||e.currentTarget;this.clipboardAction&&(this.clipboardAction=null),this.clipboardAction=new l.default({action:this.action(n),target:this.target(n),text:this.text(n),trigger:n,emitter:this})},e.prototype.defaultAction=function t(e){return s("action",e)},e.prototype.defaultTarget=function t(e){var n=s("target",e);return n?document.querySelector(n):void 0},e.prototype.defaultText=function t(e){return s("text",e)},e.prototype.destroy=function t(){this.listener.destroy(),this.clipboardAction&&(this.clipboardAction.destroy(),this.clipboardAction=null)},e}(u.default);t.exports=d})},{"./clipboard-action":8,"good-listener":4,"tiny-emitter":7}]},{},[9])(9)});
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define('clipboard',[],e);else{var t;t="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this,t.Clipboard=e()}}(function(){var e,t,n;return function e(t,n,i){function o(a,c){if(!n[a]){if(!t[a]){var l="function"==typeof require&&require;if(!c&&l)return l(a,!0);if(r)return r(a,!0);var s=new Error("Cannot find module '"+a+"'");throw s.code="MODULE_NOT_FOUND",s}var u=n[a]={exports:{}};t[a][0].call(u.exports,function(e){var n=t[a][1][e];return o(n?n:e)},u,u.exports,e,t,n,i)}return n[a].exports}for(var r="function"==typeof require&&require,a=0;a<i.length;a++)o(i[a]);return o}({1:[function(e,t,n){function i(e,t){for(;e&&e.nodeType!==o;){if(e.matches(t))return e;e=e.parentNode}}var o=9;if(Element&&!Element.prototype.matches){var r=Element.prototype;r.matches=r.matchesSelector||r.mozMatchesSelector||r.msMatchesSelector||r.oMatchesSelector||r.webkitMatchesSelector}t.exports=i},{}],2:[function(e,t,n){function i(e,t,n,i,r){var a=o.apply(this,arguments);return e.addEventListener(n,a,r),{destroy:function(){e.removeEventListener(n,a,r)}}}function o(e,t,n,i){return function(n){n.delegateTarget=r(n.target,t),n.delegateTarget&&i.call(e,n)}}var r=e("./closest");t.exports=i},{"./closest":1}],3:[function(e,t,n){n.node=function(e){return void 0!==e&&e instanceof HTMLElement&&1===e.nodeType},n.nodeList=function(e){var t=Object.prototype.toString.call(e);return void 0!==e&&("[object NodeList]"===t||"[object HTMLCollection]"===t)&&"length"in e&&(0===e.length||n.node(e[0]))},n.string=function(e){return"string"==typeof e||e instanceof String},n.fn=function(e){var t=Object.prototype.toString.call(e);return"[object Function]"===t}},{}],4:[function(e,t,n){function i(e,t,n){if(!e&&!t&&!n)throw new Error("Missing required arguments");if(!c.string(t))throw new TypeError("Second argument must be a String");if(!c.fn(n))throw new TypeError("Third argument must be a Function");if(c.node(e))return o(e,t,n);if(c.nodeList(e))return r(e,t,n);if(c.string(e))return a(e,t,n);throw new TypeError("First argument must be a String, HTMLElement, HTMLCollection, or NodeList")}function o(e,t,n){return e.addEventListener(t,n),{destroy:function(){e.removeEventListener(t,n)}}}function r(e,t,n){return Array.prototype.forEach.call(e,function(e){e.addEventListener(t,n)}),{destroy:function(){Array.prototype.forEach.call(e,function(e){e.removeEventListener(t,n)})}}}function a(e,t,n){return l(document.body,e,t,n)}var c=e("./is"),l=e("delegate");t.exports=i},{"./is":3,delegate:2}],5:[function(e,t,n){function i(e){var t;if("SELECT"===e.nodeName)e.focus(),t=e.value;else if("INPUT"===e.nodeName||"TEXTAREA"===e.nodeName)e.focus(),e.setSelectionRange(0,e.value.length),t=e.value;else{e.hasAttribute("contenteditable")&&e.focus();var n=window.getSelection(),i=document.createRange();i.selectNodeContents(e),n.removeAllRanges(),n.addRange(i),t=n.toString()}return t}t.exports=i},{}],6:[function(e,t,n){function i(){}i.prototype={on:function(e,t,n){var i=this.e||(this.e={});return(i[e]||(i[e]=[])).push({fn:t,ctx:n}),this},once:function(e,t,n){function i(){o.off(e,i),t.apply(n,arguments)}var o=this;return i._=t,this.on(e,i,n)},emit:function(e){var t=[].slice.call(arguments,1),n=((this.e||(this.e={}))[e]||[]).slice(),i=0,o=n.length;for(i;i<o;i++)n[i].fn.apply(n[i].ctx,t);return this},off:function(e,t){var n=this.e||(this.e={}),i=n[e],o=[];if(i&&t)for(var r=0,a=i.length;r<a;r++)i[r].fn!==t&&i[r].fn._!==t&&o.push(i[r]);return o.length?n[e]=o:delete n[e],this}},t.exports=i},{}],7:[function(t,n,i){!function(o,r){if("function"==typeof e&&e.amd)e(["module","select"],r);else if("undefined"!=typeof i)r(n,t("select"));else{var a={exports:{}};r(a,o.select),o.clipboardAction=a.exports}}(this,function(e,t){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var o=n(t),r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},a=function(){function e(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(t,n,i){return n&&e(t.prototype,n),i&&e(t,i),t}}(),c=function(){function e(t){i(this,e),this.resolveOptions(t),this.initSelection()}return a(e,[{key:"resolveOptions",value:function e(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.action=t.action,this.emitter=t.emitter,this.target=t.target,this.text=t.text,this.trigger=t.trigger,this.selectedText=""}},{key:"initSelection",value:function e(){this.text?this.selectFake():this.target&&this.selectTarget()}},{key:"selectFake",value:function e(){var t=this,n="rtl"==document.documentElement.getAttribute("dir");this.removeFake(),this.fakeHandlerCallback=function(){return t.removeFake()},this.fakeHandler=document.body.addEventListener("click",this.fakeHandlerCallback)||!0,this.fakeElem=document.createElement("textarea"),this.fakeElem.style.fontSize="12pt",this.fakeElem.style.border="0",this.fakeElem.style.padding="0",this.fakeElem.style.margin="0",this.fakeElem.style.position="absolute",this.fakeElem.style[n?"right":"left"]="-9999px";var i=window.pageYOffset||document.documentElement.scrollTop;this.fakeElem.addEventListener("focus",window.scrollTo(0,i)),this.fakeElem.style.top=i+"px",this.fakeElem.setAttribute("readonly",""),this.fakeElem.value=this.text,document.body.appendChild(this.fakeElem),this.selectedText=(0,o.default)(this.fakeElem),this.copyText()}},{key:"removeFake",value:function e(){this.fakeHandler&&(document.body.removeEventListener("click",this.fakeHandlerCallback),this.fakeHandler=null,this.fakeHandlerCallback=null),this.fakeElem&&(document.body.removeChild(this.fakeElem),this.fakeElem=null)}},{key:"selectTarget",value:function e(){this.selectedText=(0,o.default)(this.target),this.copyText()}},{key:"copyText",value:function e(){var t=void 0;try{t=document.execCommand(this.action)}catch(e){t=!1}this.handleResult(t)}},{key:"handleResult",value:function e(t){this.emitter.emit(t?"success":"error",{action:this.action,text:this.selectedText,trigger:this.trigger,clearSelection:this.clearSelection.bind(this)})}},{key:"clearSelection",value:function e(){this.target&&this.target.blur(),window.getSelection().removeAllRanges()}},{key:"destroy",value:function e(){this.removeFake()}},{key:"action",set:function e(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"copy";if(this._action=t,"copy"!==this._action&&"cut"!==this._action)throw new Error('Invalid "action" value, use either "copy" or "cut"')},get:function e(){return this._action}},{key:"target",set:function e(t){if(void 0!==t){if(!t||"object"!==("undefined"==typeof t?"undefined":r(t))||1!==t.nodeType)throw new Error('Invalid "target" value, use a valid Element');if("copy"===this.action&&t.hasAttribute("disabled"))throw new Error('Invalid "target" attribute. Please use "readonly" instead of "disabled" attribute');if("cut"===this.action&&(t.hasAttribute("readonly")||t.hasAttribute("disabled")))throw new Error('Invalid "target" attribute. You can\'t cut text from elements with "readonly" or "disabled" attributes');this._target=t}},get:function e(){return this._target}}]),e}();e.exports=c})},{select:5}],8:[function(t,n,i){!function(o,r){if("function"==typeof e&&e.amd)e(["module","./clipboard-action","tiny-emitter","good-listener"],r);else if("undefined"!=typeof i)r(n,t("./clipboard-action"),t("tiny-emitter"),t("good-listener"));else{var a={exports:{}};r(a,o.clipboardAction,o.tinyEmitter,o.goodListener),o.clipboard=a.exports}}(this,function(e,t,n,i){"use strict";function o(e){return e&&e.__esModule?e:{default:e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function c(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}function l(e,t){var n="data-clipboard-"+e;if(t.hasAttribute(n))return t.getAttribute(n)}var s=o(t),u=o(n),f=o(i),d=function(){function e(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(t,n,i){return n&&e(t.prototype,n),i&&e(t,i),t}}(),h=function(e){function t(e,n){r(this,t);var i=a(this,(t.__proto__||Object.getPrototypeOf(t)).call(this));return i.resolveOptions(n),i.listenClick(e),i}return c(t,e),d(t,[{key:"resolveOptions",value:function e(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.action="function"==typeof t.action?t.action:this.defaultAction,this.target="function"==typeof t.target?t.target:this.defaultTarget,this.text="function"==typeof t.text?t.text:this.defaultText}},{key:"listenClick",value:function e(t){var n=this;this.listener=(0,f.default)(t,"click",function(e){return n.onClick(e)})}},{key:"onClick",value:function e(t){var n=t.delegateTarget||t.currentTarget;this.clipboardAction&&(this.clipboardAction=null),this.clipboardAction=new s.default({action:this.action(n),target:this.target(n),text:this.text(n),trigger:n,emitter:this})}},{key:"defaultAction",value:function e(t){return l("action",t)}},{key:"defaultTarget",value:function e(t){var n=l("target",t);if(n)return document.querySelector(n)}},{key:"defaultText",value:function e(t){return l("text",t)}},{key:"destroy",value:function e(){this.listener.destroy(),this.clipboardAction&&(this.clipboardAction.destroy(),this.clipboardAction=null)}}]),t}(u.default);e.exports=h})},{"./clipboard-action":7,"good-listener":4,"tiny-emitter":6}]},{},[8])(8)});
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -55461,7 +55469,7 @@ exportAce(ACE_NAMESPACE);
 })();
 
 ace.define("ace/lib/regexp",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 
     var real = {
             exec: RegExp.prototype.exec,
@@ -56231,7 +56239,7 @@ var toObject = function (o) {
 });
 
 ace.define("ace/lib/fixoldbrowsers",["require","exports","module","ace/lib/regexp","ace/lib/es5-shim"], function(require, exports, module) {
-
+"use strict";
 
 require("./regexp");
 require("./es5-shim");
@@ -56239,7 +56247,7 @@ require("./es5-shim");
 });
 
 ace.define("ace/lib/dom",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 
 var XHTML_NS = "http://www.w3.org/1999/xhtml";
 
@@ -56474,7 +56482,7 @@ exports.getParentWindow = function(document) {
 });
 
 ace.define("ace/lib/oop",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 
 exports.inherits = function(ctor, superCtor) {
     ctor.super_ = superCtor;
@@ -56502,7 +56510,7 @@ exports.implement = function(proto, mixin) {
 });
 
 ace.define("ace/lib/keys",["require","exports","module","ace/lib/fixoldbrowsers","ace/lib/oop"], function(require, exports, module) {
-
+"use strict";
 
 require("./fixoldbrowsers");
 
@@ -56617,7 +56625,7 @@ exports.keyCodeToString = function(keyCode) {
 });
 
 ace.define("ace/lib/useragent",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 exports.OS = {
     LINUX: "LINUX",
     MAC: "MAC",
@@ -56664,7 +56672,7 @@ exports.isChromeOS = ua.indexOf(" CrOS ") >= 0;
 });
 
 ace.define("ace/lib/event",["require","exports","module","ace/lib/keys","ace/lib/useragent"], function(require, exports, module) {
-
+"use strict";
 
 var keys = require("./keys");
 var useragent = require("./useragent");
@@ -57030,7 +57038,7 @@ else
 });
 
 ace.define("ace/lib/lang",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 
 exports.last = function(a) {
     return a[a.length - 1];
@@ -57220,7 +57228,7 @@ exports.delayedCall = function(fcn, defaultTimeout) {
 });
 
 ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event","ace/lib/useragent","ace/lib/dom","ace/lib/lang"], function(require, exports, module) {
-
+"use strict";
 
 var event = require("../lib/event");
 var useragent = require("../lib/useragent");
@@ -57680,7 +57688,7 @@ exports.TextInput = TextInput;
 });
 
 ace.define("ace/mouse/default_handlers",["require","exports","module","ace/lib/dom","ace/lib/event","ace/lib/useragent"], function(require, exports, module) {
-
+"use strict";
 
 var dom = require("../lib/dom");
 var event = require("../lib/event");
@@ -57939,7 +57947,7 @@ function calcRangeOrientation(range, cursor) {
 });
 
 ace.define("ace/tooltip",["require","exports","module","ace/lib/oop","ace/lib/dom"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("./lib/oop");
 var dom = require("./lib/dom");
@@ -58003,7 +58011,7 @@ exports.Tooltip = Tooltip;
 });
 
 ace.define("ace/mouse/default_gutter_handler",["require","exports","module","ace/lib/dom","ace/lib/oop","ace/lib/event","ace/tooltip"], function(require, exports, module) {
-
+"use strict";
 var dom = require("../lib/dom");
 var oop = require("../lib/oop");
 var event = require("../lib/event");
@@ -58155,7 +58163,7 @@ exports.GutterHandler = GutterHandler;
 });
 
 ace.define("ace/mouse/mouse_event",["require","exports","module","ace/lib/event","ace/lib/useragent"], function(require, exports, module) {
-
+"use strict";
 
 var event = require("../lib/event");
 var useragent = require("../lib/useragent");
@@ -58229,7 +58237,7 @@ var MouseEvent = exports.MouseEvent = function(domEvent, editor) {
 });
 
 ace.define("ace/mouse/dragdrop_handler",["require","exports","module","ace/lib/dom","ace/lib/event","ace/lib/useragent"], function(require, exports, module) {
-
+"use strict";
 
 var dom = require("../lib/dom");
 var event = require("../lib/event");
@@ -58611,7 +58619,7 @@ exports.DragdropHandler = DragdropHandler;
 });
 
 ace.define("ace/lib/net",["require","exports","module","ace/lib/dom"], function(require, exports, module) {
-
+"use strict";
 var dom = require("./dom");
 
 exports.get = function (url, callback) {
@@ -58649,7 +58657,7 @@ exports.qualifyURL = function(url) {
 });
 
 ace.define("ace/lib/event_emitter",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 
 var EventEmitter = {};
 var stopPropagation = function() { this.propagationStopped = true; };
@@ -59062,7 +59070,7 @@ function deHyphenate(str) {
 });
 
 ace.define("ace/mouse/mouse_handler",["require","exports","module","ace/lib/event","ace/lib/useragent","ace/mouse/default_handlers","ace/mouse/default_gutter_handler","ace/mouse/mouse_event","ace/mouse/dragdrop_handler","ace/config"], function(require, exports, module) {
-
+"use strict";
 
 var event = require("../lib/event");
 var useragent = require("../lib/useragent");
@@ -59239,7 +59247,7 @@ exports.MouseHandler = MouseHandler;
 });
 
 ace.define("ace/mouse/fold_handler",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 
 function FoldHandler(editor) {
 
@@ -59301,7 +59309,7 @@ exports.FoldHandler = FoldHandler;
 });
 
 ace.define("ace/keyboard/keybinding",["require","exports","module","ace/lib/keys","ace/lib/event"], function(require, exports, module) {
-
+"use strict";
 
 var keyUtil  = require("../lib/keys");
 var event = require("../lib/event");
@@ -59421,7 +59429,7 @@ exports.KeyBinding = KeyBinding;
 });
 
 ace.define("ace/range",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 var comparePoints = function(p1, p2) {
     return p1.row - p2.row || p1.column - p2.column;
 };
@@ -59660,7 +59668,7 @@ exports.Range = Range;
 });
 
 ace.define("ace/selection",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/lib/event_emitter","ace/range"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("./lib/oop");
 var lang = require("./lib/lang");
@@ -60270,7 +60278,7 @@ exports.Selection = Selection;
 });
 
 ace.define("ace/tokenizer",["require","exports","module","ace/config"], function(require, exports, module) {
-
+"use strict";
 
 var config = require("./config");
 var MAX_TOKEN_COUNT = 2000;
@@ -60580,7 +60588,7 @@ exports.Tokenizer = Tokenizer;
 });
 
 ace.define("ace/mode/text_highlight_rules",["require","exports","module","ace/lib/lang"], function(require, exports, module) {
-
+"use strict";
 
 var lang = require("../lib/lang");
 
@@ -60776,7 +60784,7 @@ exports.TextHighlightRules = TextHighlightRules;
 });
 
 ace.define("ace/mode/behaviour",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 
 var Behaviour = function() {
    this.$behaviours = {};
@@ -60837,7 +60845,7 @@ exports.Behaviour = Behaviour;
 });
 
 ace.define("ace/unicode",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 exports.packages = {};
 
 addUnicodePackage({
@@ -60889,7 +60897,7 @@ function addUnicodePackage (pack) {
 });
 
 ace.define("ace/token_iterator",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 var TokenIterator = function(session, initialRow, initialColumn) {
     this.$session = session;
     this.$row = initialRow;
@@ -60965,7 +60973,7 @@ exports.TokenIterator = TokenIterator;
 });
 
 ace.define("ace/mode/text",["require","exports","module","ace/tokenizer","ace/mode/text_highlight_rules","ace/mode/behaviour","ace/unicode","ace/lib/lang","ace/token_iterator","ace/range"], function(require, exports, module) {
-
+"use strict";
 
 var Tokenizer = require("../tokenizer").Tokenizer;
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -61318,7 +61326,7 @@ exports.Mode = Mode;
 });
 
 ace.define("ace/apply_delta",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 
 function throwDeltaError(delta, errorText){
     console.log("Invalid Delta:", delta);
@@ -61383,7 +61391,7 @@ exports.applyDelta = function(docLines, delta, doNotValidate) {
 });
 
 ace.define("ace/anchor",["require","exports","module","ace/lib/oop","ace/lib/event_emitter"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("./lib/oop");
 var EventEmitter = require("./lib/event_emitter").EventEmitter;
@@ -61508,7 +61516,7 @@ var Anchor = exports.Anchor = function(doc, row, column) {
 });
 
 ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply_delta","ace/lib/event_emitter","ace/range","ace/anchor"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("./lib/oop");
 var applyDelta = require("./apply_delta").applyDelta;
@@ -61864,7 +61872,7 @@ exports.Document = Document;
 });
 
 ace.define("ace/background_tokenizer",["require","exports","module","ace/lib/oop","ace/lib/event_emitter"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("./lib/oop");
 var EventEmitter = require("./lib/event_emitter").EventEmitter;
@@ -62008,7 +62016,7 @@ exports.BackgroundTokenizer = BackgroundTokenizer;
 });
 
 ace.define("ace/search_highlight",["require","exports","module","ace/lib/lang","ace/lib/oop","ace/range"], function(require, exports, module) {
-
+"use strict";
 
 var lang = require("./lib/lang");
 var oop = require("./lib/oop");
@@ -62060,7 +62068,7 @@ exports.SearchHighlight = SearchHighlight;
 });
 
 ace.define("ace/edit_session/fold_line",["require","exports","module","ace/range"], function(require, exports, module) {
-
+"use strict";
 
 var Range = require("../range").Range;
 function FoldLine(foldData, folds) {
@@ -62279,7 +62287,7 @@ exports.FoldLine = FoldLine;
 });
 
 ace.define("ace/range_list",["require","exports","module","ace/range"], function(require, exports, module) {
-
+"use strict";
 var Range = require("./range").Range;
 var comparePoints = Range.comparePoints;
 
@@ -62485,7 +62493,7 @@ exports.RangeList = RangeList;
 });
 
 ace.define("ace/edit_session/fold",["require","exports","module","ace/range","ace/range_list","ace/lib/oop"], function(require, exports, module) {
-
+"use strict";
 
 var Range = require("../range").Range;
 var RangeList = require("../range_list").RangeList;
@@ -62589,7 +62597,7 @@ function restoreRange(range, anchor) {
 });
 
 ace.define("ace/edit_session/folding",["require","exports","module","ace/range","ace/edit_session/fold_line","ace/edit_session/fold","ace/token_iterator"], function(require, exports, module) {
-
+"use strict";
 
 var Range = require("../range").Range;
 var FoldLine = require("./fold_line").FoldLine;
@@ -63325,7 +63333,7 @@ exports.Folding = Folding;
 });
 
 ace.define("ace/edit_session/bracket_match",["require","exports","module","ace/token_iterator","ace/range"], function(require, exports, module) {
-
+"use strict";
 
 var TokenIterator = require("../token_iterator").TokenIterator;
 var Range = require("../range").Range;
@@ -63507,7 +63515,7 @@ exports.BracketMatch = BracketMatch;
 });
 
 ace.define("ace/edit_session",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/config","ace/lib/event_emitter","ace/selection","ace/mode/text","ace/range","ace/document","ace/background_tokenizer","ace/search_highlight","ace/edit_session/folding","ace/edit_session/bracket_match"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("./lib/oop");
 var lang = require("./lib/lang");
@@ -65254,7 +65262,7 @@ exports.EditSession = EditSession;
 });
 
 ace.define("ace/search",["require","exports","module","ace/lib/lang","ace/lib/oop","ace/range"], function(require, exports, module) {
-
+"use strict";
 
 var lang = require("./lib/lang");
 var oop = require("./lib/oop");
@@ -65558,7 +65566,7 @@ exports.Search = Search;
 });
 
 ace.define("ace/keyboard/hash_handler",["require","exports","module","ace/lib/keys","ace/lib/useragent"], function(require, exports, module) {
-
+"use strict";
 
 var keyUtil = require("../lib/keys");
 var useragent = require("../lib/useragent");
@@ -65780,7 +65788,7 @@ exports.MultiHashHandler = MultiHashHandler;
 });
 
 ace.define("ace/commands/command_manager",["require","exports","module","ace/lib/oop","ace/keyboard/hash_handler","ace/lib/event_emitter"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("../lib/oop");
 var MultiHashHandler = require("../keyboard/hash_handler").MultiHashHandler;
@@ -65887,7 +65895,7 @@ exports.CommandManager = CommandManager;
 });
 
 ace.define("ace/commands/default_commands",["require","exports","module","ace/lib/lang","ace/config","ace/range"], function(require, exports, module) {
-
+"use strict";
 
 var lang = require("../lib/lang");
 var config = require("../config");
@@ -66580,7 +66588,7 @@ exports.commands = [{
 });
 
 ace.define("ace/editor",["require","exports","module","ace/lib/fixoldbrowsers","ace/lib/oop","ace/lib/dom","ace/lib/lang","ace/lib/useragent","ace/keyboard/textinput","ace/mouse/mouse_handler","ace/mouse/fold_handler","ace/keyboard/keybinding","ace/edit_session","ace/search","ace/range","ace/lib/event_emitter","ace/commands/command_manager","ace/commands/default_commands","ace/config","ace/token_iterator"], function(require, exports, module) {
-
+"use strict";
 
 require("./lib/fixoldbrowsers");
 
@@ -68425,7 +68433,7 @@ exports.Editor = Editor;
 });
 
 ace.define("ace/undomanager",["require","exports","module"], function(require, exports, module) {
-
+"use strict";
 var UndoManager = function() {
     this.reset();
 };
@@ -68532,7 +68540,7 @@ exports.UndoManager = UndoManager;
 });
 
 ace.define("ace/layer/gutter",["require","exports","module","ace/lib/dom","ace/lib/oop","ace/lib/lang","ace/lib/event_emitter"], function(require, exports, module) {
-
+"use strict";
 
 var dom = require("../lib/dom");
 var oop = require("../lib/oop");
@@ -68785,7 +68793,7 @@ exports.Gutter = Gutter;
 });
 
 ace.define("ace/layer/marker",["require","exports","module","ace/range","ace/lib/dom"], function(require, exports, module) {
-
+"use strict";
 
 var Range = require("../range").Range;
 var dom = require("../lib/dom");
@@ -68969,7 +68977,7 @@ exports.Marker = Marker;
 });
 
 ace.define("ace/layer/text",["require","exports","module","ace/lib/oop","ace/lib/dom","ace/lib/lang","ace/lib/useragent","ace/lib/event_emitter"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("../lib/oop");
 var dom = require("../lib/dom");
@@ -69503,7 +69511,7 @@ exports.Text = Text;
 });
 
 ace.define("ace/layer/cursor",["require","exports","module","ace/lib/dom"], function(require, exports, module) {
-
+"use strict";
 
 var dom = require("../lib/dom");
 var isIE8;
@@ -69712,7 +69720,7 @@ exports.Cursor = Cursor;
 });
 
 ace.define("ace/scrollbar",["require","exports","module","ace/lib/oop","ace/lib/dom","ace/lib/event","ace/lib/event_emitter"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("./lib/oop");
 var dom = require("./lib/dom");
@@ -69835,7 +69843,7 @@ exports.HScrollBar = HScrollBar;
 });
 
 ace.define("ace/renderloop",["require","exports","module","ace/lib/event"], function(require, exports, module) {
-
+"use strict";
 
 var event = require("./lib/event");
 
@@ -70017,7 +70025,7 @@ var FontMetrics = exports.FontMetrics = function(parentEl) {
 });
 
 ace.define("ace/virtual_renderer",["require","exports","module","ace/lib/oop","ace/lib/dom","ace/config","ace/lib/useragent","ace/layer/gutter","ace/layer/marker","ace/layer/text","ace/layer/cursor","ace/scrollbar","ace/scrollbar","ace/renderloop","ace/layer/font_metrics","ace/lib/event_emitter"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("./lib/oop");
 var dom = require("./lib/dom");
@@ -71664,7 +71672,7 @@ exports.VirtualRenderer = VirtualRenderer;
 });
 
 ace.define("ace/worker/worker_client",["require","exports","module","ace/lib/oop","ace/lib/net","ace/lib/event_emitter","ace/config"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("../lib/oop");
 var net = require("../lib/net");
@@ -71886,7 +71894,7 @@ exports.WorkerClient = WorkerClient;
 });
 
 ace.define("ace/placeholder",["require","exports","module","ace/range","ace/lib/event_emitter","ace/lib/oop"], function(require, exports, module) {
-
+"use strict";
 
 var Range = require("./range").Range;
 var EventEmitter = require("./lib/event_emitter").EventEmitter;
@@ -73120,7 +73128,7 @@ require("./config").defineOptions(Editor.prototype, "editor", {
 });
 
 ace.define("ace/mode/folding/fold_mode",["require","exports","module","ace/range"], function(require, exports, module) {
-
+"use strict";
 
 var Range = require("../../range").Range;
 
@@ -73209,7 +73217,7 @@ var FoldMode = exports.FoldMode = function() {};
 });
 
 ace.define("ace/theme/textmate",["require","exports","module","ace/lib/dom"], function(require, exports, module) {
-
+"use strict";
 
 exports.isDark = false;
 exports.cssClass = "ace-tm";
@@ -73339,7 +73347,7 @@ dom.importCssString(exports.cssText, exports.cssClass);
 });
 
 ace.define("ace/line_widgets",["require","exports","module","ace/lib/oop","ace/lib/dom","ace/range"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("./lib/oop");
 var dom = require("./lib/dom");
@@ -73691,7 +73699,7 @@ exports.LineWidgets = LineWidgets;
 });
 
 ace.define("ace/ext/error_marker",["require","exports","module","ace/line_widgets","ace/lib/dom","ace/range"], function(require, exports, module) {
-
+"use strict";
 var LineWidgets = require("../line_widgets").LineWidgets;
 var dom = require("../lib/dom");
 var Range = require("../range").Range;
@@ -73877,7 +73885,7 @@ dom.importCssString("\
 });
 
 ace.define("ace/ace",["require","exports","module","ace/lib/fixoldbrowsers","ace/lib/dom","ace/lib/event","ace/editor","ace/edit_session","ace/undomanager","ace/virtual_renderer","ace/worker/worker_client","ace/keyboard/hash_handler","ace/placeholder","ace/multi_select","ace/mode/folding/fold_mode","ace/theme/textmate","ace/ext/error_marker","ace/config"], function(require, exports, module) {
-
+"use strict";
 
 require("./lib/fixoldbrowsers");
 
@@ -74812,6 +74820,9 @@ define('app/pocket.gl',[
 					scope.currentMaterial = material;
 
 					scope.render();
+
+					// Schedule a second render in the case the first render was too early
+					setTimeout(function() { scope.render(); }, 200);
 				}
 			);
 		}
@@ -75217,7 +75228,7 @@ define('app/pocket.gl',[
 	}
 );
 ace.define("ace/mode/doc_comment_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -75267,7 +75278,7 @@ exports.DocCommentHighlightRules = DocCommentHighlightRules;
 });
 
 ace.define("ace/mode/c_cpp_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/doc_comment_highlight_rules","ace/mode/text_highlight_rules"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("../lib/oop");
 var DocCommentHighlightRules = require("./doc_comment_highlight_rules").DocCommentHighlightRules;
@@ -75454,7 +75465,7 @@ exports.c_cppHighlightRules = c_cppHighlightRules;
 });
 
 ace.define("ace/mode/matching_brace_outdent",["require","exports","module","ace/range"], function(require, exports, module) {
-
+"use strict";
 
 var Range = require("../range").Range;
 
@@ -75494,7 +75505,7 @@ exports.MatchingBraceOutdent = MatchingBraceOutdent;
 });
 
 ace.define("ace/mode/behaviour/cstyle",["require","exports","module","ace/lib/oop","ace/mode/behaviour","ace/token_iterator","ace/lib/lang"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("../../lib/oop");
 var Behaviour = require("../behaviour").Behaviour;
@@ -75851,7 +75862,7 @@ exports.CstyleBehaviour = CstyleBehaviour;
 });
 
 ace.define("ace/mode/folding/cstyle",["require","exports","module","ace/lib/oop","ace/range","ace/mode/folding/fold_mode"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("../../lib/oop");
 var Range = require("../../range").Range;
@@ -75991,7 +76002,7 @@ oop.inherits(FoldMode, BaseFoldMode);
 });
 
 ace.define("ace/mode/c_cpp",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/c_cpp_highlight_rules","ace/mode/matching_brace_outdent","ace/range","ace/mode/behaviour/cstyle","ace/mode/folding/cstyle"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("../lib/oop");
 var TextMode = require("./text").Mode;
@@ -76063,7 +76074,7 @@ exports.Mode = Mode;
 });
 
 ace.define("ace/mode/glsl_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/c_cpp_highlight_rules"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("../lib/oop");
 var c_cppHighlightRules = require("./c_cpp_highlight_rules").c_cppHighlightRules;
@@ -76113,7 +76124,7 @@ exports.glslHighlightRules = glslHighlightRules;
 });
 
 ace.define("ace/mode/glsl",["require","exports","module","ace/lib/oop","ace/mode/c_cpp","ace/mode/glsl_highlight_rules","ace/mode/matching_brace_outdent","ace/range","ace/mode/behaviour/cstyle","ace/mode/folding/cstyle"], function(require, exports, module) {
-
+"use strict";
 
 var oop = require("../lib/oop");
 var CMode = require("./c_cpp").Mode;

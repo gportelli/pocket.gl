@@ -896,11 +896,24 @@ define([
 
 			var errorMessage = "";
 
+			var programLog = "";
+			var vertexLog = "";
+			var fragmentLog = "";
+
 			if(this.currentMaterial.program != undefined && this.currentMaterial.program.diagnostics != undefined) {
-				var programLog = this.currentMaterial.program.diagnostics.programLog;
-				var fragmentLog = this.currentMaterial.program.diagnostics.fragmentShader.log;
-				var vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log;
+				var stack = new Error().stack;
+				console.log( stack );
+
+				programLog = this.currentMaterial.program.diagnostics.programLog.trim();
+				fragmentLog = this.currentMaterial.program.diagnostics.fragmentShader.log.trim();
+				vertexLog = this.currentMaterial.program.diagnostics.vertexShader.log.trim();
 				
+				// Fix for strange string value on chrome 57.0.2987.133
+				if(programLog.length==1 && programLog.charCodeAt(0) == 0) programLog = "";
+			}
+
+			if(fragmentLog != "" || vertexLog != "")
+			{
 				// Subtracting from errors line numbers the lines of code included by three.js into the shader programs
 				vertexLog   = this.adjustLineNumbers(vertexLog, Utils.countLines(this.currentMaterial.program.diagnostics.vertexShader.prefix));
 				fragmentLog = this.adjustLineNumbers(fragmentLog, Utils.countLines(this.currentMaterial.program.diagnostics.fragmentShader.prefix));

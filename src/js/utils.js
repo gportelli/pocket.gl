@@ -18,7 +18,14 @@
  */
  
 define(function() {
-	Utils = function() {}
+	Utils = function() {
+		// Polyfill
+		if (!String.prototype.trim) {
+		  String.prototype.trim = function () {
+		    return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+		  };
+		}
+	}
 
 	Utils.prototype.getElementSize = function(element) {
 		if(element.getBoundingClientRect != undefined)

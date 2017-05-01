@@ -18,6 +18,9 @@
  */
  
 define([
+	"app/dirtyHack",
+	//"three_builds/three", // the dirtyHack module will load the three module
+
 	"text!src/css/style.css",
 	
 	"text!src/default_shaders/vertex.glsl",
@@ -31,8 +34,6 @@ define([
 
 	"clipboard",
 
-	"three_builds/three",
-
 	"three_examples/Detector",
 	"three_examples/controls/OrbitControls",	
 
@@ -41,7 +42,7 @@ define([
 	"ace_builds/ace"
 	],
 
-	function(stylesheet, defaultVertex, defaultFragment, Utils, PocketGLTabs, config, LoadingManager, MeshLoader, Clipboard) {
+	function(dummy, stylesheet, defaultVertex, defaultFragment, Utils, PocketGLTabs, config, LoadingManager, MeshLoader, Clipboard) {
 		console.log("pocket.gl " + config.version);
 
 		// Inject css
@@ -68,7 +69,7 @@ define([
 						? "./"
 						: params.substring(0, lastSlash);
 				}
-				var loaderV = new THREE.XHRLoader();
+				var loaderV = new THREE.FileLoader();
 				loaderV.load( 
 					params, 
 					function(text) { 
@@ -124,7 +125,7 @@ define([
 				this.loadingShaders = true;
 
 				if(params.vertexShaderFile != undefined) {
-					var loaderV = new THREE.XHRLoader();
+					var loaderV = new THREE.FileLoader();
 					this.LoadingManager.addObject(loaderV);
 					loaderV.load( 
 						this.baseURL + params.vertexShaderFile, 
@@ -140,7 +141,7 @@ define([
 				}
 
 				if(params.fragmentShaderFile != undefined) {
-					var loader = new THREE.XHRLoader();
+					var loader = new THREE.FileLoader();
 					this.LoadingManager.addObject(loader);
 					loader.load( 
 						this.baseURL + params.fragmentShaderFile, 

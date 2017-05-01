@@ -20,7 +20,7 @@
 define(
 	[
 		"app/utils",
-		"three_builds/three",
+		"app/dirtyHack",
 		"three_examples/loaders/OBJLoader",
 		"three_examples/loaders/ColladaLoader",
 		"three_examples/geometries/TeapotBufferGeometry"

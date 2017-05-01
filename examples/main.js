@@ -27,8 +27,8 @@ require.config({
 
     paths: {
         app: 				'src/js',
-        three_examples: 	'bower_components/three.js/examples/js',
-        three_builds: 		'bower_components/three.js/build',
+        three_examples: 	'bower_components/threejs/examples/js',
+        three_builds: 		'bower_components/threejs/build',
         text: 				'bower_components/text/text',
         ace_builds: 		'bower_components/ace-builds/src-noconflict',
         dat_gui:  			'src/external_libs',

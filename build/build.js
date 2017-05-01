@@ -4,7 +4,7 @@
     paths: {
         app:                'src/js',
         three_examples:     'bower_components/threejs/examples/js',
-        three_builds:       'bower_components/threejs/build/patched',
+        three_builds:       'bower_components/threejs/build/patched', // here is the result of the script patch-three.js
         text:               'bower_components/text/text',
         ace_builds:         'bower_components/ace-builds/src-noconflict',
         dat_gui:            'src/external_libs',

@@ -26,7 +26,7 @@ define(
 		"three_examples/geometries/TeapotBufferGeometry"
 	],
 
-	function(Utils, t) {
+	function(Utils) {
 
 		function MeshLoader(mesh, material, baseURL, loadingManager, onLoaded) { 
 			this.mesh = mesh;

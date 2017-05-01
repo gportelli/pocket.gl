@@ -1,5 +1,5 @@
 define({
-	examples: [
+	examples_list: [
 		"01-hello-world",
 		"02-variables",
 		"03-meshes",

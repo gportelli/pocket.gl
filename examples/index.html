@@ -25,7 +25,7 @@
 		    xobj.onreadystatechange = function () {
 		          if (xobj.readyState == 4 && xobj.status == "200") {
 		          	function define(obj) { return obj; }
-		            eval("var examples = " + xobj.responseText + ".examples;");
+		            eval("var examples = " + xobj.responseText + ".examples_list;");
 
 		            var menu = document.createElement("ol");
 					menu.style.float = "left";

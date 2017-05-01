@@ -52,13 +52,13 @@ require(["examples/examples"], function(examples) {
 		"app/pocket.gl"
 		],
 
-		function(widget, params) {
+		function(widget) {
 			var menu = document.createElement("ol");
 			menu.style.float = "left";
-			for(i=0; i<examples.examples.length; i++) {
+			for(i=0; i<examples.examples_list.length; i++) {
 				var li = document.createElement("li"); 
 				var a = document.createElement("a");
-				a.innerHTML = i == index ? "[ " + examples.examples[i] + " ]" : examples.examples[i];
+				a.innerHTML = i == index ? "[ " + examples.examples_list[i] + " ]" : examples.examples_list[i];
 				a.href = "#" + i;
 				a.style = "padding-right: 10px";
 				a.onclick = function(index) { return function() { 
@@ -74,7 +74,7 @@ require(["examples/examples"], function(examples) {
 			widgetContainer.style.marginLeft = "240px";
 			document.getElementById("container").appendChild(widgetContainer);
 
-		    new widget(widgetContainer, "data/" + examples.examples[index] + "/params.js"); 
+		    new widget(widgetContainer, "data/" + examples.examples_list[index] + "/params.js"); 
 		}
 	);
 });

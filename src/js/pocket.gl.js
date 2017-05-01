@@ -968,6 +968,7 @@ define([
 					this.mouseRelativePosition[0] + e.offsetX - this.mouseClickPosition[0], 
 					this.mouseRelativePosition[1] + e.offsetY - this.mouseClickPosition[1]);
 
+				this.render();
 				//console.log(this.uniforms.mouse.value.x + ", " + this.uniforms.mouse.value.y, this.uniforms.mouse.value.z + ", " + this.uniforms.mouse.value.w);
 			}
 		}

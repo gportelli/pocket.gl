@@ -18,8 +18,8 @@
  */
 
 define({
-	version: "1.2.3",
-	website: "http://pocket.gl",
+	version: "1.2.4",
+	website: "http://pocketgl.com",
 
 	brightAceTheme: "crimson_editor",
 	darkAceTheme: "vibrant_ink",

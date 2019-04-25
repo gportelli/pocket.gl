@@ -2,8 +2,8 @@
 
 *A fully customizable webgl shader sandbox to embed in your pages*
 
-Visit http://pocket.gl for the full documentation, examples and tutorials.
-[![http://pocket.gl](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/github-site-frontpage.png)](http://pocket.gl)
+Visit http://pocketgl.com for the full documentation, examples and tutorials.
+[![http://pocketgl.com](https://raw.githubusercontent.com/gportelli/pocket.gl/master/assets/screenshots/github-site-frontpage.png)](http://pocketgl.com)
 
 ## Examples
 > *Load meshes and define editable shader variables*
